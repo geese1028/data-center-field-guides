@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720">
+  <rect width="1400" height="720" fill="#ffffff"/>
+  <text x="40" y="48" fill="#111" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700">Read these four before any dashboard.</text>
+  <text x="40" y="84" fill="#333" font-family="DejaVu Sans, sans-serif" font-size="16">If one is missing, the handover failed. Do not start the day on a ratio.</text>
+  <g font-family="DejaVu Sans, sans-serif" font-size="17" fill="#111">
+    <rect x="40" y="120" width="1320" height="40" fill="#111"/>
+    <text x="52" y="146" fill="#fff" font-weight="700">Item</text>
+    <text x="420" y="146" fill="#fff" font-weight="700">Write</text>
+    <text x="980" y="146" fill="#fff" font-weight="700">If missing</text>
+    <rect x="40" y="160" width="1320" height="100" fill="#f6f6f4" stroke="#111"/>
+    <text x="52" y="198" font-weight="700">1. Impairments</text>
+    <text x="52" y="228">carried in</text>
+    <text x="420" y="198">What is not normal, and what</text>
+    <text x="420" y="228">must not be touched.</text>
+    <text x="980" y="198">You do not know the</text>
+    <text x="980" y="228">plant you inherited.</text>
+    <rect x="40" y="260" width="1320" height="100" fill="#fff" stroke="#111"/>
+    <text x="52" y="298" font-weight="700">2. Permits</text>
+    <text x="52" y="328">still open</text>
+    <text x="420" y="298">Each permit, and the time it dies.</text>
+    <text x="420" y="328">Expired means stop.</text>
+    <text x="980" y="198"></text>
+    <text x="980" y="298">Someone may still be</text>
+    <text x="980" y="328">working on a dead permit.</text>
+    <rect x="40" y="360" width="1320" height="100" fill="#f6f6f4" stroke="#111"/>
+    <text x="52" y="398" font-weight="700">3. Incidents</text>
+    <text x="52" y="428">still open</text>
+    <text x="420" y="398">Owner, and whether the service</text>
+    <text x="420" y="428">is restored.</text>
+    <text x="980" y="398">A cleared alarm is not</text>
+    <text x="980" y="428">a closed incident.</text>
+    <rect x="40" y="460" width="1320" height="110" fill="#fff" stroke="#111"/>
+    <text x="52" y="498" font-weight="700">4. Changes</text>
+    <text x="52" y="528">whose window is today</text>
+    <text x="420" y="498">Who accepted the risk, before</text>
+    <text x="420" y="528">the window. Back-out written.</text>
+    <text x="980" y="498">Do not let a vendor's</text>
+    <text x="980" y="528">travel day become the</text>
+    <text x="980" y="558">risk acceptance.</text>
+  </g>
+  <text x="40" y="640" fill="#111" font-family="DejaVu Sans, sans-serif" font-size="16">Then walk the place where today's work will happen, before the cover comes off.</text>
+  <text x="40" y="676" fill="#333" font-family="DejaVu Sans, sans-serif" font-size="16">You may delegate the wrench. You may not delegate: service still held, start of a change window, telling the customer.</text>
+</svg>

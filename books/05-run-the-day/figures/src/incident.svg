@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+  <rect width="1400" height="780" fill="#ffffff"/>
+  <text x="40" y="46" fill="#111" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700">Incident clock. Write the minute. Do not write the cause yet.</text>
+  <text x="40" y="82" fill="#333" font-family="DejaVu Sans, sans-serif" font-size="16">An incident is the service leaving what you owe, or a person in danger. A noisy alarm may be only an alarm.</text>
+  <g font-family="DejaVu Sans, sans-serif" font-size="16" fill="#111">
+    <rect x="40" y="110" width="1320" height="36" fill="#111"/>
+    <text x="52" y="134" fill="#fff" font-weight="700">Minute</text>
+    <text x="220" y="134" fill="#fff" font-weight="700">Write this</text>
+    <text x="860" y="134" fill="#fff" font-weight="700">Do not write this</text>
+    <rect x="40" y="146" width="1320" height="80" fill="#f6f6f4" stroke="#111"/>
+    <text x="52" y="178" font-weight="700">Knew</text>
+    <text x="220" y="178">What you saw.</text>
+    <text x="860" y="178">What you guess is the root cause.</text>
+    <rect x="40" y="226" width="1320" height="80" fill="#fff" stroke="#111"/>
+    <text x="52" y="258" font-weight="700">Safe</text>
+    <text x="220" y="258">Safe state reached, from the</text>
+    <text x="220" y="284">emergency paper. Then stop.</text>
+    <text x="860" y="258">A repair. That is a new job paper.</text>
+    <rect x="40" y="306" width="1320" height="80" fill="#f6f6f4" stroke="#111"/>
+    <text x="52" y="338" font-weight="700">Called</text>
+    <text x="220" y="338">The name on the sheet, and</text>
+    <text x="220" y="364">the minute they answered.</text>
+    <text x="860" y="338">The person you like, if they are</text>
+    <text x="860" y="364">not the name on the sheet.</text>
+    <rect x="40" y="386" width="1320" height="90" fill="#fff" stroke="#111"/>
+    <text x="52" y="418" font-weight="700">Told</text>
+    <text x="220" y="418">Time and symptom. On the clock</text>
+    <text x="220" y="444">the contract names. Clock started</text>
+    <text x="220" y="470">when you knew.</text>
+    <text x="860" y="418">A cause you are not sure of.</text>
+    <text x="860" y="444">Keep it as a hypothesis.</text>
+    <rect x="40" y="476" width="1320" height="90" fill="#f6f6f4" stroke="#111"/>
+    <text x="52" y="508" font-weight="700">Closed</text>
+    <text x="220" y="508">Service restored, and the notice</text>
+    <text x="220" y="534">matches the contract.</text>
+    <text x="860" y="508">Alarm cleared. Vendor says the</text>
+    <text x="860" y="534">part was replaced. That is not</text>
+    <text x="860" y="560">the service confirmed.</text>
+  </g>
+  <text x="40" y="640" fill="#111" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700">Afterward: one change to a procedure, a round, a spare, or a qualification. Or write none, and why.</text>
+  <text x="40" y="678" fill="#333" font-family="DejaVu Sans, sans-serif" font-size="16">A meeting that only retells the fear is not a review.</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#14181c"/>
+  <g stroke="#1a3a3c" stroke-width="1">
+    <path d="M0 48 H1400 M0 96 H1400 M0 144 H1400 M0 192 H1400 M0 240 H1400 M0 288 H1400 M0 336 H1400 M0 384 H1400 M0 432 H1400 M0 480 H1400 M0 528 H1400 M0 576 H1400 M0 624 H1400 M0 672 H1400 M0 720 H1400 M0 768 H1400 M0 816 H1400 M0 864 H1400"/>
+  </g>
+  <text x="56" y="52" fill="#e6a23c" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">FIG 06  ·  THE FILE</text>
+  <text x="56" y="92" fill="#f4f1ea" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="700">Read down. The picture is not the first page.</text>
+
+  <g font-family="DejaVu Sans, sans-serif">
+    <rect x="56" y="140" width="520" height="700" fill="none" stroke="#e8edf2" stroke-width="1.4"/>
+    <text x="76" y="172" fill="#9aa3af" font-size="12">REPORT</text>
+    <g font-size="16" fill="#f4f1ea">
+      <text x="76" y="220" fill="#e6a23c" font-weight="700">01  PURPOSE</text>
+      <text x="108" y="246" fill="#9aa3af" font-size="14">one sentence, or not stated</text>
+      <text x="76" y="300" fill="#e6a23c" font-weight="700">02  INPUTS</text>
+      <text x="108" y="326" fill="#9aa3af" font-size="14">room, IT, cooling, sensors</text>
+      <text x="76" y="380" fill="#e6a23c" font-weight="700">03  SCENE</text>
+      <text x="108" y="406" fill="#9aa3af" font-size="14">load, units, aisles, setpoints</text>
+      <text x="76" y="460" fill="#e6a23c" font-weight="700">04  IT BLOCK</text>
+      <text x="108" y="486" fill="#9aa3af" font-size="14">inlet and outlet, cabinets named</text>
+      <text x="76" y="540" fill="#e6a23c" font-weight="700">05  AIR BLOCK</text>
+      <text x="108" y="566" fill="#9aa3af" font-size="14">supply, return, flow, each unit</text>
+      <text x="76" y="640" fill="#7ee7ea" font-weight="700">06  PLOTS</text>
+      <text x="108" y="666" fill="#9aa3af" font-size="14">after the blocks, plane named</text>
+      <text x="76" y="740" fill="#e6a23c" font-weight="700">07  SENTENCE</text>
+      <text x="108" y="766" fill="#9aa3af" font-size="14">points at a block, not a color</text>
+    </g>
+  </g>
+
+  <g font-family="DejaVu Sans, sans-serif">
+    <rect x="680" y="180" width="640" height="420" fill="#1b2228" stroke="#d4654f" stroke-width="1.5"/>
+    <text x="704" y="220" fill="#d4654f" font-size="14" font-weight="700">DO NOT OPEN HERE</text>
+    <rect x="740" y="260" width="520" height="280" fill="none" stroke="#3d6d70" stroke-width="1"/>
+    <path d="M760 480 C 860 300, 980 460, 1100 320 S 1220 360, 1240 300" fill="none" stroke="#7ee7ea" stroke-width="2"/>
+    <text x="704" y="640" fill="#f4f1ea" font-size="18">A cloud on page one asks you</text>
+    <text x="704" y="672" fill="#f4f1ea" font-size="18">to decide before you know</text>
+    <text x="704" y="704" fill="#f4f1ea" font-size="18">what was assumed.</text>
+  </g>
+</svg>

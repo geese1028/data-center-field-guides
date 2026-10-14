@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+  <rect width="1400" height="780" fill="#14181c"/>
+  <g stroke="#1a3a3c" stroke-width="1"><path d="M0 48 H1400 M0 96 H1400 M0 144 H1400 M0 192 H1400 M0 240 H1400 M0 288 H1400 M0 336 H1400 M0 384 H1400 M0 432 H1400 M0 480 H1400 M0 528 H1400 M0 576 H1400 M0 624 H1400 M0 672 H1400 M0 720 H1400"/></g>
+  <text x="56" y="52" fill="#e6a23c" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">FIG 05  ·  CORRECTION</text>
+  <text x="56" y="92" fill="#f4f1ea" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="700">Disagreement is not averaged away.</text>
+  <text x="56" y="160" fill="#7ee7ea" font-family="DejaVu Sans, sans-serif" font-size="16">REPORT INLET  ≠  MEASURED INLET</text>
+  <g font-family="DejaVu Sans, sans-serif" fill="#f4f1ea" font-size="16">
+    <text x="56" y="230" fill="#e6a23c" font-weight="700">ALLOWED</text>
+    <text x="56" y="280">1  Name an input you can walk to.</text>
+    <text x="56" y="316">2  Change that input only.</text>
+    <text x="56" y="352">3  Rerun the same scene.</text>
+    <text x="56" y="388">4  Compare the inlet again.</text>
+    <text x="56" y="440" fill="#9aa3af" font-size="14">Blank. Blocked grille. Open aisle. Unit off. Nameplate. Brochure setpoint.</text>
+    <text x="760" y="230" fill="#d4654f" font-weight="700">REFUSED</text>
+    <text x="760" y="280">Blend the plot toward the meter.</text>
+    <text x="760" y="316">A third tweak with no name.</text>
+    <text x="760" y="352">Move the color scale so it looks fine.</text>
+    <text x="760" y="420" fill="#7ee7ea">No name = not corrected.</text>
+    <text x="760" y="456" fill="#7ee7ea">An uncorrected report is not this room.</text>
+  </g>
+</svg>

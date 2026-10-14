@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#14181c"/>
+  <g stroke="#1a3a3c" stroke-width="1"><path d="M0 48 H1400 M0 96 H1400 M0 144 H1400 M0 192 H1400 M0 240 H1400 M0 288 H1400 M0 336 H1400 M0 384 H1400 M0 432 H1400 M0 480 H1400 M0 528 H1400 M0 576 H1400 M0 624 H1400 M0 672 H1400 M0 720 H1400 M0 768 H1400 M0 816 H1400 M0 864 H1400"/></g>
+  <text x="56" y="52" fill="#e6a23c" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">FIG 07  ·  ONE DECISION</text>
+  <text x="56" y="92" fill="#f4f1ea" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="700">Write it before the colors. Keep the other three out.</text>
+  <g font-family="DejaVu Sans, sans-serif" font-size="16" fill="#f4f1ea">
+    <g>
+      <text x="72" y="170" fill="#e6a23c" font-weight="700">01  DESIGN</text>
+      <text x="72" y="206">May say which option is worse.</text>
+      <text x="72" y="234" fill="#9aa3af">May not say it has been built.</text>
+      <text x="72" y="270" fill="#7ee7ea" font-size="14">No measurement required. Both options, same rules.</text>
+    </g>
+    <g>
+      <text x="760" y="170" fill="#e6a23c" font-weight="700">02  BUILT HALL</text>
+      <text x="760" y="206">May say this room meets the comparison.</text>
+      <text x="760" y="234" fill="#9aa3af">May not speak if it was not corrected.</text>
+      <text x="760" y="270" fill="#7ee7ea" font-size="14">Points required. Liquid side is another book.</text>
+    </g>
+    <line x1="56" y1="320" x2="1344" y2="320" stroke="#2a3a3c"/>
+    <g>
+      <text x="72" y="390" fill="#e6a23c" font-weight="700">03  OPERATE</text>
+      <text x="72" y="426">May name a cause you can walk to.</text>
+      <text x="72" y="454" fill="#9aa3af">May not send you to rebuild on a color.</text>
+      <text x="72" y="490" fill="#7ee7ea" font-size="14">If you cannot find the input, stop.</text>
+    </g>
+    <g>
+      <text x="760" y="390" fill="#e6a23c" font-weight="700">04  FAILURE</text>
+      <text x="760" y="426">May show how the inlet changes.</text>
+      <text x="760" y="454" fill="#9aa3af">May not be a full-load plot plus a caption.</text>
+      <text x="760" y="490" fill="#7ee7ea" font-size="14">Its own scene. Time only if it was computed.</text>
+    </g>
+  </g>
+  <text x="56" y="820" fill="#7ee7ea" font-family="DejaVu Sans, sans-serif" font-size="16">ONE REPORT. ONE OF THESE. THE COLOR BAR IS NOT THE CHOICE.</text>
+</svg>

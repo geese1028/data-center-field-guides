@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <rect width="1400" height="980" fill="#ffffff"/>
+  <text x="40" y="44" fill="#111" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="700">Measurement record. Fill this before you believe the report.</text>
+  <text x="40" y="78" fill="#333" font-family="DejaVu Sans, sans-serif" font-size="16">Points sit on the opening, not in the aisle. A screen glance is not a point. A nameplate is not a load.</text>
+
+  <g font-family="DejaVu Sans, sans-serif" font-size="16" fill="#111">
+    <text x="40" y="130" font-weight="700">A. Cooling unit — one block per unit that serves this room</text>
+    <text x="40" y="162">Unit: ____________    Opening: supply / return    Date of reading: ____________</text>
+    <text x="40" y="198" font-weight="700">Supply opening. At least two points. Average = (T1 + T2) / 2</text>
+    <text x="40" y="230">T1 ________    T2 ________    Average ________    Points were on the opening: Y / N</text>
+    <text x="40" y="266" font-weight="700">Return opening. Three points. Average = (T1 + T2 + T3) / 3</text>
+    <text x="40" y="298">T1 ________    T2 ________    T3 ________    Average ________    On the opening: Y / N</text>
+    <text x="40" y="334" fill="#333">If you have only one return point, do not call it the return. Go back and take three.</text>
+
+    <text x="40" y="390" font-weight="700">B. Cabinets the report will name. A row you did not walk is not in this table.</text>
+    <text x="40" y="422">Cabinet (id stays in the project file): ____________</text>
+    <text x="40" y="454">Front inlet ________    Rear outlet ________    Same point exists in the model: Y / N</text>
+    <text x="40" y="490" fill="#333">Do not enter one room-average temperature and pretend it is every inlet.</text>
+
+    <text x="40" y="546" font-weight="700">C. Heat. Read the feed, not the nameplate.</text>
+    <text x="40" y="578">Source: cabinet strip / upstream unit that feeds it: ____________    Reading: ________</text>
+    <text x="40" y="614" fill="#333">If the model still uses the nameplate, the picture is of a different load. Replace it and rerun.</text>
+
+    <text x="40" y="670" font-weight="700">D. Dates. A mixed year is not a calibration.</text>
+    <text x="40" y="702">Measurement date: ____________    Layout date in the report: ____________</text>
+    <text x="40" y="734">If they differ, these temperatures belong to: the measurement layout / the report layout</text>
+
+    <text x="40" y="790" font-weight="700">E. Correction. Name the input, or write not corrected.</text>
+    <text x="40" y="822">Changed: missing blank / blocked grille / open aisle / unit off / nameplate / brochure setpoint / none</text>
+    <text x="40" y="854">Rerun of the same scene after that change: Y / N</text>
+    <text x="40" y="886">If you cannot name a further input, stop. Write: not corrected. Do not blend the plot toward the meter.</text>
+  </g>
+</svg>

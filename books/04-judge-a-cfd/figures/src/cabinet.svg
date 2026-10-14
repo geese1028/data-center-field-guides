@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <rect width="1400" height="860" fill="#14181c"/>
+  <g stroke="#1a3a3c" stroke-width="1">
+    <path d="M0 48 H1400 M0 96 H1400 M0 144 H1400 M0 192 H1400 M0 240 H1400 M0 288 H1400 M0 336 H1400 M0 384 H1400 M0 432 H1400 M0 480 H1400 M0 528 H1400 M0 576 H1400 M0 624 H1400 M0 672 H1400 M0 720 H1400 M0 768 H1400 M0 816 H1400"/>
+  </g>
+  <text x="56" y="52" fill="#e6a23c" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">FIG 03  ·  THE ROW</text>
+  <text x="56" y="92" fill="#f4f1ea" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="700">Walk the cabinets the report will name.</text>
+
+  <line x1="80" y1="720" x2="980" y2="720" stroke="#9aa3af" stroke-width="1.2"/>
+  <text x="80" y="748" fill="#9aa3af" font-family="DejaVu Sans, sans-serif" font-size="12">AISLE YOU WALK</text>
+
+  <g font-family="DejaVu Sans, sans-serif">
+    <rect x="80" y="180" width="160" height="520" fill="none" stroke="#4b5563" stroke-width="1.4"/>
+    <text x="96" y="210" fill="#6b7280" font-size="13">NOT NAMED</text>
+    <text x="96" y="460" fill="#6b7280" font-size="14">no points</text>
+
+    <rect x="280" y="160" width="200" height="540" fill="none" stroke="#e8edf2" stroke-width="1.8"/>
+    <text x="296" y="190" fill="#e6a23c" font-size="13" font-weight="700">NAMED CABINET</text>
+    <rect x="308" y="230" width="144" height="180" fill="#1b2228" stroke="#7ee7ea" stroke-width="1.5"/>
+    <text x="324" y="254" fill="#7ee7ea" font-size="13" font-weight="700">FRONT INLET</text>
+    <circle cx="356" cy="330" r="7" fill="none" stroke="#e6a23c" stroke-width="2"/>
+    <circle cx="404" cy="330" r="7" fill="none" stroke="#e6a23c" stroke-width="2"/>
+    <rect x="308" y="450" width="144" height="180" fill="#1b2228" stroke="#9aa3af" stroke-width="1.5"/>
+    <text x="324" y="474" fill="#f4f1ea" font-size="13" font-weight="700">REAR OUTLET</text>
+    <circle cx="356" cy="550" r="7" fill="none" stroke="#e6a23c" stroke-width="2"/>
+    <circle cx="404" cy="550" r="7" fill="none" stroke="#e6a23c" stroke-width="2"/>
+
+    <rect x="520" y="180" width="160" height="520" fill="none" stroke="#4b5563" stroke-width="1.4"/>
+    <text x="536" y="210" fill="#6b7280" font-size="13">NOT NAMED</text>
+    <text x="536" y="460" fill="#6b7280" font-size="14">no points</text>
+  </g>
+
+  <g font-family="DejaVu Sans, sans-serif" font-size="18" fill="#f4f1ea">
+    <text x="760" y="240">These two correct the model.</text>
+    <text x="760" y="300" fill="#9aa3af">A room average is not</text>
+    <text x="760" y="330" fill="#9aa3af">a cabinet inlet.</text>
+    <text x="760" y="400" fill="#9aa3af">A row you did not walk</text>
+    <text x="760" y="430" fill="#9aa3af">is not a row.</text>
+    <text x="760" y="500">If the model has no point</text>
+    <text x="760" y="530">on this face, it cannot</text>
+    <text x="760" y="560">be corrected here.</text>
+  </g>
+</svg>

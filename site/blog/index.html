@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Field Protocol Library (68 Protocols) | Data Center Field Guides</title>
+  <meta name="description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
+  <link rel="canonical" href="https://datacenterfieldguides.com/blog/"/>
+  
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Field Protocol Library (68 Protocols) | Data Center Field Guides"/>
+  <meta property="og:description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
+  <meta property="og:url" content="https://datacenterfieldguides.com/blog/"/>
+  <meta property="og:site_name" content="Data Center Field Guides"/>
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Field Protocol Library (68 Protocols) | Data Center Field Guides"/>
+  <meta name="twitter:description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090d16;
+      --surface: #121826;
+      --surface-elevated: #172033;
+      --surface-inset: #0c101a;
+      --card-bg: #121826;
+      --border: #1e283d;
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --text: #cbd5e1;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #3b82f6;
+      --accent-subtle: rgba(37, 99, 235, 0.12);
+      --amber: #d97706;
+      --amber-hover: #f59e0b;
+      --amber-subtle: rgba(217, 119, 6, 0.12);
+      --green: #10b981;
+      --green-subtle: rgba(16, 185, 129, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header.site-header {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(10, 15, 29, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .nav-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .brand span { color: #94a3b8; font-weight: 600; font-size: 0.92rem; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .hero {
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+      max-width: 58rem;
+      margin: 0 auto;
+      position: relative;
+    }
+    .kicker {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      border-radius: 9999px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    h1 span {
+      color: #93c5fd;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      max-width: 46rem;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2.25rem;
+      flex-wrap: wrap;
+    }
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .hero-btn.primary {
+      background: var(--accent);
+      color: #ffffff !important;
+      border: 1px solid var(--accent);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    .hero-btn.primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      color: #ffffff !important;
+    }
+    .hero-btn.secondary {
+      background: var(--surface);
+      color: var(--text-primary) !important;
+      border: 1px solid var(--border);
+    }
+    .hero-btn.secondary:hover {
+      background: var(--surface-elevated);
+      color: #fff !important;
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+    .hero-btn.outline {
+      background: var(--amber-subtle);
+      color: #fbbf24 !important;
+      border: 1px solid rgba(217, 119, 6, 0.35);
+    }
+    .hero-btn.outline:hover {
+      background: rgba(217, 119, 6, 0.2);
+      transform: translateY(-1px);
+    }
+    .kicker-sub {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .section-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Search & Filter Console */
+    .filter-console {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .search-box-wrapper {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+    input.search-input {
+      width: 100%;
+      padding: 0.95rem 3.5rem 0.95rem 3rem;
+      background: #090e1a;
+      border: 1px solid #22324e;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input.search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    }
+    .search-kbd {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #1e293b;
+      color: var(--muted);
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 0.2rem 0.45rem;
+      font-size: 0.75rem;
+      font-family: monospace;
+      pointer-events: none;
+    }
+    .search-clear-btn {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #1e293b;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filter-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-tab {
+      background: #151e32;
+      border: 1px solid #22324e;
+      color: #94a3b8;
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .filter-tab:hover {
+      color: #fff;
+      border-color: #3b82f6;
+    }
+    .filter-tab.active {
+      background: rgba(37, 99, 235, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
+    }
+    .volume-select-wrapper {
+      min-width: 200px;
+    }
+    select.volume-select {
+      width: 100%;
+      background: #151e32;
+      border: 1px solid #22324e;
+      color: #cbd5e1;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+    }
+    select.volume-select:focus {
+      border-color: var(--accent);
+    }
+
+    .results-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .reset-filters-btn {
+      background: none;
+      border: none;
+      color: var(--amber);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .article-card.is-deep-dive {
+      border-color: rgba(217, 119, 6, 0.3);
+      background: linear-gradient(180deg, rgba(217, 119, 6, 0.03) 0%, #0f172a 100%);
+    }
+    .article-card.is-deep-dive:hover {
+      border-color: var(--amber);
+      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15);
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .badge-vol {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(37, 99, 235, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+    .badge-topic {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    .badge-deep-dive {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--amber);
+      background: rgba(217, 119, 6, 0.15);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+    }
+    .card-read-time {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .article-card h3 {
+      font-size: 1.25rem;
+      line-height: 1.35;
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+    .article-card h3 a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .article-card:hover h3 a {
+      color: #38bdf8;
+    }
+    .article-card.is-deep-dive:hover h3 a {
+      color: #fbbf24;
+    }
+    .article-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+    .footer-vol {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .read-more {
+      color: var(--amber);
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    .article-card:hover .read-more {
+      transform: translateX(3px);
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: #0f172a;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      margin-bottom: 5rem;
+    }
+    .empty-state h3 {
+      color: #fff;
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+    .empty-state p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Books Section (Elevated to Prime Position) */
+    .books-section {
+      padding: 3.5rem 1.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(10, 15, 29, 0) 100%);
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .book-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .book-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+    .book-card.is-live {
+      border: 2px solid var(--amber);
+      background: linear-gradient(180deg, rgba(217, 119, 6, 0.05) 0%, #0f172a 100%);
+      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.12);
+    }
+    .book-card.is-live:hover {
+      border-color: #fbbf24;
+      box-shadow: 0 12px 30px rgba(217, 119, 6, 0.25);
+    }
+    .book-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.06);
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+    }
+    .book-card.is-live .book-number {
+      color: rgba(217, 119, 6, 0.15);
+    }
+    .book-card h4 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      padding-right: 2rem;
+      line-height: 1.35;
+    }
+    .book-card-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+    .book-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 0.85rem;
+      margin-top: auto;
+    }
+    .order-channel-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      width: 100%;
+    }
+    .channel-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .order-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .status-coming-soon {
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+    .platform-badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .platform-btn .store-svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    /* Active platform styles (full color) */
+    .platform-btn.is-active {
+      cursor: pointer;
+    }
+    .platform-btn.is-active.amazon {
+      background: rgba(255, 153, 0, 0.12);
+      border: 1px solid rgba(255, 153, 0, 0.45);
+      color: #ffffff;
+    }
+    .platform-btn.is-active.amazon:hover {
+      background: rgba(255, 153, 0, 0.24);
+      border-color: #ff9900;
+      box-shadow: 0 4px 14px rgba(255, 153, 0, 0.3);
+      transform: translateY(-1px);
+    }
+    .platform-btn.is-active.google {
+      background: rgba(66, 133, 244, 0.12);
+      border: 1px solid rgba(66, 133, 244, 0.45);
+      color: #ffffff;
+    }
+    .platform-btn.is-active.google:hover {
+      background: rgba(66, 133, 244, 0.24);
+      border-color: #4285f4;
+      box-shadow: 0 4px 14px rgba(66, 133, 244, 0.3);
+      transform: translateY(-1px);
+    }
+    .platform-btn.is-active.apple {
+      background: rgba(255, 90, 0, 0.12);
+      border: 1px solid rgba(255, 90, 0, 0.45);
+      color: #ffffff;
+    }
+    .platform-btn.is-active.apple:hover {
+      background: rgba(255, 90, 0, 0.24);
+      border-color: #ff5a00;
+      box-shadow: 0 4px 14px rgba(255, 90, 0, 0.3);
+      transform: translateY(-1px);
+    }
+    /* Disabled platform styles (black & white / grayscale) */
+    .platform-btn.is-disabled {
+      filter: grayscale(100%);
+      opacity: 0.32;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      cursor: not-allowed;
+      user-select: none;
+    }
+    .platform-btn.is-disabled:hover {
+      opacity: 0.45;
+    }
+
+    /* Series Roadmap Tracker Bar */
+    .series-tracker-bar {
+      background: linear-gradient(135deg, #0f172a 0%, #151e32 100%);
+      border: 1px solid #1e293b;
+      border-left: 4px solid var(--amber);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    .tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+    .tracker-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .tracker-badge {
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: var(--amber);
+      color: #0b1120;
+      border-radius: 4px;
+    }
+    .tracker-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .tracker-stat {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+    .stat-highlight {
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .tracker-progress-track {
+      width: 100%;
+      height: 8px;
+      background: #090e1a;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+      border: 1px solid #1e293b;
+    }
+    .tracker-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb 0%, #d97706 100%);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .tracker-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      font-size: 0.78rem;
+    }
+    .tracker-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .tracker-step.is-complete {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tracker-step.is-pending {
+      color: #64748b;
+    }
+
+    /* Book Card Layout & Badges */
+    .book-card-top {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.75rem;
+    }
+    .book-card-header {
+      position: relative;
+    }
+    .book-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .badge-status {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+    }
+    .badge-status.is-live {
+      background: rgba(217, 119, 6, 0.2);
+      color: var(--amber);
+      border: 1px solid rgba(217, 119, 6, 0.5);
+    }
+    .badge-status.is-soon {
+      background: rgba(148, 163, 184, 0.12);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    /* 3D Tactile Book Mockup */
+    .book-mockup-wrap {
+      perspective: 900px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: center;
+    }
+    .book-mockup {
+      position: relative;
+      width: 175px;
+      height: 240px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: 3px 8px 8px 3px;
+      box-shadow: 6px 10px 25px rgba(0, 0, 0, 0.6), -2px 0 5px rgba(255, 255, 255, 0.05) inset;
+      transform: rotateY(-18deg) rotateX(6deg);
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .book-card:hover .book-mockup {
+      transform: rotateY(-6deg) rotateX(2deg) scale(1.03);
+      box-shadow: 12px 18px 35px rgba(0, 0, 0, 0.7);
+    }
+    .book-card.is-live .book-mockup {
+      border: 1px solid rgba(217, 119, 6, 0.4);
+    }
+    .book-card.coming-soon .book-mockup {
+      cursor: default;
+      opacity: 0.88;
+    }
+    .book-spine-edge {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.4) 100%);
+      border-radius: 3px 0 0 3px;
+      z-index: 2;
+    }
+    .book-cover-front {
+      flex: 1;
+      padding: 1.1rem 1rem 1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: linear-gradient(145deg, #131d33 0%, #090e1a 100%);
+      border-radius: 0 8px 8px 0;
+    }
+    .cover-kicker {
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+    }
+    .book-card.is-live .cover-kicker {
+      color: var(--amber);
+    }
+    .cover-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #ffffff;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .cover-pages-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+    }
+    .cover-author {
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    /* Deliverables Checklist Pills */
+    .deliverables-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+      padding: 0.75rem 0.85rem;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+    .deliverable-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      white-space: nowrap;
+    }
+    .book-card.is-live .deliverable-tag {
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #e2e8f0;
+    }
+
+    /* Collapsible Table of Contents */
+    .toc-accordion {
+      margin-bottom: 1.25rem;
+      background: rgba(9, 14, 26, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .toc-accordion:hover {
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    .toc-accordion[open] {
+      border-color: rgba(37, 99, 235, 0.5);
+      background: rgba(9, 14, 26, 0.95);
+    }
+    .toc-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #94a3b8;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+    }
+    .toc-summary::-webkit-details-marker {
+      display: none;
+    }
+    .toc-summary:hover {
+      color: #fff;
+    }
+    .toc-accordion[open] .toc-summary {
+      color: var(--accent);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .toc-icon {
+      font-size: 0.65rem;
+      transition: transform 0.2s ease;
+      color: var(--accent);
+    }
+    .toc-accordion[open] .toc-icon {
+      transform: rotate(180deg);
+    }
+    .toc-body {
+      padding: 0.85rem 0.9rem;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.85rem 0;
+    }
+    .toc-list li {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      line-height: 1.35;
+    }
+    .toc-list li:last-child {
+      border-bottom: none;
+    }
+    .sample-action-wrap {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .sample-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-decoration: none;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .sample-read-btn:hover {
+      color: #fbbf24;
+      transform: translateX(3px);
+      text-decoration: underline;
+    }
+
+    .platform-format-notes {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-top: 0.4rem;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    /* Articles Grid & Collapsed Preview */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .articles-grid.is-collapsed .article-card:nth-child(n+7) {
+      display: none !important;
+    }
+
+    .expand-collapse-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: -1.5rem 0 4.5rem;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .toggle-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border: 1px solid var(--accent);
+      color: #fff;
+      padding: 0.85rem 1.85rem;
+      border-radius: 9999px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+    }
+    .toggle-expand-btn:hover {
+      background: var(--accent);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+    .expand-count-badge {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-expand-btn:hover .expand-count-badge {
+      background: rgba(0, 0, 0, 0.25);
+      color: #000;
+    }
+    .full-archive-link {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .full-archive-link:hover {
+      color: var(--amber);
+    }
+
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: #070b14;
+    }
+
+    .filter-tier-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .filter-tier-label {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .volume-hub-cta {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .volume-hub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .volume-hub-btn:hover {
+      color: #fbbf24;
+      transform: translateX(3px);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+      .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .volume-select-wrapper {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#books">The 9 Books</a>
+        <a href="index.html">Field Protocols (68)</a>
+        <a href="../about.html">About Tristan</a>
+        <a href="../buy.html" class="nav-buy-btn">
+          <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Buy</span>
+        </a>
+        <button class="nav-search-trigger" id="open-search-btn" type="button" aria-label="Search protocols">
+          <svg class="search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
+          <kbd>⌘K</kbd>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  
+    <div class="hero">
+      <div class="kicker">DATA CENTER FIELD GUIDES // PROTOCOL ARCHIVE</div>
+      <h1>The Complete <span>Field Protocol</span> Library</h1>
+      <p class="hero-sub">
+        68 peer-reviewed engineering procedures, acceptance thresholds, and refusal checklists across 9 mission-critical volumes. Built for the engineer who must sign what happens on the floor.
+      </p>
+      <div class="stats-ribbon">
+        <div class="stat-item"><span class="stat-number">68</span><span class="stat-label">Field Protocols</span></div>
+        <div class="stat-item"><span class="stat-number">9</span><span class="stat-label">Engineering Volumes</span></div>
+        <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Flagship Guides</span></div>
+        <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Auditable Math</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="../index.html" class="hero-btn secondary">
+          <span>← Back to Home</span>
+        </a>
+        <a href="../about.html" class="hero-btn secondary">
+          <span>About Tristan</span>
+        </a>
+        <a href="#protocols" class="hero-btn primary">
+          <span>Search All 68 Protocols</span>
+        </a>
+      </div>
+    </div>
+    
+
+  
+
+  <!-- Technical Blog Section (Compact / Folded on Homepage) -->
+  <div class="container" id="protocols">
+    <div class="section-header">
+      <div>
+        <div class="kicker-sub">TECHNICAL BLOG &amp; PROTOCOLS ARCHIVE</div>
+        <h2 class="section-title">Technical Blog: 68 Field Protocols</h2>
+        <p class="section-desc">Searchable engineering articles across 9 volumes. Zero vendor fluff, 100% auditable procedures.</p>
+      </div>
+      <div>
+        <a href="index.html" class="hero-btn secondary" style="font-size: 0.88rem; padding: 0.55rem 1.1rem;">
+          Open Dedicated Blog Hub &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Search & Filter Console -->
+    <div class="filter-console">
+      <div class="search-box-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text"
+               id="protocol-search"
+               class="search-input"
+               placeholder="Search 68 protocols by keyword (e.g. NVL72, CFD, SOP, MOP, alarm, coupon, retainage)..."
+               autocomplete="off"
+               spellcheck="false"/>
+        <kbd class="search-kbd" id="search-kbd">/</kbd>
+        <button type="button" class="search-clear-btn" id="search-clear" aria-label="Clear search">&times;</button>
+      </div>
+
+      <div class="filter-tier-group">
+        <div class="filter-tier-header">
+          <span class="filter-tier-label">1. Browse by Book Volume:</span>
+        </div>
+        <div class="filter-tabs volume-tabs">
+          <button type="button" class="filter-tab volume-tab active" data-volume="all">All Volumes (68)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="1">Vol 01 (5)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="2">Vol 02 (4)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="3">Vol 03 (6)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="4">Vol 04 (8)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="5">Vol 05 (14)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="6">Vol 06 (14)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="7">Vol 07 (6)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="8">Vol 08 (7)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="9">Vol 09 (4)</button>
+        </div>
+      </div>
+
+      <div class="filter-tier-group" style="margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed rgba(255, 255, 255, 0.08);">
+        <div class="filter-tier-header">
+          <span class="filter-tier-label">2. Browse by Engineering Domain &amp; Format:</span>
+        </div>
+        <div class="filter-tabs topic-tabs">
+          <button type="button" class="filter-tab topic-tab active" data-filter="all">All Domains (68)</button>
+          <button type="button" class="filter-tab topic-tab" data-filter="deep_dive">★ Flagship Deep-Dives (5)</button>
+          <button type="button" class="filter-tab topic-tab" data-filter="cx_handover">🚀 Commissioning &amp; Handover (17)</button>
+          <button type="button" class="filter-tab topic-tab" data-filter="telemetry_cfd">📊 Telemetry &amp; CFD (26)</button>
+          <button type="button" class="filter-tab topic-tab" data-filter="operations">⚙️ Operations &amp; SOP/MOP (14)</button>
+          <button type="button" class="filter-tab topic-tab" data-filter="integrity_tdd">🛡️ Integrity &amp; TDD (11)</button>
+        </div>
+      </div>
+
+      <div class="results-status-bar">
+        <span id="results-count">Showing all 68 field protocols</span>
+        <button type="button" id="reset-filters" class="reset-filters-btn" style="display: none;">Reset all filters</button>
+      </div>
+    </div>
+
+    <!-- Articles Grid (Collapsed by default on homepage) -->
+    <div class="articles-grid" id="articles-grid">
+      
+        <article class="article-card"
+                 data-title="a liquid load bank is not a cdu"
+                 data-desc="what a liquid load bank is allowed to stand in for on an nvl72-class rack test, and the two jobs it must not be given."
+                 data-keywords="liquid load bank is not a cdu"
+                 data-book="1"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 01</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="liquid-load-bank-is-not-a-cdu.html">A liquid load bank is not a CDU</a></h3>
+          <p>What a liquid load bank is allowed to stand in for on an NVL72-class rack test, and the two jobs it must not be given.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a marketing multiple is not coolant flow"
+                 data-desc="why a published performance multiple must not be typed onto a liquid load bank requirements sheet as duty."
+                 data-keywords="marketing multiples are not flow"
+                 data-book="1"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 01</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="marketing-multiples-are-not-flow.html">A marketing multiple is not coolant flow</a></h3>
+          <p>Why a published performance multiple must not be typed onto a liquid load bank requirements sheet as duty.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="two documents before you cut metal"
+                 data-desc="the requirements sheet and the acceptance sheet a liquid load bank needs before fabrication starts."
+                 data-keywords="two documents before metal"
+                 data-book="1"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 01</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="two-documents-before-metal.html">Two documents before you cut metal</a></h3>
+          <p>The requirements sheet and the acceptance sheet a liquid load bank needs before fabrication starts.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what a load bank prototype must not prove"
+                 data-desc="acceptance gates for a liquid load bank prototype, and the sentences a bench pass does not support."
+                 data-keywords="what the prototype must not prove"
+                 data-book="1"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 01</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="what-the-prototype-must-not-prove.html">What a load bank prototype must not prove</a></h3>
+          <p>Acceptance gates for a liquid load bank prototype, and the sentences a bench pass does not support.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a failed poll is a gap"
+                 data-desc="why a load bank export must show a missing sample as a gap, not as a new timestamp on the last good value."
+                 data-keywords="a failed poll is a gap"
+                 data-book="2"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 02</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-failed-poll-is-a-gap.html">A failed poll is a gap</a></h3>
+          <p>Why a load bank export must show a missing sample as a gap, not as a new timestamp on the last good value.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 02</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a hit is a time, not a pass"
+                 data-desc="how to read a load bank data file so a threshold crossing is a timestamp, not an automatic pass."
+                 data-keywords="a hit is a time"
+                 data-book="2"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 02</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-hit-is-a-time.html">A hit is a time, not a pass</a></h3>
+          <p>How to read a load bank data file so a threshold crossing is a timestamp, not an automatic pass.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 02</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="one clock in the load bank file"
+                 data-desc="measurement time and arrival time are not interchangeable when you judge a load bank test file."
+                 data-keywords="one clock in the file"
+                 data-book="2"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 02</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="one-clock-in-the-file.html">One clock in the load bank file</a></h3>
+          <p>Measurement time and arrival time are not interchangeable when you judge a load bank test file.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 02</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="the sentence a load bank file may support"
+                 data-desc="the only claim a judged load bank file is allowed to carry into a verification report."
+                 data-keywords="the sentence the file may support"
+                 data-book="2"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 02</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="the-sentence-the-file-may-support.html">The sentence a load bank file may support</a></h3>
+          <p>The only claim a judged load bank file is allowed to carry into a verification report.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 02</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="approve the test script before the day"
+                 data-desc="a liquid cooling verification script needs an expected result before the window, not a caption after the curve."
+                 data-keywords="approve the script before the day"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="approve-the-script-before-the-day.html">Approve the test script before the day</a></h3>
+          <p>A liquid cooling verification script needs an expected result before the window, not a caption after the curve.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="close-out is not a heat-test report"
+                 data-desc="what a liquid verification pack owes at turnover, and why an empty appendix tab is a false document."
+                 data-keywords="close out is not a heat report"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="close-out-is-not-a-heat-report.html">Close-out is not a heat-test report</a></h3>
+          <p>What a liquid verification pack owes at turnover, and why an empty appendix tab is a false document.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="one liquid system at a time"
+                 data-desc="why a liquid-hall verification runs one system before the integrated heat window, and what an open fail blocks."
+                 data-keywords="one system at a time"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="one-system-at-a-time.html">One liquid system at a time</a></h3>
+          <p>Why a liquid-hall verification runs one system before the integrated heat window, and what an open fail blocks.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="certificate level 1 is not a static test"
+                 data-desc="why a liquid-hall dialect that calls static checks level 1 must not be filed in the factory-test certificate slot."
+                 data-keywords="two level numberings"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="two-level-numberings.html">Certificate Level 1 is not a static test</a></h3>
+          <p>Why a liquid-hall dialect that calls static checks Level 1 must not be filed in the factory-test certificate slot.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what data center commissioning levels 0 to 6 sign"
+                 data-desc="certificate levels 0 through 6, and why a site dialect that calls static checks level 1 must not be filed as factory testing."
+                 data-keywords="commissioning levels 0 to 6"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="commissioning-levels-0-to-6.html">What data center commissioning levels 0 to 6 sign</a></h3>
+          <p>Certificate levels 0 through 6, and why a site dialect that calls static checks Level 1 must not be filed as factory testing.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="witnessed is not the same as accepted a document"
+                 data-desc="a data center test script was either seen, accepted as a paper, or not done. those verbs must not be merged."
+                 data-keywords="witnessed or a document"
+                 data-book="3"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 03</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="witnessed-or-a-document.html">Witnessed is not the same as accepted a document</a></h3>
+          <p>A data center test script was either seen, accepted as a paper, or not done. Those verbs must not be merged.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 03</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a cfd picture is not a measurement"
+                 data-desc="what has to be true before a data hall cfd report may be treated as evidence rather than a picture."
+                 data-keywords="a cfd picture is not a measurement"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-cfd-picture-is-not-a-measurement.html">A CFD picture is not a measurement</a></h3>
+          <p>What has to be true before a data hall CFD report may be treated as evidence rather than a picture.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a room average is not a cabinet inlet"
+                 data-desc="why a data hall cfd or sensor average cannot stand in for the inlet the equipment actually sees."
+                 data-keywords="room average is not an inlet"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="room-average-is-not-an-inlet.html">A room average is not a cabinet inlet</a></h3>
+          <p>Why a data hall CFD or sensor average cannot stand in for the inlet the equipment actually sees.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="the walked reading wins"
+                 data-desc="when a data hall model or sensor tile disagrees with a walked measurement, which one the decision uses."
+                 data-keywords="walked reading wins"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="walked-reading-wins.html">The walked reading wins</a></h3>
+          <p>When a data hall model or sensor tile disagrees with a walked measurement, which one the decision uses.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what a cfd report may decide"
+                 data-desc="the decisions a data hall cfd report is allowed to support, and the ones that stay with the walked measurement."
+                 data-keywords="what a cfd report may decide"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="what-a-cfd-report-may-decide.html">What a CFD report may decide</a></h3>
+          <p>The decisions a data hall CFD report is allowed to support, and the ones that stay with the walked measurement.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="do not call the airflow optimized"
+                 data-desc="what a data hall walk must show before anyone signs that containment or a cfd study organized the air."
+                 data-keywords="do not call it optimized"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="do-not-call-it-optimized.html">Do not call the airflow optimized</a></h3>
+          <p>What a data hall walk must show before anyone signs that containment or a CFD study organized the air.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="an empty u without a blank is a bypass"
+                 data-desc="why a data hall cabinet with an open unit space is a recirculation path, and what you refuse to call sealed."
+                 data-keywords="empty u is a bypass"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="empty-u-is-a-bypass.html">An empty U without a blank is a bypass</a></h3>
+          <p>Why a data hall cabinet with an open unit space is a recirculation path, and what you refuse to call sealed.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a missing floor tile is a supply leak"
+                 data-desc="what to list on a raised-floor walk before anyone treats a data hall airflow model as the room."
+                 data-keywords="raised floor cuts"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="raised-floor-cuts.html">A missing floor tile is a supply leak</a></h3>
+          <p>What to list on a raised-floor walk before anyone treats a data hall airflow model as the room.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a row has three edges, not a product name"
+                 data-desc="top, sides, and bottom of a cabinet row are separate airflow seals. a containment label does not close them."
+                 data-keywords="row has three edges"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="row-has-three-edges.html">A row has three edges, not a product name</a></h3>
+          <p>Top, sides, and bottom of a cabinet row are separate airflow seals. A containment label does not close them.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a data center change needs a back-out"
+                 data-desc="what has to be written before a shift is allowed to open a plant or change a setpoint."
+                 data-keywords="a change needs a back out"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-change-needs-a-back-out.html">A data center change needs a back-out</a></h3>
+          <p>What has to be written before a shift is allowed to open a plant or change a setpoint.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="an alarm is not an incident"
+                 data-desc="the test a data center shift uses before a noisy alarm is written up as an incident."
+                 data-keywords="alarm is not an incident"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="alarm-is-not-an-incident.html">An alarm is not an incident</a></h3>
+          <p>The test a data center shift uses before a noisy alarm is written up as an incident.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="do not start the shift on a dashboard"
+                 data-desc="what a data center manager checks before a ratio on a screen is allowed to describe the day."
+                 data-keywords="do not start on a dashboard"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="do-not-start-on-a-dashboard.html">Do not start the shift on a dashboard</a></h3>
+          <p>What a data center manager checks before a ratio on a screen is allowed to describe the day.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a nameplate is not used capacity"
+                 data-desc="why a design kilowatt or a redundancy graphic must not fill the capacity cell a manager signs."
+                 data-keywords="nameplate is not capacity"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="nameplate-is-not-capacity.html">A nameplate is not used capacity</a></h3>
+          <p>Why a design kilowatt or a redundancy graphic must not fill the capacity cell a manager signs.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="do not add nameplate and measured load"
+                 data-desc="design kilowatts, nameplate, and a live measured load are different numbers. they do not belong in one capacity cell."
+                 data-keywords="do not add the kilowatts"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="do-not-add-the-kilowatts.html">Do not add nameplate and measured load</a></h3>
+          <p>Design kilowatts, nameplate, and a live measured load are different numbers. They do not belong in one capacity cell.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="an eop stops at the first safe state"
+                 data-desc="what a data center emergency procedure is allowed to contain, and where a repair method has to take over."
+                 data-keywords="eop stops"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="eop-stops.html">An EOP stops at the first safe state</a></h3>
+          <p>What a data center emergency procedure is allowed to contain, and where a repair method has to take over.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what an mop must say before the tools come out"
+                 data-desc="isolation, service impact, return, and back-out are the gates on a data center method of procedure."
+                 data-keywords="mop before tools"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="mop-before-tools.html">What an MOP must say before the tools come out</a></h3>
+          <p>Isolation, service impact, return, and back-out are the gates on a data center method of procedure.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="sop, mop, and eop are three papers"
+                 data-desc="how a data center separates a standing procedure, a method for one job, and an emergency stop, without inventing a fourth name."
+                 data-keywords="sop mop eop"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="sop-mop-eop.html">SOP, MOP, and EOP are three papers</a></h3>
+          <p>How a data center separates a standing procedure, a method for one job, and an emergency stop, without inventing a fourth name.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what an sop is allowed to contain"
+                 data-desc="the points a data center standing procedure must name, and the change it must not hide."
+                 data-keywords="sop standing job"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="sop-standing-job.html">What an SOP is allowed to contain</a></h3>
+          <p>The points a data center standing procedure must name, and the change it must not hide.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a drill record is not an incident review"
+                 data-desc="a scheduled exercise shows the paper was opened. it does not show the last real failure was handled."
+                 data-keywords="a drill is not an incident"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-drill-is-not-an-incident.html">A drill record is not an incident review</a></h3>
+          <p>A scheduled exercise shows the paper was opened. It does not show the last real failure was handled.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a commercial pack is not a technical pass"
+                 data-desc="an sla, a vendor training sheet, a lifecycle budget, and a change catalog do not prove the plant can do the job."
+                 data-keywords="commercial is not a pass"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="commercial-is-not-a-pass.html">A commercial pack is not a technical pass</a></h3>
+          <p>An SLA, a vendor training sheet, a lifecycle budget, and a change catalog do not prove the plant can do the job.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="an operations system is four piles, not one binder"
+                 data-desc="run, maintain, change, and emergency are different papers. a thick management system does not merge them."
+                 data-keywords="four piles"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="four-piles.html">An operations system is four piles, not one binder</a></h3>
+          <p>Run, maintain, change, and emergency are different papers. A thick management system does not merge them.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a maintenance record does not close a defect"
+                 data-desc="a completed work order shows a job was signed off. it does not show the defect the script cared about is gone."
+                 data-keywords="pm record does not close"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="pm-record-does-not-close.html">A maintenance record does not close a defect</a></h3>
+          <p>A completed work order shows a job was signed off. It does not show the defect the script cared about is gone.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a monitoring point needs a clock"
+                 data-desc="the minimum a data center monitoring point must have before it is allowed to wake someone."
+                 data-keywords="a point needs a clock"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-point-needs-a-clock.html">A monitoring point needs a clock</a></h3>
+          <p>The minimum a data center monitoring point must have before it is allowed to wake someone.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a health score does not close an incident"
+                 data-desc="what a data center health score may sort, and the decisions it must not be given a pen for."
+                 data-keywords="a score does not close an incident"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-score-does-not-close-an-incident.html">A health score does not close an incident</a></h3>
+          <p>What a data center health score may sort, and the decisions it must not be given a pen for.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="grouping alarms is not a cause"
+                 data-desc="how to hold a data center alarm storm as one event without inventing a root cause from the clock."
+                 data-keywords="grouping is not a cause"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="grouping-is-not-a-cause.html">Grouping alarms is not a cause</a></h3>
+          <p>How to hold a data center alarm storm as one event without inventing a root cause from the clock.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a green tile can be stale"
+                 data-desc="live, stale, and missing are the only quality marks a data center screen should be obeyed for."
+                 data-keywords="stale is not green"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="stale-is-not-green.html">A green tile can be stale</a></h3>
+          <p>Live, stale, and missing are the only quality marks a data center screen should be obeyed for.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="six things to ask before you trust a monitoring demo"
+                 data-desc="forced failure, clock, opened alarm row, stale score, maintenance window, and a page a person can read. not a product ranking."
+                 data-keywords="six things to ask in a demo"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="six-things-to-ask-in-a-demo.html">Six things to ask before you trust a monitoring demo</a></h3>
+          <p>Forced failure, clock, opened alarm row, stale score, maintenance window, and a page a person can read. Not a product ranking.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what a maintenance window is allowed to suppress"
+                 data-desc="a data center maintenance window may stop pages. it may not delete the record or hide a different failure."
+                 data-keywords="what a maintenance window suppresses"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="what-a-maintenance-window-suppresses.html">What a maintenance window is allowed to suppress</a></h3>
+          <p>A data center maintenance window may stop pages. It may not delete the record or hide a different failure.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a baseline is not a fault"
+                 data-desc="a detector that draws a band around history has not found an incident. the band width is a choice. do not erase the points first."
+                 data-keywords="a baseline is not a fault"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-baseline-is-not-a-fault.html">A baseline is not a fault</a></h3>
+          <p>A detector that draws a band around history has not found an incident. The band width is a choice. Do not erase the points first.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a suggested tower setpoint is not a saved kilowatt"
+                 data-desc="optimizer output is a hypothesis. only a live power point, against a baseline written first, may support a saving."
+                 data-keywords="a suggestion is not a saved kilowatt"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-suggestion-is-not-a-saved-kilowatt.html">A suggested tower setpoint is not a saved kilowatt</a></h3>
+          <p>Optimizer output is a hypothesis. Only a live power point, against a baseline written first, may support a saving.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="do not train a tower model on a stopped plant"
+                 data-desc="hours when tower or pump power is zero are shutdown, not an efficient setpoint. take them out before the fit."
+                 data-keywords="do not train on a stopped plant"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="do-not-train-on-a-stopped-plant.html">Do not train a tower model on a stopped plant</a></h3>
+          <p>Hours when tower or pump power is zero are shutdown, not an efficient setpoint. Take them out before the fit.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="fixed inputs are not fan handles"
+                 data-desc="weather, flow, and water temperatures are conditions. tower count and fan speed are the only things a search may move."
+                 data-keywords="fixed and adjustable"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="fixed-and-adjustable.html">Fixed inputs are not fan handles</a></h3>
+          <p>Weather, flow, and water temperatures are conditions. Tower count and fan speed are the only things a search may move.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="leaving water should fall as the fan speeds up"
+                 data-desc="a cooling-tower fit that does not cool more at a higher fan speed is the wrong fit. do not search it."
+                 data-keywords="leaving temperature must fall"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="leaving-temperature-must-fall.html">Leaving water should fall as the fan speeds up</a></h3>
+          <p>A cooling-tower fit that does not cool more at a higher fan speed is the wrong fit. Do not search it.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a model cannot learn a fan speed it never saw"
+                 data-desc="if the towers only ran one way, a fit has no evidence for the speeds a search will propose."
+                 data-keywords="model cannot learn a speed it never saw"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="model-cannot-learn-a-speed-it-never-saw.html">A model cannot learn a fan speed it never saw</a></h3>
+          <p>If the towers only ran one way, a fit has no evidence for the speeds a search will propose.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a cooling-tower model does not get a pen"
+                 data-desc="a fitted model may suggest fan speed and how many towers to run. it may not command them, or claim a saving it did not measure."
+                 data-keywords="tower model no pen"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="tower-model-no-pen.html">A cooling-tower model does not get a pen</a></h3>
+          <p>A fitted model may suggest fan speed and how many towers to run. It may not command them, or claim a saving it did not measure.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="cooling towers are not interchangeable"
+                 data-desc="a model that treats every cell as the same machine will hide a weak tower and then recommend it."
+                 data-keywords="towers are not interchangeable"
+                 data-book="6"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 06</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="towers-are-not-interchangeable.html">Cooling towers are not interchangeable</a></h3>
+          <p>A model that treats every cell as the same machine will hide a weak tower and then recommend it.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 06</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a handover signature is a sentence"
+                 data-desc="the three different acts people call acceptance, and why the operator&#x27;s sentence has to match the evidence."
+                 data-keywords="a signature is a sentence"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="a-signature-is-a-sentence.html">A handover signature is a sentence</a></h3>
+          <p>The three different acts people call acceptance, and why the operator&#x27;s sentence has to match the evidence.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="conditional acceptance refuses the rest"
+                 data-desc="how a narrow yes at data center handover stays a refusal unless the limits are in the same document."
+                 data-keywords="conditional is a refusal"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="conditional-is-a-refusal.html">Conditional acceptance refuses the rest</a></h3>
+          <p>How a narrow yes at data center handover stays a refusal unless the limits are in the same document.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="do not test during the handover meeting"
+                 data-desc="why a receiver refuses a wide sentence instead of running a demonstration to save the signature."
+                 data-keywords="do not test in the handover meeting"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="do-not-test-in-the-handover-meeting.html">Do not test during the handover meeting</a></h3>
+          <p>Why a receiver refuses a wide sentence instead of running a demonstration to save the signature.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a green tile is not acceptance"
+                 data-desc="what a receiver refuses when a handover pack treats a screen, a drawing, or a nameplate as proof."
+                 data-keywords="green tile is not acceptance"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="green-tile-is-not-acceptance.html">A green tile is not acceptance</a></h3>
+          <p>What a receiver refuses when a handover pack treats a screen, a drawing, or a nameplate as proof.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="pages a data center handover must show"
+                 data-desc="the sheets a receiver should see before signing that a hall may be operated, and which missing page refuses which sentence."
+                 data-keywords="pages before you sign"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="pages-before-you-sign.html">Pages a data center handover must show</a></h3>
+          <p>The sheets a receiver should see before signing that a hall may be operated, and which missing page refuses which sentence.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a chemical filter line is not a gas family"
+                 data-desc="what to demand before accepting data center corrosion media, without a recipe or a catalog change-out month."
+                 data-keywords="chemical filter is not a family"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="chemical-filter-is-not-a-family.html">A chemical filter line is not a gas family</a></h3>
+          <p>What to demand before accepting data center corrosion media, without a recipe or a catalog change-out month.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a calm copper coupon does not clear silver"
+                 data-desc="why data center gas-corrosion judgment needs both copper and silver, and what a single metal result must not claim."
+                 data-keywords="copper does not clear silver"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="copper-does-not-clear-silver.html">A calm copper coupon does not clear silver</a></h3>
+          <p>Why data center gas-corrosion judgment needs both copper and silver, and what a single metal result must not claim.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="where you hang the coupon is the sentence"
+                 data-desc="board face, supply, return, and makeup are different corrosion results. a discharge strip does not prove the room."
+                 data-keywords="coupon place is the sentence"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="coupon-place-is-the-sentence.html">Where you hang the coupon is the sentence</a></h3>
+          <p>Board face, supply, return, and makeup are different corrosion results. A discharge strip does not prove the room.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="seal the room before you buy the cleaner"
+                 data-desc="why uncontrolled leaks have to be closed before a data center gas-corrosion unit is sized or signed."
+                 data-keywords="seal before you buy"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="seal-before-you-buy.html">Seal the room before you buy the cleaner</a></h3>
+          <p>Why uncontrolled leaks have to be closed before a data center gas-corrosion unit is sized or signed.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="what a corrosion coupon report must show"
+                 data-desc="metal, method, place, hang time, and edition. no edition, no severity class. the classification table is not reprinted here."
+                 data-keywords="what the coupon report must show"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="what-the-coupon-report-must-show.html">What a corrosion coupon report must show</a></h3>
+          <p>Metal, method, place, hang time, and edition. No edition, no severity class. The classification table is not reprinted here.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="why a corrosion test needs a blank coupon"
+                 data-desc="an unexposed strip from the same lot bounds the trip and the lab. without it, a fit class cannot be signed."
+                 data-keywords="why you send a blank coupon"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="why-you-send-a-blank-coupon.html">Why a corrosion test needs a blank coupon</a></h3>
+          <p>An unexposed strip from the same lot bounds the trip and the lab. Without it, a fit class cannot be signed.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="count, identify, sample, witness"
+                 data-desc="the four acts a short data center due diligence can still do, and the verbs it must not merge."
+                 data-keywords="count identify sample witness"
+                 data-book="9"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 09</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="count-identify-sample-witness.html">Count, identify, sample, witness</a></h3>
+          <p>The four acts a short data center due diligence can still do, and the verbs it must not merge.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 09</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a spare is evidence. a failure probability is not."
+                 data-desc="why a data center due diligence should check the spare, the person, and the stop, instead of multiplying a borrowed failure rate."
+                 data-keywords="spare not a probability"
+                 data-book="9"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 09</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="spare-not-a-probability.html">A spare is evidence. A failure probability is not.</a></h3>
+          <p>Why a data center due diligence should check the spare, the person, and the stop, instead of multiplying a borrowed failure rate.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 09</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card"
+                 data-title="a data center tdd is not a commissioning"
+                 data-desc="what a lender or buyer technical due diligence may sign, and the audits it must not pretend to have done."
+                 data-keywords="tdd is not a commissioning"
+                 data-book="9"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="false">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 09</span>
+            <span class="badge-topic">Corrosion</span>
+            
+            <span class="card-read-time">⏱️ 2m</span>
+          </div>
+          <h3><a href="tdd-is-not-a-commissioning.html">A data center TDD is not a commissioning</a></h3>
+          <p>What a lender or buyer technical due diligence may sign, and the audits it must not pretend to have done.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 09</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="data center alarm suppression &amp; handover refusal: bms telemetry, soe timing, and 200% escrow clauses"
+                 data-desc="how to stop data center bms alarm storms with hysteresis deadbands and refuse premature commissioning handovers using 200% punchlist escrow retainage clauses."
+                 data-keywords="data center alarm suppression"
+                 data-book="7"
+                 data-topic="cx_handover"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 07</span>
+            <span class="badge-topic">Commissioning</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 7m</span>
+          </div>
+          <h3><a href="data-center-alarm-suppression-and-handover-refusal.html">Data Center Alarm Suppression &amp; Handover Refusal: BMS Telemetry, SOE Timing, and 200% Escrow Clauses</a></h3>
+          <p>How to stop data center BMS alarm storms with hysteresis deadbands and refuse premature commissioning handovers using 200% punchlist escrow retainage clauses.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 07</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="data center corrosion coupon testing: ansi/isa-71.04-2013 severity rates and lead-free rohs protection"
+                 data-desc="a technical field guide to interpreting atmospheric corrosion coupons in data centers. covers isa-71.04 class g1 limits, silver creep corrosion on pcbs, and chemical filtration breakthrough."
+                 data-keywords="data center corrosion coupon isa 71.04"
+                 data-book="8"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 08</span>
+            <span class="badge-topic">Corrosion</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 7m</span>
+          </div>
+          <h3><a href="data-center-corrosion-coupon-isa-71-04-guide.html">Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</a></h3>
+          <p>A technical field guide to interpreting atmospheric corrosion coupons in data centers. Covers ISA-71.04 Class G1 limits, silver creep corrosion on PCBs, and chemical filtration breakthrough.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 08</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="data center shift handover checklist: 2n power redundancy math, 6 stations, and sop/mop/eop"
+                 data-desc="a comprehensive shift handover protocol for critical facilities managers. covers the 2n power redundancy cascade equation, 6 mandatory physical inspection stations, and mop back-out plans."
+                 data-keywords="data center shift handover checklist"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 7m</span>
+          </div>
+          <h3><a href="data-center-shift-handover-sop-mop-checklist.html">Data Center Shift Handover Checklist: 2N Power Redundancy Math, 6 Stations, and SOP/MOP/EOP</a></h3>
+          <p>A comprehensive shift handover protocol for critical facilities managers. Covers the 2N power redundancy cascade equation, 6 mandatory physical inspection stations, and MOP back-out plans.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="data center technical due diligence (tdd): the 6-pillar site audit &amp; red-flag checklist"
+                 data-desc="a complete technical due diligence (tdd) audit checklist for data center m&amp;a and debt financing. covers utility substation diversity, 500-yr flood levels, 72h fuel autonomy, and nvl72 floor loads."
+                 data-keywords="data center technical due diligence checklist"
+                 data-book="9"
+                 data-topic="integrity_tdd"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 09</span>
+            <span class="badge-topic">Corrosion</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 8m</span>
+          </div>
+          <h3><a href="data-center-technical-due-diligence-checklist.html">Data Center Technical Due Diligence (TDD): The 6-Pillar Site Audit &amp; Red-Flag Checklist</a></h3>
+          <p>A complete technical due diligence (TDD) audit checklist for data center M&amp;A and debt financing. Covers utility substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 09</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="nvl72 liquid load bank testing: p&amp;id hydraulics, quick disconnects, and boundary acceptance"
+                 data-desc="a field guide to specifying and accepting a liquid load bank for nvl72 ai racks. includes danfoss fd83 pressure drop equations, thermal dissipation limits, and acceptance sheets."
+                 data-keywords="liquid load bank nvl72"
+                 data-book="1"
+                 data-topic="cx_handover"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 01</span>
+            <span class="badge-topic">Commissioning</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 7m</span>
+          </div>
+          <h3><a href="nvl72-liquid-load-bank-testing-guide.html">NVL72 Liquid Load Bank Testing: P&amp;ID Hydraulics, Quick Disconnects, and Boundary Acceptance</a></h3>
+          <p>A field guide to specifying and accepting a liquid load bank for NVL72 AI racks. Includes Danfoss FD83 pressure drop equations, thermal dissipation limits, and acceptance sheets.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+    </div>
+
+    
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <h3>No Matching Field Protocols Found</h3>
+      <p>Try adjusting your search keywords, clearing your filter pills, or selecting "All Volumes".</p>
+      <button type="button" class="filter-tab active" id="empty-reset-btn">Reset All Filters</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+  </footer>
+
+  <!-- Instant Search & Filter Logic with Compact/Expand support -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('protocol-search');
+      const searchKbd = document.getElementById('search-kbd');
+      const searchClear = document.getElementById('search-clear');
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const volumeSelect = document.getElementById('volume-select');
+      const cards = document.querySelectorAll('.article-card');
+      const countEl = document.getElementById('results-count');
+      const emptyState = document.getElementById('empty-state');
+      const resetBtn = document.getElementById('reset-filters');
+      const emptyResetBtn = document.getElementById('empty-reset-btn');
+      const grid = document.getElementById('articles-grid');
+      const toggleBtn = document.getElementById('toggle-expand-btn');
+      const toggleBtnText = document.getElementById('expand-btn-text');
+      const toggleCountBadge = document.getElementById('expand-count-badge');
+      const expandBox = document.getElementById('expand-collapse-box');
+
+      let currentTopic = 'all';
+      let currentVolume = 'all';
+      let currentQuery = '';
+
+      function filterProtocols() {
+        let visibleCount = 0;
+        const q = currentQuery.toLowerCase().trim();
+        const hasFilters = (currentTopic !== 'all' || currentVolume !== 'all' || q !== '');
+        const isCollapsed = grid && grid.classList.contains('is-collapsed');
+
+        // If searching or filtering while collapsed, automatically expand to show all matches
+        if (hasFilters && isCollapsed) {
+          grid.classList.remove('is-collapsed');
+          if (toggleBtnText) toggleBtnText.textContent = '▲ Collapse to Featured (6 Protocols)';
+          if (toggleCountBadge) toggleCountBadge.style.display = 'none';
+        }
+
+        cards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const desc = card.getAttribute('data-desc') || '';
+          const keywords = card.getAttribute('data-keywords') || '';
+          const topic = card.getAttribute('data-topic') || '';
+          const book = card.getAttribute('data-book') || '';
+          const isDeepDive = card.getAttribute('data-deep-dive') === 'true';
+
+          let matchesTopic = (currentTopic === 'all') ||
+            (currentTopic === 'deep_dive' && isDeepDive) ||
+            (topic === currentTopic);
+
+          let matchesVolume = (currentVolume === 'all') || (book === currentVolume);
+
+          let matchesSearch = !q ||
+            title.includes(q) ||
+            desc.includes(q) ||
+            keywords.includes(q);
+
+          let matches = matchesTopic && matchesVolume && matchesSearch;
+
+          if (matches) {
+            visibleCount++;
+            // On homepage collapsed view with no search/filter, only show first 6 cards
+            if (grid && grid.classList.contains('is-collapsed') && !hasFilters && visibleCount > 6) {
+              card.style.display = 'none';
+            } else {
+              card.style.display = 'flex';
+            }
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update count feedback
+        if (hasFilters) {
+          countEl.textContent = `Showing ${visibleCount} of ${cards.length} protocols`;
+          resetBtn.style.display = 'inline-block';
+        } else if (grid && grid.classList.contains('is-collapsed')) {
+          countEl.textContent = `Showing 6 of ${cards.length} featured protocols (compact view)`;
+          resetBtn.style.display = 'none';
+        } else {
+          countEl.textContent = `Showing all ${cards.length} field protocols`;
+          resetBtn.style.display = 'none';
+        }
+
+        // Toggle empty state and expand box visibility
+        if (visibleCount === 0) {
+          emptyState.style.display = 'block';
+          if (expandBox) expandBox.style.display = 'none';
+        } else {
+          emptyState.style.display = 'none';
+          if (expandBox && !hasFilters) expandBox.style.display = 'flex';
+        }
+      }
+
+      // Expand / Collapse button click
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const isCurrentlyCollapsed = grid.classList.contains('is-collapsed');
+          if (isCurrentlyCollapsed) {
+            grid.classList.remove('is-collapsed');
+            toggleBtnText.textContent = '▲ Collapse to Featured (6 Protocols)';
+            if (toggleCountBadge) toggleCountBadge.style.display = 'none';
+          } else {
+            grid.classList.add('is-collapsed');
+            toggleBtnText.textContent = '▼ Expand All 68 Field Protocols';
+            if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
+            document.getElementById('protocols').scrollIntoView({ behavior: 'smooth' });
+          }
+          filterProtocols();
+        });
+      }
+
+      const volumeTabs = document.querySelectorAll('.volume-tab');
+      const topicTabs = document.querySelectorAll('.topic-tab');
+
+      // Volume tabs click
+      volumeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          volumeTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentVolume = tab.getAttribute('data-volume') || 'all';
+          filterProtocols();
+        });
+      });
+
+      // Topic tabs click
+      topicTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          topicTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentTopic = tab.getAttribute('data-filter') || 'all';
+          filterProtocols();
+        });
+      });
+
+      // Search typing
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value;
+          if (currentQuery) {
+            searchClear.style.display = 'flex';
+            if (searchKbd) searchKbd.style.display = 'none';
+          } else {
+            searchClear.style.display = 'none';
+            if (searchKbd) searchKbd.style.display = 'block';
+          }
+          filterProtocols();
+        });
+
+        // Global hotkey '/' to focus search
+        window.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput.focus();
+          }
+          if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.blur();
+          }
+        });
+      }
+
+      // Clear search button
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          searchInput.value = '';
+          currentQuery = '';
+          searchClear.style.display = 'none';
+          if (searchKbd) searchKbd.style.display = 'block';
+          filterProtocols();
+          searchInput.focus();
+        });
+      }
+
+      function resetAll() {
+        currentTopic = 'all';
+        currentVolume = 'all';
+        currentQuery = '';
+        if (searchInput) searchInput.value = '';
+        if (searchClear) searchClear.style.display = 'none';
+        if (searchKbd) searchKbd.style.display = 'block';
+        volumeTabs.forEach(t => {
+          t.classList.toggle('active', t.getAttribute('data-volume') === 'all');
+        });
+        topicTabs.forEach(t => {
+          t.classList.toggle('active', t.getAttribute('data-filter') === 'all');
+        });
+        if (grid && toggleBtn) {
+          grid.classList.add('is-collapsed');
+          if (toggleBtnText) toggleBtnText.textContent = '▼ Expand All 68 Field Protocols';
+          if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
+        }
+        filterProtocols();
+      }
+
+      if (resetBtn) resetBtn.addEventListener('click', resetAll);
+      if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
+
+      // Initial filter execution
+      filterProtocols();
+    });
+  </script>
+
+  <script src="../search-data.js" defer></script>
+  <script src="../search.js" defer></script>
+</body>
+</html>

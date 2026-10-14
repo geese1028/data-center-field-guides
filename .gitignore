@@ -1,0 +1,25 @@
+sources/text/
+sources/content/
+sources/hydrate.log
+sources/hydrate_ok.txt
+sources/catalog.staging.jsonl
+sources/catalog.staging.summary.json
+.onedrive_token_cache.json
+__pycache__/
+.DS_Store
+*.pyc
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+# Scratch and test artifacts
+scratch_*.png
+scratch/
+
+# Dependencies
+.opencode/node_modules/
+node_modules/

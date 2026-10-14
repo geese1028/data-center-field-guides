@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+  <rect width="1400" height="820" fill="#ffffff"/>
+  <text x="48" y="42" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="700">Fig. 2</text>
+  <text x="110" y="42" fill="#444" font-family="DejaVu Sans, sans-serif" font-size="15">Cooling-unit face. Points belong on the opening.</text>
+
+  <!-- floor -->
+  <line x1="70" y1="700" x2="620" y2="700" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="70" y1="708" x2="620" y2="708" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="70" y="736" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="13">Floor</text>
+
+  <!-- unit cabinet -->
+  <rect x="150" y="120" width="280" height="580" fill="#f7f7f5" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="164" y="148" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">Unit face</text>
+
+  <!-- return grille -->
+  <rect x="190" y="180" width="200" height="150" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+  <g stroke="#1a1a1a" stroke-width="1">
+    <path d="M202 198 H378 M202 214 H378 M202 230 H378 M202 246 H378 M202 262 H378 M202 278 H378 M202 294 H378 M202 310 H378"/>
+  </g>
+  <g fill="#1a1a1a">
+    <circle cx="230" cy="255" r="9"/>
+    <circle cx="290" cy="255" r="9"/>
+    <circle cx="350" cy="255" r="9"/>
+  </g>
+  <g fill="#fff" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700">
+    <text x="226" y="259">1</text>
+    <text x="286" y="259">2</text>
+    <text x="346" y="259">3</text>
+  </g>
+  <line x1="390" y1="220" x2="470" y2="180" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="478" y="176" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="14">Return opening</text>
+  <text x="478" y="196" fill="#444" font-family="DejaVu Sans, sans-serif" font-size="13">Three points. Average them.</text>
+
+  <!-- supply grille -->
+  <rect x="190" y="470" width="200" height="150" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+  <g stroke="#1a1a1a" stroke-width="1">
+    <path d="M202 488 H378 M202 504 H378 M202 520 H378 M202 536 H378 M202 552 H378 M202 568 H378 M202 584 H378 M202 600 H378"/>
+  </g>
+  <g fill="#1d4e89">
+    <circle cx="250" cy="545" r="9"/>
+    <circle cx="330" cy="545" r="9"/>
+  </g>
+  <g fill="#fff" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700">
+    <text x="246" y="549">1</text>
+    <text x="326" y="549">2</text>
+  </g>
+  <line x1="390" y1="545" x2="470" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="478" y="496" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="14">Supply opening</text>
+  <text x="478" y="516" fill="#444" font-family="DejaVu Sans, sans-serif" font-size="13">At least two points. Average them.</text>
+
+  <!-- aisle wrong -->
+  <rect x="700" y="220" width="220" height="400" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="6 4"/>
+  <text x="716" y="248" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="14">Aisle</text>
+  <circle cx="810" cy="420" r="11" fill="none" stroke="#b23a2f" stroke-width="2"/>
+  <line x1="800" y1="410" x2="820" y2="430" stroke="#b23a2f" stroke-width="2"/>
+  <text x="736" y="580" fill="#b23a2f" font-family="DejaVu Sans, sans-serif" font-size="13">Not a reading</text>
+
+  <g font-family="DejaVu Sans, sans-serif" font-size="15" fill="#1a1a1a">
+    <text x="980" y="280">A screen in the aisle</text>
+    <text x="980" y="304">is not the supply.</text>
+    <text x="980" y="360">One point called</text>
+    <text x="980" y="384">the return is a story.</text>
+    <text x="980" y="440">Every unit that serves</text>
+    <text x="980" y="464">this room is measured</text>
+    <text x="980" y="488">on its own face.</text>
+  </g>
+</svg>

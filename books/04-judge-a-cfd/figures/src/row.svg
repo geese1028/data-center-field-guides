@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+  <rect width="1400" height="780" fill="#ffffff"/>
+  <text x="48" y="42" fill="#1a1a1a" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="700">Fig. 3</text>
+  <text x="110" y="42" fill="#444" font-family="DejaVu Sans, sans-serif" font-size="15">Plan. Measure the cabinets the report will name.</text>
+
+  <!-- aisle labels -->
+  <text x="80" y="150" fill="#1d4e89" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">Cold aisle</text>
+  <text x="80" y="520" fill="#b23a2f" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700">Hot aisle</text>
+
+  <!-- airflow arrows -->
+  <g stroke="#1d4e89" stroke-width="1.6" fill="#1d4e89">
+    <line x1="200" y1="200" x2="200" y2="280"/>
+    <polygon points="194,272 200,288 206,272"/>
+    <line x1="430" y1="200" x2="430" y2="280"/>
+    <polygon points="424,272 430,288 436,272"/>
+    <line x1="660" y1="200" x2="660" y2="280"/>
+    <polygon points="654,272 660,288 666,272"/>
+  </g>
+  <g stroke="#b23a2f" stroke-width="1.6" fill="#b23a2f">
+    <line x1="200" y1="470" x2="200" y2="390"/>
+    <polygon points="194,408 200,392 206,408"/>
+    <line x1="430" y1="470" x2="430" y2="390"/>
+    <polygon points="424,408 430,392 436,408"/>
+    <line x1="660" y1="470" x2="660" y2="390"/>
+    <polygon points="654,408 660,392 666,408"/>
+  </g>
+
+  <!-- racks -->
+  <g font-family="DejaVu Sans, sans-serif" font-size="13" fill="#1a1a1a">
+    <rect x="140" y="300" width="120" height="70" fill="#f3f3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+    <text x="156" y="340">Not named</text>
+    <rect x="370" y="290" width="140" height="90" fill="#fff" stroke="#1a1a1a" stroke-width="2.2"/>
+    <text x="392" y="326" font-weight="700">Named</text>
+    <text x="392" y="346">inlet · outlet</text>
+    <circle cx="400" cy="300" r="6" fill="#1d4e89"/>
+    <circle cx="480" cy="370" r="6" fill="#b23a2f"/>
+    <rect x="600" y="300" width="120" height="70" fill="#f3f3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+    <text x="616" y="340">Not named</text>
+  </g>
+
+  <g font-family="DejaVu Sans, sans-serif" font-size="15" fill="#1a1a1a">
+    <text x="860" y="220">Blue: air into the front.</text>
+    <text x="860" y="252" fill="#b23a2f">Red: air out the rear.</text>
+    <text x="860" y="320">Only the named cabinet</text>
+    <text x="860" y="348">gets both readings.</text>
+    <text x="860" y="410" fill="#444">A room average is not</text>
+    <text x="860" y="438" fill="#444">a cabinet inlet.</text>
+    <text x="860" y="500" fill="#444">A row you did not walk</text>
+    <text x="860" y="528" fill="#444">is not in the comparison.</text>
+  </g>
+</svg>
