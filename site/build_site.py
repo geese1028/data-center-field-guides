@@ -39,6 +39,17 @@ OUT_SEARCH_DATA = SITE / "search-data.js"
 BASE_URL = "https://datacenterfieldguides.com"  # Canonical production domain
 AMAZON_BOOK_URL = "https://www.amazon.com/dp/B0HMWDV6LT"  # Direct link to Book 1 on Amazon
 
+# Google Tag (gtag.js) for Google Ads conversion tracking and analytics
+GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16517762043');
+  </script>"""
+
 # Book Catalog Metadata for Amazon Funnel Mapping
 BOOK_CATALOG = {
     1: {
@@ -971,6 +982,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{html.escape(title)} | Data Center Field Guides</title>
@@ -1813,6 +1825,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Volume 0{num}: {html.escape(b['title'])} | Data Center Field Guides</title>
@@ -2720,6 +2733,7 @@ def generate_hub_index(articles, is_subfolder=False):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{page_title}</title>
@@ -4234,6 +4248,7 @@ def generate_about_page():
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Tristan | Data Center Commissioning Authority &amp; Author</title>
@@ -5102,6 +5117,7 @@ def generate_buy_page():
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buy Field Guides | Official Bookseller &amp; Distribution Hub</title>
