@@ -4,16 +4,10 @@ This book is for the person who runs a load-bank test on a liquid-cooled data ce
 
 It is not a building commissioning manual. The overarching method statement tells you which contract deliverables to file and which completion certificates you are legally authorized to sign. The work itself is the verification of the liquid loop: physical uncrating, megger and ground isolation, secondary flushing and hydrostatic pressure holds, cold pump curve baselining, alarm loops, multi-tier thermal steps, transient failure rides, and a structured shutdown. If a paragraph starts to become an architectural tour of the facility, cut it. Leave the engineering sheet.
 
-```
-+---------------------------------------------------------------------------------------------+
-| THREE INDEPENDENT COMMISSIONING GATES |
-+------------------------------+------------------------------+-------------------------------+
-| THE SCRIPT DRAFT | THE FIELD EXECUTION | THE AUDITED PACK |
-| Pre-approved tolerances, | One person measures, | Seven completed sheets, |
-| instrument calibration IDs, | one writes in ink; | trend logs, raw time series, |
-| and non-negotiable stops | zero unapproved overrides | and signed punch registers |
-+------------------------------+------------------------------+-------------------------------+
-```
+**THREE INDEPENDENT COMMISSIONING GATES**
+
+| THE SCRIPT DRAFT Pre-approved tolerances, instrument calibration IDs, and non-negotiable stops | THE FIELD EXECUTION One person measures, one writes in ink; zero unapproved overrides | THE AUDITED PACK Seven completed sheets, trend logs, raw time series, and signed punch registers |
+| :--- | :--- | :--- |
 
 If you are on the tools tomorrow, turn to Chapter 16 and take the master sheets onto the floor. Read Chapters 2 and 3 before anyone asks you to sign a Level 1 or Level 4 certificate; those chapters prevent a field walk-through from being filed into a factory acceptance binder. They keep two distinct commissioning numbering systems from destroying project compliance.
 
@@ -41,19 +35,15 @@ A liquid cooling verification project fails during its first week when nobody wr
 
 On the AI data hall projects from which this field guide is drawn, that commercial decision was whether the facility cooling infrastructure was legally and mechanically acceptable for IT deployment. It was not whether an accelerated compute chip would successfully run a distributed model training workload. It was not whether a prototype liquid load bank met manufacturing R&D standards. Those claims belong to other engineering scopes, other test benches, and other signatures.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE BOUNDARY OF THE CLAIM SENTENCE |
-+------------------------------------+---------------------------------------------------------------+
+**THE BOUNDARY OF THE CLAIM SENTENCE**
+
 | WHAT THE CLAIM LEGALLY PROVES | WHAT THE CLAIM CANNOT PROVE |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | • CDU heat transfer at 1.2 MW duty | • Silicon compute efficiency or tensor performance |
-| • Secondary pump N+1 failover speed| • Quick-disconnect long-term galvanic corrosion rates |
+| • Secondary pump N+1 failover speed | • Quick-disconnect long-term galvanic corrosion rates |
 | • Manifold reverse-return balance | • Facility central chiller plant seasonal free-cooling PUE |
-| • Enthalpy heat closure >= 97.0% | • Prototype load-bank heater element manufacturing durability|
+| • Enthalpy heat closure >= 97.0% | • Prototype load-bank heater element manufacturing durability |
 | • 2N electrical feed transfer ride | • Facility building envelope structural wind-load compliance |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## Formulating the project claim
 
@@ -97,11 +87,10 @@ Professional commissioning does not begin with thermal energy. It begins with a 
 
 The twelve products constitute a progression of accountability, not a project management calendar. In an existing data hall where physical construction is already complete, certain products represent documentation you audit and attach rather than activities you execute from scratch. However, none of the twelve products may be omitted through silence.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| THE TWELVE COMMISSIONING PRODUCTS IN ORDER |
-+----+----------------------------------+----------------------------------------------------------+
+**THE TWELVE COMMISSIONING PRODUCTS IN ORDER**
+
 | 01 | Owner's Project Requirements | The auditable claim sentence and operational boundary. |
+| :--- | :--- | :--- |
 | 02 | Basis of Design (BOD) | The design engineer's roadmap for satisfying the OPR. |
 | 03 | Approval of OPR & BOD | Mutual signed baseline before scripts are authored. |
 | 04 | Design Review Record | Formal record of design audit or signed scope exclusion. |
@@ -112,9 +101,7 @@ The twelve products constitute a progression of accountability, not a project ma
 | 09 | Verification & Witness Records | Third-party witnessed execution logs and field sheets. |
 | 10 | Issues Log / Punch List Register | Tracked register of defects, owners, and closure tests. |
 | 11 | Regular Commissioning Reports | Daily shift notes and weekly executive summaries. |
-| 12 | Systems Manual & Final Cx Report | Complete as-tested operational baseline and turnover pack.|
-+----+----------------------------------+----------------------------------------------------------+
-```
+| 12 | Systems Manual & Final Cx Report | Complete as-tested operational baseline and turnover pack. |
 
 ## The Products Deconstructed
 
@@ -202,21 +189,17 @@ Filing a site walk-through into a factory acceptance binder is documentation fra
 
 To prevent this compliance breach, the first page of the Commissioning Plan must feature a prominent cross-reference matrix:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMISSIONING TIER TRANSLATION MATRIX |
-+--------------------------+----------------------------+--------------------------------------------+
-| GLOBAL CERTIFICATE TIER | LOCAL FIELD CONTRACTOR TERM| MANDATORY VERIFICATION BOUNDARY |
-+--------------------------+----------------------------+--------------------------------------------+
+**COMMISSIONING TIER TRANSLATION MATRIX**
+
+| GLOBAL CERTIFICATE TIER | LOCAL FIELD CONTRACTOR TERM | MANDATORY VERIFICATION BOUNDARY |
+| :--- | :--- | :--- |
 | Level 0: Design Audit | Excluded / Attached | OPR & BOD sign-off; design review waiver. |
 | Level 1: Factory Testing | FAT Vendor Documentation | Factory test records attached as evidence. |
 | Level 2: Site Receipt QA | Stage 1 (Static Part A) | Sheet 1: Unpack, megger, phase rotation. |
 | Level 3: PFC & Start-Up | Stage 1 (Static Part B) | Sheet 1: Flush, hydro-hold, fill and vent. |
-| Level 4: Functional (FPT)| Stage 2 (Single System) | Sheet 2, Sheet 6, Sheet 7: CDU & alarms. |
-| Level 5: Integrated (IST)| Stage 3 (Heat Window) | Sheet 3, Sheet 4: Thermal ladder & 2N pull.|
+| Level 4: Functional (FPT) | Stage 2 (Single System) | Sheet 2, Sheet 6, Sheet 7: CDU & alarms. |
+| Level 5: Integrated (IST) | Stage 3 (Heat Window) | Sheet 3, Sheet 4: Thermal ladder & 2N pull. |
 | Level 6: Turnover | Closeout Handover | Sheet 5, Punch list clearance, Cx pack. |
-+--------------------------+----------------------------+--------------------------------------------+
-```
 
 ## Mandatory Gating and Interlock Rules
 
@@ -242,20 +225,12 @@ If an owner chooses to waive an open defect to maintain an aggressive project sc
 
 A liquid cooling verification conducted without clearly designated individual roles rapidly degenerates into an uncoordinated group discussion. The standard method statement calls for an exhaustive RACI matrix (Responsible, Accountable, Consulted, Informed). In the high-stakes environment of a live or near-live data hall, that structure must be distilled into three distinct commercial entities and five specific engineering functions.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE THREE-PARTY GOVERNANCE TRIANGLE |
-+------------------------------------+---------------------------------------------------------------+
-| THE FACILITY OWNER | Witnesses execution, authorizes deviations, and signs off |
-| (Client / Hyperscaler Ops) | final certificate tiers. Does not operate tools. |
-+------------------------------------+---------------------------------------------------------------+
-| THE VERIFICATION AUTHORITY (CxA) | Authors Cx Plan & scripts, manages calibration, directs steps,|
-| (Independent Testing Agency) | records data, and audits punch list. Never closes own defect. |
-+------------------------------------+---------------------------------------------------------------+
-| THE TRADE CONSTRUCTOR | Supplies as-built drawings, operates breakers and valves, |
-| (General / Mechanical / Electrical)| and performs physical punch list repairs under permit. |
-+------------------------------------+---------------------------------------------------------------+
-```
+**THE THREE-PARTY GOVERNANCE TRIANGLE**
+
+| THE FACILITY OWNER (Client / Hyperscaler Ops) | Witnesses execution, authorizes deviations, and signs off final certificate tiers. Does not operate tools. |
+| :--- | :--- |
+| THE VERIFICATION AUTHORITY (CxA) (Independent Testing Agency) | Authors Cx Plan & scripts, manages calibration, directs steps, records data, and audits punch list. Never closes own defect. |
+| THE TRADE CONSTRUCTOR (General / Mechanical / Electrical) | Supplies as-built drawings, operates breakers and valves, and performs physical punch list repairs under permit. |
 
 ## The Three Commercial Parties
 
@@ -270,26 +245,14 @@ If a single engineering firm is contracted to perform both construction and comm
 
 Within the testing team on the floor, five distinct technical functions must be staffed. These represent functional responsibilities rather than a requirement for five separate bodies; on a smaller test, one experienced engineer may cover multiple disciplines. However, no individual may act as the sole witness for an operational task they physically performed.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| THE FIVE FUNCTIONAL DISCIPLINES |
-+-------------------+------------------------------------------------------------------------------+
-| 1. TEST LEAD | Owns the approved testing window, enforces the claim, directs step timing, |
-| | manages communications, and holds sole authority to initiate thermal load. |
-+-------------------+------------------------------------------------------------------------------+
-| 2. ELECTRICAL PE | Directs lock-out/tag-out (LOTO), conducts megger insulation & ground testing,|
-| | verifies phase rotation, monitors upstream PDU trip curves, and runs IR scans|
-+-------------------+------------------------------------------------------------------------------+
-| 3. MECHANICAL PE | Manages secondary fluid loop, oversees hydrostatic pressure holds & venting, |
-| | audits CDU pump curves, and tracks quick disconnect seal integrity. |
-+-------------------+------------------------------------------------------------------------------+
-| 4. CONTROLS PE | Cross-checks BMS telemetry against calibrated field gauges, validates Modbus/|
-| | BACnet registers, and injects hardware alarm faults to verify trip logic. |
-+-------------------+------------------------------------------------------------------------------+
-| 5. TEST TECH | Manages physical load-bank connections, verifies instrument calibration logs,|
-| | records all measured values in ink on master sheets, and maintains archives. |
-+-------------------+------------------------------------------------------------------------------+
-```
+**THE FIVE FUNCTIONAL DISCIPLINES**
+
+| 1. TEST LEAD | Owns the approved testing window, enforces the claim, directs step timing, manages communications, and holds sole authority to initiate thermal load. |
+| :--- | :--- |
+| 2. ELECTRICAL PE | Directs lock-out/tag-out (LOTO), conducts megger insulation & ground testing, verifies phase rotation, monitors upstream PDU trip curves, and runs IR scans |
+| 3. MECHANICAL PE | Manages secondary fluid loop, oversees hydrostatic pressure holds & venting, audits CDU pump curves, and tracks quick disconnect seal integrity. |
+| 4. CONTROLS PE | Cross-checks BMS telemetry against calibrated field gauges, validates Modbus/ BACnet registers, and injects hardware alarm faults to verify trip logic. |
+| 5. TEST TECH | Manages physical load-bank connections, verifies instrument calibration logs, records all measured values in ink on master sheets, and maintains archives. |
 
 ### 1. The Test Lead
 Owns the approved testing window, coordinates with facility operations, directs step transitions, and ensures testing adheres strictly to the approved script revision. The Test Lead does not hold an instrument in their hand; their attention is focused on system stability, protocol compliance, and overall safety.
@@ -313,18 +276,14 @@ The distribution of authority during dynamic testing follows two absolute rules:
 1. **Singular Command Authority**: Thermal heat may be commanded by exactly **one individual**—the designated Test Lead. That individual's name is recorded in ink on Sheet 3 before the first breaker is engaged. No load step may be initiated by verbal suggestion from the owner, the contractor, or an observing vendor.
 2. **Universal Stop Authority**: An emergency stop may be called by **any individual present in the data hall**. This authority is absolute, non-negotiable, and requires no prior approval from the Test Lead. If a technician spots a leaking quick disconnect, an electrical apprentice detects an unusual odor, or an observer feels uncertain about an operational transient, they call an immediate stop. The system is shut down instantly without debate.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMAND AND STOP GOVERNANCE |
-+--------------------------------------------------+-------------------------------------------------+
+**COMMAND AND STOP GOVERNANCE**
+
 | WHO MAY COMMAND HEAT | WHO MAY CALL AN EMERGENCY STOP |
-+--------------------------------------------------+-------------------------------------------------+
+| :--- | :--- |
 | • Exactly ONE named person on site. | • EVERY PERSON in the room. |
 | • Recorded in ink on Sheet 3 before first step. | • Requires zero consensus or prior approval. |
-| • Must confirm all prerequisite gates are signed.| • Overrides all project schedules and costs. |
-| • Operates strictly within approved script steps.| • Survives the organizational chart completely. |
-+--------------------------------------------------+-------------------------------------------------+
-```
+| • Must confirm all prerequisite gates are signed. | • Overrides all project schedules and costs. |
+| • Operates strictly within approved script steps. | • Survives the organizational chart completely. |
 
 ## The Kickoff Meeting Governance
 
@@ -353,23 +312,13 @@ The thermal heat window in a data hall typically spans only a few days. The comm
 
 A test team that rolls load banks into an unfamiliar hall without a rigorous pre-mobilization survey will waste the first half of their thermal window diagnosing missing adapters, tripping upstream PDU breakers, or arguing about unverified floor loading ratings.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| PRE-MOBILIZATION MILESTONE TIMELINE |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 4 WEEKS | Site Access & Structural Survey: Path-of-travel, freight elevator capacity, |
-| | floor live load (kN/m²), electrical tap boxes, and manifold connection audit. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 3 WEEKS | Calibration & Instrumentation Audit: ISO 17025 certificates verified for all |
-| | power meters, ultrasonic flowmeters, PT100 immersion probes, and IR cameras. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 2 WEEKS | Emergency Response & MOP Authorization: Chemical spill containment, E-Stop |
-| | procedures, and energization permits signed by Owner and Facility Operations. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 1 WEEK | Floor Readiness & Blank Sheets: Script revision freeze, master sheets printed |
-| | in ink, test gear staged on site, secondary loop flushed and statically tested.|
-+-------------------+--------------------------------------------------------------------------------+
-```
+**PRE-MOBILIZATION MILESTONE TIMELINE**
+
+| T - 4 WEEKS | Site Access & Structural Survey: Path-of-travel, freight elevator capacity, floor live load (kN/m²), electrical tap boxes, and manifold connection audit. |
+| :--- | :--- |
+| T - 3 WEEKS | Calibration & Instrumentation Audit: ISO 17025 certificates verified for all power meters, ultrasonic flowmeters, PT100 immersion probes, and IR cameras. |
+| T - 2 WEEKS | Emergency Response & MOP Authorization: Chemical spill containment, E-Stop procedures, and energization permits signed by Owner and Facility Operations. |
+| T - 1 WEEK | Floor Readiness & Blank Sheets: Script revision freeze, master sheets printed in ink, test gear staged on site, secondary loop flushed and statically tested. |
 
 ## Equipment Count and Spare Strategy
 
@@ -395,19 +344,11 @@ All verification measurements are legally dependent on the calibration integrity
 
 Every field instrument deployed during the campaign must possess an active, traceable calibration certificate (ISO/IEC 17025 accredited) that remains valid throughout the entire duration of the testing window:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| MINIMUM INSTRUMENT ACCURACY STANDARDS |
-+--------------------------+-----------------------+-------------------------------------------------+
+**MINIMUM INSTRUMENT ACCURACY STANDARDS**
+
 | INSTRUMENT CLASS | ACCURACY STANDARD | MANDATORY FIELD DEPLOYMENT SPECIFICATION |
-+--------------------------+-----------------------+-------------------------------------------------+
-| Power Quality Analyzer | Class 0.2 (0.2% FS) | Calibrated 3-phase active power & THD analyzer. |
-| Ultrasonic Flow Meter | Class 0.5 (+/- 0.5%) | Dual-channel transit-time clamp-on; 10D/5D run. |
-| Immersion Temp Probes | 4-wire PT100 1/3 DIN | Calibrated to +/- 0.05 K; high-thermal paste. |
-| Differential Pressure | +/- 0.1% Full Scale | Calibrated piezoresistive transmitter. |
-| Thermal Imaging Camera | NETD < 40 mK; +/- 1 K | Calibrated focal plane array (384x288 min). |
-+--------------------------+-----------------------+-------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| Power Quality Analyzer Ultrasonic Flow Meter Immersion Temp Probes Differential Pressure Thermal Imaging Camera | Class 0.2 (0.2% FS) Class 0.5 (+/- 0.5%) 4-wire PT100 1/3 DIN +/- 0.1% Full Scale NETD < 40 mK; +/- 1 K | Calibrated 3-phase active power & THD analyzer. Dual-channel transit-time clamp-on; 10D/5D run. Calibrated to +/- 0.05 K; high-thermal paste. Calibrated piezoresistive transmitter. Calibrated focal plane array (384x288 min). |
 
 If an instrument's calibration expires during the project, it must be removed from service and replaced with a certified backup. An expired certificate invalidates all data recorded from that moment forward.
 
@@ -454,21 +395,14 @@ No dynamic commissioning test may be executed from memory or oral instructions. 
 
 A script that the testing team drafted but which the Owner’s Project Engineer has not formally reviewed and signed is merely an internal working document. It carries no contractual authority. Executing against an unapproved draft leaves the testing team fully exposed to commercial disputes and legal liability if an equipment failure occurs.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMISSIONING DOCUMENT HIERARCHY |
-+------------------------------------+---------------------------------------------------------------+
+**COMMISSIONING DOCUMENT HIERARCHY**
+
 | 1. CODES & STANDARDS | ASHRAE 0-2019, ASHRAE 90.4, NFPA 70, IEC 60364, BSRIA BG 29. |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | 2. CONTRACT SPECIFICATIONS & BOD | CSI Div 23 & 26, Owner Project Requirements, As-Built P&IDs. |
-+------------------------------------+---------------------------------------------------------------+
 | 3. COMMISSIONING PLAN (Cx Plan) | Governance rules, level gates, witness protocols, schedules. |
-+------------------------------------+---------------------------------------------------------------+
-| 4. FUNCTIONAL TEST PROCEDURES (FPT)| Pre-approved, step-by-step scripts with exact numeric bands. |
-+------------------------------------+---------------------------------------------------------------+
+| 4. FUNCTIONAL TEST PROCEDURES (FPT) | Pre-approved, step-by-step scripts with exact numeric bands. |
 | 5. MASTER FIELD SHEETS (INK LOGS) | Floor records signed in ink; raw time-series sensor files. |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## The Anatomy of an Auditable Test Script
 
@@ -482,17 +416,11 @@ Every Functional Test Procedure (FPT) and Integrated System Test (IST) script mu
 6. **Step-by-Step Execution Sequence**: A sequential table detailing every manual action, the exact physical feedback to observe, the expected numerical tolerance band, and dedicated sign-off cells for measured data and witness initials.
 7. **Explicit Stop Conditions**: Clear operational limits that mandate an immediate test halt if breached (such as secondary coolant temperature exceeding 45.0°C, secondary pressure dropping below 100 kPa, or supply phase voltage unbalance exceeding 2.0%).
 
-```
-+----------------------------------------------------------------------------------------------------+
-| STANDARD TEST SCRIPT STEP STRUCTURE |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|STEP| ACTION COMMAND | EXPECTED PHYSICAL RESULT | ACCEPTANCE BAND |MEASURE|SIGN / TIME |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|4.2 | Ramp Load Bank to 50% | Active power stabilizes | 600 kW +/- 1.5% | [ ] | Init: ____ |
-| | (Step 2: 600 kW total)| Secondary supply T increases| 36.0°C +/- 0.5°C | [ ] | Time: ____ |
-| | Dwell: 45 minutes | Heat balance closure ratio | 97.0% to 101.5% | [ ] | Sheet 3 ref|
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-```
+**STANDARD TEST SCRIPT STEP STRUCTURE**
+
+| STEP | ACTION COMMAND | EXPECTED PHYSICAL RESULT | ACCEPTANCE BAND | MEASURE | SIGN / TIME |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 4.2 | Ramp Load Bank to 50% (Step 2: 600 kW total) Dwell: 45 minutes | Active power stabilizes Secondary supply T increases Heat balance closure ratio | 600 kW +/- 1.5% 36.0°C +/- 0.5°C 97.0% to 101.5% | [ ] [ ] [ ] | Init: ____ Time: ____ Sheet 3 ref |
 
 ## Freezing Script Revisions on the Floor
 
@@ -675,20 +603,16 @@ Inspect modulating bypass valve BPV-201, installed across secondary supply and r
 
 Never assume that a value displayed on a Building Management System (BMS) screen or CDU human-machine interface (HMI) reflects physical reality. Every telemetry point defined in the project claim must undergo physical point-to-point cross-checking against calibrated field reference instruments:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| POINT-TO-POINT TELEMETRY CALIBRATION AUDIT |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-| TELEMETRY POINT | BMS / HMI READING | FIELD CALIBRATED REF| ALLOWABLE DELTA | AUDIT VERDICT |
-+---------------------+-------------------+---------------------+------------------+-----------------+
+**POINT-TO-POINT TELEMETRY CALIBRATION AUDIT**
+
+| TELEMETRY POINT | BMS / HMI READING | FIELD CALIBRATED REF | ALLOWABLE DELTA | AUDIT VERDICT |
+| :--- | :--- | :--- | :--- | :--- |
 | Secondary Supply T | 40.12 °C | 40.08 °C (PT100) | +/- 0.30 K | PASS |
 | Secondary Return T | 50.25 °C | 50.15 °C (PT100) | +/- 0.30 K | PASS |
-| Secondary Flow Rate | 115.4 m³/h | 116.1 m³/h (Ultrason)| +/- 2.0% | PASS |
+| Secondary Flow Rate | 115.4 m³/h | 116.1 m³/h (Ultrason) | +/- 2.0% | PASS |
 | Secondary Supply P | 285.0 kPa | 282.5 kPa (Gauge) | +/- 10.0 kPa | PASS |
 | Secondary Return P | 115.0 kPa | 118.0 kPa (Gauge) | +/- 10.0 kPa | PASS |
-| Expansion Tank Level| 68.0 % | 67.5 % (Sight Glass)| +/- 3.0 % | PASS |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-```
+| Expansion Tank Level | 68.0 % | 67.5 % (Sight Glass) | +/- 3.0 % | PASS |
 
 If a discrepancy exceeds the allowable tolerance, the sensor offset must be recalibrated or the sensor replaced. Never adjust the acceptable tolerance band to match a drifting sensor.
 
@@ -701,20 +625,12 @@ Execute physical alarm testing under Script 06:
 - **Expansion Tank Low Liquid Level**: Manually depress the test lever on the expansion tank magnetic float switch. Verify that the CDU alerts the operator, locks out the electric heaters, and commands the automatic makeup water pump to start.
 - **Secondary Loop Liquid Leak Detection**: Apply 5 mL of demineralized water across the external leak detection sensing rope positioned beneath the CDU piping connections and the manifold tray. Verify that the leak detection controller triggers within < 2.0 seconds, displays the exact leak distance location, and sends a critical latching alarm to the supervisory BMS.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THREE POSSIBLE AUDIT VERDICTS FOR AN ALARM |
-+-------------------+--------------------------------------------------------------------------------+
-| 1. PASS | Alarm physically injected at sensor; local annunciator active; BMS logged |
-| | event with correct timestamp and description; interlock executed cleanly. |
-+-------------------+--------------------------------------------------------------------------------+
-| 2. FAIL | Alarm injected but sensor failed to detect; delay exceeded tolerance; |
-| | interlock relay failed to drop; logged immediately on Master Punch List. |
-+-------------------+--------------------------------------------------------------------------------+
-| 3. NOT | Equipment lacks the physical sensor, wiring, or software register to raise |
-| DEMONSTRATED | this alarm. Explicitly logged as "NOT DEMONSTRATED" on Sheet 2. Never "PASS". |
-+-------------------+--------------------------------------------------------------------------------+
-```
+**THREE POSSIBLE AUDIT VERDICTS FOR AN ALARM**
+
+| 1. PASS | Alarm physically injected at sensor; local annunciator active; BMS logged event with correct timestamp and description; interlock executed cleanly. |
+| :--- | :--- |
+| 2. FAIL | Alarm injected but sensor failed to detect; delay exceeded tolerance; interlock relay failed to drop; logged immediately on Master Punch List. |
+| 3. NOT DEMONSTRATED | Equipment lacks the physical sensor, wiring, or software register to raise this alarm. Explicitly logged as "NOT DEMONSTRATED" on Sheet 2. Never "PASS". |
 
 If a specific alarm cannot be demonstrated because the hardware was omitted during construction, the line on Sheet 2 must be recorded as **NOT DEMONSTRATED**. Logging an untested alarm as "PASS" because "the vendor promised the logic works" is a serious professional breach.
 
@@ -769,19 +685,15 @@ If you fail to baseline the hydraulic resistance cold, you cannot decouple pipin
 
 Once the cold hydraulic baseline is signed off, thermal loading commences under Script 08. The thermal ladder is a progressive sequence designed to verify that the facility power distribution, CDU heat exchangers, primary water loop, and whitespace air management stabilize at each load increment.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THERMAL LADDER STAGE PARAMETERS |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-| STAGE | THERMAL LOAD| DESIGN kW | MINIMUM DWELL TIME | STABILIZATION GOAL | SHEET REFERENCED |
-+-------+------------+------------+--------------------+----------------------+----------------------+
+**THERMAL LADDER STAGE PARAMETERS**
+
+| STAGE | THERMAL LOAD | DESIGN kW | MINIMUM DWELL TIME | STABILIZATION GOAL | SHEET REFERENCED |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | 25% Step | 300 kW | 45 minutes | Initial TCV tracking | Sheet 3 (Copy 1) |
 | 2 | 50% Step | 600 kW | 45 minutes | Partial-load balance | Sheet 3 (Copy 2) |
-| 3 | 75% Step | 900 kW | 45 minutes | Hydraulic shift audit| Sheet 3 (Copy 3) |
-| 4 | 100% Step | 1200 kW | 4.0 hours soak | Full-load equilibrium| Sheet 3 (Copy 4) |
+| 3 | 75% Step | 900 kW | 45 minutes | Hydraulic shift audit | Sheet 3 (Copy 3) |
+| 4 | 100% Step | 1200 kW | 4.0 hours soak | Full-load equilibrium | Sheet 3 (Copy 4) |
 | 5 | 110% Step | 1320 kW | 60 minutes | Overload stress test | Sheet 3 (Copy 5) |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-```
 
 ### The Thermal Equilibrium Dwell Criteria
 Never advance to the next load step based solely on elapsed time. A load stage is deemed complete only when the system achieves verified **thermal equilibrium**:
@@ -893,28 +805,15 @@ With the loop running under full thermal load, physically disconnect the Modbus-
 
 Demobilizing from a multi-megawatt thermal test requires the same operational discipline as initiating it. The de-energization and shutdown sequence must be executed in a strict, non-reversible order.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| MANDATORY SHUTDOWN EXECUTION SEQUENCE |
-+----+-----------------------------+-----------------------------------------------------------------+
-|STEP| ACTION COMMAND | ENGINEERING SAFETY RATIONALE |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 01 | SHED THERMAL LOAD TO 0 kW | Cut all heater contactors/SCRs. Never interrupt fluid flow |
-| | | while 1.2 MW of electrical heat is active! |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 02 | OPEN LOAD-BANK BREAKERS | Lock out and tag out (LOTO) all primary electrical feeds. |
-| | | Prove circuits dead with calibrated voltage detector. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 03 | 10-MINUTE FLUID COOLDOWN | Maintain secondary pump circulation for 10 minutes to remove |
-| | | residual core heat from elements and prevent localized boiling. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 04 | STOP CDU SECONDARY PUMPS | Power down pumps only after secondary fluid temperature drops |
-| | | safely below 30.0°C. Confirm differential pressure is 0 kPa. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 05 | ISOLATE & DISCONNECT HOSES | Close manifold isolation valves, relieve residual static head, |
-| | | and disconnect quick-disconnect couplings into catch buckets. |
-+----+-----------------------------+-----------------------------------------------------------------+
-```
+**MANDATORY SHUTDOWN EXECUTION SEQUENCE**
+
+| STEP | ACTION COMMAND | ENGINEERING SAFETY RATIONALE |
+| :--- | :--- | :--- |
+| 01 | SHED THERMAL LOAD TO 0 kW | Cut all heater contactors/SCRs. Never interrupt fluid flow while 1.2 MW of electrical heat is active! |
+| 02 | OPEN LOAD-BANK BREAKERS | Lock out and tag out (LOTO) all primary electrical feeds. Prove circuits dead with calibrated voltage detector. |
+| 03 | 10-MINUTE FLUID COOLDOWN | Maintain secondary pump circulation for 10 minutes to remove residual core heat from elements and prevent localized boiling. |
+| 04 | STOP CDU SECONDARY PUMPS | Power down pumps only after secondary fluid temperature drops safely below 30.0°C. Confirm differential pressure is 0 kPa. |
+| 05 | ISOLATE & DISCONNECT HOSES | Close manifold isolation valves, relieve residual static head, and disconnect quick-disconnect couplings into catch buckets. |
 
 > **CRITICAL REVERSE-SEQUENCE WARNING**: Never reverse Steps 1 and 4! Stopping fluid circulation while megawatts of electrical heat are engaged will cause the stagnant fluid inside the heating channels to flash into steam within seconds. The resulting rapid vapor expansion creates an explosive pressure surge that will blow out hose crimps, destroy sensor diaphragms, and present a catastrophic scalding hazard to personnel in the aisle. Sheet 5 requires every step to be ticked in strict chronological order; a tick out of sequence voids the sheet.
 
@@ -959,30 +858,13 @@ The master punch list is established during the Commissioning Kickoff Meeting, n
 
 Every finding logged in the Issues Log must be classified into one of three standardized severity tiers:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| DEFECT SEVERITY CLASSIFICATION |
-+------------+-------------------------------+-------------------------------------------------------+
+**DEFECT SEVERITY CLASSIFICATION**
+
 | TIER | DEFINITION & EXAMPLES | COMMISSIONING STAGE INTERLOCK IMPACT |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 1 | Critical Safety / Blocker: | ABSOLUTE HARD STOP. Prohibits progression to the next |
-| | Active leak > 0 drops/min; | commissioning level. Level 5 thermal energization is |
-| | phase reversal; failed E-Stop;| legally prohibited while any Cat 1 item remains open. |
-| | pump swap timeout > 1.5 s; | |
-| | insulation < 100 MOhm. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 2 | Major Operability Deviation: | CONDITIONAL PROGRESSION. Progression permitted only |
-| | Enthalpy closure < 97.0%; | if Owner PE signs an explicit deviation waiver with |
-| | rack flow variation CV > 5.0%;| operational mitigations. 14-calendar-day resolution. |
-| | sensor drift > 0.5 K; | Mandatory re-test required. |
-| | control valve hunting. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 3 | Minor Cosmetic / Documentation| NO INTERLOCK. Does not impede dynamic testing or |
-| | Inverted pipe flow arrow; | milestone certificates. Verified via photographic |
-| | cable tray paint scratch; | evidence within 30 days post-turnover. |
-| | smudged calibration label. | |
-+------------+-------------------------------+-------------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| CATEGORY 1 | Critical Safety / Blocker: Active leak > 0 drops/min; phase reversal; failed E-Stop; pump swap timeout > 1.5 s; insulation < 100 MOhm. | ABSOLUTE HARD STOP. Prohibits progression to the next commissioning level. Level 5 thermal energization is legally prohibited while any Cat 1 item remains open. |
+| CATEGORY 2 | Major Operability Deviation: Enthalpy closure < 97.0%; rack flow variation CV > 5.0%; sensor drift > 0.5 K; control valve hunting. | CONDITIONAL PROGRESSION. Progression permitted only if Owner PE signs an explicit deviation waiver with operational mitigations. 14-calendar-day resolution. Mandatory re-test required. |
+| CATEGORY 3 | Minor Cosmetic / Documentation Inverted pipe flow arrow; cable tray paint scratch; smudged calibration label. | NO INTERLOCK. Does not impede dynamic testing or milestone certificates. Verified via photographic evidence within 30 days post-turnover. |
 
 ## The Stage Interlock and the Waiver Protocol
 
@@ -1045,31 +927,18 @@ A successful thermal heat test is not a facility turnover. Demobilizing load ban
 
 A turnover certificate signed while punch list items remain unresolved or before the final commissioning report is audited is legally defective. Level 6 turnover is the formal milestone where the Facility Owner, the General Contractor, and the Commissioning Authority collectively certify that the mechanical, electrical, and control systems satisfy the Owner's Project Requirements and are safe to receive high-density compute infrastructure.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| LEVEL 6 TURNOVER DOCUMENT ARCHITECTURE |
-+----+--------------------------------+--------------------------------------------------------------+
-| 01 | EXECUTIVE SUMMARY & VERIFIED | The signed claim sentence, final project verdict, and |
-| | CLAIM STATEMENT | summary of operational thermal capacity demonstrated. |
-+----+--------------------------------+--------------------------------------------------------------+
-| 02 | SCOPE BOUNDARIES & EXCLUSION | Explicit scope letters documenting unexecuted levels, |
-| | LETTERS | seasonal deferred testing, and third-party systems out. |
-+----+--------------------------------+--------------------------------------------------------------+
+**LEVEL 6 TURNOVER DOCUMENT ARCHITECTURE**
+
+| 01 | EXECUTIVE SUMMARY & VERIFIED CLAIM STATEMENT | The signed claim sentence, final project verdict, and summary of operational thermal capacity demonstrated. |
+| :--- | :--- | :--- |
+| 02 | SCOPE BOUNDARIES & EXCLUSION LETTERS | Explicit scope letters documenting unexecuted levels, seasonal deferred testing, and third-party systems out. |
 | 03 | MASTER MILESTONE CERTIFICATES | Formal signed completion certificates for Levels 2, 3, 4, 5. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 04 | THE SEVEN SIGNED MASTER SHEETS | Sheets 1 through 7, fully executed, logged in ink, signed. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 05 | INSTRUMENT CALIBRATION LOG | Traceable ISO 17025 calibration certificates for all tools. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 06 | TIME-SERIES DATA REPOSITORY | Complete raw CSV logs, BMS trend exports, cryptographic SHA. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 07 | RESOLVED ISSUES REGISTER | Master Punch List showing 100% Cat 1 & Cat 2 items closed. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 08 | SYSTEMS MANUAL SUPPLEMENT | As-tested pump curves, operating bands, fail-safe setpoints. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 09 | OPERATIONS TRAINING RECORDS | Witnessed sign-off of facility staff SOP walkthrough. |
-+----+--------------------------------+--------------------------------------------------------------+
-```
 
 ## Structure of the Final Commissioning Report
 
@@ -1112,18 +981,14 @@ Documentation of formal operational handover training conducted with site facili
 
 The final page of the report must protect the testing party and the owner by clearly stating what the verification did not cover:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| FORMAL BOUNDARY STATEMENT |
-| |
+| **FORMAL BOUNDARY STATEMENT** |
+| :--- |
 | "This verification campaign certifies the performance of the liquid cooling infrastructure under |
 | simulated electrical and thermal load conditions as explicitly documented herein. It does not |
 | certify the operational reliability, compute workload throughput, or warranty compliance of |
 | production IT hardware. Systems marked as excluded or not demonstrated remain outside the scope |
 | of this certification. All verified capacities are contingent upon the facility operating within |
 | the environmental, electrical, and hydraulic boundaries established in this report." |
-+----------------------------------------------------------------------------------------------------+
-```
 
 ## Decisions to record before test start
 
@@ -1141,20 +1006,16 @@ This book will inevitably be misused by individuals who attempt to expand it int
 
 A commissioning verification project maintains legal and engineering authority only when its boundaries are sharply defined. Expanding a verification scope into adjacent engineering disciplines on the fly produces flawed testing, diluted accountability, and severe contractual disputes.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| EXPLICIT NEGATIVE SCOPE BOUNDARIES |
-+------------------------------------+---------------------------------------------------------------+
+**EXPLICIT NEGATIVE SCOPE BOUNDARIES**
+
 | WHAT THIS PROJECT VERIFIES | WHAT THIS PROJECT CANNOT AND DOES NOT OWN |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | • Simulated thermal heat transfer | • Book 01 Scope: Load-bank design, R&D, and manufacturing QA |
-| • Secondary pump curve baseline | • Book 02 Scope: Telemetry math, anomaly detection algorithms|
-| • 2N electrical feed transfer ride | • Facility Design: Architectural, structural, MEP engineering|
+| • Secondary pump curve baseline | • Book 02 Scope: Telemetry math, anomaly detection algorithms |
+| • 2N electrical feed transfer ride | • Facility Design: Architectural, structural, MEP engineering |
 | • Multi-rack manifold flow balance | • Silicon Performance: GPU compute, memory bus, AI workload |
-| • CDU local autonomous safety loops| • Metallurgy & Chemistry: Water corrosion, biocide (Book 08) |
+| • CDU local autonomous safety loops | • Metallurgy & Chemistry: Water corrosion, biocide (Book 08) |
 | • Physical hardware alarm trips | • Next Data Hall: Extrapolated universal building code rules |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## The Dedicated Boundaries
 
@@ -1190,29 +1051,15 @@ This field guide articulates an operational methodology for executing and auditi
 
 An engineering standard that can be purchased from an issuing standards body is not a document that may be reproduced in an external text. Citing a standard by title, year, and specific section number to establish a legal testing tolerance is standard engineering practice; reproducing extensive passages from those standards within an AI-generated manual is improper.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| NORMATIVE INDUSTRY STANDARDS CITED |
-+----------------------+-----------------------------------------------------------------------------+
-| ASHRAE GUIDELINE 0 | "The Commissioning Process" (2019 Edition). Foundational principles for |
-| | commissioning scope, Owner's Project Requirements (OPR), and BOD auditing. |
-+----------------------+-----------------------------------------------------------------------------+
-| ASHRAE GUIDELINE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). |
-| | Methodologies for pre-functional checklists and functional performance. |
-+----------------------+-----------------------------------------------------------------------------+
-| ACG GUIDELINE | AABC Commissioning Group "Commissioning Guideline for Building Systems". |
-| | Independent third-party verification protocols and witness standards. |
-+----------------------+-----------------------------------------------------------------------------+
-| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (6th Edition). Strict criteria|
-| | for scouring velocities, chemical flushing, and solid particulate counts. |
-+----------------------+-----------------------------------------------------------------------------+
-| NFPA 70 / IEC 60364 | National Electrical Code (NEC) and International Electrotechnical |
-| | Commission standards for branch circuit protection, grounding, and LOTO. |
-+----------------------+-----------------------------------------------------------------------------+
-| ISA-5.1 | "Instrumentation Symbols and Identification". Standard P&ID symbology for |
-| | process flow diagrams, transmitters (TT, PT, FT), and control valves (TCV). |
-+----------------------+-----------------------------------------------------------------------------+
-```
+**NORMATIVE INDUSTRY STANDARDS CITED**
+
+| ASHRAE GUIDELINE 0 | "The Commissioning Process" (2019 Edition). Foundational principles for commissioning scope, Owner's Project Requirements (OPR), and BOD auditing. |
+| :--- | :--- |
+| ASHRAE GUIDELINE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). Methodologies for pre-functional checklists and functional performance. |
+| ACG GUIDELINE | AABC Commissioning Group "Commissioning Guideline for Building Systems". Independent third-party verification protocols and witness standards. |
+| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (6th Edition). Strict criteria for scouring velocities, chemical flushing, and solid particulate counts. |
+| NFPA 70 / IEC 60364 | National Electrical Code (NEC) and International Electrotechnical Commission standards for branch circuit protection, grounding, and LOTO. |
+| ISA-5.1 | "Instrumentation Symbols and Identification". Standard P&ID symbology for process flow diagrams, transmitters (TT, PT, FT), and control valves (TCV). |
 
 ## Application of Normative Standards
 
@@ -1258,34 +1105,17 @@ Chapter 16 provides the seven master engineering record sheets. Print them on wa
 
 Do not attempt to summarize these grids into high-level descriptive paragraphs after the test concludes, discarding the raw field data. An auditor inspecting a verification package expects to see the actual ink impressions, timestamped entries, witness initials, and instrument serial numbers recorded while standing in the aisle.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE SEVEN MASTER FIELD SHEETS |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| SHEET | TITLE & VERIFICATION SCOPE | CX TIER | RESPONSIBLE LEAD | MANDATORY EXECUTION TIMING|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 01 | Pre-Energization Static QA | Level 2 / 3 | Electrical PE & | Before closing any supply |
-| | & Hydraulic Hold Check | | Mechanical PE | breaker or opening fluid. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 02 | Autonomous CDU Protection | Level 4 FPT | Controls PE & | Before introducing any |
-| | & Physical Alarm Injections | | Mechanical PE | thermal heat to the loop. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 03 | Multi-Stage Thermal Step & | Level 5 IST | Test Lead & | One distinct copy executed|
-| | Enthalpy Heat Closure Log | | Test Technician | per thermal step rung. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 04 | Dynamic Transient Failure & | Level 5 IST | Test Lead & | Executed at 100% full load|
-| | Redundancy Ride-Through Log | | Controls PE | during simulated faults. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 05 | Controlled De-Energization & | Closeout | Test Lead & | Executed in strict order |
-| | Demobilization Protocol | Level 6 | Electrical PE | during shift shutdown. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 06 | Cold No-Heat Baseline Pump | Level 4 / 5 | Mechanical PE & | Executed at 20°C with VFD |
-| | & Loop Resistance Curve | | Test Technician | modulation locked off. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 07 | CDU Autonomous Control Logic | Level 4 / 5 | Controls PE & | Executed across all units |
-| | & Supervisory Interface Audit | | Vendor Specialist| with vendor logic attached|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-```
+**THE SEVEN MASTER FIELD SHEETS**
+
+| SHEET | TITLE & VERIFICATION SCOPE | CX TIER | RESPONSIBLE LEAD | MANDATORY EXECUTION TIMING |
+| :--- | :--- | :--- | :--- | :--- |
+| 01 | Pre-Energization Static QA & Hydraulic Hold Check | Level 2 / 3 | Electrical PE & Mechanical PE | Before closing any supply breaker or opening fluid. |
+| 02 | Autonomous CDU Protection & Physical Alarm Injections | Level 4 FPT | Controls PE & Mechanical PE | Before introducing any thermal heat to the loop. |
+| 03 | Multi-Stage Thermal Step & Enthalpy Heat Closure Log | Level 5 IST | Test Lead & Test Technician | One distinct copy executed per thermal step rung. |
+| 04 | Dynamic Transient Failure & Redundancy Ride-Through Log | Level 5 IST | Test Lead & Controls PE | Executed at 100% full load during simulated faults. |
+| 05 | Controlled De-Energization & Demobilization Protocol | Closeout Level 6 | Test Lead & Electrical PE | Executed in strict order during shift shutdown. |
+| 06 | Cold No-Heat Baseline Pump & Loop Resistance Curve | Level 4 / 5 | Mechanical PE & Test Technician | Executed at 20°C with VFD modulation locked off. |
+| 07 | CDU Autonomous Control Logic & Supervisory Interface Audit | Level 4 / 5 | Controls PE & Vendor Specialist | Executed across all units with vendor logic attached |
 
 ## Floor Execution Rules
 

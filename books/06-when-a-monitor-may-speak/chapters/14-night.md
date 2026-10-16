@@ -4,23 +4,19 @@ To understand how these principles operate under the pressure of a live producti
 
 The date is October 14, 2026. The shift runs from 19:00 to 07:00 UTC.
 
-```
-+-----------------------------------------------------------------------------+
-| A LIVE PRODUCTION SHIFT LOG |
-| |
+| **A LIVE PRODUCTION SHIFT LOG** |
+| :--- |
 | [21:15:00 UTC] Night Physical Shift Round Completed (6 Stations Normal) |
 | [01:42:10 UTC] Transient Pressure Spike on Secondary Loop CDU-02 |
-| [01:42:15 UTC] Dwell Filter (t_dwell = 10s) Prevents False Chattering Alarm|
-| [02:18:22 UTC] Genuine Excursion: Secondary TCS Supply Temp Reaches 32.5°C|
+| [01:42:15 UTC] Dwell Filter (t_dwell = 10s) Prevents False Chattering Alarm |
+| [02:18:22 UTC] Genuine Excursion: Secondary TCS Supply Temp Reaches 32.5°C |
 | [02:18:37 UTC] Dwell Met (15s); High Alarm Latches; Quality = GOOD (0x00) |
 | [02:18:40 UTC] Five-Line Emergency Page Dispatched to Lead Mech Engineer |
 | [02:26:00 UTC] Engineer Logs 4-Part Reply; Physical Gauge Verifies 32.8°C |
 | [02:28:00 UTC] Duty Manager Promotes Event to P2 Major Incident (N-1) |
-| [02:32:00 UTC] Execute EOP-M-04: Standby Chiller CH-04 Started; Safe State|
+| [02:32:00 UTC] Execute EOP-M-04: Standby Chiller CH-04 Started; Safe State |
 | [02:45:00 UTC] TCS Temperature Recedes Below 30.0°C (Deadband Cleared) |
 | [03:15:00 UTC] Incident Closed; Single Owned Action Assigned to Mech Lead |
-+-----------------------------------------------------------------------------+
-```
 
 ## The Evening Baseline (19:00 - 21:30 UTC)
 

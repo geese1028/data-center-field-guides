@@ -35,17 +35,11 @@ Thermal heat input into the CFD model must be sourced directly from active elect
 
 The power rating stamped on a server power supply unit (e.g., 1600 W PSU on a 2U chassis) represents an electrical safety maximum, sizing the branch circuit conductors and overcurrent protective devices. Under actual production compute workloads, that chassis may consume only 650 W to 850 W; an idle server may draw less than 250 W.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE NAMEPLATE INFLATION TRAP |
-+--------------------------+-----------------------+-----------------------+-------------------------+
+**THE NAMEPLATE INFLATION TRAP**
+
 | EQUIPMENT CLASS | NAMEPLATE RATING (kW) | ACTIVE MEASURED (kW) | MODEL OVERESTIMATION |
-+--------------------------+-----------------------+-----------------------+-------------------------+
-| High-Density AI Rack | 160.0 kW (PSU Sum) | 120.0 kW (Active PDU) | + 33.3% False Heat |
-| Enterprise Server Rack | 14.5 kW (PSU Sum) | 8.2 kW (Active PDU) | + 76.8% False Heat |
-| Core Network Spine Rack | 22.0 kW (PSU Sum) | 11.4 kW (Active PDU) | + 93.0% False Heat |
-+--------------------------+-----------------------+-----------------------+-------------------------+
-```
+| :--- | :--- | :--- | :--- |
+| High-Density AI Rack Enterprise Server Rack Core Network Spine Rack | 160.0 kW (PSU Sum) 14.5 kW (PSU Sum) 22.0 kW (PSU Sum) | 120.0 kW (Active PDU) 8.2 kW (Active PDU) 11.4 kW (Active PDU) | + 33.3% False Heat + 76.8% False Heat + 93.0% False Heat |
 
 If a CFD modeler inputs server nameplate ratings into their software, the model injects 40% to 80% more thermal energy into the simulated whitespace than physically exists. The simulation will predict widespread thermal throttling, red hot spots, and cooling plant failure. 
 
@@ -66,6 +60,71 @@ Record the calendar date and shift timestamp of the physical field measurements 
 Data centers are dynamic environments. Over the course of three months, facility technicians install blanking panels, re-route underfloor power cables, adjust CRAH fan speed setpoints, and add floor grilles. 
 
 If your temperature measurements were taken in November on an as-built layout, and the CFD consultant ran their model using an architectural schematic from the previous February, the model does not represent the room you measured. The report must state which layout revision is modeled; an undocumented mixture of dates invalidates the calibration.
+
+## Pneumatic Airflow Metrology and Uncertainty Budgets
+
+Temperature measurements alone cannot constrain a data hall CFD model because temperature is a ratio of thermal power to mass flow rate ($\Delta T = Q / (\dot{m} c_p)$). If a simulation underpredicts both rack power and airflow by $35\%$, the simulated temperature rise $\Delta T$ will accidentally match the field temperature while the underlying velocity field and recirculation plumes are completely wrong. Therefore, Sheet 1 requires simultaneous pneumatic airflow and differential pressure measurements alongside the 3-tier thermometry grid.
+
+### Capture-Hood Balometer Protocol for Perforated Floor Tiles
+
+To establish the true supply boundary condition from a raised-floor plenum, volumetric airflow ($Q_{\text{tile}}$) must be measured across a representative sample of perforated floor tiles (minimum every third tile along each cold aisle, plus both end-of-row tiles adjacent to high-pressure or high-velocity zones):
+
+$$Q_{\text{tile}} = C_d \cdot A_{\text{free}} \cdot \sqrt{\frac{2 \Delta P_{\text{plenum}}}{\rho_{\text{air}}}}$$
+
+Where:
+- $C_d$ is the empirical discharge coefficient of the perforated grille and damper assembly (typically $0.60$ to $0.78$).
+- $A_{\text{free}}$ is the net open perforated area of the $600\,\text{mm} \times 600\,\text{mm}$ tile ($\text{m}^2$).
+- $\Delta P_{\text{plenum}} = P_{\text{subfloor}} - P_{\text{aisle}}$ is the local static pressure differential across the tile ($\text{Pa}$).
+- $\rho_{\text{air}}$ is the local air density ($\approx 1.18\,\text{kg/m}^3$ at $24^\circ\text{C}$ sea level).
+
+When placing a capture-hood balometer over a perforated floor tile, the hood skirt itself introduces a parasitic backpressure resistance ($\Delta P_{\text{hood}}$). In low-pressure plenums ($\Delta P_{\text{plenum}} < 12\,\text{Pa}$) or on high-open-area grates ($> 50\%$ open area), an uncompensated hood chokes the tile jet and under-reads true volumetric flow by $10\%$ to $18\%$. Always use a powered zero-pressure-drop (backpressure-compensated) balometer or cross-check the capture hood against a 16-point hot-wire anemometer traverse conducted $50\,\text{mm}$ above the tile face.
+
+| Field Metrology Instrument | Measured Parameter | Minimum Calibration Class | Mandatory Field Deployment Rule |
+| :--- | :--- | :--- | :--- |
+| **4-Wire Pt100 RTD / Thermistor Tree** | Rack intake ($0.3, 1.2, 1.8\,\text{m}$) & CRAH $T_{\text{sup}}/T_{\text{ret}}$ | $\pm 0.15^\circ\text{C}$ (IEC 60751 Class A) | Radiation-shielded tip; $50\,\text{mm}$ standoff in front of bezel |
+| **Backpressure-Compensated Balometer** | Perforated floor tile volumetric flow ($Q_{\text{tile}}$) | $\pm 3.0\%$ of reading $\pm 12\,\text{m}^3\text{/h}$ | Skirt sealed flush to floor; automatic backpressure compensation active |
+| **Hot-Wire / Vane Anemometer Grid** | CRAH coil face velocity & open cutout jets | $\pm 2.0\%$ of reading $\pm 0.03\,\text{m/s}$ | Minimum 12-point equal-area traverse across discharge opening |
+| **Micro-Manometer (Differential $\Delta P$)** | Subfloor-to-aisle & cold-to-hot containment $\Delta P$ | $\pm 1.0\%$ of reading $\pm 0.2\,\text{Pa}$ | Static pressure tip oriented perpendicular to local shear flow |
+| **Revenue-Grade 3-Phase PDU Meter** | True active electrical power ($P_{\text{elec}}$) per rack | IEC 62053-22 Class 0.5S ($\pm 0.5\%$) | Simultaneous timestamped poll during thermal equilibrium dwell |
+
+### Accounting for Hybrid Liquid-Air Heat Splits on High-Density Racks
+
+In halls housing direct-to-chip liquid-cooled racks (such as NVL72 clusters or dense GPU pods), feeding total electrical PDU power ($P_{\text{elec}}$) into the airspace CFD domain is an immediate fatal error. The sensible heat rejected into the room air ($Q_{\text{air}}$) is strictly the residual after subtracting the enthalpy absorbed by the secondary coolant loop:
+
+$$Q_{\text{air}} = P_{\text{elec}} - \dot{m}_{\text{coolant}} \cdot c_{p,\text{coolant}} \cdot \left( T_{\text{coolant, out}} - T_{\text{coolant, in}} \right)$$
+
+For a $120.0\,\text{kW}$ rack operating at an $82\%$ liquid capture fraction ($Q_{\text{liquid}} = 98.4\,\text{kW}$), only $21.6\,\text{kW}$ enters the air stream via rear door fans and power shelves. Every hybrid rack on Sheet 1 must record both $P_{\text{elec}}$ and $Q_{\text{liquid}}$ so the CFD boundary condition reflects true sensible air heating.
+
+## Subfloor Static Pressure Mapping and Bernoulli Venturi Starvation
+
+In raised-floor plenums with shallow slab-to-slab heights ($450\,\text{mm}$ to $600\,\text{mm}$) and high-capacity perimeter CRAH units, high horizontal air velocity ($v_{\text{plenum}} > 4.5\,\text{m/s}$) immediately downstream of the CRAH discharge converts static pressure into dynamic velocity head according to Bernoulli's equation along a subfloor streamline:
+
+$$P_{\text{static}}(x) + \frac{1}{2} \rho v_{\text{plenum}}(x)^2 + \Delta P_{\text{loss}}(0 \to x) = P_{\text{total, CRAH}}$$
+
+When dynamic pressure $\frac{1}{2}\rho v_{\text{plenum}}^2$ exceeds the static plenum pressure near the first two perforated floor tiles adjacent to a CRAH discharge, the local static gauge pressure $P_{\text{static}}(x) - P_{\text{aisle}}$ drops near zero or turns negative! Instead of discharging conditioned cold air upward into the cold aisle, those first two perforated tiles either stall ($Q_{\text{tile}} \approx 0$) or **induct warm room air downward into the subfloor plenum** (the Venturi reverse-flow effect).
+
+| Distance from CRAH Discharge | Subfloor Horizontal Velocity ($v_{\text{plenum}}$) | Dynamic Pressure Head ($\frac{1}{2}\rho v^2$) | Local Static $\Delta P_{\text{tile}}$ | Observed Perforated Tile Behavior |
+| :--- | :--- | :--- | :--- | :--- |
+| **$0.6\,\text{m}$ (Tile 1, Unbaffled)** | $6.2\,\text{m/s}$ | $22.7\,\text{Pa}$ | $-2.5\,\text{Pa}$ (Negative!) | **Reverse suction**: warm aisle air pulled into floor |
+| **$1.8\,\text{m}$ (Tile 3, Transition)** | $4.1\,\text{m/s}$ | $9.9\,\text{Pa}$ | $+8.4\,\text{Pa}$ | Severe under-delivery ($310\,\text{CFM}$ vs $750\,\text{CFM}$ target) |
+| **$4.8\,\text{m}$ (Tile 8, Mid-Row)** | $1.8\,\text{m/s}$ | $1.9\,\text{Pa}$ | $+18.5\,\text{Pa}$ | Nominal balanced delivery ($760\,\text{CFM}$) |
+| **$9.6\,\text{m}$ (Tile 16, Dead-End)** | $0.4\,\text{m/s}$ | $0.1\,\text{Pa}$ | $+21.2\,\text{Pa}$ (Static regain) | Over-delivery ($840\,\text{CFM}$) unless damped |
+
+Standard coarse-grid CFD models that represent the entire raised floor as a uniform constant-pressure boundary completely miss Bernoulli static-pressure recovery and Venturi tile reversal. Sheet 1 therefore requires measuring static $\Delta P_{\text{tile}}$ at the first tile, mid-row tile, and last tile of every cold aisle.
+
+## Pitot-Static Traverse and Coil Enthalpy Cross-Checks on Perimeter CRAH Units
+
+When a CRAH unit's internal BMS supply-air sensor or fan-speed flow estimate is suspected of drift, the field benchmarking team verifies total unit volumetric airflow ($Q_{\text{CRAH}}$) against the waterside chilled-water enthalpy balance across the cooling coil:
+
+$$Q_{\text{waterside}} = \dot{m}_{\text{CHW}} \cdot c_{p,\text{water}} \cdot \left( T_{\text{CHW, return}} - T_{\text{CHW, supply}} \right) = \dot{m}_{\text{air}} \cdot \left( h_{\text{air, return}} - h_{\text{air, supply}} \right)$$
+
+Under sensible-only dry-coil operation (when $T_{\text{CHW, supply}} > T_{\text{dp, hall}}$), the airside mass flow rate must agree with the waterside heat balance within $\pm 6.0\%$. Any larger discrepancy proves either scaled ultrasonic water flow meters or severe air-velocity maldistribution across the discharge plenum.
+
+| CRAH Cross-Check Parameter | Waterside Measurement Method | Airside Measurement Method | Maximum Allowable Discrepancy |
+| :--- | :--- | :--- | :--- |
+| **Sensible Heat Duty ($Q_{\text{CRAH}}$)** | Ultrasonic flowmeter $\dot{m}_{\text{CHW}}$ + paired immersion RTDs | 16-point velocity traverse $\times \rho c_p (T_{\text{ret}} - T_{\text{sup}})$ | $\le \pm 6.0\%$ at steady state |
+| **Supply Air Temperature ($T_{\text{sup}}$)** | Verified above coil leaving water temp ($T_{\text{CHW, in}} + \Delta T_{\text{app}}$) | Arithmetic mean of $S_1, S_2$ discharge plane RTDs | $\le \pm 0.4\,\text{K}$ vs BMS point |
+| **Return Air Temperature ($T_{\text{ret}}$)** | Verified below coil leaving water limit | Area-weighted mean of $R_1, R_2, R_3$ intake grille RTDs | $\le \pm 0.5\,\text{K}$ vs BMS point |
 
 ## Decisions to record before test start
 

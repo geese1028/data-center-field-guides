@@ -4,31 +4,18 @@ A successful thermal heat test is not a facility turnover. Demobilizing load ban
 
 A turnover certificate signed while punch list items remain unresolved or before the final commissioning report is audited is legally defective. Level 6 turnover is the formal milestone where the Facility Owner, the General Contractor, and the Commissioning Authority collectively certify that the mechanical, electrical, and control systems satisfy the Owner's Project Requirements and are safe to receive high-density compute infrastructure.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| LEVEL 6 TURNOVER DOCUMENT ARCHITECTURE |
-+----+--------------------------------+--------------------------------------------------------------+
-| 01 | EXECUTIVE SUMMARY & VERIFIED | The signed claim sentence, final project verdict, and |
-| | CLAIM STATEMENT | summary of operational thermal capacity demonstrated. |
-+----+--------------------------------+--------------------------------------------------------------+
-| 02 | SCOPE BOUNDARIES & EXCLUSION | Explicit scope letters documenting unexecuted levels, |
-| | LETTERS | seasonal deferred testing, and third-party systems out. |
-+----+--------------------------------+--------------------------------------------------------------+
+**LEVEL 6 TURNOVER DOCUMENT ARCHITECTURE**
+
+| 01 | EXECUTIVE SUMMARY & VERIFIED CLAIM STATEMENT | The signed claim sentence, final project verdict, and summary of operational thermal capacity demonstrated. |
+| :--- | :--- | :--- |
+| 02 | SCOPE BOUNDARIES & EXCLUSION LETTERS | Explicit scope letters documenting unexecuted levels, seasonal deferred testing, and third-party systems out. |
 | 03 | MASTER MILESTONE CERTIFICATES | Formal signed completion certificates for Levels 2, 3, 4, 5. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 04 | THE SEVEN SIGNED MASTER SHEETS | Sheets 1 through 7, fully executed, logged in ink, signed. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 05 | INSTRUMENT CALIBRATION LOG | Traceable ISO 17025 calibration certificates for all tools. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 06 | TIME-SERIES DATA REPOSITORY | Complete raw CSV logs, BMS trend exports, cryptographic SHA. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 07 | RESOLVED ISSUES REGISTER | Master Punch List showing 100% Cat 1 & Cat 2 items closed. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 08 | SYSTEMS MANUAL SUPPLEMENT | As-tested pump curves, operating bands, fail-safe setpoints. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 09 | OPERATIONS TRAINING RECORDS | Witnessed sign-off of facility staff SOP walkthrough. |
-+----+--------------------------------+--------------------------------------------------------------+
-```
 
 ## Structure of the Final Commissioning Report
 
@@ -71,18 +58,14 @@ Documentation of formal operational handover training conducted with site facili
 
 The final page of the report must protect the testing party and the owner by clearly stating what the verification did not cover:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| FORMAL BOUNDARY STATEMENT |
-| |
+| **FORMAL BOUNDARY STATEMENT** |
+| :--- |
 | "This verification campaign certifies the performance of the liquid cooling infrastructure under |
 | simulated electrical and thermal load conditions as explicitly documented herein. It does not |
 | certify the operational reliability, compute workload throughput, or warranty compliance of |
 | production IT hardware. Systems marked as excluded or not demonstrated remain outside the scope |
 | of this certification. All verified capacities are contingent upon the facility operating within |
 | the environmental, electrical, and hydraulic boundaries established in this report." |
-+----------------------------------------------------------------------------------------------------+
-```
 
 ## Decisions to record before test start
 

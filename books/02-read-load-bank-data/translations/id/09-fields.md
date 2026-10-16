@@ -21,7 +21,7 @@ Skrip otomatis, *pipeline* penyerapan data, dan kueri agregasi basis data sangat
 - **Perhitungan Fisik Turunan**: Laju aliran massa (ṁ), densitas limbak fluida (ρ), kapasitas kalor spesifik (C_p), penyerapan entalpi cairan (Q_liquid), dan kalor sensibel udara pendamping (Q_air).
 - **Metrik Multikabinet**: Rata-rata kelompok, deviasi standar kelompok, dan Koefisien Variasi (CV) di seluruh kabinet paralel.
 - **Rasio Penutupan Entalpi**: Persentase penutupan yang tepat antara daya listrik aktif dan disipasi kalor termodinamika total (P_elec vs Q_liquid + Q_air).
-- **Bendera Anomali Algoritmik**: Peringatan otomatis yang mengindikasikan garis datar varians-nol (σ² ≤ 1{,}0 × 10^{-4}), celah komunikasi yang hilang, pembacaan sensor di luar batas, dan waktu pemicu kandidat titik perubahan (*changepoint*) dari Focus, FLOC, atau CPOP.
+- **Bendera Anomali Algoritmik**: Peringatan otomatis yang mengindikasikan garis datar varians-nol (σ² ≤ 1,0 × 10^{-4}), celah komunikasi yang hilang, pembacaan sensor di luar batas, dan waktu pemicu kandidat titik perubahan (*changepoint*) dari Focus, FLOC, atau CPOP.
 
 Komputer mengeksekusi aritmatika jauh lebih cepat dan dengan presisi yang jauh lebih tinggi daripada manusia dengan kalkulator saku. Biarkan skrip melakukan aritmatikanya.
 
@@ -33,13 +33,13 @@ Dalam keadaan apa pun, skrip otomatis, makro dasbor, atau model AI tidak boleh m
 - **TIDAK DIJALANKAN (*NOT RUN*)**
 - **DIABAIKAN / DIBERI DISPENSASI (*WAIVED*)**
 
-Skrip otomatis yang mengevaluasi suatu baris, melihat bahwa suhu terhitung adalah 45{,}1°C terhadap batas atas 46{,}0°C, lalu secara otomatis membubuhkan kata "LULUS" pada PDF telah melampaui wewenangnya.
+Skrip otomatis yang mengevaluasi suatu baris, melihat bahwa suhu terhitung adalah 45,1°C terhadap batas atas 46,0°C, lalu secara otomatis membubuhkan kata "LULUS" pada PDF telah melampaui wewenangnya.
 
 ### Mengapa "Lulus" Otomatis Berbahaya
 Pertimbangkan apa yang tidak dapat diketahui oleh algoritma:
-- Algoritma tidak tahu bahwa RTD yang melaporkan 45{,}1°C secara tidak sengaja terpasang pada cabang pipa buntu (*dead-leg*) yang dingin dan bukan pada aliran aktif.
+- Algoritma tidak tahu bahwa RTD yang melaporkan 45,1°C secara tidak sengaja terpasang pada cabang pipa buntu (*dead-leg*) yang dingin dan bukan pada aliran aktif.
 - Algoritma tidak tahu bahwa selang *bypass* sementara tertekuk di belakang kabinet, atau bahwa penyetelan katup manual yang tidak tercatat telah dilakukan selama penahanan beban.
-- Algoritma tidak tahu bahwa klien mengeluarkan buletin lisan darurat pagi itu yang menurunkan batas koridor pengujian dari 46{,}0°C menjadi 44{,}0°C.
+- Algoritma tidak tahu bahwa klien mengeluarkan buletin lisan darurat pagi itu yang menurunkan batas koridor pengujian dari 46,0°C menjadi 44,0°C.
 
 Skrip otomatis yang menuliskan "LULUS" meninabobokan tim rekayasa ke dalam rasa aman palsu. Operator berhenti memeriksa pipa fisik, berhenti mendengarkan kavitasi pompa, dan berhenti memverifikasi tanda kalibrasi instrumen, dengan asumsi bahwa "perangkat lunak yang mengurus kepatuhan."
 
@@ -49,7 +49,7 @@ Dalam panduan lapangan ini, sel-sel penilaian pada templat laporan kilat terlahi
 
 Moda kegagalan sebaliknya juga sama berbahayanya: seorang manusia yang melihat sel matematika yang gagal dihitung oleh skrip lalu menimpa penilaian tersebut dengan "LULUS" yang tidak sah.
 
-Jika skrip dengan benar menghitung bahwa CV aliran adalah **7{,}2%** terhadap ambang batas maksimum **5{,}0%**, seorang insinyur tidak boleh menuliskan "LULUS" di samping sel tersebut dan menambahkan alasan lisan: *"Aliran memang sedikit tidak rata, tetapi pendinginan secara keseluruhan terlihat baik-baik saja."*
+Jika skrip dengan benar menghitung bahwa CV aliran adalah **7,2%** terhadap ambang batas maksimum **5,0%**, seorang insinyur tidak boleh menuliskan "LULUS" di samping sel tersebut dan menambahkan alasan lisan: *"Aliran memang sedikit tidak rata, tetapi pendinginan secara keseluruhan terlihat baik-baik saja."*
 
 Tindakan tersebut bukanlah interpretasi rekayasa. Itu adalah pengabaian/dispensasi (*waiver*) tidak tercatat yang tidak sah.
 

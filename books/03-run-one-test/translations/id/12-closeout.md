@@ -6,33 +6,18 @@ Pengujian beban panas termal yang berhasil bukanlah serah terima fasilitas. Mend
 
 Sertifikat serah terima yang ditandatangani saat butir-butir daftar cacat belum terselesaikan atau sebelum laporan komisioning akhir diaudit secara hukum adalah cacat (*legally defective*). Serah terima Level 6 adalah tonggak capaian formal di mana Pemilik Fasilitas, Kontraktor Utama, dan Otoritas Komisioning secara kolektif menyatakan bahwa sistem mekanikal, elektrikal, dan kontrol telah memenuhi Persyaratan Proyek Pemilik dan aman untuk menerima infrastruktur komputasi berdensitas tinggi.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| ARSITEKTUR DOKUMEN SERAH TERIMA LEVEL 6 |
-+----+--------------------------------+--------------------------------------------------------------+
-| 01 | RINGKASAN EKSEKUTIF & PERNYATAAN| Kalimat klaim tertandatangani, penilaian proyek akhir, & |
-| | KLAIM TERVERIFIKASI | ringkasan kapasitas termal operasional yang didemonstrasikan.|
-+----+--------------------------------+--------------------------------------------------------------+
-| 02 | BATASAN LINGKUP & SURAT | Surat lingkup eksplisit mendokumentasikan level yg tdk |
-| | PENGECUALIAN | dieksekusi, uji musiman ditangguhkan, & sistem pihak ketiga. |
-+----+--------------------------------+--------------------------------------------------------------+
-| 03 | SERTIFIKAT TONGGAK CAPAIAN | Sertifikat penyelesaian formal bertandatangan utk Level |
-| | MASTER | 2, 3, 4, dan 5. |
-+----+--------------------------------+--------------------------------------------------------------+
-| 04 | TUJUH LEMBAR MASTER BERTANDA | Lembar 1 hingga 7, dieksekusi penuh, dicatat tinta, ttd. |
-| | TANGAN | |
-+----+--------------------------------+--------------------------------------------------------------+
+**ARSITEKTUR DOKUMEN SERAH TERIMA LEVEL 6**
+
+| 01 | RINGKASAN EKSEKUTIF & PERNYATAAN KLAIM TERVERIFIKASI | Kalimat klaim tertandatangani, penilaian proyek akhir, & ringkasan kapasitas termal operasional yang didemonstrasikan. |
+| :--- | :--- | :--- |
+| 02 | BATASAN LINGKUP & SURAT PENGECUALIAN | Surat lingkup eksplisit mendokumentasikan level yg tdk dieksekusi, uji musiman ditangguhkan, & sistem pihak ketiga. |
+| 03 | SERTIFIKAT TONGGAK CAPAIAN MASTER | Sertifikat penyelesaian formal bertandatangan utk Level 2, 3, 4, dan 5. |
+| 04 | TUJUH LEMBAR MASTER BERTANDA TANGAN | Lembar 1 hingga 7, dieksekusi penuh, dicatat tinta, ttd. |
 | 05 | LOG KALIBRASI INSTRUMEN | Sertifikat kalibrasi ISO 17025 tertelusur utk seluruh alat. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 06 | REPOSITORI DATA DERET WAKTU | Log CSV mentah lengkap, ekspor tren BMS, SHA kriptografis. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 07 | REGISTER MASALAH TERSELESAIKAN | Log Cacat Master menunjukkan 100% butir Kat 1 & 2 tertutup. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 08 | SUPLEMEN MANUAL SISTEM | Kurva pompa hasil uji, rentang operasi, setpoint aman-gagal. |
-+----+--------------------------------+--------------------------------------------------------------+
 | 09 | REKAMAN PELATIHAN OPERASI | Persetujuan bersaksi atas tinjauan SOP staf fasilitas. |
-+----+--------------------------------+--------------------------------------------------------------+
-```
 
 ## Struktur Laporan Komisioning Akhir
 
@@ -75,10 +60,8 @@ Dokumentasi pelatihan serah terima operasional formal yang dilakukan bersama par
 
 Halaman terakhir dari laporan harus melindungi pihak penguji dan pemilik dengan menyatakan secara jelas apa yang tidak dicakup oleh verifikasi:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| PERNYATAAN BATAS FORMAL |
-| |
+| **PERNYATAAN BATAS FORMAL** |
+| :--- |
 | "Kampanye verifikasi ini menyertifikasi kinerja infrastruktur pendinginan cairan di bawah kondisi |
 | simulasi beban listrik dan termal sebagaimana didokumentasikan secara eksplisit di sini. Ini tidak |
 | menyertifikasi keandalan operasional, throughput beban kerja komputasi, atau kepatuhan garansi |
@@ -86,8 +69,6 @@ Halaman terakhir dari laporan harus melindungi pihak penguji dan pemilik dengan 
 | tetap berada di luar lingkup sertifikasi ini. Semua kapasitas yang terverifikasi bergantung pada |
 | pengoperasian fasilitas di dalam batas lingkungan, listrik, dan hidrolik yang ditetapkan dalam |
 | laporan ini." |
-+----------------------------------------------------------------------------------------------------+
-```
 
 ## Keputusan yang Harus Dicatat Sebelum Mulai Pengujian
 

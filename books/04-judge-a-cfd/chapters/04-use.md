@@ -62,17 +62,11 @@ $$\text{CI} = \frac{Q_{\text{conditioned\_intake}}}{Q_{\text{total\_server\_dema
 
 The performance of server intakes must be audited directly against the governing **ASHRAE TC 9.9 Thermal Guidelines for Data Processing Environments** (Class A1 envelope):
 
-```
-+----------------------------------------------------------------------------------------------------+
-| ASHRAE CLASS A1 THERMAL ENVELOPE AUDIT |
-+--------------------------+-----------------------+-----------------------+-------------------------+
+**ASHRAE CLASS A1 THERMAL ENVELOPE AUDIT**
+
 | ENVIRONMENTAL PARAMETER | RECOMMENDED ENVELOPE | ALLOWABLE ENVELOPE | AUDIT VIOLATION LIMIT |
-+--------------------------+-----------------------+-----------------------+-------------------------+
-| Dry-Bulb Temperature | 18.0°C to 27.0°C | 15.0°C to 32.0°C | > 32.0°C or < 15.0°C |
-| Dew Point Temperature | 5.5°C to 15.0°C | -12.0°C to 17.0°C | > 17.0°C (Condensation) |
-| Maximum Relative Humidity| 60% RH | 80% RH | > 80% RH |
-+--------------------------+-----------------------+-----------------------+-------------------------+
-```
+| :--- | :--- | :--- | :--- |
+| Dry-Bulb Temperature Dew Point Temperature Maximum Relative Humidity | 18.0°C to 27.0°C 5.5°C to 15.0°C 60% RH | 15.0°C to 32.0°C -12.0°C to 17.0°C 80% RH | > 32.0°C or < 15.0°C > 17.0°C (Condensation) > 80% RH |
 
 ### The Rack Cooling Index (RCI)
 To summarize row-wide compliance mathematically, the report should compute the **Rack Cooling Index**:
@@ -86,6 +80,54 @@ The primary mechanism of visual deception in CFD reporting is the arbitrary mani
 - Conversely, a modeler seeking to justify an unnecessary cooling expansion can set the palette upper bound to 24.0°C. On that scale, a healthy intake at 23.5°C renders in an alarming fiery red.
 
 **The Color Scale Audit Law**: Never evaluate a CFD report from color contours alone. Always extract the numerical probe values from cutting planes, and insist that all comparative plots be normalized to an identical, fixed scale (15.0°C to 35.0°C).
+
+## Quantitative Comparative Ranking of Physical Remedy Families
+
+When using a calibrated CFD model to select an engineering remedy for an overheating row, candidate interventions must be evaluated using a standardized marginal cost-per-degree reduction metric and worst-node thermal recovery ($\Delta T_{\text{peak}}$). Never authorize a high-capital mechanical plant expansion (such as adding a new CRAH unit or lowering chilled-water supply temperature across the entire central plant) before modeling and exhausting zero-energy aerodynamic sealing remedies.
+
+### The Airflow Remedy Hierarchy and Orifice Leakage Elimination
+
+Underfloor and containment bypass leakage is governed by the sharp-edged orifice equation. Across every unsealed cable cutout, missing floor tile brush grommet, or unblanked 1U server slot of area $A_{\text{leak}}$, the parasitic volumetric flow rate $Q_{\text{leak}}$ lost from the pressurized plenum or aisle is:
+
+$$Q_{\text{leak}} = C_d \cdot A_{\text{leak}} \cdot \sqrt{\frac{2 \Delta P}{\rho_{\text{air}}}}$$
+
+At a standard raised-floor static pressure of $\Delta P = 20.0\,\text{Pa}$ ($C_d \approx 0.65, \rho = 1.18\,\text{kg/m}^3$), a single unsealed $150\,\text{mm} \times 300\,\text{mm}$ ($0.045\,\text{m}^2$) rear cable cutout under a cabinet leaks:
+
+$$Q_{\text{leak}} = 0.65 \times 0.045\,\text{m}^2 \times \sqrt{\frac{2 \times 20.0}{1.18}} = 0.170\,\text{m}^3\text{/s} \approx 360\,\text{CFM}$$
+
+Across a 20-rack row, twenty unsealed rear cable cutouts waste $7,200\,\text{CFM}$—the entire cooling output of a $60\,\text{kW}$ CRAH unit—blowing conditioned supply air straight into the hot exhaust chimney before it ever touches a server intake!
+
+| Remedy Priority Tier | Physical Intervention Family | Typical Peak Inlet Reduction ($\Delta T_{\text{peak}}$) | Parasitic Fan/Chiller Power Impact | Mandatory Post-Install Field Verification |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tier 1 (Zero Energy)** | Install 1U/2U snap-in blanking panels across all empty rack spaces | $-2.5\,\text{K}$ to $-6.0\,\text{K}$ at adjacent intakes | $0.0\,\text{kW}$ (reduces server fan speed) | Visual zero-daylight check + 3-point intake RTD re-walk |
+| **Tier 2 (Plenum Sealing)** | Brush grommets & air-tight pillows on all underfloor cable cutouts | Increases aisle tile $\Delta P$ by $+3$ to $+8\,\text{Pa}$ | Allows $-5\%$ to $-12\%$ CRAH VFD reduction | Subfloor static $\Delta P$ manometer check & balometer re-read |
+| **Tier 3 (Impedance Tuning)** | Swap $25\%$ vs $50\%$ perforated tiles & adjust subfloor dampers | Eliminates end-of-row Venturi starvation ($-3.0\,\text{K}$) | Neutral ($0.0\,\text{kW}$) | Capture-hood balometer traverse along entire row |
+| **Tier 4 (Containment)** | End-of-row self-closing doors & roof containment baffles | Reduces $\text{SHI}$ from $>0.30$ to $<0.12$ | Enables $+2.0\,\text{K}$ chilled water setpoint raise | Differential pressure $\Delta P_{\text{CAC}} \in [+1.5, +4.0\,\text{Pa}]$ |
+| **Tier 5 (Last Resort)** | Increase CRAH VFD fan speed or lower CHW supply setpoint | Masks leakage via brute-force over-blowing | $+15\%$ to $+40\%$ cubic fan power ($P \propto N^3$) | Requires written sign-off proving Tiers 1–4 were exhausted |
+
+### The Fan Affinity Law Penalty of Brute-Force Over-Blowing
+
+When a CFD consultant recommends increasing CRAH fan speed from $75\%$ to $95\%$ instead of sealing $0.8\,\text{m}^2$ of containment and floor cutouts, the facility pays a cubic electrical penalty governed by the fan affinity laws:
+
+$$\frac{Q_2}{Q_1} = \frac{N_2}{N_1}, \qquad \frac{\Delta P_2}{\Delta P_1} = \left( \frac{N_2}{N_1} \right)^2, \qquad \frac{P_{\text{fan}, 2}}{P_{\text{fan}, 1}} = \left( \frac{N_2}{N_1} \right)^3$$
+
+Increasing fan speed by $26.7\%$ ($95 / 75 = 1.267$) increases fan shaft power consumption by $(1.267)^3 = 2.03\times$ ($+103\%$ more electrical power), which simultaneously adds extra fan motor heat straight back into the supply air stream. Sheet 2 therefore requires testing passive geometric sealing (Tiers 1–4) in the model before any active mechanical speed or temperature change is considered.
+
+## Economic Capital Avoidance: Quantifying Chiller Lift vs. Aerodynamic Sealing
+
+Every degree Kelvin of cold-aisle hot-air contamination ($\Delta T_{\text{recirc}} = T_{\text{intake}} - T_{\text{supply}}$) forces the facility operator to depress the central chilled-water supply setpoint ($T_{\text{CHW, sup}}$) by an equivalent margin to keep server intakes below the $27.0^\circ\text{C}$ ASHRAE recommended line. Lowering $T_{\text{CHW, sup}}$ increases the thermodynamic compressor lift across the central centrifugal chillers and drastically reduces hours of free waterside economizer operation:
+
+$$\text{COP}_{\text{Carnot}} = \frac{T_{\text{evap}}}{T_{\text{cond}} - T_{\text{evap}}}, \qquad \frac{\Delta P_{\text{chiller}}}{\Delta T_{\text{CHW, sup}}} \approx -2.8\% \text{ to } -3.5\% \text{ per K}$$
+
+Across a $20\,\text{MW}$ data center campus operating at a mechanical cooling load factor of $0.18$, eliminating a $4.0\,\text{K}$ containment bypass recirculation defect via $\$12,000$ of blanking panels and subfloor grommets allows raising the chilled-water supply temperature by $+4.0\,\text{K}$. This reduces annual chiller compressor energy by roughly $11\%$ to $14\%$—saving over $3.5\,\text{GWh/year}$ ($\approx \$350,000/\text{year}$ in recurring OPEX) while unlocking $1,400+$ additional hours of compressor-free waterside economization.
+
+## Verifying Post-Remedy Stability Across Turndown and Partial-Load Regimes
+
+An airflow remedy selected on Sheet 2 must be verified not only at $100\%$ peak hall load, but also at $30\%$ partial-load turndown when variable-frequency CRAH fans slow down to their minimum static-pressure floor ($35\%\text{--}40\%$ speed). At low fan speeds, underfloor plenum static pressure drops from $20\,\text{Pa}$ to $5\,\text{Pa}$, while server internal fans continue drawing full volumetric airflow whenever compute bursts occur. Always run a second comparative check on Sheet 2 at minimum CRAH VFD turndown to guarantee that $\Phi = \sum Q_{\text{CRAH}} / \sum Q_{\text{server}}$ never falls below $1.05$.
+
+### Preventing Control-Loop Hunting Between CRAH Differential Pressure Sensors and Server Fans
+
+When containment remedies (Tier 4) are installed, the location of the BMS static differential pressure tubes ($\Delta P_{\text{ctrl}}$) controlling CRAH VFD speed determines whether the aisle remains stable or oscillates violently. If a single $\Delta P$ tube is mounted next to a hinged aisle door or directly above a high-velocity floor grate, opening the door or ramping a single NVL72 rear fan wall causes the CRAH VFD loop to hunt between $40\%$ and $100\%$ speed every $90$ seconds. Specify at least three manifolded or median-selected $\Delta P_{\text{CAC}}$ sensors positioned at the quarter-points ($L/4, L/2, 3L/4$) of each contained aisle at $1.5\,\text{m}$ height, damped with a $10$-second moving-average filter.
 
 ## Decisions to record before test start
 

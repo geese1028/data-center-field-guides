@@ -29,6 +29,23 @@ A meeting that ends on time is not a result. A pack that is heavy is not a resul
 
 Do not sign a page you have not read, including the attachments the page incorporates by reference. A sentence that says "including all appendices" incorporates the empty tabs too. Either you have seen them, or you strike the words. Striking words is allowed. Pretending you saw them is not.
 
+## Legal & Technical Anatomy of the Three Handover Signatures
+
+### Separating Commissioning Proof from Commercial Warranty Clocks
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$T_{\text{warranty\_start}} \neq T_{\text{operational\_acceptance}} \text{ when } N_{\text{Cat\_A}} > 0$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Drafting the Bounded Operator Acceptance Sentence | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Their sentence, copied before you edit it.

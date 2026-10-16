@@ -310,7 +310,7 @@ def draw_fig_02():
 # ==============================================================================
 def draw_fig_03():
     img, draw = create_base_canvas(
-        title="Physical Shift Inspection Round (巡检) Topology & Audit Gates",
+        title="Physical Shift Inspection Round Topology & Audit Gates",
         subtitle="Standardized Physical Inspection Path: MV Substation to High-Density Liquid Whitespace",
         sheet_ref="DAY SHEET: ROUND"
     )

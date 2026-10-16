@@ -6,23 +6,16 @@ An analog sensor operating in an industrial environment is naturally subject to 
 
 This phenomenon—known as **alarm chattering or flapping**—floods the control room console, triggers hundreds of automated text messages, induces acute alarm fatigue, and trains operators to ignore sirens.
 
-```
-+-----------------------------------------------------------------------------+
-| ANALOG THRESHOLDING ARCHITECTURE |
-| |
+| **ANALOG THRESHOLDING ARCHITECTURE** |
+| :--- |
 | [HIGH-HIGH (HH)] Trip / EOP Line (e.g. 40.0°C) - Immediate Auto Action |
-| |
 | [HIGH ALARM (H)] SLA Warning Line (e.g. 32.0°C) |
-| ^ |
-| | HYSTERESIS DEADBAND ZONE (Delta-H = 2.0 K) |
+| ↓ |
+| HYSTERESIS DEADBAND ZONE (Delta-H = 2.0 K) |
 | v Point must fall below 30.0°C before alarm clears |
 | [RESET LINE] -------------------------------------------------- |
-| |
 | [NOMINAL] Normal Operating Setpoint (e.g. 25.0°C) |
-| |
 | [LOW ALARM (L)] Condensation Risk Line (e.g. 18.0°C) |
-+-----------------------------------------------------------------------------+
-```
 
 ![Thresholding Dynamics: Deadband Hysteresis and Dwell Filtering](../figures/fig-02-threshold-deadband-and-dwell-filter.png)
 

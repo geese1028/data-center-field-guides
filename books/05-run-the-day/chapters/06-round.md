@@ -4,23 +4,19 @@ Telemetry dashboards lie. A Building Management System (BMS) pressure transducer
 
 The physical shift round is the ultimate verification that the physical reality of the data center matches the mathematical model in the control room.
 
-```
-+-----------------------------------------------------------------------------+
-| SHIFT ROUND PHYSICAL INSPECTION TOPOLOGY |
-| |
+| **SHIFT ROUND PHYSICAL INSPECTION TOPOLOGY** |
+| :--- |
 | [STATION 1] MV Substation & Switchgear (35kV/10kV Gas, Springs, Relays) |
-| | |
+| ↓ |
 | [STATION 2] Transformer Vaults (Winding Temps, Acoustic Hum, Lugs) |
-| | |
+| ↓ |
 | [STATION 3] UPS & Battery Rooms (DC Float Voltage, String Temps, Exhaust) |
-| | |
-| [STATION 4] Central Chiller Plant (Approach Temp, Oil Pressure, Head Press)|
-| | |
+| ↓ |
+| [STATION 4] Central Chiller Plant (Approach Temp, Oil Pressure, Head Press) |
+| ↓ |
 | [STATION 5] Liquid CDU Stations (0.15-0.90 MPa, Refractometer, Catch Pan) |
-| | |
-| [STATION 6] AI Whitespace & NVL72 Racks (Thermal IR, Delta-P, FD83 Couplings)|
-+-----------------------------------------------------------------------------+
-```
+| ↓ |
+| [STATION 6] AI Whitespace & NVL72 Racks (Thermal IR, Delta-P, FD83 Couplings) |
 
 ![Shift Round Inspection Topology](../figures/fig-03-shift-round-inspection-topology.png)
 
@@ -38,22 +34,18 @@ Every square meter of a production data center must be audited across four senso
 
 Following the operational standards outlined in OpenViking (`ALZJ-YW-2.6XZ02` for IT Whitespace and `ALZJ-YW-2.6XZ10` for Liquid Cooling Infrastructure), the shift inspection round traverses six mandatory stations:
 
-```
-+-----------------------------------------------------------------------------+
-| CRITICAL STATION INSPECTION METRICS |
-| |
-| Station / System Standard Parameter Rejection Threshold |
-| ----------------------- ------------------------ ---------------------- |
-| MV Switchgear SF6 Gas Pressure Nominal Low Pressure Alarm Trip |
-| Transformers Winding Temp < 90°C Temp >= 110°C (Alarm) |
-| UPS Battery Rooms Ambient Temp 20°C - 25°C Temp > 28°C / Swelling |
-| Chiller Plant Condenser Approach <1.5K Approach >= 2.5 K |
-| CDU Secondary Loop Pressure 0.15 - 0.90 MPa Pressure < 0.12 MPa |
-| CDU Glycol Mix 25.0% PG (+/- 1.0%) PG < 23% or > 27% |
-| IT Whitespace Aisles Underfloor DP >= 5.0 Pa DP < 2.5 Pa (Air Starve)|
-| Liquid Racks (NVL72) FD83/UQD Couplings Dry Any Active Fluid Droplet|
-+-----------------------------------------------------------------------------+
-```
+**CRITICAL STATION INSPECTION METRICS**
+
+| Station / System Standar | d Parameter Rejection Thr | eshold |
+| :--- | :--- | :--- |
+| MV Switchgear SF6 Gas Pr | essure Nominal Low Pressu | re Alarm Trip |
+| Transformers Winding Tem | p < 90°C Temp >= 110°C (A | larm) |
+| UPS Battery Rooms Ambien | t Temp 20°C - 25°C Temp > | 28°C / Swelling |
+| Chiller Plant Condenser | Approach <1.5K Approach > | = 2.5 K |
+| CDU Secondary Loop Press | ure 0.15 - 0.90 MPa Press | ure < 0.12 MPa |
+| CDU Glycol Mix 25.0% PG | (+/- 1.0%) PG < 23% or > | 27% |
+| IT Whitespace Aisles Und | erfloor DP >= 5.0 Pa DP < | 2.5 Pa (Air Starve) |
+| Liquid Racks (NVL72) FD8 | 3/UQD Couplings Dry Any A | ctive Fluid Droplet |
 
 ![CDU Shift Inspection Checklist](../figures/fig-05-liquid-cdu-shift-inspection-checklist.png)
 
@@ -107,3 +99,16 @@ If the defect impairs equipment redundancy or causes operating parameters to cro
 - Specific operating parameters logged at all six inspection stations.
 - Handheld refractometer, conductivity, and pH measurements logged for the secondary cooling loop.
 - All defects entered into the formal site register prior to exiting each room, or an explicit statement of zero defects found.
+
+## Quantitative Field Metrology Across the Six Physical Inspection Stations
+
+To ensure the 6-Station Shift Walking Round detects incipient mechanical and electrical degradation days before a hardware trip occurs, technicians carry three calibrated pocket instruments on every round: a **Spot Thermal Imaging Camera** ($-20^\circ\text{C}$ to $+250^\circ\text{C}$), an **Ultrasonic Acoustic Leak/Corona Detector**, and a **True-RMS Clamp/Multimeter** (for low-voltage/ground checks).
+
+| Walking Station | Quantitative Local Gauge / Physical Check | Normal Operational Corridor | Immediate Action / Escalation Threshold |
+| :--- | :--- | :--- | :--- |
+| **Station 1: MV Switchgear** | SF6 gas pressure gauge; partial discharge ultrasonic dB; relay flags | $P_{\text{SF6}} \ge 0.13\,\text{MPa(g)}$; ultrasonic $< 10\,\text{dB}\mu\text{V}$ | Any audible corona hiss or low SF6 alarm $\implies$ Evacuate room & call HV lead |
+| **Station 2: Transformers & UPS** | Dry-type winding RTD ($T_{\text{max}}$); DC bus capacitor ripple voltage | Winding $T \le 115^\circ\text{C}$ (Class H); DC ripple $\le 1.0\%\,V_{\text{DC}}$ | Winding $\Delta T$ phase-to-phase $> 15\,\text{K}$ or swollen capacitor can $\implies$ Bypass prep |
+| **Station 3: Battery Rooms** | Float current per string ($I_{\text{float}}$); pilot cell IR thermal check; H2 gas | $I_{\text{float}} \le 1.5\,\text{A / 1000 Ah}$; cell $\Delta T \le +3.0\,\text{K}$ over ambient; $\text{H}_2 < 0.5\%$ | Any jar $> +5.0\,\text{K}$ above ambient indicates thermal runaway $\implies$ Open string breaker |
+| **Station 4: Chiller & Pump Plant** | Chiller approach ($\Delta T_{\text{app}} = T_{\text{cond, sat}} - T_{\text{CW, leave}}$); strainer $\Delta P$ | $\Delta T_{\text{app}} \le 1.8\,\text{K}$; suction strainer $\Delta P \le 25\,\text{kPa}$ | Strainer $\Delta P > 45\,\text{kPa}$ or pump seal weep $> 5\,\text{drops/min}$ $\implies$ Swap standby pump |
+| **Station 5: Whitespace CDUs** | Secondary PG25 reservoir level; filter $\Delta P$; Danfoss FD83 dry-break check | Reservoir $60\text{--}85\%$; 50 $\mu$m filter $\Delta P \le 30\,\text{kPa}$; zero glycol odor | Reservoir drop $> 2\,\text{L/shift}$ indicates hidden micro-leak $\implies$ Walk all rack manifolds |
+| **Station 6: Server Aisles** | Containment differential $\Delta P_{\text{CAC}}$; top-of-rack ($1.8\,\text{m}$) intake $T$ | $\Delta P_{\text{CAC}} \in [+1.5, +5.0\,\text{Pa}]$; $T_{1.8\text{m}} \le 27.0^\circ\text{C}$ | Negative aisle $\Delta P$ or $T_{1.8\text{m}} > 28.5^\circ\text{C}$ $\implies$ Audit CRAH state & blanking panels |

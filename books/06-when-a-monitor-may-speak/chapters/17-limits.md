@@ -40,3 +40,14 @@ Never attempt to diagnose a customer's software database deadlock from a facilit
 - The official, licensed copies of statutory engineering standards maintained in the site library.
 - The physical demarcation boundary between facility infrastructure and customer IT hardware.
 - The operational protocol confirming that telemetry rules remain binding regardless of software vendor brand.
+
+## Separation Between Advisory Telemetry and Safety-Instrumented Hardware Interlocks
+
+The most critical architectural boundary in this volume is the **Hardware Safety Separation Rule (IEC 61508 / IEC 61511)**: a software monitoring dashboard, cloud historian, or machine-learning optimization engine is **never** a Safety Instrumented System (SIS).
+
+| Protection Function | Permitted Software BMS/SCADA Role | Mandatory Hardwired Safety Interlock (SIL-2/SIL-3) |
+| :--- | :--- | :--- |
+| **Load Bank / Heater Over-Temperature** | Trend logging & pre-alarm warning at $48.0^\circ\text{C}$ | Mechanical bimetallic thermostat + hardwired contactor shunt trip ($\le 20\,\text{ms}$) |
+| **Generator / Transformer Internal Fault** | SOE timestamp capture & COMTRADE waveform download | Hardwired 86 Lockout Relay & 87 Differential Relay direct to breaker trip coil |
+| **Cooling Tower Basin Low Level** | Refill valve command & operator warning banner | Hardwired float switch wired in series with condenser pump starter coil |
+| **Room Clean-Agent Pre-Discharge** | HVAC smoke damper status display | Hardwired UL-864 Fire Alarm Control Panel (FACP) abort & release circuit |

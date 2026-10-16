@@ -12,6 +12,21 @@ Your duty runs to the sentence you signed, not to the party who was kindest on s
 
 If the sponsor paid the invoice and the lender is the reader, the sponsor does not get a private softening. Payment is not a second engagement. Say that when the invoice is sent, not when the draft comes back with two sets of comments. Two sets of comments are answered in one sheet. The narrower sentence wins. A finding deleted for the sponsor and kept for the lender is two opinions. You do not keep two.
 
+## Tailoring Technical Risk Weighting: Project Finance Debt Lenders vs. Equity Acquirers
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{Lender Focus} = \text{DSCR Downside Survival}; \quad \text{Buyer Focus} = \text{Expansion \& Lifecycle CapEx}$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Tailoring Technical Risk Weighting: Project Finance Debt Lenders vs. Equity Acquirers | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - Reader named. If two readers, the narrower sentence, said once.

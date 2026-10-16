@@ -6,17 +6,10 @@ Buku ini ditujukan bagi orang yang menjalankan pengujian bank beban (*load-bank 
 
 Ini bukan manual komisioning bangunan gedung. Pernyataan metode (*method statement*) menyeluruh memberi tahu Anda hasil serah terima kontrak mana yang harus diajukan dan sertifikat penyelesaian mana yang secara hukum berwenang Anda tandatangani. Pekerjaan ini sendiri adalah verifikasi *loop* cairan: pembongkaran peti kemas fisik (*uncrating*), pengujian megger dan isolasi pentanahan (*ground isolation*), pembilasan sekunder (*secondary flushing*) dan penahanan tekanan hidrostatik (*hydrostatic pressure holds*), penetapan garis dasar (*baselining*) kurva pompa dingin, *loop* alarm, tahapan termal bertingkat, penanganan kegagalan transien (*transient failure rides*), dan penghentian terstruktur (*structured shutdown*). Jika sebuah paragraf mulai menyerupai tur arsitektur fasilitas, pangkas saja. Tinggalkan lembar rekayasanya.
 
-```
-+---------------------------------------------------------------------------------------------+
-| TIGA GERBANG KOMISIONING INDEPENDEN |
-+------------------------------+------------------------------+-------------------------------+
-| DRAF SKRIP | EKSEKUSI LAPANGAN | PAKET TERODIT |
-| Toleransi yang disetujui di | Satu orang mengukur, | Tujuh lembar lengkap, |
-| muka, ID kalibrasi | satu mencatat dengan tinta; | log tren, deret waktu mentah,|
-| instrumen, dan penghentian | nol override tanpa | dan register daftar cacat |
-| yang tak dapat dinegosiasi | persetujuan | yang telah ditandatangani |
-+------------------------------+------------------------------+-------------------------------+
-```
+**TIGA GERBANG KOMISIONING INDEPENDEN**
+
+| DRAF SKRIP Toleransi yang disetujui di muka, ID kalibrasi instrumen, dan penghentian yang tak dapat dinegosiasi | EKSEKUSI LAPANGAN Satu orang mengukur, satu mencatat dengan tinta; nol override tanpa persetujuan | PAKET TERODIT Tujuh lembar lengkap, log tren, deret waktu mentah, dan register daftar cacat yang telah ditandatangani |
+| :--- | :--- | :--- |
 
 Jika Anda harus memegang perkakas besok, buka Bab 16 dan bawalah lembar master ke lantai aula. Bacalah Bab 2 dan 3 sebelum ada yang meminta Anda menandatangani sertifikat Level 1 atau Level 4; bab-bab tersebut mencegah inspeksi lapangan biasa dimasukkan ke dalam binder penerimaan pabrik (*factory acceptance*). Bab-bab itu menjaga agar dua sistem penomoran komisioning yang berbeda tidak merusak kepatuhan proyek.
 

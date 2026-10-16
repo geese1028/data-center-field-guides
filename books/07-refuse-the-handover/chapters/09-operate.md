@@ -20,6 +20,23 @@ Do not paste their spare catalog into the pack you sign, and do not copy it here
 
 An operations and maintenance document that exists only as a template with the project name typed on the cover is a missing sheet. You are not collecting manuals to fill a shelf. You are checking that the stops, the isolation, and the deviation are written where the night shift will look. If the manual contradicts the operator pages, the pages win until the manual is corrected, and you do not sign that the manual was handed over. Two documents that disagree are not a set. They are a dispute you would be accepting.
 
+## Auditing SOP/MOP/EOP Completeness and Hands-On Staff Qualification
+
+### Why Vendor Slide Decks Do Not Satisfy Operator Training Requirements
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$t_{\text{EOP\_drill}} \le t_{\text{thermal\_ride\_through}} \quad (\text{typically } \le 90\,\text{s})$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Requiring Walked EOP Drills and Valve Tag Verification Before Sign-Off | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Operated-sentence refused, or staff-handover split from plant-tested.
@@ -27,5 +44,3 @@ An operations and maintenance document that exists only as a template with the p
 - Named job whose spare is missing, sentence for that job refused.
 - Manual that contradicts the pages, not signed as handed over.
 
-
-![Physical Custody Transfer and Lockout/Tagout Interlocking](../figures/fig-06-custody-transfer-and-loto-handover.png)

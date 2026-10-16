@@ -10,30 +10,13 @@ The master punch list is established during the Commissioning Kickoff Meeting, n
 
 Every finding logged in the Issues Log must be classified into one of three standardized severity tiers:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| DEFECT SEVERITY CLASSIFICATION |
-+------------+-------------------------------+-------------------------------------------------------+
+**DEFECT SEVERITY CLASSIFICATION**
+
 | TIER | DEFINITION & EXAMPLES | COMMISSIONING STAGE INTERLOCK IMPACT |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 1 | Critical Safety / Blocker: | ABSOLUTE HARD STOP. Prohibits progression to the next |
-| | Active leak > 0 drops/min; | commissioning level. Level 5 thermal energization is |
-| | phase reversal; failed E-Stop;| legally prohibited while any Cat 1 item remains open. |
-| | pump swap timeout > 1.5 s; | |
-| | insulation < 100 MOhm. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 2 | Major Operability Deviation: | CONDITIONAL PROGRESSION. Progression permitted only |
-| | Enthalpy closure < 97.0%; | if Owner PE signs an explicit deviation waiver with |
-| | rack flow variation CV > 5.0%;| operational mitigations. 14-calendar-day resolution. |
-| | sensor drift > 0.5 K; | Mandatory re-test required. |
-| | control valve hunting. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| CATEGORY 3 | Minor Cosmetic / Documentation| NO INTERLOCK. Does not impede dynamic testing or |
-| | Inverted pipe flow arrow; | milestone certificates. Verified via photographic |
-| | cable tray paint scratch; | evidence within 30 days post-turnover. |
-| | smudged calibration label. | |
-+------------+-------------------------------+-------------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| CATEGORY 1 | Critical Safety / Blocker: Active leak > 0 drops/min; phase reversal; failed E-Stop; pump swap timeout > 1.5 s; insulation < 100 MOhm. | ABSOLUTE HARD STOP. Prohibits progression to the next commissioning level. Level 5 thermal energization is legally prohibited while any Cat 1 item remains open. |
+| CATEGORY 2 | Major Operability Deviation: Enthalpy closure < 97.0%; rack flow variation CV > 5.0%; sensor drift > 0.5 K; control valve hunting. | CONDITIONAL PROGRESSION. Progression permitted only if Owner PE signs an explicit deviation waiver with operational mitigations. 14-calendar-day resolution. Mandatory re-test required. |
+| CATEGORY 3 | Minor Cosmetic / Documentation Inverted pipe flow arrow; cable tray paint scratch; smudged calibration label. | NO INTERLOCK. Does not impede dynamic testing or milestone certificates. Verified via photographic evidence within 30 days post-turnover. |
 
 ## The Stage Interlock and the Waiver Protocol
 

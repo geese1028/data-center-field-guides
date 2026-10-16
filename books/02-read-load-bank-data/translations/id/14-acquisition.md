@@ -30,13 +30,13 @@ Pengendali internal bank beban mengekspos parameter operasionalnya melalui **Mod
 - **Register Penahan (*Holding Registers*, 40001+, Fungsi 0x03 / 0x06 / 0x10)**: Nilai setelan beban yang diperintahkan, konfigurasi mode operasi, dan ambang batas alarm.
 
 ### Jebakan Urutan Byte Pecahan 32-bit IEEE-754
-Satu register Modbus 16-bit tunggal tidak dapat menyimpan kuantitas rekayasa titik kambang (*floating-point*) 32-bit (seperti pembacaan suhu 45{,}12°C). Nilai titik kambang memerlukan dua register 16-bit berturut-turut (total 4 *byte*).
+Satu register Modbus 16-bit tunggal tidak dapat menyimpan kuantitas rekayasa titik kambang (*floating-point*) 32-bit (seperti pembacaan suhu 45,12°C). Nilai titik kambang memerlukan dua register 16-bit berturut-turut (total 4 *byte*).
 
 Arsitektur mikrokontroler yang berbeda menerapkan konvensi urutan *word* yang berbeda. Jika *gateway edge* mengasumsikan urutan *word* yang salah, angka akan rusak total:
 - **CDAB (Big-Endian dengan Pertukaran Word)**: Standar industri untuk nilai pecahan Modbus.
- - Reg 40001 = `0x4234`, Reg 40002 = `0x0000` $\implies$ Terevaluasi secara benar menjadi **45{,}00°C**.
+ - Reg 40001 = `0x4234`, Reg 40002 = `0x0000` $\implies$ Terevaluasi secara benar menjadi **45,00°C**.
 - **ABCD (Big-Endian Langsung)**:
- - Reg 40001 = `0x0000`, Reg 40002 = `0x4234` $\implies$ Terevaluasi menjadi **1{,}87 × 10^{-38}** (Sampah mikroskopis!).
+ - Reg 40001 = `0x0000`, Reg 40002 = `0x4234` $\implies$ Terevaluasi menjadi **1,87 × 10^{-38}** (Sampah mikroskopis!).
 - **BADC (Little-Endian dengan Pertukaran Byte)**: Terevaluasi menjadi nilai arbitrer yang sama sekali berbeda.
 
 Lembar penyiapan kerja laporan kilat harus mencitasi konvensi urutan *word* yang tepat yang digunakan oleh *firmware* pengendali. Suhu yang tiba-tiba melompat drastis antar musim selama komisioning bukanlah keajaiban lingkungan; itu adalah kesalahan penguraian (*parsing*) pertukaran *word* yang belum diverifikasi. Perbaiki penguraian dalam konfigurasi *gateway edge*; jangan menimpa *byte* heksadesimal mentah yang masuk.
@@ -115,7 +115,7 @@ Sebelum memerintahkan pemanasan pada hari pengujian, tim penguji harus mengeksek
 1. Dengan *pipeline* data berjalan dan mencatat data garis dasar tanpa beban, seorang operator secara fisik mencabut kabel sinyal Sensor Suhu Kembali RTD-102 (atau mencabut kabel Ethernet Modbus dari Kabinet 2).
 2. Pencatat memantau dasbor langsung dan berkas CSV yang diekspor.
 3. **Bukti Kepatuhan**: Ekspor harus seketika mencatat `NaN`, `GAP`, atau `DISCONNECTED` dalam waktu 1 detik, dan *Bitmask* Kualitas harus bertransisi ke `0x0040` (Gangguan Sensor).
-4. **Bukti Kegagalan**: Jika dasbor atau ekspor terus menampilkan 35{,}0°C dengan stempel waktu yang terus berjalan maju, *pipeline* tersebut bersalah karena mencatat maju data basi secara palsu. Pengujian harus segera dihentikan. Anda tidak boleh menambahkan panas sampai *pipeline* telemetri membuktikan bahwa ia mampu melaporkan sensor yang mati secara jujur.
+4. **Bukti Kegagalan**: Jika dasbor atau ekspor terus menampilkan 35,0°C dengan stempel waktu yang terus berjalan maju, *pipeline* tersebut bersalah karena mencatat maju data basi secara palsu. Pengujian harus segera dihentikan. Anda tidak boleh menambahkan panas sampai *pipeline* telemetri membuktikan bahwa ia mampu melaporkan sensor yang mati secara jujur.
 
 ## Keputusan yang Harus Dicatat
 

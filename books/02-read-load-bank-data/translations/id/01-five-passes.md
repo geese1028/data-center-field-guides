@@ -32,9 +32,9 @@ Anda boleh mempersempit cakupan pengujian sebelum hari pelaksanaan dimulai: jika
 
 ### 1. Prates (*Pretest*)
 Baris prates mengaudit kondisi hidrolik dan listrik dingin garis dasar (*baseline*) dari sistem selama jendela stabilisasi beban nol wajib selama 10 menit. Baris ini mengevaluasi tiga sel spesifik terhadap spesifikasi rekayasa yang disitasi:
-- **Laju aliran volumetrik per kabinet**: Harus melampaui batas bawah pendinginan minimum (misalnya, Q_v ≥ 170{,}0 LPM untuk unit virtual 120 kW kelas NVL72) guna memastikan elemen pemanas tetap terendam sepenuhnya dalam rezim konvektif berkecepatan tinggi.
-- **Suhu pasokan pendingin**: Harus berada di dalam batas koridor komisioning fasilitas yang dinyatakan (misalnya, 35{,}0°C ± 1{,}5 K) dan mempertahankan margin keselamatan setidaknya 2{,}0 K di atas titik embun aula data (T_in ≥ T_dp + 2{,}0 K).
-- **Tekanan diferensial manifold**: Harus tetap berada di bawah impedansi hidrolik rak maksimum yang diizinkan (misalnya, ΔP = P_in - P_out ≤ 115{,}0 kPa).
+- **Laju aliran volumetrik per kabinet**: Harus melampaui batas bawah pendinginan minimum (misalnya, Q_v ≥ 170,0 LPM untuk unit virtual 120 kW kelas NVL72) guna memastikan elemen pemanas tetap terendam sepenuhnya dalam rezim konvektif berkecepatan tinggi.
+- **Suhu pasokan pendingin**: Harus berada di dalam batas koridor komisioning fasilitas yang dinyatakan (misalnya, 35,0°C ± 1,5 K) dan mempertahankan margin keselamatan setidaknya 2,0 K di atas titik embun aula data (T_in ≥ T_dp + 2,0 K).
+- **Tekanan diferensial manifold**: Harus tetap berada di bawah impedansi hidrolik rak maksimum yang diizinkan (misalnya, ΔP = P_in - P_out ≤ 115,0 kPa).
 
 Jika salah satu dari ketiga parameter prates ini berada di luar batas, mesin tidak layak untuk diuji. Menyalakan panas dengan aliran yang tidak memadai atau suhu pasokan yang di luar spesifikasi akan merusak seluruh fisika perpindahan panas di hilir.
 
@@ -43,7 +43,7 @@ Baris gradien mengevaluasi apakah bank beban dapat bertahan pada dataran tinggi 
 
 Untuk meluluskan baris gradien, setiap dataran tinggi harus memenuhi tiga kriteria:
 - **Durasi jeda yang memadai**: Penahanan harus berlangsung setidaknya 15 menit terus-menerus pada setiap dataran tinggi, memungkinkan massa termal *loop* fluida dan logam bejana yang terbasahi fluida (τ ≈ 45 s) untuk stabil sepenuhnya.
-- **Penutupan kalor termodinamika**: Kalor yang diserap oleh aliran cairan (Q_liquid = ṁ C_p ΔT) harus cocok dengan daya listrik aktif yang diperintahkan dalam rentang ± 3{,}0% setelah dikurangi beban udara pendamping dan kehilangan kalor permukaan (*skin losses*) yang terverifikasi.
+- **Penutupan kalor termodinamika**: Kalor yang diserap oleh aliran cairan (Q_liquid = ṁ C_p ΔT) harus cocok dengan daya listrik aktif yang diperintahkan dalam rentang ± 3,0% setelah dikurangi beban udara pendamping dan kehilangan kalor permukaan (*skin losses*) yang terverifikasi.
 - **Stabilitas dan ketiadaan hanyutan**: Kenaikan suhu pendingin (ΔT) tidak boleh menunjukkan hanyutan ke atas yang monoton (*monotonic upward drift*) selama 5 menit terakhir masa jeda.
 
 ### 3. Beban Lebih (*Overload*)
@@ -57,7 +57,7 @@ Baris perubahan langkah memeriksa respons dinamis transien dari bank beban cair 
 Perubahan langkah lulus jika:
 - Daya listrik yang diperintahkan bertransisi secara bersih dalam waktu kurang dari 1,5 detik tanpa memicu pemutus arus (*breaker*) di hulu;
 - Katup kendali pendinginan modulasi (TCV) melacak lonjakan secara mulus tanpa *hunting*, pantulan katup (*valve bounce*), atau osilasi siklus batas (*limit-cycle oscillation*) yang berkelanjutan;
-- Aktuasi katup yang cepat tidak menghasilkan palu air hidrolik yang merusak (lonjakan tekanan statis manifold harus memenuhi ΔP_surge ≤ 15{,}0 kPa).
+- Aktuasi katup yang cepat tidak menghasilkan palu air hidrolik yang merusak (lonjakan tekanan statis manifold harus memenuhi ΔP_surge ≤ 15,0 kPa).
 
 ### 5. Gangguan Pasokan Tunggal (*Single-Feed Fault*)
 Baris gangguan pasokan tunggal mengaudit arsitektur distribusi listrik 2N. Di pusat data *mission-critical* modern, rak IT diberi daya melalui dua penyulang independen (Penyulang A dan Penyulang B). Bank beban cair yang bertindak sebagai pengganti rak NVL72 harus mereplikasi arsitektur daya dua jalur ini.

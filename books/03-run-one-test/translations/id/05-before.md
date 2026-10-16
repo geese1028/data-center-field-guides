@@ -6,23 +6,13 @@ Jendela beban panas termal di aula data biasanya hanya berlangsung beberapa hari
 
 Tim penguji yang menggelindingkan bank beban ke aula yang belum dikenal tanpa survei pra-mobilisasi yang ketat akan membuang separuh pertama dari jendela termal mereka untuk mendiagnosis adaptor yang hilang, memicu trip pada pemutus arus PDU hulu, atau berdebat tentang kapasitas beban lantai yang belum diverifikasi.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| GARIS WAKTU TONGGAK PRA-MOBILISASI |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 4 PEKAN | Akses Lokasi & Survei Struktural: Jalur lintas, kapasitas lift barang, beban |
-| | hidup lantai (kN/m²), kotak sadapan listrik, & audit sambungan manifold. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 3 PEKAN | Audit Kalibrasi & Instrumentasi: Sertifikat ISO 17025 terverifikasi untuk |
-| | semua power analyzer, flowmeter ultrasonik, probe PT100, & kamera IR. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 2 PEKAN | Tanggap Darurat & Otorisasi MOP: Penahanan tumpahan kimia, prosedur E-Stop, |
-| | dan izin pemberian energi disetujui Pemilik & Tim Operasi Fasilitas. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 1 PEKAN | Kesiapan Lantai & Lembar Kosong: Pembekuan revisi skrip, cetak lembar master, |
-| | penempatan alat di lokasi, pembilasan loop sekunder & uji statis selesai. |
-+-------------------+--------------------------------------------------------------------------------+
-```
+**GARIS WAKTU TONGGAK PRA-MOBILISASI**
+
+| T - 4 PEKAN | Akses Lokasi & Survei Struktural: Jalur lintas, kapasitas lift barang, beban hidup lantai (kN/m²), kotak sadapan listrik, & audit sambungan manifold. |
+| :--- | :--- |
+| T - 3 PEKAN | Audit Kalibrasi & Instrumentasi: Sertifikat ISO 17025 terverifikasi untuk semua power analyzer, flowmeter ultrasonik, probe PT100, & kamera IR. |
+| T - 2 PEKAN | Tanggap Darurat & Otorisasi MOP: Penahanan tumpahan kimia, prosedur E-Stop, dan izin pemberian energi disetujui Pemilik & Tim Operasi Fasilitas. |
+| T - 1 PEKAN | Kesiapan Lantai & Lembar Kosong: Pembekuan revisi skrip, cetak lembar master, penempatan alat di lokasi, pembilasan loop sekunder & uji statis selesai. |
 
 ## Perhitungan Jumlah Peralatan dan Strategi Cadangan
 
@@ -48,19 +38,11 @@ Semua pengukuran verifikasi secara hukum bergantung pada integritas kalibrasi in
 
 Setiap instrumen lapangan yang digunakan selama kampanye harus memiliki sertifikat kalibrasi aktif yang tertelusur (terakreditasi ISO/IEC 17025) yang tetap berlaku selama durasi penuh jendela pengujian:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| STANDAR AKURASI INSTRUMEN MINIMUM |
-+--------------------------+-----------------------+-------------------------------------------------+
+**STANDAR AKURASI INSTRUMEN MINIMUM**
+
 | KELAS INSTRUMEN | STANDAR AKURASI | SPESIFIKASI PENEMPATAN LAPANGAN WAJIB |
-+--------------------------+-----------------------+-------------------------------------------------+
-| Penganalisis Daya | Kelas 0,2 (0,2% FS) | Analyzer daya aktif 3-fasa & THD terkalibrasi. |
-| Pengukur Aliran Ultrasonik| Kelas 0,5 (+/- 0,5%) | Clamp-on transit-time dual-channel; run 10D/5D. |
-| Probe Suhu Imersi | PT100 4-kawat 1/3 DIN | Terkalibrasi hingga +/- 0,05 K; pasta termal. |
-| Tekanan Diferensial | +/- 0,1% Skala Penuh | Transmitter piezoresistif terkalibrasi. |
-| Kamera Pencitraan Termal | NETD < 40 mK; +/- 1 K | Focal plane array terkalibrasi (min 384x288). |
-+--------------------------+-----------------------+-------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| Penganalisis Daya Pengukur Aliran Ultrasonik Probe Suhu Imersi Tekanan Diferensial Kamera Pencitraan Termal | Kelas 0,2 (0,2% FS) Kelas 0,5 (+/- 0,5%) PT100 4-kawat 1/3 DIN +/- 0,1% Skala Penuh NETD < 40 mK; +/- 1 K | Analyzer daya aktif 3-fasa & THD terkalibrasi. Clamp-on transit-time dual-channel; run 10D/5D. Terkalibrasi hingga +/- 0,05 K; pasta termal. Transmitter piezoresistif terkalibrasi. Focal plane array terkalibrasi (min 384x288). |
 
 Jika masa kalibrasi suatu instrumen kedaluwarsa selama proyek berjalan, instrumen tersebut harus ditarik dari layanan dan digantikan dengan cadangan yang bersertifikat. Sertifikat yang kedaluwarsa membatalkan semua data yang dicatat sejak saat itu dan seterusnya.
 

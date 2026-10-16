@@ -4,23 +4,19 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Lembar Induk Hari adalah buku besar hukum, teknis, dan operasional yang mengikat dari sif pusat data.
 
-```
-+-----------------------------------------------------------------------------+
-| STRUKTUR LEMBAR INDUK HARI |
-| |
+| **STRUKTUR LEMBAR INDUK HARI** |
+| :--- |
 | [BAGIAN 1] Audit Serah Terima Pra-Sif (Gangguan, Izin, Insiden, MOP) |
-| | |
+| ↓ |
 | [BAGIAN 2] Registri Pekerjaan Resmi & PTW (Lingkup, LOTO, Jam Kedaluwarsa) |
-| | |
-| [BAGIAN 3] Log Putaran Inspeksi Fisik Sif (6 Stasiun, Parameter Multi-Sensor)|
-| | |
+| ↓ |
+| [BAGIAN 3] Log Putaran Inspeksi Fisik Sif (6 Stasiun, Parameter Multi-Sensor) |
+| ↓ |
 | [BAGIAN 4] Kronologi Insiden & Eskalasi (Klasifikasi, SLA T-15 Menit) |
-| | |
+| ↓ |
 | [BAGIAN 5] Audit Kapasitas & Redundansi (Aturan Daya 45%, Hidrolik CDU) |
-| | |
+| ↓ |
 | [BAGIAN 6] Kalimat Penutup Akhir (Tanda tangan tunggal yang tidak berubah) |
-+-----------------------------------------------------------------------------+
-```
 
 ![Manager Shift Closeout Sheet](../figures/fig-07-manager-shift-closeout-sheet.png)
 
@@ -132,3 +128,14 @@ Salin judul-judul di bawah ini ke dalam perangkat lunak operasional fasilitas An
 - **Tanda Tangan Duty Manager**: `_______________________________________`
 - **Nomor Lisensi / Sertifikasi**: `_____________________________________`
 - **Tanggal & Cap Waktu Tepat**: `_______________________________________`
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |

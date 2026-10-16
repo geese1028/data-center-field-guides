@@ -4,19 +4,15 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Pusat data tidak berjalan di atas telemetri perangkat lunak semata. Pusat data berjalan di atas kompetensi, lisensi resmi, dan disiplin fisik dari para teknisi yang memeriksa lantai instalasi. Jika Anda tidak mengetahui kualifikasi pasti dari orang-orang yang memegang kunci utama fasilitas, Anda tidak mengendalikan instalasi tersebut.
 
-```
-+-----------------------------------------------------------------------------+
-| MATRIKS KUALIFIKASI SIF & OTORISASI |
-| |
-| Peran Sertifikasi yang Diperlukan Lingkup Otorisasi |
-| ------------------ ---------------------------- ----------------------- |
-| Duty Manager CDFOM / Lisensi Operasi SLA Keseluruhan & Izin |
-| Teknisi Listrik Utama Lisensi Tegangan Tinggi/Rendah Switchgear, Trafo |
-| Spesialis Pendingin Lisensi Tata Udara / Refrigerasi Chiller, CDU, Glikol |
-| Teknisi Sif Sertifikasi Fasilitas Data Ctr Putaran, Telemetri, Log |
-| Pengawal/Keselamatan K3 / Pertolongan Pertama / CPR Pengawasan Vendor, LOTO|
-+-----------------------------------------------------------------------------+
-```
+**MATRIKS KUALIFIKASI SIF & OTORISASI**
+
+| Peran Sertifikasi y | ang Diperlukan Lingkup Otoris | asi |
+| :--- | :--- | :--- |
+| Duty Manager CDFOM | / Lisensi Operasi SLA Keselur | uhan & Izin |
+| Teknisi Listrik Uta | ma Lisensi Tegangan Tinggi/Re | ndah Switchgear, Trafo |
+| Spesialis Pendingin | Lisensi Tata Udara / Refrige | rasi Chiller, CDU, Glikol |
+| Teknisi Sif Sertifi | kasi Fasilitas Data Ctr Putar | an, Telemetri, Log |
+| Pengawal/Keselamata | n K3 / Pertolongan Pertama / | CPR Pengawasan Vendor, LOTO |
 
 ## Persyaratan Lisensi dan Regulasi
 
@@ -38,19 +34,13 @@ Aturan dua orang mewajibkan:
 
 Tugas tunggal pemeriksa selama operasi adalah verifikasi dan keselamatan. Jika pelaksana mulai meraih handel pemutus yang salah atau memutar katup dalam urutan yang keliru, pemeriksa memiliki wewenang mutlak untuk menghentikan operasi secara instan.
 
-```
-+-------------------------------------------------------------------------+
-| ATURAN DUA ORANG |
-| |
-| +------------------+ +------------------+ |
-| | PEMERIKSA | | PELAKSANA | |
-| | Pegang lembar MOP | | Sentuh sakelar | |
-| | Baca langkah keras| --------> | Tunjuk label ID | |
-| | Verifikasi tag ID | | Eksekusi aksi | |
-| | Punya Kuasa Stop | | Laporkan status | |
-| +------------------+ +------------------+ |
-+-------------------------------------------------------------------------+
-```
+| **ATURAN DUA ORANG** |
+| :--- |
+| PEMERIKSA \| \| PELAKSANA |
+| Pegang lembar MOP \| \| Sentuh sakelar |
+| Baca langkah keras\| -----→ \| Tunjuk label ID |
+| Verifikasi tag ID \| \| Eksekusi aksi |
+| Punya Kuasa Stop \| \| Laporkan status |
 
 ## Otoritas Penghentian Pekerjaan (Stop Work Authority: SWA)
 
@@ -91,3 +81,16 @@ Kedua manajer harus menelusuri seluruh rute bersama-sama berdampingan. Jika mana
 - Konfirmasi bahwa operasi listrik tegangan tinggi dan fluida kritis mematuhi aturan dua orang.
 - Setiap penggunaan Stop Work Authority selama sif, merinci penyebab dan penyelesaiannya.
 - Berita acara pemeriksaan fisik bersama 30 menit yang ditandatangani oleh manajer masuk dan keluar.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |
+
+$$\text{FTE}_{\text{per\_post}} = \frac{365\,\text{days} \times 24\,\text{h/day}}{\left( 52\,\text{weeks} \times 40\,\text{h/week} \right) - H_{\text{leave}} - H_{\text{training}} - H_{\text{sick}}} = \frac{8,760\,\text{h}}{2,080 - 160 - 80 - 64} \approx 4.93\,\text{FTE}$$

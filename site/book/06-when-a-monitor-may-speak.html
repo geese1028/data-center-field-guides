@@ -18,6 +18,8 @@
   
   <meta property="og:type" content="book"/>
   <meta property="og:title" content="Volume 06: When a Monitor May Speak"/>
+  <meta property="og:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-point-anatomy-and-quality-flag.png"/>
+  <meta name="twitter:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-point-anatomy-and-quality-flag.png"/>
   <meta property="og:description" content="BMS/EPMS Telemetry, Sequence of Events (SOE), Alarm Storm Suppression, and Sensor Quality Flags"/>
   <meta property="og:url" content="https://datacenterfieldguides.com/book/06-when-a-monitor-may-speak.html"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
@@ -854,196 +856,196 @@
 
     <div class="articles-grid">
       
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
-          <h3><a href="../blog/a-point-needs-a-clock.html">A monitoring point needs a clock</a></h3>
-          <p>The minimum a data center monitoring point must have before it is allowed to wake someone.</p>
+          <h3><a href="../blog/a-point-needs-a-clock.html">A monitoring point needs a clock: First-Principles Data Center Engineering Protocol</a></h3>
+          <p>Why every data center monitoring point requires a source-stamped UTC clock synchronized via IEEE 1588v2 PTP or NTP before it may enter Sequence of Events logs.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/a-point-needs-a-clock.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/a-score-does-not-close-an-incident.html">A health score does not close an incident</a></h3>
-          <p>What a data center health score may sort, and the decisions it must not be given a pen for.</p>
+          <p>The mathematical flaw of weighted-average dashboard health scores (S = ∑ wi si) and why incidents close only on physical restoration of the faulted point.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/a-score-does-not-close-an-incident.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 10m read</span>
           </div>
-          <h3><a href="../blog/grouping-is-not-a-cause.html">Grouping alarms is not a cause</a></h3>
-          <p>How to hold a data center alarm storm as one event without inventing a root cause from the clock.</p>
+          <h3><a href="../blog/grouping-is-not-a-cause.html">Grouping alarms is not a cause: First-Principles Data Center Engineering Protocol</a></h3>
+          <p>Why algorithmic alarm grouping by time window does not prove physical root cause—and how to build directed parent-child topological suppression trees.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/grouping-is-not-a-cause.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
-          <h3><a href="../blog/stale-is-not-green.html">A green tile can be stale</a></h3>
-          <p>Live, stale, and missing are the only quality marks a data center screen should be obeyed for.</p>
+          <h3><a href="../blog/stale-is-not-green.html">A green tile can be stale: First-Principles Data Center Engineering Protocol</a></h3>
+          <p>How frozen protocol gateways produce &#x27;Silent Green Lies&#x27; on BMS dashboards, and how to enforce explicit Good (0x00), Uncertain (0x40), and Bad (0x80) quality states.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/stale-is-not-green.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 12m read</span>
           </div>
           <h3><a href="../blog/six-things-to-ask-in-a-demo.html">Six things to ask before you trust a monitoring demo</a></h3>
-          <p>Forced failure, clock, opened alarm row, stale score, maintenance window, and a page a person can read. Not a product ranking.</p>
+          <p>Six live hardware fault-injection stress tests every BMS, EPMS, or DCIM vendor must pass on a staging bus before software acceptance.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/six-things-to-ask-in-a-demo.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/what-a-maintenance-window-suppresses.html">What a maintenance window is allowed to suppress</a></h3>
-          <p>A data center maintenance window may stop pages. It may not delete the record or hide a different failure.</p>
+          <p>Why a data center maintenance window may suppress outgoing pager notifications for named points under LOTO, but must never halt raw historian logging or hide screen state.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/what-a-maintenance-window-suppresses.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 12m read</span>
           </div>
-          <h3><a href="../blog/a-baseline-is-not-a-fault.html">A baseline is not a fault</a></h3>
-          <p>A detector that draws a band around history has not found an incident. The band width is a choice. Do not erase the points first.</p>
+          <h3><a href="../blog/a-baseline-is-not-a-fault.html">A baseline is not a fault: First-Principles Data Center Engineering Protocol</a></h3>
+          <p>Separating thermodynamic plant performance drift from sensor faults using ASHRAE Guideline 14 baseline regression models and cooling tower approach metrics.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/a-baseline-is-not-a-fault.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/a-suggestion-is-not-a-saved-kilowatt.html">A suggested tower setpoint is not a saved kilowatt</a></h3>
-          <p>Optimizer output is a hypothesis. Only a live power point, against a baseline written first, may support a saving.</p>
+          <p>Why an AI/ML optimizer&#x27;s suggested cooling-tower setpoint is not a verified energy saving until chiller compressor lift and pump affinity laws are metered together.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/a-suggestion-is-not-a-saved-kilowatt.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/do-not-train-on-a-stopped-plant.html">Do not train a tower model on a stopped plant</a></h3>
-          <p>Hours when tower or pump power is zero are shutdown, not an efficient setpoint. Take them out before the fit.</p>
+          <p>Why training a cooling plant machine-learning model on raw historian exports containing stopped cells, closed isolation valves, and stale sensors corrupts optimization.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/do-not-train-on-a-stopped-plant.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
-          <h3><a href="../blog/fixed-and-adjustable.html">Fixed inputs are not fan handles</a></h3>
-          <p>Weather, flow, and water temperatures are conditions. Tower count and fan speed are the only things a search may move.</p>
+          <h3><a href="../blog/fixed-and-adjustable.html">Fixed inputs are not fan handles: First-Principles Data Center Engineering Protocol</a></h3>
+          <p>Separating non-manipulable disturbance variables (outdoor wet-bulb temperature, IT heat load) from adjustable control handles (VFD fan speed, valve staging).</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/fixed-and-adjustable.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/leaving-temperature-must-fall.html">Leaving water should fall as the fan speeds up</a></h3>
-          <p>A cooling-tower fit that does not cool more at a higher fan speed is the wrong fit. Do not search it.</p>
+          <p>Enforcing physical monotonicity constraints (∂ Tleave / ∂ Nfan ≤ 0) on data center cooling tower models so collinear data cannot invert fan control.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/leaving-temperature-must-fall.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/model-cannot-learn-a-speed-it-never-saw.html">A model cannot learn a fan speed it never saw</a></h3>
-          <p>If the towers only ran one way, a fit has no evidence for the speeds a search will propose.</p>
+          <p>Why data center optimization models trained on constant-speed historical operation fail when extrapolating across variable-frequency fan curves.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/model-cannot-learn-a-speed-it-never-saw.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/tower-model-no-pen.html">A cooling-tower model does not get a pen</a></h3>
-          <p>A fitted model may suggest fan speed and how many towers to run. It may not command them, or claim a saving it did not measure.</p>
+          <p>Why statistical and machine-learning cooling models must operate inside hardwired PLC safety clamps (minimum condenser enter temperature, surge, basin level).</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/tower-model-no-pen.html" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         
-        <article class="article-card">
+        <article class="article-card is-deep-dive">
           <div class="card-meta">
-            <span class="badge-vol">FIELD PROTOCOL</span>
+            <span class="badge-deep-dive">★ FLAGSHIP DEEP-DIVE</span>
             <span class="badge-topic">Telemetry, CFD</span>
-            <span class="card-read-time">⏱️ 2m read</span>
+            <span class="card-read-time">⏱️ 11m read</span>
           </div>
           <h3><a href="../blog/towers-are-not-interchangeable.html">Cooling towers are not interchangeable</a></h3>
-          <p>A model that treats every cell as the same machine will hide a weak tower and then recommend it.</p>
+          <p>Why individual cooling tower cells sharing a common basin cannot be modeled as identical interchangeable units due to nozzle scaling, fill fouling, and plume recirculation.</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 06 Protocol</span>
             <a href="../blog/towers-are-not-interchangeable.html" class="read-more">Read Protocol &rarr;</a>

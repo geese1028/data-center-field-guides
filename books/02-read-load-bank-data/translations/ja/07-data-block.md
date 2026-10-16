@@ -55,10 +55,10 @@
  $$\rho = 1025.0\,\text{kg/m}^3, \quad C_p = 3.980\,\text{kJ/(kg}\cdot\text{K)}$$
 6. **推定液体熱量（Q_liquid）**：
  第一原理熱力学から直接導出される：
- $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60{,}000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
+ $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60,000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
 
 定格全負荷で運転される教育用基準モデル（Q_v = 176.5 LPM、ΔT = 10.04 K）の場合：
-$$\dot{m} = 176.5 \times \frac{1025.0}{60{,}000} = 3.015\,\text{kg/s}$$
+$$\dot{m} = 176.5 \times \frac{1025.0}{60,000} = 3.015\,\text{kg/s}$$
 $$Q_{\text{liquid}} = 3.015\,\text{kg/s} \times 3.980\,\text{kJ/(kg}\cdot\text{K)} \times 10.04\,\text{K} = 120.48\,\text{kW} \times \text{分配比率} \approx 98.6\,\text{kW}$$
 
 ## 見出し5：付随空気および第一原理熱収支クロージャ

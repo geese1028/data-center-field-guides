@@ -39,20 +39,16 @@ Inspect modulating bypass valve BPV-201, installed across secondary supply and r
 
 Never assume that a value displayed on a Building Management System (BMS) screen or CDU human-machine interface (HMI) reflects physical reality. Every telemetry point defined in the project claim must undergo physical point-to-point cross-checking against calibrated field reference instruments:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| POINT-TO-POINT TELEMETRY CALIBRATION AUDIT |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-| TELEMETRY POINT | BMS / HMI READING | FIELD CALIBRATED REF| ALLOWABLE DELTA | AUDIT VERDICT |
-+---------------------+-------------------+---------------------+------------------+-----------------+
+**POINT-TO-POINT TELEMETRY CALIBRATION AUDIT**
+
+| TELEMETRY POINT | BMS / HMI READING | FIELD CALIBRATED REF | ALLOWABLE DELTA | AUDIT VERDICT |
+| :--- | :--- | :--- | :--- | :--- |
 | Secondary Supply T | 40.12 °C | 40.08 °C (PT100) | +/- 0.30 K | PASS |
 | Secondary Return T | 50.25 °C | 50.15 °C (PT100) | +/- 0.30 K | PASS |
-| Secondary Flow Rate | 115.4 m³/h | 116.1 m³/h (Ultrason)| +/- 2.0% | PASS |
+| Secondary Flow Rate | 115.4 m³/h | 116.1 m³/h (Ultrason) | +/- 2.0% | PASS |
 | Secondary Supply P | 285.0 kPa | 282.5 kPa (Gauge) | +/- 10.0 kPa | PASS |
 | Secondary Return P | 115.0 kPa | 118.0 kPa (Gauge) | +/- 10.0 kPa | PASS |
-| Expansion Tank Level| 68.0 % | 67.5 % (Sight Glass)| +/- 3.0 % | PASS |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-```
+| Expansion Tank Level | 68.0 % | 67.5 % (Sight Glass) | +/- 3.0 % | PASS |
 
 If a discrepancy exceeds the allowable tolerance, the sensor offset must be recalibrated or the sensor replaced. Never adjust the acceptable tolerance band to match a drifting sensor.
 
@@ -65,20 +61,12 @@ Execute physical alarm testing under Script 06:
 - **Expansion Tank Low Liquid Level**: Manually depress the test lever on the expansion tank magnetic float switch. Verify that the CDU alerts the operator, locks out the electric heaters, and commands the automatic makeup water pump to start.
 - **Secondary Loop Liquid Leak Detection**: Apply 5 mL of demineralized water across the external leak detection sensing rope positioned beneath the CDU piping connections and the manifold tray. Verify that the leak detection controller triggers within < 2.0 seconds, displays the exact leak distance location, and sends a critical latching alarm to the supervisory BMS.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THREE POSSIBLE AUDIT VERDICTS FOR AN ALARM |
-+-------------------+--------------------------------------------------------------------------------+
-| 1. PASS | Alarm physically injected at sensor; local annunciator active; BMS logged |
-| | event with correct timestamp and description; interlock executed cleanly. |
-+-------------------+--------------------------------------------------------------------------------+
-| 2. FAIL | Alarm injected but sensor failed to detect; delay exceeded tolerance; |
-| | interlock relay failed to drop; logged immediately on Master Punch List. |
-+-------------------+--------------------------------------------------------------------------------+
-| 3. NOT | Equipment lacks the physical sensor, wiring, or software register to raise |
-| DEMONSTRATED | this alarm. Explicitly logged as "NOT DEMONSTRATED" on Sheet 2. Never "PASS". |
-+-------------------+--------------------------------------------------------------------------------+
-```
+**THREE POSSIBLE AUDIT VERDICTS FOR AN ALARM**
+
+| 1. PASS | Alarm physically injected at sensor; local annunciator active; BMS logged event with correct timestamp and description; interlock executed cleanly. |
+| :--- | :--- |
+| 2. FAIL | Alarm injected but sensor failed to detect; delay exceeded tolerance; interlock relay failed to drop; logged immediately on Master Punch List. |
+| 3. NOT DEMONSTRATED | Equipment lacks the physical sensor, wiring, or software register to raise this alarm. Explicitly logged as "NOT DEMONSTRATED" on Sheet 2. Never "PASS". |
 
 If a specific alarm cannot be demonstrated because the hardware was omitted during construction, the line on Sheet 2 must be recorded as **NOT DEMONSTRATED**. Logging an untested alarm as "PASS" because "the vendor promised the logic works" is a serious professional breach.
 

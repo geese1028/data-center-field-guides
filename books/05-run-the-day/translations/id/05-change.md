@@ -4,25 +4,21 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Sebagian besar pemadaman pusat data yang katastrofik tidak disebabkan oleh sambaran petir, gempa bumi, atau cacat komponen pabrikan. Sebagian besar pemadaman katastrofik adalah perubahan yang secara sembrono dikategorikan sebagai "pemeliharaan rutin".
 
-```
-+-----------------------------------------------------------------------------+
-| SIKLUS HIDUP EKSEKUSI PERUBAHAN |
-| |
-| [T - 72j] Tinjauan Rekayasa: Penilaian risiko, audit titik kegagalan tunggal|
-| | |
+| **SIKLUS HIDUP EKSEKUSI PERUBAHAN** |
+| :--- |
+| [T - 72j] Tinjauan Rekayasa: Penilaian risiko, audit titik kegagalan tunggal |
+| ↓ |
 | [T - 24j] Persetujuan Dewan Penasihat Perubahan (CAB): Risiko diterima sah |
-| | |
+| ↓ |
 | [T - 02j] Verifikasi Pra-Jendela: Fasilitas redundan 100% sehat, nol alarm |
-| | |
+| ↓ |
 | [T = 00j] Jendela Pemeliharaan Terbuka: Kondisi abnormal dipasang di papan |
-| | |
+| ↓ |
 | [T + Eksekusi] Eksekusi MOP Langkah demi Langkah di bawah Aturan 2 Orang |
-| | |
+| ↓ |
 | [T + Verifikasi] Verifikasi Beban Fungsional: Telemetri konfirmasi layanan |
-| | |
+| ↓ |
 | [T + Selesai] Tanda Tangan Pasca-Perubahan: Status abnormal dihapus |
-+-----------------------------------------------------------------------------+
-```
 
 ## Apa yang Merupakan Perubahan
 
@@ -56,17 +52,13 @@ Sifat pasti dari kondisi abnormal ini harus:
 - Ditampilkan pada spanduk digital Building Management System di semua workstation operator.
 - Dicatat secara eksplisit pada log serah terima sif.
 
-```
-+-------------------------------------------------------------------------+
-| PAPAN KONDISI ABNORMAL RUANG KENDALI |
-| |
+| **PAPAN KONDISI ABNORMAL RUANG KENDALI** |
+| :--- |
 | [GANGGUAN AKTIF] Chiller CH-03 diisolasi untuk perbaikan kondenser |
 | [REDUNDANSI SURVIVAL] 3 dari 4 chiller beroperasi; redundansi = N+0 |
 | [RISIKO] Kehilangan CH-01 atau CH-02 memicu pelepasan beban otomatis |
-| [JENDELA] 2026-10-14 10:00 s.d. 14:00 UTC | Penerima: J. Vance (VP) |
-| [BATAS PEMBATALAN] 13:00 UTC (Jika belum terpasang, batalkan & pulihkan|
-+-------------------------------------------------------------------------+
-```
+| [JENDELA] 2026-10-14 10:00 s.d. 14:00 UTC \| Penerima: J. Vance (VP) |
+| [BATAS PEMBATALAN] 13:00 UTC (Jika belum terpasang, batalkan & pulihkan |
 
 Kondisi abnormal yang selesai secara fisik (misalnya mekanik mengencangkan baut terakhir) tetapi tidak secara resmi dibersihkan di papan ruang kendali dan log serah terima tetap menjadi bahaya operasional terbuka. Jika alarm tak terduga terjadi dua jam kemudian, sif berikutnya akan melakukan pemecahan masalah berdasarkan asumsi konfigurasi instalasi normal, yang mengarah pada keputusan switching yang salah dan trip peralatan beruntun.
 
@@ -96,3 +88,18 @@ Jika verifikasi teknis tidak dapat diselesaikan secara memuaskan, perubahan seca
 - Cap waktu mulai dan tutup yang tepat untuk setiap jendela pemeliharaan.
 - Kondisi abnormal yang tercatat dipasang di papan ruang kendali dan serah terima sif.
 - Verifikasi teknis formal yang ditandatangani di bawah kondisi beban nyata.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |
+
+$$T_{\text{window}} \ge t_{\text{LOTO}} + t_{\text{work}} + t_{\text{dwell}} + t_{\text{rollback}} + t_{\text{margin}}$$
+
+$$t_{\text{cutoff}} = T_{\text{window\_end}} - \left( t_{\text{rollback}} + t_{\text{dwell}} \right)$$

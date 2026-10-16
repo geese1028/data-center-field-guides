@@ -36,6 +36,23 @@ An empty tab with a hopeful title is a missing sheet. A sheet dated the morning 
 
 A backup location that only one person can open is a missing sheet for the next shift. The third book put backup locations in the pack. You check that a second person, named, can open them. If not, the pack exists only while the author is in the building. That is not a handover.
 
+## The Seven Mandatory Closeout Binder Deliverables
+
+### Auditing Empty Tabs, Borrowed Logs, and Wrong-Revision Certificates
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$I_{\text{completeness}} = \frac{N_{\text{verified\_sheets}}}{N_{\text{required\_sheets}}} = 100\%$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Automatic Sentence Refusal for Missing Evidence Sheets | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Each signature-sentence, and the sheet that supports it. Missing sheet, sentence refused.
@@ -44,5 +61,3 @@ A backup location that only one person can open is a missing sheet for the next 
 - A stack of shift logs you did not accept as the close-out pack.
 - The second person who can open the backups, or the pack refused.
 
-
-![As-Built vs. Redline Forensic Custody Audit](../figures/fig-03-as-built-redline-custody-audit.png)

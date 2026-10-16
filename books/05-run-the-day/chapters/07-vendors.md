@@ -2,23 +2,19 @@
 
 A third-party vendor or equipment manufacturer technician working inside your data center is a pair of hands operating under your legal permit. They are not an autonomous entity that you can leave unsupervised in an electrical vault.
 
-```
-+-----------------------------------------------------------------------------+
-| VENDOR GOVERNANCE GATEWAY |
-| |
+| **VENDOR GOVERNANCE GATEWAY** |
+| :--- |
 | [GATE 1] Pre-Arrival Scope: Specific task, approved MOP, tool registry |
-| | |
+| ↓ |
 | [GATE 2] Security & Safety In-Brief: Badge issued, LOTO verified, PPE audit |
-| | |
-| [GATE 3] Active Escort: Qualified site technician assigned; never unescorted|
-| | |
+| ↓ |
+| [GATE 3] Active Escort: Qualified site technician assigned; never unescorted |
+| ↓ |
 | [GATE 4] Scope Boundary Enforcement: Stop Work if task leaves written MOP |
-| | |
+| ↓ |
 | [GATE 5] Technical Closeout: Physical audit of work, old parts, site clean |
-| | |
+| ↓ |
 | [GATE 6] Commercial Separation: Technical sign-off != Commercial invoice |
-+-----------------------------------------------------------------------------+
-```
 
 A manager who signs a visitor badge, points toward the battery room, and returns to their office has abandoned control of the facility. If that vendor drops a ratchet across a 480V busbar or opens the wrong isolation valve, the outage belongs to the manager, not the vendor.
 
@@ -77,3 +73,18 @@ It does not constitute commercial acceptance of the invoice, and it does not wai
 - Scope boundary check: Confirmed zero deviation from written MOP, or recorded Stop Work command.
 - Technical acceptance signed only after physical inspection and live load dwell verification.
 - Serial numbers of installed components and quarantine bin location of failed parts.
+
+## Third-Party Vendor Governance: Laptop Air-Gap, Firmware Checksums, and Tool Control
+
+A manufacturer field service engineer (FSE) arriving to service a chiller VFD, a UPS static switch controller, or a liquid CDU PLC brings three severe operational vectors into the facility: unvetted laptop interfaces, unverified firmware binaries, and uncalibrated torque/test tools.
+
+| Vendor Control Gate | Physical / Cyber Inspection Requirement | Quantitative Pass Criterion | Immediate Stop-Work Condition |
+| :--- | :--- | :--- | :--- |
+| **Gate 1: Method & Insurance** | Site-specific MOP cross-checked against actual cabinet serial numbers | Exact match to site SLD/P&ID tags | Generic factory procedure referencing wrong model/voltage |
+| **Gate 2: Laptop & Media Hygiene** | Vendor service laptop cellular/Wi-Fi disabled; USB media scanned at kiosk | SHA-256 firmware hash matches OEM release bulletin | Laptop bridged simultaneously to corporate LTE and PLC Ethernet |
+| **Gate 3: Calibrated Tool Audit** | Torque wrenches, multimeters, and pressure gauges checked for valid cert | NIST/ISO 17025 calibration sticker within 12-month validity | Uncalibrated gauge used to set safety relief or pressure switch |
+| **Gate 4: Parameter Diff Backup** | Full backup of existing PLC/relay parameter file exported before write | Line-by-line diff confirms only authorized registers changed | Firmware flashed without saving local copy of running config |
+
+## Escort-to-Vendor Ratios and Red-Zone / Green-Zone Work Permits
+
+Inside energized electrical rooms, battery rooms, and live customer whitespace (Red Zones), the facility enforces a strict **1:1 or 1:2 Qualified Escort Ratio**: one Badged Critical Facility Technician must remain within direct line-of-sight and earshot of the vendor technician at all times. If the escort must leave the room for any reason, the vendor must step out into the corridor until relief arrives.

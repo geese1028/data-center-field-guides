@@ -135,7 +135,7 @@ def fig_01_flash_report():
     # Right Block: The Five Passes Table
     draw_panel(d, (560, 105, 1760, 480), "THE FIVE MANDATORY SCENE PASSES (OVERALL VERDICT REQUIRES ALL 5)")
     headers = ["SCENE NAME", "CITED REQUIREMENT", "OBSERVED EVIDENCE", "DWELL TIME", "DEVIATION", "VERDICT"]
-    cols = [580, 780, 1050, 1370, 1510, 1640]
+    cols = [575, 700, 1030, 1345, 1470, 1645]
     
     # Table header bar
     d.rectangle((560, 140, 1760, 172), fill=NAVY)
@@ -143,20 +143,20 @@ def fig_01_flash_report():
         d.text((cols[i], 148), h, font=get_font(12, True), fill=(255, 255, 255))
         
     rows = [
-        ("1. Pretest", "Flow >= 170 LPM/cab, Pin - Pout <= 115kPa", "Flow = 176.2 LPM, ΔP = 111.4 kPa", "10 min hold", "+3.6% / -3.1%", "PASS", GREEN_PASS),
-        ("2. Gradient", "Step plateaus recognizable (25, 50, 75, 100%)", "Power steps 30->60->90->120kW tracked", "15 min/step", "ΔT rise within 2%", "PASS", GREEN_PASS),
-        ("3. Overload", "110% rating (132kW) visited & cleanly exited", "Entered at 14:15, held, dropped at 14:20", "5 min visit", "Zero trip / No alarms", "PASS", GREEN_PASS),
-        ("4. Step Jump", "Instantaneous 30kW -> 120kW command step", "Power tracked <1.5s, no water hammer", "10 min dwell", "Overshoot < 2.5%", "PASS", GREEN_PASS),
-        ("5. Single-Feed", "Feeder A dropped at 100%; Feeder B sheds 50%", "Contactor cleared in 14ms; PLC zero dip", "10 min hold", "Zero control reboot", "PASS", GREEN_PASS),
+        ("1. Pretest", "Flow >= 170 LPM/cab, ΔP <= 115 kPa", "Flow = 176.2 LPM, ΔP = 111.4 kPa", "10 min hold", "+3.6% / -3.1%", "PASS", GREEN_PASS),
+        ("2. Gradient", "Step plateaus (25, 50, 75, 100%)", "Steps 30->60->90->120 kW tracked", "15 min/step", "ΔT rise < 2.0%", "PASS", GREEN_PASS),
+        ("3. Overload", "110% rating (132 kW) visited & exited", "Entered 14:15, exited cleanly 14:20", "5 min visit", "Zero trip/alarm", "PASS", GREEN_PASS),
+        ("4. Step Jump", "Instant 30 kW -> 120 kW step command", "Tracked < 1.5s, zero water hammer", "10 min dwell", "Overshoot < 2.5%", "PASS", GREEN_PASS),
+        ("5. Single-Feed", "Feeder A dropped @ 100%; B holds 50%", "Cleared in 14 ms; PLC zero dip", "10 min hold", "Zero reboot", "PASS", GREEN_PASS),
     ]
     y = 182
     for name, req, obs, dwell, dev, verd, vcol in rows:
         d.rectangle((560, y - 4, 1760, y + 42), fill=(255, 255, 255) if (y//40)%2==0 else (248, 250, 252))
-        d.text((cols[0], y + 8), name, font=get_font(13, True), fill=NAVY)
-        d.text((cols[1], y + 8), req, font=get_font(12), fill=TEXT_MUTED)
-        d.text((cols[2], y + 8), obs, font=get_font(12), fill=TEXT_MAIN)
-        d.text((cols[3], y + 8), dwell, font=get_font(12), fill=TEXT_MUTED)
-        d.text((cols[4], y + 8), dev, font=get_font(12), fill=BLUE_MAIN)
+        d.text((cols[0], y + 8), name, font=get_font(12, True), fill=NAVY)
+        d.text((cols[1], y + 8), req, font=get_font(11), fill=TEXT_MUTED)
+        d.text((cols[2], y + 8), obs, font=get_font(11), fill=TEXT_MAIN)
+        d.text((cols[3], y + 8), dwell, font=get_font(11), fill=TEXT_MUTED)
+        d.text((cols[4], y + 8), dev, font=get_font(11), fill=BLUE_MAIN)
         d.rectangle((cols[5] - 6, y + 4, cols[5] + 80, y + 32), fill=(220, 252, 231), outline=vcol, width=1)
         d.text((cols[5] + 12, y + 8), verd, font=get_font(13, True), fill=vcol)
         y += 46
@@ -305,10 +305,10 @@ def fig_02_telemetry_pipeline():
     d.text((55, 535), "Two 16-bit registers hold one 32-bit float. Swapping High/Low words alters values drastically:", font=get_font(13), fill=TEXT_MUTED)
     
     d.rectangle((55, 565, 860, 645), fill=(248, 250, 252), outline=PANEL_BORDER, width=1)
-    d.text((70, 575), "Correct (CDAB / Big-Endian Word Swap):", font=get_font(13, True), fill=NAVY)
-    d.text((380, 575), "Reg 40001: 0x4234, Reg 40002: 0x0000 => 45.00 °C", font=get_font(13, True), fill=GREEN_PASS)
-    d.text((70, 605), "Corrupted (ABCD / Big-Endian Direct):", font=get_font(13, True), fill=NAVY)
-    d.text((380, 605), "Reg 40001: 0x0000, Reg 40002: 0x4234 => 1.87e-38 °C (GARBAGE)", font=get_font(13, True), fill=RED_ACCENT)
+    d.text((68, 575), "Correct (CDAB / Big-Endian Word Swap):", font=get_font(12, True), fill=NAVY)
+    d.text((355, 575), "Reg 40001: 0x4234, Reg 40002: 0x0000 => 45.00 °C", font=get_font(12, True), fill=GREEN_PASS)
+    d.text((68, 605), "Corrupted (ABCD / Big-Endian Direct):", font=get_font(12, True), fill=NAVY)
+    d.text((355, 605), "Reg 40001: 0x0000, Reg 40002: 0x4234 => 1.87e-38 °C (GARBAGE)", font=get_font(12, True), fill=RED_ACCENT)
     
     d.text((55, 665), "2. The Mandatory 16-Bit Quality Bitmask Register (Reg 40050):", font=get_font(15, True), fill=NAVY)
     d.text((55, 690), "Every telemetry frame must include hardware-level validity flags for all channels:", font=get_font(13), fill=TEXT_MUTED)
@@ -607,7 +607,7 @@ def fig_05_changepoint():
     for y_val in [200, 280, 360, 440]:
         d.line((60, y_val, 1740, y_val), fill=(30, 41, 59), width=1)
         
-    d.text((70, 160), "Thermal & Power Time Series (Time: 00:00 to 01:20)", font=get_font(13, True), fill=(148, 163, 184))
+    d.text((70, 156), "Waveforms (00:00 - 01:20)", font=get_font(12, True), fill=(148, 163, 184))
     
     # Draw Multi-Step Profile:
     # 00-15: 30kW, 15-30: 60kW, 30-45: 90kW, 45-60: 120kW, 60-65: 132kW (Overload), 65-75: 60kW (Single Feed)
@@ -718,42 +718,42 @@ def fig_06_heat_balance():
     # Left Panel: Sankey & Energy Flow Stack
     draw_panel(d, (40, 105, 880, 680), "ENERGY DECOMPOSITION SANKEY (120 kW RATED DUTY)")
     
-    # Electrical Input Bar
-    d.rectangle((80, 160, 260, 480), fill=NAVY)
-    d.text((95, 175), "ELECTRICAL POWER", font=get_font(14, True), fill=(255, 255, 255))
-    d.text((95, 198), "P_elec = 120.0 kW", font=get_font(18, True), fill=(56, 189, 248))
-    d.text((95, 230), "3-Phase 415V AC", font=get_font(12), fill=HEADER_SUB)
-    d.text((95, 250), "Current = 167.1 A", font=get_font(12), fill=HEADER_SUB)
-    d.text((95, 270), "PF = 0.999", font=get_font(12), fill=HEADER_SUB)
+    # Electrical Input Bar (widened to X=285 so P_elec = 120.0 kW fits completely inside)
+    d.rectangle((70, 160, 285, 480), fill=NAVY)
+    d.text((85, 175), "ELECTRICAL POWER", font=get_font(14, True), fill=(255, 255, 255))
+    d.text((85, 200), "P_elec = 120.0 kW", font=get_font(16, True), fill=(56, 189, 248))
+    d.text((85, 232), "3-Phase 415V AC", font=get_font(12), fill=HEADER_SUB)
+    d.text((85, 252), "Current = 167.1 A", font=get_font(12), fill=HEADER_SUB)
+    d.text((85, 272), "PF = 0.999", font=get_font(12), fill=HEADER_SUB)
     
     # Three Output Streams
     # 1. Liquid Stream (82%)
-    d.line((260, 220, 450, 220), fill=BLUE_MAIN, width=80)
-    d.rectangle((450, 180, 840, 310), fill=(240, 253, 244), outline=BLUE_MAIN, width=2)
-    d.text((470, 195), "LIQUID ENTHALPY ABSORPTION (82.0%)", font=get_font(14, True), fill=BLUE_MAIN)
-    d.text((470, 222), "Q_liquid = 98.4 kW  (176.5 LPM @ ΔT = 10.0 K)", font=get_font(16, True), fill=NAVY)
-    d.text((470, 252), "Equation: Q = ṁ · Cp · (T_return - T_supply)", font=get_font(12), fill=TEXT_MUTED)
-    d.text((470, 275), "Target Range: 97.2 kW ~ 99.6 kW (±2.0% tolerance)", font=get_font(12, True), fill=GREEN_PASS)
+    d.line((285, 220, 420, 220), fill=BLUE_MAIN, width=80)
+    d.rectangle((420, 180, 860, 310), fill=(240, 253, 244), outline=BLUE_MAIN, width=2)
+    d.text((438, 195), "LIQUID ENTHALPY ABSORPTION (82.0%)", font=get_font(14, True), fill=BLUE_MAIN)
+    d.text((438, 222), "Q_liquid = 98.4 kW (176.5 LPM @ ΔT = 10.0 K)", font=get_font(14, True), fill=NAVY)
+    d.text((438, 252), "Equation: Q = m_dot · Cp · (T_return - T_supply)", font=get_font(12), fill=TEXT_MUTED)
+    d.text((438, 275), "Target Range: 97.2 kW ~ 99.6 kW (±2.0% tolerance)", font=get_font(12, True), fill=GREEN_PASS)
     
     # 2. Companion Air Load (16%)
-    d.line((260, 360, 450, 360), fill=RED_ACCENT, width=35)
-    d.rectangle((450, 335, 840, 435), fill=(254, 242, 242), outline=RED_ACCENT, width=2)
-    d.text((470, 348), "COMPANION AIR SENSIBLE HEAT (16.0%)", font=get_font(13, True), fill=RED_ACCENT)
-    d.text((470, 372), "Q_air = 19.2 kW  (CRAH Coil Verification)", font=get_font(15, True), fill=NAVY)
-    d.text((470, 400), "Radiated by fan bank, VRMs & uncooled boards", font=get_font(12), fill=TEXT_MUTED)
+    d.line((285, 360, 420, 360), fill=RED_ACCENT, width=35)
+    d.rectangle((420, 335, 860, 435), fill=(254, 242, 242), outline=RED_ACCENT, width=2)
+    d.text((438, 348), "COMPANION AIR SENSIBLE HEAT (16.0%)", font=get_font(13, True), fill=RED_ACCENT)
+    d.text((438, 372), "Q_air = 19.2 kW  (CRAH Coil Verification)", font=get_font(14, True), fill=NAVY)
+    d.text((438, 400), "Radiated by fan bank, VRMs & uncooled boards", font=get_font(12), fill=TEXT_MUTED)
     
     # 3. Parasitic Chassis Skin Loss (2%)
-    d.line((260, 450, 450, 450), fill=(100, 116, 139), width=15)
-    d.rectangle((450, 445, 840, 525), fill=(248, 250, 252), outline=PANEL_BORDER, width=2)
-    d.text((470, 455), "SKIN & CABLING LOSSES (2.0%)", font=get_font(12, True), fill=NAVY)
-    d.text((470, 475), "Q_loss = 2.4 kW  (Natural Convection + Busbar R*I²)", font=get_font(13, True), fill=TEXT_MUTED)
-    d.text((470, 498), "Insulation barrier keeps cabinet touch temp < 40°C", font=get_font(11), fill=TEXT_MUTED)
+    d.line((285, 450, 420, 450), fill=(100, 116, 139), width=15)
+    d.rectangle((420, 445, 860, 525), fill=(248, 250, 252), outline=PANEL_BORDER, width=2)
+    d.text((438, 455), "SKIN & CABLING LOSSES (2.0%)", font=get_font(12, True), fill=NAVY)
+    d.text((438, 475), "Q_loss = 2.4 kW  (Natural Convection + Busbar R*I²)", font=get_font(13, True), fill=TEXT_MUTED)
+    d.text((438, 498), "Insulation barrier keeps cabinet touch temp < 40°C", font=get_font(11), fill=TEXT_MUTED)
     
     # Bottom Equation Box
-    d.rectangle((80, 550, 840, 650), fill=(241, 245, 249), outline=BLUE_MAIN, width=1)
-    d.text((100, 565), "FIRST-PRINCIPLES CONSERVATION OF ENERGY BALANCE:", font=get_font(13, True), fill=NAVY)
-    d.text((100, 595), "P_elec  =  Q_liquid  +  Q_air  +  Q_chassis_loss  =  120.0 kW", font=get_font(16, True), fill=BLUE_MAIN)
-    d.text((100, 625), "Net Enthalpy Closure Ratio: | P_elec - (Q_liq + Q_air) | / P_elec <= 3.0%", font=get_font(12, True), fill=GREEN_PASS)
+    d.rectangle((70, 550, 860, 650), fill=(241, 245, 249), outline=BLUE_MAIN, width=1)
+    d.text((90, 565), "FIRST-PRINCIPLES CONSERVATION OF ENERGY BALANCE:", font=get_font(13, True), fill=NAVY)
+    d.text((90, 595), "P_elec  =  Q_liquid  +  Q_air  +  Q_chassis_loss  =  120.0 kW", font=get_font(16, True), fill=BLUE_MAIN)
+    d.text((90, 625), "Net Enthalpy Closure Ratio: | P_elec - (Q_liq + Q_air) | / P_elec <= 3.0%", font=get_font(12, True), fill=GREEN_PASS)
 
     # Right Panel: Four-Quadrant Failure Case Studies
     draw_panel(d, (900, 105, 1760, 680), "FOUR DIAGNOSTIC FAILURE DISCREPANCIES (HEAT BALANCE AUDIT)")
@@ -774,10 +774,10 @@ def fig_06_heat_balance():
             d.text((940, y + 52 + idx * 17), cdl, font=get_font(11), fill=TEXT_MUTED)
         y += 128
 
-    # Bottom Full-Width Table: Four-Step Heat Balance Reconciliation Data
+    # Bottom Full-Width Table: Four-Step Heat Balance Reconciliation Data (fixed column spacing so STEP and COMMAND never collide)
     draw_panel(d, (40, 705, 1760, 1030), "REPRESENTATIVE FLASH REPORT HEAT RECONCILIATION TABLE (FOUR LOAD STEPS)")
     t_headers = ["STEP", "COMMAND", "P_ELEC (kW)", "FLOW (LPM)", "T_IN (°C)", "T_OUT (°C)", "ΔT (K)", "Q_LIQ (kW)", "Q_AIR (kW)", "CLOSURE", "STATUS"]
-    t_cols = [60, 140, 270, 420, 560, 680, 800, 920, 1080, 1240, 1480]
+    t_cols = [70, 205, 330, 465, 600, 715, 835, 950, 1095, 1245, 1480]
     
     d.rectangle((60, 745, 1740, 775), fill=NAVY)
     for i, th in enumerate(t_headers):
@@ -848,19 +848,19 @@ def fig_07_single_feed_transient():
     d.line((trip_x + 14, 350, 1700, 350), fill=(250, 204, 21), width=3)
     d.text((trip_x + 25, 325), "Δt = 14 ms (< 20ms REQUIREMENT MET)", font=get_font(12, True), fill=(250, 204, 21))
     
-    # Channel 3: Commanded & Active Load (Drops from 120kW to 60kW)
-    d.text((80, 370), "CH3: Active Load Bank Electrical Power (kW)", font=get_font(12, True), fill=(22, 163, 74))
+    # Channel 3: Commanded & Active Load (Drops from 120kW to 60kW) - shifted 120.0 kW label below line so zero overlap with CH3 title
+    d.text((80, 368), "CH3: Active Load Bank Electrical Power (kW)", font=get_font(12, True), fill=(22, 163, 74))
     d.line((100, 390, trip_x + 15, 390), fill=(22, 163, 74), width=4)
     d.line((trip_x + 15, 390, trip_x + 25, 430), fill=(22, 163, 74), width=4)
     d.line((trip_x + 25, 430, 1700, 430), fill=(22, 163, 74), width=4) # 60kW steady
-    d.text((150, 372), "120.0 kW (Full Load)", font=get_font(12), fill=(22, 163, 74))
-    d.text((1550, 412), "60.0 kW (Feeder B Only)", font=get_font(12, True), fill=(22, 163, 74))
+    d.text((100, 400), "120.0 kW (Full Load)", font=get_font(12, True), fill=(22, 163, 74))
+    d.text((1530, 408), "60.0 kW (Feeder B Only)", font=get_font(12, True), fill=(22, 163, 74))
     
     # Channel 4: 24VDC PLC & Sensor Control Bus (Zero Brownout!)
     d.text((80, 450), "CH4: 24VDC Supervisory PLC & Sensor Power Bus", font=get_font(12, True), fill=(168, 85, 247))
     d.line((100, 470, 1700, 470), fill=(168, 85, 247), width=3) # Perfectly flat line!
-    d.text((trip_x + 25, 455), "ZERO BROWNOUT DIP! (Diode OR-ed Dual PSU holds 24.1VDC)", font=get_font(12, True), fill=(168, 85, 247))
-    d.text((1550, 455), "24.1 VDC (FLAT)", font=get_font(12, True), fill=(168, 85, 247))
+    d.text((trip_x + 25, 452), "ZERO BROWNOUT DIP! (Diode OR-ed Dual PSU holds 24.1VDC)", font=get_font(12, True), fill=(168, 85, 247))
+    d.text((1550, 452), "24.1 VDC (FLAT)", font=get_font(12, True), fill=(168, 85, 247))
     
     # Channel 5: Secondary Coolant Pressure Waveform (Hydraulic Surge)
     d.text((80, 530), "CH5: Coolant Manifold Differential Pressure (kPa)", font=get_font(12, True), fill=(244, 63, 94))
@@ -870,7 +870,7 @@ def fig_07_single_feed_transient():
         d.line((p_pts[i], p_pts[i+1]), fill=(244, 63, 94), width=2)
     d.text((trip_x + 85, 535), "Minor Pressure Pulse: ΔP_surge = +8 kPa (Damped, No Water Hammer)", font=get_font(12), fill=(244, 63, 94))
 
-    # Bottom Left: Acceptance Rules for Single-Feed Loss
+    # Bottom Left: Acceptance Rules for Single-Feed Loss (spaced cleanly so FATAL 2N FAIL sits below Criterion 5)
     draw_panel(d, (40, 705, 880, 1030), "2N DROP TEST PASS/FAIL ACCEPTANCE CRITERIA")
     
     crit = [
@@ -880,35 +880,35 @@ def fig_07_single_feed_transient():
         ("Criterion 4: Modbus / Telemetry Stream", "Zero missed packets", "Observed: Telemetry stream continuous", GREEN_PASS),
         ("Criterion 5: Shedding Accuracy", "50.0% ± 1.0% load shed", "Observed: Shed 60.1 kW out of 120.2 kW", GREEN_PASS),
     ]
-    y = 750
+    y = 744
     for name, lim, obs, col in crit:
-        d.rectangle((60, y, 860, y + 46), fill=(255, 255, 255), outline=PANEL_BORDER, width=1)
-        d.text((75, y + 8), name, font=get_font(13, True), fill=NAVY)
-        d.text((420, y + 8), lim, font=get_font(12), fill=TEXT_MUTED)
-        d.text((420, y + 26), obs, font=get_font(12, True), fill=col)
-        y += 54
+        d.rectangle((60, y, 860, y + 43), fill=(255, 255, 255), outline=PANEL_BORDER, width=1)
+        d.text((75, y + 6), name, font=get_font(13, True), fill=NAVY)
+        d.text((420, y + 5), lim, font=get_font(11), fill=TEXT_MUTED)
+        d.text((420, y + 23), obs, font=get_font(12, True), fill=col)
+        y += 48
         
-    d.text((60, 995), "FATAL 2N FAIL: If Feeder A drop reboots the PLC or drops Modbus, the unit FAILS.", font=get_font(12, True), fill=RED_ACCENT)
+    d.text((60, 994), "FATAL 2N FAIL: If Feeder A drop reboots the PLC or drops Modbus, the unit FAILS.", font=get_font(12, True), fill=RED_ACCENT)
 
-    # Bottom Right: Fail-Safe Physical Implementation
+    # Bottom Right: Fail-Safe Physical Implementation (spaced cleanly so all 4 items stay above dark box)
     draw_panel(d, (900, 705, 1760, 1030), "PHYSICAL IMPLEMENTATION: DIODE-OR DUAL 24VDC ARCHITECTURE")
-    d.text((920, 745), "How Zero-Dip Control Immunity is Achieved in Hardware:", font=get_font(14, True), fill=NAVY)
+    d.text((920, 742), "How Zero-Dip Control Immunity is Achieved in Hardware:", font=get_font(14, True), fill=NAVY)
     
     notes = [
-        ("1. Redundant Power Supply Units (PSU-A & PSU-B):", "PSU-A is fed exclusively from Feeder A (415V/230V); PSU-B from Feeder B. Both are industrial DIN-rail units rated for 24VDC / 10A."),
+        ("1. Redundant Power Supply Units (PSU-A & PSU-B):", "PSU-A is fed exclusively from Feeder A (415V/230V); PSU-B from Feeder B. Industrial DIN-rail 24VDC / 10A."),
         ("2. Active Schottky Diode OR-ing Redundancy Module:", "Combines outputs into a common 24VDC control bus with zero crossover switching transient (< 0.1ms)."),
         ("3. Hold-Up Buffer Capacitor (40ms Energy Storage):", "Provides auxiliary capacitive hold-up to absorb any line voltage sag during utility transfer switch transitions."),
-        ("4. Segregated Contactor Control Circuits:", "Contactor coils for Bank 1/2 are interlocked with Feeder A; Bank 3/4 with Feeder B. De-energization is purely physical spring return."),
+        ("4. Segregated Contactor Control Circuits:", "Contactor coils for Bank 1/2 are interlocked with Feeder A; Bank 3/4 with Feeder B. Pure spring-return drop."),
     ]
-    y = 780
+    y = 770
     for n_title, n_desc in notes:
-        d.text((920, y), n_title, font=get_font(13, True), fill=BLUE_MAIN)
-        d.text((920, y + 22), n_desc, font=get_font(12), fill=TEXT_MUTED)
-        y += 54
+        d.text((920, y), n_title, font=get_font(12, True), fill=BLUE_MAIN)
+        d.text((920, y + 20), n_desc, font=get_font(11), fill=TEXT_MUTED)
+        y += 46
         
-    d.rectangle((920, 960, 1740, 1015), fill=NAVY)
-    d.text((940, 975), "FLASH REPORT REQUIREMENT: Test both paths sequentially.", font=get_font(13, True), fill=(255, 255, 255))
-    d.text((940, 995), "Trip Feeder A, restore, dwell, then trip Feeder B. Both must pass.", font=get_font(12), fill=HEADER_SUB)
+    d.rectangle((920, 962, 1740, 1015), fill=NAVY)
+    d.text((940, 974), "FLASH REPORT REQUIREMENT: Test both paths sequentially.", font=get_font(13, True), fill=(255, 255, 255))
+    d.text((940, 994), "Trip Feeder A, restore, dwell, then trip Feeder B. Both must pass.", font=get_font(12), fill=HEADER_SUB)
 
     path = FIG / "fig-07-single-feed-transient.png"
     im.save(path, "PNG")

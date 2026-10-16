@@ -4,21 +4,12 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Verifikasi pendinginan cair yang dilakukan tanpa penunjukan peran individu yang jelas akan cepat merosot menjadi diskusi kelompok yang tidak terkoordinasi. Pernyataan metode standar biasanya menuntut matriks RACI yang sangat rumit (*Responsible, Accountable, Consulted, Informed*). Dalam lingkungan berisiko tinggi di aula data yang aktif atau mendekati aktif, struktur tersebut harus disarikan menjadi tiga entitas komersial yang jelas dan lima fungsi rekayasa spesifik.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| SEGITIGA TATA KELOLA TIGA PIHAK |
-+------------------------------------+---------------------------------------------------------------+
-| PEMILIK FASILITAS | Menyaksikan eksekusi, mengesahkan deviasi, dan menyetujui |
-| (Klien / Operasi Hyperscaler) | tingkat sertifikat akhir. Tidak mengoperasikan perkakas. |
-+------------------------------------+---------------------------------------------------------------+
-| OTORITAS VERIFIKASI (CxA) | Menyusun Cx Plan & skrip, mengelola kalibrasi, memimpin |
-| (Lembaga Pengujian Independen) | langkah, mencatat data, & mengaudit cacat. Tdk menutup cacat |
-| | sendiri. |
-+------------------------------------+---------------------------------------------------------------+
-| KONTRAKTOR PELAKSANA | Menyediakan gambar as-built, mengoperasikan pemutus arus & |
-| (Utama / Mekanikal / Elektrikal) | katup, dan melakukan perbaikan cacat fisik di bawah izin kerja.|
-+------------------------------------+---------------------------------------------------------------+
-```
+**SEGITIGA TATA KELOLA TIGA PIHAK**
+
+| PEMILIK FASILITAS (Klien / Operasi Hyperscaler) | Menyaksikan eksekusi, mengesahkan deviasi, dan menyetujui tingkat sertifikat akhir. Tidak mengoperasikan perkakas. |
+| :--- | :--- |
+| OTORITAS VERIFIKASI (CxA) (Lembaga Pengujian Independen) | Menyusun Cx Plan & skrip, mengelola kalibrasi, memimpin langkah, mencatat data, & mengaudit cacat. Tdk menutup cacat sendiri. |
+| KONTRAKTOR PELAKSANA (Utama / Mekanikal / Elektrikal) | Menyediakan gambar as-built, mengoperasikan pemutus arus & katup, dan melakukan perbaikan cacat fisik di bawah izin kerja. |
 
 ## Tiga Pihak Komersial
 
@@ -33,26 +24,14 @@ Jika sebuah perusahaan rekayasa tunggal dikontrak untuk melakukan konstruksi sek
 
 Di dalam tim penguji di lantai aula, lima fungsi teknis yang berbeda harus diisi. Ini merupakan tanggung jawab fungsional, bukan keharusan adanya lima individu yang terpisah secara kaku; pada pengujian yang lebih kecil, seorang insinyur berpengalaman dapat mencakup beberapa disiplin ilmu. Namun demikian, tidak ada individu yang boleh bertindak sebagai satu-satunya saksi untuk tugas operasional yang mereka lakukan secara fisik sendiri.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| LIMA DISIPLIN FUNGSIONAL |
-+-------------------+------------------------------------------------------------------------------+
-| 1. TEST LEAD | Memiliki jendela pengujian yang disetujui, menegakkan klaim, mengarahkan |
-| | waktu langkah, mengelola komunikasi, dan memegang otoritas tunggal beban panas|
-+-------------------+------------------------------------------------------------------------------+
-| 2. INSINYUR ELEKTRO| Mengarahkan LOTO, uji isolasi megger & pentanahan, verifikasi rotasi fasa, |
-| | memantau kurva trip PDU hulu, dan menjalankan pemindaian termal (IR). |
-+-------------------+------------------------------------------------------------------------------+
-| 3. INSINYUR MESIN | Mengelola loop fluida sekunder, mengawasi penahanan tekanan & pembuangan |
-| | udara, mengaudit kurva pompa CDU, dan melacak integritas segel QD. |
-+-------------------+------------------------------------------------------------------------------+
-| 4. INSINYUR KONTROL| Memeriksa silang telemetri BMS thdp instrumen lapangan terkalibrasi, validasi|
-| | register Modbus/BACnet, dan menyuntikkan gangguan alarm utk verifikasi logika|
-+-------------------+------------------------------------------------------------------------------+
-| 5. TEKNISI UJI | Mengelola sambungan fisik bank beban, memverifikasi log kalibrasi instrumen, |
-| | mencatat semua nilai terukur dgn tinta di lembar master, dan menjaga arsip. |
-+-------------------+------------------------------------------------------------------------------+
-```
+**LIMA DISIPLIN FUNGSIONAL**
+
+| 1. TEST LEAD | Memiliki jendela pengujian yang disetujui, menegakkan klaim, mengarahkan waktu langkah, mengelola komunikasi, dan memegang otoritas tunggal beban panas |
+| :--- | :--- |
+| 2. INSINYUR ELEKTRO | Mengarahkan LOTO, uji isolasi megger & pentanahan, verifikasi rotasi fasa, memantau kurva trip PDU hulu, dan menjalankan pemindaian termal (IR). |
+| 3. INSINYUR MESIN | Mengelola loop fluida sekunder, mengawasi penahanan tekanan & pembuangan udara, mengaudit kurva pompa CDU, dan melacak integritas segel QD. |
+| 4. INSINYUR KONTROL | Memeriksa silang telemetri BMS thdp instrumen lapangan terkalibrasi, validasi register Modbus/BACnet, dan menyuntikkan gangguan alarm utk verifikasi logika |
+| 5. TEKNISI UJI | Mengelola sambungan fisik bank beban, memverifikasi log kalibrasi instrumen, mencatat semua nilai terukur dgn tinta di lembar master, dan menjaga arsip. |
 
 ### 1. Pimpinan Pengujian (*The Test Lead*)
 Memiliki jendela pengujian yang disetujui, berkoordinasi dengan bagian operasi fasilitas, mengarahkan transisi langkah, dan memastikan pengujian mematuhi revisi skrip yang disetujui secara ketat. Pimpinan Pengujian tidak memegang instrumen di tangan mereka; perhatian mereka difokuskan pada stabilitas sistem, kepatuhan protokol, dan keselamatan keseluruhan.
@@ -76,18 +55,14 @@ Distribusi otoritas selama pengujian dinamis mengikuti dua aturan mutlak:
 1. **Otoritas Perintah Tunggal**: Beban termal hanya boleh diperintahkan oleh tepat **satu individu**—yaitu Pimpinan Pengujian (*Test Lead*) yang ditunjuk. Nama individu tersebut dicatat dengan tinta pada Lembar 3 sebelum pemutus arus pertama diaktifkan. Tidak ada tahapan beban yang boleh dimulai atas saran lisan dari pemilik, kontraktor, atau vendor yang mengamati.
 2. **Otoritas Penghentian Universal**: Penghentian darurat (*emergency stop*) dapat diserukan oleh **setiap individu yang hadir di aula data**. Otoritas ini bersifat mutlak, tidak dapat dinegosiasikan, dan tidak memerlukan persetujuan sebelumnya dari Pimpinan Pengujian. Jika seorang teknisi melihat kebocoran pada sambungan lepas-cepat, seorang asisten listrik mencium bau yang tidak biasa, atau seorang pengamat merasa ragu tentang kondisi transien operasional, mereka berhak menyerukan penghentian segera. Sistem akan dimatikan seketika tanpa perdebatan.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| TATA KELOLA PERINTAH DAN PENGHENTIAN |
-+--------------------------------------------------+-------------------------------------------------+
+**TATA KELOLA PERINTAH DAN PENGHENTIAN**
+
 | SIAPA YANG BOLEH MEMERINTAHKAN BEBAN PANAS | SIAPA YANG BOLEH MENYERUKAN PENGHENTIAN DARURAT |
-+--------------------------------------------------+-------------------------------------------------+
+| :--- | :--- |
 | • Tepat SATU orang yang disebutkan di lokasi. | • SETIAP ORANG di dalam ruangan. |
-| • Dicatat dengan tinta di Lembar 3 sblm langkah 1| • Memerlukan nol konsensus / persetujuan awal. |
+| • Dicatat dengan tinta di Lembar 3 sblm langkah 1 | • Memerlukan nol konsensus / persetujuan awal. |
 | • Wajib konfirmasi seluruh gerbang prasyarat sah | • Mengesampingkan seluruh jadwal & biaya proyek |
 | • Beroperasi ketat dlm langkah skrip disetujui. | • Berdiri di atas bagan organisasi sepenuhnya. |
-+--------------------------------------------------+-------------------------------------------------+
-```
 
 ## Tata Kelola Rapat Perdana (Kickoff Meeting)
 

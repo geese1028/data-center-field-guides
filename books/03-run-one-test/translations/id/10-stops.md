@@ -47,28 +47,15 @@ Dengan *loop* yang berjalan di bawah beban termal penuh, lepaskan kabel jaringan
 
 Demobilisasi dari pengujian termal multi-megawatt membutuhkan disiplin operasional yang sama tingginya dengan saat memulainya. Urutan pemadaman dan pemutusan energi harus dieksekusi dalam urutan yang ketat dan tidak dapat dibalik.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| URUTAN EKSEKUSI PENGHENTIAN WAJIB |
-+----+-----------------------------+-----------------------------------------------------------------+
-|LANG| PERINTAH TINDAKAN | ALASAN REKAYASA KESELAMATAN |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 01 | LEPASKAN BEBAN TERMAL KE 0kW| Putus seluruh kontaktor pemanas/SCR. Jangan pernah menghentikan |
-| | | sirkulasi fluida saat 1,2 MW panas listrik aktif! |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 02 | BUKA PEMUTUS ARUS BANK BEBAN| LOTO seluruh pengumpan listrik primer. Buktikan sirkuit telah |
-| | | mati tegangan menggunakan detektor tegangan terkalibrasi. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 03 | PENDINGINAN FLUIDA 10 MENIT | Pertahankan sirkulasi pompa sekunder selama 10 menit utk |
-| | | membuang sisa panas elemen & mencegah pendidihan lokal. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 04 | HENTIKAN POMPA SEKUNDER CDU | Matikan pompa hanya setelah suhu fluida turun aman di bawah |
-| | | 30,0°C. Konfirmasikan tekanan diferensial 0 kPa. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 05 | ISOLASI & LEPAS SELANG | Tutup katup isolasi manifold, buang head statis residual, dan |
-| | | lepaskan kopling lepas-cepat ke ember penampung cairan. |
-+----+-----------------------------+-----------------------------------------------------------------+
-```
+**URUTAN EKSEKUSI PENGHENTIAN WAJIB**
+
+| LANG | PERINTAH TINDAKAN | ALASAN REKAYASA KESELAMATAN |
+| :--- | :--- | :--- |
+| 01 | LEPASKAN BEBAN TERMAL KE 0kW | Putus seluruh kontaktor pemanas/SCR. Jangan pernah menghentikan sirkulasi fluida saat 1,2 MW panas listrik aktif! |
+| 02 | BUKA PEMUTUS ARUS BANK BEBAN | LOTO seluruh pengumpan listrik primer. Buktikan sirkuit telah mati tegangan menggunakan detektor tegangan terkalibrasi. |
+| 03 | PENDINGINAN FLUIDA 10 MENIT | Pertahankan sirkulasi pompa sekunder selama 10 menit utk membuang sisa panas elemen & mencegah pendidihan lokal. |
+| 04 | HENTIKAN POMPA SEKUNDER CDU | Matikan pompa hanya setelah suhu fluida turun aman di bawah 30,0°C. Konfirmasikan tekanan diferensial 0 kPa. |
+| 05 | ISOLASI & LEPAS SELANG | Tutup katup isolasi manifold, buang head statis residual, dan lepaskan kopling lepas-cepat ke ember penampung cairan. |
 
 > **PERINGATAN KRITIS PEMBALIKAN URUTAN**: Jangan pernah membalik Langkah 1 dan 4! Menghentikan sirkulasi fluida saat megawatt panas listrik masih aktif akan menyebabkan fluida yang tergenang di dalam saluran pemanas mendidih menjadi uap dalam hitungan detik. Ekspansi uap yang sangat cepat akan menciptakan lonjakan tekanan eksplosif yang akan merobek klem selang, menghancurkan diafragma sensor, dan menghadirkan bahaya lepuh panas yang mematikan bagi personel di lorong. Lembar 5 mewajibkan setiap langkah dicentang dalam urutan kronologis yang ketat; centang yang tidak berurutan membatalkan seluruh lembar kerja.
 

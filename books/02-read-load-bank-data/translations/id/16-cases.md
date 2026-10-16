@@ -13,7 +13,7 @@ Focus atau FLOC memicu peringatan pada pukul `14:15:02 UTC`. Log Operator mengon
 
 ### Penentuan Diagnostik
 - **Klasifikasi Manusia**: **LANGKAH TERDUGA (*EXPECTED STEP*)**.
-- **Tindakan**: Pemicu didokumentasikan di dalam log audit berdampingan dengan stempel waktu perintah (Δt = +2{,}0 s, berada jauh di dalam batas penundaan kendali yang diizinkan sebesar 5 detik).
+- **Tindakan**: Pemicu didokumentasikan di dalam log audit berdampingan dengan stempel waktu perintah (Δt = +2,0 s, berada jauh di dalam batas penundaan kendali yang diizinkan sebesar 5 detik).
 - **Jebakan yang Harus Dihindari**: Jangan menyimpulkan bahwa detektor "terlalu sensitif" lalu mencoba menaikkan ambang batas deteksi agar langkah beban berikutnya tidak bersuara! Detektor yang diam pada langkah beban yang diperintahkan adalah bukti bahwa detektor Anda tuli. Algoritma yang jujur *seharusnya* menyadari langkah beban yang diperintahkan. Catat kejadian tersebut dan lanjutkan.
 
 ## Kasus 2: Pemicu Tanpa Perintah di Dalam Penahanan Tunak
@@ -22,9 +22,9 @@ Focus atau FLOC memicu peringatan pada pukul `14:15:02 UTC`. Log Operator mengon
 Bank beban telah berjalan tujuh menit di dalam rencana penahanan jeda tunak 15 menit pada beban 100% (120 kW). Daya listrik yang diperintahkan tidak berubah. Pada pukul `14:37:18 UTC`, FLOC memicu peringatan pada saluran suhu cairan kembali.
 
 Setelah memeriksa blok data langsung, Operator mengamati:
-- Daya listrik aktif tetap konstan sempurna pada 120{,}1 kW.
-- Laju aliran volumetrik pada Kabinet 2 telah berhanyut turun dari 176{,}4 LPM menjadi 142{,}1 LPM.
-- Suhu cairan pendingin kembali pada Kabinet 2 merayap naik dari 45{,}1°C menjadi 48{,}9°C (ΔT melebar dari 10,0 K menjadi 13,8 K).
+- Daya listrik aktif tetap konstan sempurna pada 120,1 kW.
+- Laju aliran volumetrik pada Kabinet 2 telah berhanyut turun dari 176,4 LPM menjadi 142,1 LPM.
+- Suhu cairan pendingin kembali pada Kabinet 2 merayap naik dari 45,1°C menjadi 48,9°C (ΔT melebar dari 10,0 K menjadi 13,8 K).
 
 ### Penentuan Diagnostik
 - **Klasifikasi Manusia**: **PATAHAN TENGAH-PENAHANAN TANPA PERINTAH (ANOMALI HIDROLIK) / *UNCOMMANDED MID-HOLD BREAK (HYDRAULIC ANOMALY)***.
@@ -52,7 +52,7 @@ Selama masa jeda 15 menit, FLOC memicu peringatan pada pukul `15:10:14 UTC`. Foc
 ### Bukti Operasional
 Masa jeda 15 menit pada beban 100% selesai. Baik Focus maupun FLOC tidak mengeluarkan satu pun peringatan. Seorang teknisi junior melaporkan bahwa larian pengujian berlangsung "luar biasa stabil".
 
-Saat memeriksa berkas CSV mentah, Orang Asing melihat bahwa Sensor Suhu Kembali RTD-102 melaporkan nilai tepat 45{,}000000°C selama 900 detik berturut-turut. Varians sampel terhitung di sepanjang masa jeda adalah $σ² \equiv 0{,}000000 K²$.
+Saat memeriksa berkas CSV mentah, Orang Asing melihat bahwa Sensor Suhu Kembali RTD-102 melaporkan nilai tepat 45,000000°C selama 900 detik berturut-turut. Varians sampel terhitung di sepanjang masa jeda adalah $σ² \equiv 0,000000 K²$.
 
 ### Penentuan Diagnostik
 - **Klasifikasi Manusia**: **KECURANGAN DATA BASI / PEMBEKUAN BUFFER (*STALE DATA / BUFFER FREEZE FRAUD*)**.
@@ -73,13 +73,13 @@ Larian pengujian selesai, berkas ditutup, dan CPOP dieksekusi pada masa jeda beb
 - **Tindakan**:
  1. Jangan mengklaim bahwa "dataran tinggi tersebut gagal dalam CPOP".
  2. Sesuaikan kotak evaluasi analitis pada lembar proyek agar dimulai pada Menit ke-04 (t ≥ 4τ).
- 3. Jalankan ulang CPOP pada jendela yang dipotong `[Menit ke-04 hingga Menit ke-15]`. Jika CPOP sekarang mencocokkan sisa 11 menit sebagai satu kemiringan horizontal bersih tunggal (|m| ≤ 0{,}001 K/s), dataran tinggi kondisi tunak terverifikasi secara matematis.
+ 3. Jalankan ulang CPOP pada jendela yang dipotong `[Menit ke-04 hingga Menit ke-15]`. Jika CPOP sekarang mencocokkan sisa 11 menit sebagai satu kemiringan horizontal bersih tunggal (|m| ≤ 0,001 K/s), dataran tinggi kondisi tunak terverifikasi secara matematis.
  4. Dokumentasikan konstanta waktu termal (τ = 45 s) di dalam laporan sebagai justifikasi rekayasa untuk batas jendela evaluasi.
 
 ## Kasus 6: CPOP Mendeteksi Patahan Kemiringan di Tengah Penahanan Saat Daya Datar
 
 ### Bukti Operasional
-Pada berkas yang telah ditutup, CPOP menganalisis masa jeda 15 menit dan menempatkan patahan kemiringan yang tidak ambigu pada Menit ke-09. Daya listrik aktif berupa satu kemiringan horizontal tunggal (P_elec = 120{,}1 kW ± 0{,}1 kW). Aliran volumetrik juga datar. Namun kemiringan suhu bertransisi dari 0{,}000 K/s (horizontal) menjadi +0{,}008 K/s (merayap naik).
+Pada berkas yang telah ditutup, CPOP menganalisis masa jeda 15 menit dan menempatkan patahan kemiringan yang tidak ambigu pada Menit ke-09. Daya listrik aktif berupa satu kemiringan horizontal tunggal (P_elec = 120,1 kW ± 0,1 kW). Aliran volumetrik juga datar. Namun kemiringan suhu bertransisi dari 0,000 K/s (horizontal) menjadi +0,008 K/s (merayap naik).
 
 ### Penentuan Diagnostik
 - **Klasifikasi Manusia**: **HANYUTAN PENDINGINAN FASILITAS PRIMER (*PRIMARY FACILITY COOLING DRIFT*)**.
@@ -92,7 +92,7 @@ Pada berkas yang telah ditutup, CPOP menganalisis masa jeda 15 menit dan menempa
 ## Kasus 7: CPOP Bersih, tetapi Tanda Termal Salah
 
 ### Bukti Operasional
-CPOP mencocokkan masa jeda beban penuh 15 menit dengan satu kemiringan horizontal tunggal yang tanpa cela (K = 0, varians nol). Namun suhu pasokan terukur adalah 45{,}1°C dan suhu kembali adalah 35{,}0°C.
+CPOP mencocokkan masa jeda beban penuh 15 menit dengan satu kemiringan horizontal tunggal yang tanpa cela (K = 0, varians nol). Namun suhu pasokan terukur adalah 45,1°C dan suhu kembali adalah 35,0°C.
 
 ### Penentuan Diagnostik
 - **Klasifikasi Manusia**: **SAMBUNGAN HIDROLIK TERBALIK (*REVERSED HYDRAULIC CONNECTION*)**.

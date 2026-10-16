@@ -37,21 +37,17 @@ Memasukkan inspeksi fisik lokasi ke dalam binder penerimaan pabrik adalah penipu
 
 Untuk mencegah pelanggaran kepatuhan ini, halaman pertama Rencana Komisioning harus memuat matriks referensi silang yang jelas:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| MATRIKS PENERJEMAHAN TINGKAT KOMISIONING |
-+--------------------------+----------------------------+--------------------------------------------+
-| TINGKAT SERTIFIKAT GLOBAL| ISTILAH KONTRAKTOR LOKAL | BATAS VERIFIKASI WAJIB |
-+--------------------------+----------------------------+--------------------------------------------+
+**MATRIKS PENERJEMAHAN TINGKAT KOMISIONING**
+
+| TINGKAT SERTIFIKAT GLOBAL | ISTILAH KONTRAKTOR LOKAL | BATAS VERIFIKASI WAJIB |
+| :--- | :--- | :--- |
 | Level 0: Audit Desain | Dikecualikan / Dilampirkan | Persetujuan OPR & BOD; pelepasan tinjauan. |
-| Level 1: Pengujian Pabrik| Dokumentasi Vendor FAT | Rekaman uji pabrik dilampirkan sbg bukti. |
+| Level 1: Pengujian Pabrik | Dokumentasi Vendor FAT | Rekaman uji pabrik dilampirkan sbg bukti. |
 | Level 2: QA Penerimaan | Tahap 1 (Statis Bagian A) | Lembar 1: Buka peti, megger, rotasi fasa. |
 | Level 3: PFC & Start-Up | Tahap 1 (Statis Bagian B) | Lembar 1: Bilas, tahan hidro, isi & buang. |
-| Level 4: Fungsional (FPT)| Tahap 2 (Sistem Tunggal) | Lembar 2, Lembar 6, Lembar 7: CDU & alarm. |
-| Level 5: Terintegrasi IST| Tahap 3 (Jendela Panas) | Lembar 3, Lembar 4: Tangga panas & uji 2N. |
+| Level 4: Fungsional (FPT) | Tahap 2 (Sistem Tunggal) | Lembar 2, Lembar 6, Lembar 7: CDU & alarm. |
+| Level 5: Terintegrasi IST | Tahap 3 (Jendela Panas) | Lembar 3, Lembar 4: Tangga panas & uji 2N. |
 | Level 6: Serah Terima | Serah Terima Penutupan | Lembar 5, Pembersihan cacat, paket Cx. |
-+--------------------------+----------------------------+--------------------------------------------+
-```
 
 ## Aturan Gerbang dan Interlock Wajib
 

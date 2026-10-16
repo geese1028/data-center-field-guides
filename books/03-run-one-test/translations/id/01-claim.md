@@ -6,21 +6,17 @@ Proyek verifikasi pendinginan cair gagal pada minggu pertamanya ketika tidak ada
 
 Pada proyek-proyek aula data AI yang menjadi dasar panduan lapangan ini, keputusan komersial tersebut adalah apakah infrastruktur pendinginan fasilitas secara hukum dan mekanis dapat diterima untuk penempatan TI produksi (*IT deployment*). Keputusan itu bukan tentang apakah chip komputasi terakselerasi akan berhasil menjalankan beban kerja pelatihan model terdistribusi. Keputusan itu juga bukan tentang apakah purwarupa bank beban cair memenuhi standar litbang manufaktur. Klaim-klaim tersebut milik lingkup rekayasa lain, bangku uji lain, dan tanda tangan lain.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| BATAS KALIMAT KLAIM PROYEK |
-+------------------------------------+---------------------------------------------------------------+
+**BATAS KALIMAT KLAIM PROYEK**
+
 | APA YANG DIBUKTIKAN KLAIM HUKUM | APA YANG TIDAK DAPAT DIBUKTIKAN OLEH KLAIM |
-+------------------------------------+---------------------------------------------------------------+
-| • Perpindahan panas CDU beban 1,2MW| • Efisiensi komputasi silikon atau performa tensor |
-| • Kecepatan failover pompa sekunder| • Laju korosi galvanik jangka panjang sambungan cepat (QD) |
+| :--- | :--- |
+| • Perpindahan panas CDU beban 1,2MW | • Efisiensi komputasi silikon atau performa tensor |
+| • Kecepatan failover pompa sekunder | • Laju korosi galvanik jangka panjang sambungan cepat (QD) |
 | N+1 | • Nilai PUE pendinginan bebas musiman instalasi chiller pusat |
 | • Keseimbangan reverse-return | • Ketahanan manufaktur elemen pemanas purwarupa bank beban |
 | manifold | • Kepatuhan beban angin struktural selubung bangunan gedung |
-| • Penutupan panas entalpi >= 97,0% | |
-| • Penanganan transfer daya 2N | |
-+------------------------------------+---------------------------------------------------------------+
-```
+| • Penutupan panas entalpi >= 97,0% |  |
+| • Penanganan transfer daya 2N |  |
 
 ## Merumuskan Klaim Proyek
 

@@ -16,8 +16,8 @@ Kehilangan salah satu saja dari kelima judul ini bukanlah pilihan pemformatan ya
 ## Judul 1: Nilai Setelan dan Perintah
 
 Bagian pertama dari blok data mencatat perintah yang diberikan ke mesin *sebelum* masa jeda (*dwell*) dimulai:
-- Beban listrik yang diperintahkan: misalnya, 120{,}0 kW (atau persentase spesifik dari beban nominal: 25%, 50%, 75%, 100%, 110%).
-- Pembagian daya yang diperintahkan di seluruh penyulang ganda: misalnya, Penyulang A = 60{,}0 kW, Penyulang B = 60{,}0 kW.
+- Beban listrik yang diperintahkan: misalnya, 120,0 kW (atau persentase spesifik dari beban nominal: 25%, 50%, 75%, 100%, 110%).
+- Pembagian daya yang diperintahkan di seluruh penyulang ganda: misalnya, Penyulang A = 60,0 kW, Penyulang B = 60,0 kW.
 - Posisi katup modulasi yang diperintahkan: misalnya, TCV = 100% terbuka penuh (atau posisi katup penyeimbang terkunci = 4,2 putaran).
 - Kecepatan *blower* udara pendamping yang diperintahkan: misalnya, 100% (atau tetap 1200 CFM).
 
@@ -39,7 +39,7 @@ Bagian ketiga memerinci daya listrik aktif yang ditarik oleh elemen pemanas. Dal
 - **Metrik Penyulang B**: Tegangan saluran-ke-saluran, arus saluran, total daya aktif Penyulang B (P_B), dan faktor daya (PF_B).
 - **Daya Aktif Total**: 
  $$P_{\text{elec}} = P_A + P_B$$
-- **Verifikasi Keseimbangan Fasa**: Ketidakseimbangan arus antarfasa harus memenuhi I_unbalance ≤ 2{,}0%. Arus yang sangat tidak seimbang mengindikasikan bahwa satu kelompok resistor telah putus (*open-circuit*) atau kutub kontaktor internal telah terkorosi/berlubang (*pitted*) sehingga gagal menutup sempurna.
+- **Verifikasi Keseimbangan Fasa**: Ketidakseimbangan arus antarfasa harus memenuhi I_unbalance ≤ 2,0%. Arus yang sangat tidak seimbang mengindikasikan bahwa satu kelompok resistor telah putus (*open-circuit*) atau kutub kontaktor internal telah terkorosi/berlubang (*pitted*) sehingga gagal menutup sempurna.
 
 ## Judul 4: Data Entalpi Hidrolik
 
@@ -51,15 +51,15 @@ Bagian keempat menangkap penyerapan kalor termodinamika oleh fluida pendingin. H
 4. **Laju Aliran Volumetrik (Q_v)**: Diukur melalui pengukur aliran pelepasan pusaran (*vortex shedding flow meter*) terkalibrasi (dilaporkan dalam liter per menit, LPM).
 5. **Properti Termofisik Fluida**: Densitas (ρ) dan kapasitas kalor spesifik (C_p) harus dievaluasi pada suhu limbak (*bulk*) rata-rata fluida:
  $$\bar{T} = \frac{T_{\text{in}} + T_{\text{out}}}{2}$$
- Untuk larutan standar Propilen Glikol 25% / Air 75% (PG25) pada $\bar{T} = 40{,}0°C$, nilai standarnya adalah:
- $$\rho = 1025{,}0\,\text{kg/m}^3, \quad C_p = 3{,}980\,\text{kJ/(kg}\cdot\text{K)}$$
+ Untuk larutan standar Propilen Glikol 25% / Air 75% (PG25) pada $\bar{T} = 40,0°C$, nilai standarnya adalah:
+ $$\rho = 1025,0\,\text{kg/m}^3, \quad C_p = 3,980\,\text{kJ/(kg}\cdot\text{K)}$$
 6. **Kalor Termal Cairan Terinferensi (Q_liquid)**: 
  Diturunkan langsung dari termodinamika prinsip pertama:
- $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60{,}000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
+ $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60,000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
 
-Untuk model referensi edukasional garis dasar yang beroperasi pada beban penuh nominal (Q_v = 176{,}5 LPM, ΔT = 10{,}04 K):
-$$\dot{m} = 176{,}5 \times \frac{1025{,}0}{60{,}000} = 3{,}015\,\text{kg/s}$$
-$$Q_{\text{liquid}} = 3{,}015\,\text{kg/s} \times 3{,}980\,\text{kJ/(kg}\cdot\text{K)} \times 10{,}04\,\text{K} = 120{,}48\,\text{kW} \times \text{rasio pemisahan} \approx 98{,}6\,\text{kW}$$
+Untuk model referensi edukasional garis dasar yang beroperasi pada beban penuh nominal (Q_v = 176,5 LPM, ΔT = 10,04 K):
+$$\dot{m} = 176,5 \times \frac{1025,0}{60,000} = 3,015\,\text{kg/s}$$
+$$Q_{\text{liquid}} = 3,015\,\text{kg/s} \times 3,980\,\text{kJ/(kg}\cdot\text{K)} \times 10,04\,\text{K} = 120,48\,\text{kW} \times \text{rasio pemisahan} \approx 98,6\,\text{kW}$$
 
 ## Judul 5: Udara Pendamping & Penutupan Termal Prinsip Pertama
 
@@ -73,16 +73,16 @@ Dalam arsitektur AI kelas NVL72, sekitar 16% hingga 20% dari total kalor rak dib
 Berdasarkan hukum pertama termodinamika, energi listrik aktif yang disalurkan ke bank beban harus sama dengan total kalor yang meninggalkan batas kabinet ditambah kehilangan kalor parasitik tanpa insulasi:
 $$P_{\text{elec}} = Q_{\text{liquid}} + Q_{\text{air}} + Q_{\text{chassis\_loss}}$$
 
-Di mana kehilangan kalor dinding sasis tanpa insulasi ($Q_chassis\_loss$) melalui konveksi alami dan radiasi biasanya dibatasi ≤ 2{,}0% dari total daya ketika insulasi selimut keramik internal dipasang dengan benar.
+Di mana kehilangan kalor dinding sasis tanpa insulasi ($Q_chassis\_loss$) melalui konveksi alami dan radiasi biasanya dibatasi ≤ 2,0% dari total daya ketika insulasi selimut keramik internal dipasang dengan benar.
 
 ### Gerbang Rasio Penutupan Entalpi
 Laporan kilat mengevaluasi **Rasio Penutupan Entalpi**:
-$$\text{Rasio Penutupan} = \left[ 1{,}0 - \frac{|P_{\text{elec}} - (Q_{\text{liquid}} + Q_{\text{air}})|}{P_{\text{elec}}} \right] \times 100\%$$
+$$\text{Rasio Penutupan} = \left[ 1,0 - \frac{|P_{\text{elec}} - (Q_{\text{liquid}} + Q_{\text{air}})|}{P_{\text{elec}}} \right] \times 100\%$$
 
 Untuk meraih predikat **LULUS (*PASS*)** pada blok data langkah beban, penutupan energi harus memenuhi:
-$$\text{Rasio Penutupan} \ge 97{,}0\% \quad \left( \text{atau diskrepansi energi } \le 3{,}0\% \right)$$
+$$\text{Rasio Penutupan} \ge 97,0\% \quad \left( \text{atau diskrepansi energi } \le 3,0\% \right)$$
 
-Jika P_elec = 120{,}0 kW, tetapi jumlah entalpi cairan (Q_liquid = 75{,}0 kW) dan kalor udara (Q_air = 19{,}0 kW) hanya 94{,}0 kW, rasio penutupannya hanyalah 78{,}3%! Terdapat 26{,}0 kW energi yang hilang!
+Jika P_elec = 120,0 kW, tetapi jumlah entalpi cairan (Q_liquid = 75,0 kW) dan kalor udara (Q_air = 19,0 kW) hanya 94,0 kW, rasio penutupannya hanyalah 78,3%! Terdapat 26,0 kW energi yang hilang!
 - Diskrepansi ini tidak boleh dihaluskan dengan menambahkan "faktor efisiensi" atau "koreksi kehilangan" yang tidak terdokumentasi.
 - Kegagalan penutupan entalpi sebesar 26 kW mengindikasikan cacat fisik yang parah: fluida mengalami hubungan pendek (*bypass*) di sekitar bejana pemanas melalui katup *bypass* yang terbuka, faktor kalibrasi pengukur aliran (*K-factor*) salah, atau RTD terpasang pada cabang pipa buntu (*dead-leg*) yang stagnan.
 - Kegagalan penutupan energi menggagalkan dataran tinggi langkah beban tanpa syarat.
@@ -104,5 +104,5 @@ Untuk setiap blok data langkah yang disusun dalam laporan kilat, catat:
 - Tegangan listrik 3-fasa, arus, faktor daya, dan total daya aktif P_elec.
 - Suhu fluida terukur, aliran volumetrik, densitas fluida, kalor spesifik, dan entalpi cairan terinferensi Q_liquid.
 - Suhu udara terukur, laju aliran udara, dan kalor udara pendamping terinferensi Q_air.
-- Rasio Penutupan Entalpi Prinsip Pertama yang dihitung, yang mengesahkan bahwa penutupan ≥ 97{,}0%.
+- Rasio Penutupan Entalpi Prinsip Pertama yang dihitung, yang mengesahkan bahwa penutupan ≥ 97,0%.
 - Paraf Pencatat dan Orang Asing yang mengonfirmasi keseimbangan energi.

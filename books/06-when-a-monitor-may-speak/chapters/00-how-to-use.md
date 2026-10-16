@@ -15,34 +15,28 @@ The earlier books in this series established the physical baselines:
 
 This book is the operational bridge between physical reality and digital telemetry. It establishes when a dashboard is permitted to speak at all. It does not replace the physical pressure gauge, the walked infrared thermography scan, or the signed shift logbook.
 
-```
-+-----------------------------------------------------------------------------+
-| OPERATIONAL TELEMETRY PIPELINE |
-| |
+| **OPERATIONAL TELEMETRY PIPELINE** |
+| :--- |
 | [PHYSICAL SENSOR] 4-20mA / RTD / Contact / CT / PT Transducer |
-| | |
+| ↓ |
 | [POINT INGESTION] Value + UTC Timestamp (PTP/NTP) + Source URI + Quality |
-| | |
+| ↓ |
 | [QUALITY GATE] Quality Bitmask == GOOD (0x00)? |
-| | --> NO: Quench alarming; flag STALE/FAULT telemetry |
-| | --> YES: Pass to Signal Processing Filter |
-| | |
+| → NO: Quench alarming; flag STALE/FAULT telemetry |
+| → YES: Pass to Signal Processing Filter |
+| ↓ |
 | [SIGNAL FILTER] Apply Analog Deadband Hysteresis (Delta-H) |
-| | Evaluate Continuous Dwell Window (t >= t_dwell) |
-| | Anti-Flap Quarantine Engine (N_toggles >= 4 in 10 min) |
-| | |
+| Evaluate Continuous Dwell Window (t >= t_dwell) |
+| Anti-Flap Quarantine Engine (N_toggles >= 4 in 10 min) |
+| ↓ |
 | [ALARM STORM MASK] Topology-Aware Parent-Child Dependency Suppression |
-| | Upstream breaker trip mutes downstream symptom alarms |
-| | |
+| Upstream breaker trip mutes downstream symptom alarms |
+| ↓ |
 | [HUMAN GATEWAY] An Alert is NOT an Incident! |
-| | Only designated Duty Manager may promote based on: |
-| | (1) SLA breach, (2) Life safety, (3) Redundancy loss |
-| | |
+| Only designated Duty Manager may promote based on: |
+| (1) SLA breach, (2) Life safety, (3) Redundancy loss |
+| ↓ |
 | [THE 5-LINE PAGE] Time, Point & Path, Line, Person Woken, First Look/Stop |
-+-----------------------------------------------------------------------------+
-```
-
-![Anatomy of an Operational Point & Quality Bitmask](../figures/fig-01-point-anatomy-and-quality-flag.png)
 
 A monitor that disagrees with a walked physical measurement does not win simply by being automated. When the digital screen reports that a CDU secondary loop is operating at 28.0°C while the technician's calibrated hand-held probe reads 34.5°C, the physical probe wins every single time until the digital channel is proven, re-calibrated, and accepted under a forced-failure test.
 
@@ -65,3 +59,17 @@ Do not attach false mathematical precision to an uncalibrated system. If you hav
 - The exact operational decision this screen is permitted to support, stated in one unambiguous sentence.
 - The specific points you will mute and keep silent until their Point Sheet is completely audited.
 - The named individual who holds the exclusive authority to promote a software alert into a production incident.
+
+## Quantitative Telemetry Governance and Signal Integrity Architecture
+
+In a modern hyperscale or colocation data center, a single 20 MW facility exposes between $45,000$ and $120,000$ hardware and software monitoring points across its Building Management System (BMS), Electrical Power Monitoring System (EPMS), Generator Supervisory Control and Data Acquisition (SCADA), and Liquid Coolant Distribution Unit (CDU) controllers. When an unvetted monitoring screen is allowed to page on-call engineers directly from raw register thresholds—without clock synchronization, quality bitmask filtering, hysteresis deadbands, or topology suppression—the control room experiences two fatal failure modes:
+1. **The Silent Green Lie**: A protocol gateway freezes and repeats its last cached value (`34.8°C`), displaying a calm green tile while the physical CDU pump is cavitating at `68.0°C`.
+2. **The Cascading Alarm Storm**: A single upstream medium-voltage feeder trip triggers $1,400$ downstream low-voltage, PDU, and CRAH loss-of-power pages within $3$ seconds, blinding the shift operator to the root-cause breaker.
+
+| Telemetry Governance Gate | Mathematical / Protocol Requirement | Operational Failure Prevented | Chapter Reference |
+| :--- | :--- | :--- | :--- |
+| **1. Point Tuple Completeness** | $P = \{V, \, t_{\text{UTC}}, \, \text{URI}_{\text{source}}, \, Q_{\text{mask}}\}$ | Anonymous or un-timestamped register values on HMI | Chapters 1 & 2 |
+| **2. Clock Synchronization** | PTP IEEE 1588v2 ($|\Delta t| \le 1\,\text{ms}$) / NTP ($\le 10\,\text{ms}$) | Inverted causal ordering in post-trip Sequence of Events (SOE) | Chapter 3 |
+| **3. Quality Bitmask Separation** | Explicit state machine: `0x00` Good, `0x40` Uncertain/Stale, `0x80` Bad | Rendering stale or disconnected sensors as normal green tiles | Chapter 4 |
+| **4. Hysteresis & Dwell Filter** | Trigger at $V \ge T_{\text{high}}$ for $t \ge t_{\text{dwell}}$; clear at $V \le T_{\text{high}} - \Delta H$ | Chattering alarm floods from turbulent sensor noise | Chapter 5 |
+| **5. Topological Suppression** | Parent-child directed acyclic graph ($G = (V, E)$) root-cause masking | $1,000+$ child alerts burying the primary breaker trip | Chapter 8 |

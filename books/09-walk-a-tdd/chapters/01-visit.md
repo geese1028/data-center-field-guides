@@ -30,6 +30,18 @@ Findings are rigorously segregated into a three-tier hierarchy:
 - **Tier 2: Material Deficiency (Amber Flag)**: Degraded fuel without polishing, floor loading deficits for dense AI racks, single-header cooling vulnerabilities, or incomplete integrated systems commissioning. Handled via mandatory Conditions Precedent and financial escrow holdbacks.
 - **Tier 3: Operational Defect (Green Flag)**: Redline drawing reconciliation backlog, minor maintenance contract renewal gaps, or cosmetic non-structural defects. Resolved under Conditions Subsequent within a 90-day post-closing cure window.
 
+## Quantitative Risk Scoring and Deal-Breaker Thresholds in Technical Due Diligence
+
+During Stage 1 through Stage 4 of the Technical Due Diligence, every physical observation is scored against its unmitigated Single-Point-of-Failure ($\text{SPOF}$) probability and capital remediation cost ($C_{\text{remedy}}$):
+
+$$\text{Risk Exposure}_{k} = P_{\text{failure}, k} \times \left( C_{\text{SLA\_penalty}} + C_{\text{remedy}, k} \right)$$
+
+| TDD Risk Classification Tier | Technical Trigger Criterion | Required Financial / Legal Covenant Action | Sign-Off Owner |
+| :--- | :--- | :--- | :--- |
+| **Tier 1: Fatal Flaw (Red Flag)** | Unmitigated 500-yr flood plain, missing grid easement, structural slab overload | Immediate halt to debt drawdown / deal exclusivity | Investment Committee |
+| **Tier 2: Material Deficiency (Amber)** | N+1 cooling shortfall at $99.6\%$ wet-bulb, unpolished fuel, missing IST | Mandatory Condition Precedent (CP) + $150\%\text{--}200\%$ Cash Escrow | Lead Technical Advisor + Counsel |
+| **Tier 3: Operational Defect (Green)** | As-built redline backlog, minor PM log gaps, cosmetic seal wear | Condition Subsequent (CS) cured within $90\,\text{days}$ post-close | Asset Management / Operations |
+
 ## Decisions to record
 
 - Reader: lender, buyer, or other. Named in the engagement, not guessed.

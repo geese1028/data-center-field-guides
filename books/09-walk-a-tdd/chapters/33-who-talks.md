@@ -10,6 +10,21 @@ You do not interview the tenant's users about their jobs, unless that layer is i
 
 Two interviews that disagree are not averaged. Tag both. The person who operates tonight outweighs the person who sold the financing, on the question of what they can do tonight. The contract outweighs both, on the question of what is owed.
 
+## Interviewing Night-Shift Technicians vs. Executive Tour Guides
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{Operational Readiness} \propto \text{Night-Shift Technician Verbal EOP Recall}$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Interviewing Night-Shift Technicians vs. Executive Tour Guides | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - Name on the roster, spoken to, or not available and written as not heard.

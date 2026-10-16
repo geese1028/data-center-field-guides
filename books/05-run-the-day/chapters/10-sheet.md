@@ -2,23 +2,19 @@
 
 The Master Day Sheet is the binding legal, technical, and operational ledger of the data center shift.
 
-```
-+-----------------------------------------------------------------------------+
-| MASTER DAY SHEET STRUCTURE |
-| |
-| [SECTION 1] Pre-Shift Turnover Audit (Impairments, Permits, Incidents, MOP)|
-| | |
-| [SECTION 2] Authorized Work & PTW Registry (Scope, LOTO, Expiration Clocks)|
-| | |
-| [SECTION 3] Physical Shift Round Log (6 Stations, Multi-Sensory Parameters)|
-| | |
+| **MASTER DAY SHEET STRUCTURE** |
+| :--- |
+| [SECTION 1] Pre-Shift Turnover Audit (Impairments, Permits, Incidents, MOP) |
+| ↓ |
+| [SECTION 2] Authorized Work & PTW Registry (Scope, LOTO, Expiration Clocks) |
+| ↓ |
+| [SECTION 3] Physical Shift Round Log (6 Stations, Multi-Sensory Parameters) |
+| ↓ |
 | [SECTION 4] Incident & Escalation Chronology (Classification, T-15 SLA) |
-| | |
+| ↓ |
 | [SECTION 5] Capacity & Redundancy Audit (45% Power Rule, CDU Hydraulics) |
-| | |
+| ↓ |
 | [SECTION 6] The Final Closeout Sentence (The single immutable signature) |
-+-----------------------------------------------------------------------------+
-```
 
 ![Manager Shift Closeout Sheet](../figures/fig-07-manager-shift-closeout-sheet.png)
 
@@ -130,3 +126,18 @@ Copy the headings below into your facility's operational software or printed tur
 - **Duty Manager Signature**: `__________________________________________`
 - **License / Certification Number**: `_________________________________`
 - **Date & Exact Timestamp**: `_________________________________________`
+
+## Quantitative Shift Turnover Audit Protocol
+
+The Master Day Sheet is only legally and operationally valid when signed by **both** the outgoing Shift Lead and the incoming Shift Lead after completing a face-to-face walkthrough of the control room screen and all active LOTO/MOP boundaries. A turnover left on a desk without a joint verbal and visual audit is an abandoned watch.
+
+| Turnover Verification Item | Outgoing Shift Lead Duty | Incoming Shift Lead Verification | Refusal to Assume Watch Trigger |
+| :--- | :--- | :--- | :--- |
+| **1. Active LOTO & Key Box** | Present LOTO logbook and physical key box count | Verify every lock on the board matches an active tag in the log | Missing LOTO key or unlogged lock on switchgear/valve |
+| **2. 2N Bus Load Headroom** | Record peak 15-min kVA and THD across all UPS/Transformer pairs | Confirm $\max(S_A, S_B) \le 0.45 S_{\text{rated}}$ on live EPMS | Unexplained bus load $> 45\%$ without signed derogation |
+| **3. Masked / Suppressed Points** | Print full list of BMS/EPMS points in Maintenance or Override mode | Cross-check every suppressed point against an active work ticket | Orphaned alarm mask or forced manual valve/fan override |
+| **4. Open Incidents & EOPs** | Hand over preserved COMTRADE/SOE files and current plant state | Confirm plant is holding in a verified stable state | Ongoing uncontained transient; outgoing lead stays as support |
+
+## Auditing Historical Master Day Sheets for Slow-Creep Degradation Trends
+
+While a single Master Day Sheet governs a 24-hour operational window, reviewing $30$ consecutive Day Sheets side-by-side exposes slow-creep physical degradation that never triggers an instantaneous threshold alarm: a secondary CDU makeup reservoir losing $0.8\,\text{L/day}$ through a weeping fitting, a dry-type transformer winding creeping up $+0.4\,\text{K/week}$ at constant kVA load due to fouled louver filters, or a diesel starting-battery charger floating $0.3\,\text{V}$ low.

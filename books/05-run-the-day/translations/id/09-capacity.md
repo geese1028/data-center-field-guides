@@ -7,25 +7,19 @@ Tugas kapasitas harian manajer fasilitas diatur oleh tiga pertanyaan mendasar:
 2. Kapasitas apa yang digunakan secara fisik pada detik ini?
 3. Kapasitas apa yang akan bertahan jika komponen tunggal terbesar Anda gagal sekarang?
 
-```
-+-----------------------------------------------------------------------------+
-| PLAFON REDUNDANSI KAPASITAS 2N |
-| |
-| 100% +----------------------------------------------------------------+ |
-| | ZONA BAHAYA TAK TERPAKAI | |
-| | Jika Bus A trip, Bus B langsung kelebihan beban & padam total | |
-| 90% +================================================================+ |
-| | BEBAN SURVIVAL MAKSIMUM (90%) | |
-| | | |
-| 50% + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -+ |
-| | ATURAN 45%: BATAS MAKSIMUM TUNAK YANG DIIZINKAN | |
-| 45% +----------------------------------------------------------------+ |
-| | | |
-| | RENTANG OPERASI 2N YANG AMAN | |
-| | Beban Bus A <= 45% | Beban Bus B <= 45% | |
-| 0 +----------------------------------------------------------------+ |
-+-----------------------------------------------------------------------------+
-```
+| **PLAFON REDUNDANSI KAPASITAS 2N** |
+| :--- |
+| 100% |
+| ZONA BAHAYA TAK TERPAKAI |
+| Jika Bus A trip, Bus B langsung kelebihan beban & padam total |
+| 90% |
+| BEBAN SURVIVAL MAKSIMUM (90%) |
+| 50% |
+| ATURAN 45%: BATAS MAKSIMUM TUNAK YANG DIIZINKAN |
+| 45% |
+| RENTANG OPERASI 2N YANG AMAN |
+| Beban Bus A <= 45% \| Beban Bus B <= 45% |
+| 0 |
 
 ![2N Power Redundancy Ceiling](../figures/fig-04-2n-power-capacity-and-redundancy-ceiling.png)
 
@@ -66,19 +60,15 @@ Setiap manajer sif yang mengizinkan busbar listrik 2N melebihi pemanfaatan tunak
 
 Di ruang data AI berpendingin cair yang menampung rak komputasi densitas tinggi (seperti arsitektur NVIDIA NVL72 yang mengonsumsi hingga 132 kW per rak), tata kelola kapasitas hidrolik sama pentingnya dengan kapasitas listrik:
 
-```
-+-----------------------------------------------------------------------------+
-| PLAFON KAPASITAS HIDROLIK CDU |
-| |
-| Parameter Batas Desain Terukur Batas Redundansi Operasi |
-| ------------------ ------------------------ --------------------------- |
-| Pembuangan Panas 1200 kW per CDU <= 1000 kW (83% kap PHE) |
-| Laju Aliran Sekund. 1440 LPM (24 LPS) <= 1200 LPM (Pompa Tunggal N)|
-| Suhu Pasokan 25.0°C - 32.0°C (W3/W4) <= 30.0°C (Ambien Maksimum) |
-| Konfigurasi Pompa N+1 Pompa VFD Ganda 1 Pompa Jalan / 1 Siaga Auto |
-| Tekanan Loop 0.15 - 0.90 MPa Penurunan Tekanan < 1.0 bar |
-+-----------------------------------------------------------------------------+
-```
+**PLAFON KAPASITAS HIDROLIK CDU**
+
+| Parameter Batas Des | ain Terukur Batas Redunda | nsi Operasi |
+| :--- | :--- | :--- |
+| Pembuangan Panas 12 | 00 kW per CDU <= 1000 kW | (83% kap PHE) |
+| Laju Aliran Sekund. | 1440 LPM (24 LPS) <= 120 | 0 LPM (Pompa Tunggal N) |
+| Suhu Pasokan 25.0°C | - 32.0°C (W3/W4) <= 30.0 | °C (Ambien Maksimum) |
+| Konfigurasi Pompa N | +1 Pompa VFD Ganda 1 Pomp | a Jalan / 1 Siaga Auto |
+| Tekanan Loop 0.15 - | 0.90 MPa Penurunan Tekan | an < 1.0 bar |
 
 Saat mengevaluasi permintaan pelanggan untuk memasang rak berpendingin cair densitas tinggi tambahan, duty manager harus mengevaluasi kendala hidrolik:
 1. **Ketersediaan Aliran Total**: Verifikasi bahwa pompa sekunder dapat mengalirkan laju aliran volumetrik yang diperlukan (q_v) untuk mempertahankan aliran turbulen cold plate:
@@ -87,8 +77,7 @@ $$q_v = \frac{Q}{\rho \cdot c_p \cdot \Delta T}$$
 
 Di mana:
 - Q adalah total disipasi panas termal ( kW).
-- $
-- ρ adalah massa jenis propilen glikol 25% (1026\, kg/m^3pada30°C$).
+- $\rho$ adalah massa jenis propilen glikol 25% ($1026\,\text{kg/m}^3$ pada30°C).
 - c_p adalah kapasitas panas spesifik (3.92 kJ/( kg· K)).
 - ΔT adalah kenaikan suhu fluida melintasi manifold rak (biasanya 10.0 K).
 
@@ -121,3 +110,18 @@ Jika penambahan beban yang diminta melebihi alokasi kontraktual atau plafon redu
 - Laju aliran loop sekunder hidrolik, suhu pasokan, dan tekanan diferensial yang dicatat per CDU.
 - Sisa kapasitas setelah kegagalan komponen tunggal terburuk: diverifikasi melalui studi rekayasa bernama, atau dicatat sebagai tidak diketahui.
 - Setiap permintaan yang melebihi kapasitas operasional yang aman ditolak secara tertulis; nol pemberian daya "untuk mencoba."
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |
+
+$$I_{\text{RMS}} = I_1 \sqrt{1 + \text{THD}_I^2}, \qquad \text{THD}_I = \frac{\sqrt{\sum_{h=2}^{\infty} I_h^2}}{I_1}$$
+
+$$K = \sum_{h=1}^{H} \left( \frac{I_h}{I_{\text{RMS}}} \right)^2 \cdot h^2$$

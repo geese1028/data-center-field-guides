@@ -29,14 +29,14 @@ Dokumentasi yang membuktikan bahwa kluster uji layak diuji sebelum pemanasan dip
 
 ### Artefak 3: Lembar Konsistensi Multikabinet
 Evaluasi statistik terhadap keseimbangan kluster di seluruh bank beban paralel:
-- Koefisien Variasi (CV) terhitung untuk daya aktif listrik (CV ≤ 1{,}0%), aliran pendingin (CV ≤ 5{,}0%), kenaikan suhu (CV ≤ 3{,}0%), dan tekanan manifold (CV ≤ 5{,}0%).
+- Koefisien Variasi (CV) terhitung untuk daya aktif listrik (CV ≤ 1,0%), aliran pendingin (CV ≤ 5,0%), kenaikan suhu (CV ≤ 3,0%), dan tekanan manifold (CV ≤ 5,0%).
 - Pemeriksaan varians bukan-nol tersertifikasi (σ² > 0) yang membuktikan bahwa aliran turbulen langsung hadir dan tidak ada saluran yang menggemakan data *cache*/beku.
 
 ### Artefak 4: Blok Data Langkah dan Tabel Penutupan Entalpi
 Neraca termodinamika lengkap untuk setiap langkah beban (25%, 50%, 75%, 100%, 110%):
 - Statistik Empat Ringkasan (Minimum, Maksimum, Rata-Rata Aritmatika, Deviasi Standar) untuk semua saluran listrik, cairan, dan udara.
 - Keseimbangan energi termodinamika prinsip pertama: daya listrik aktif (P_elec) dibandingkan terhadap entalpi cairan (Q_liquid = ṁ C_p ΔT) dan kalor sensibel udara pendamping (Q_air).
-- Rasio Penutupan Entalpi tersertifikasi (≥ 97{,}0%).
+- Rasio Penutupan Entalpi tersertifikasi (≥ 97,0%).
 
 ### Artefak 5: Osilogram dan Grafik Deret Waktu
 Grafik beresolusi tinggi berkualitas vektor yang dihasilkan dari data mentah yang tidak dapat diubah:

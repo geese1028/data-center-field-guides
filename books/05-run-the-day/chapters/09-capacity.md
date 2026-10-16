@@ -5,25 +5,19 @@ A facility manager's daily capacity duty is governed by three fundamental questi
 2. What capacity is physically utilized at this exact moment?
 3. What capacity will survive if your largest single component fails right now?
 
-```
-+-----------------------------------------------------------------------------+
-| THE 2N CAPACITY REDUNDANCY CEILING |
-| |
-| 100% +----------------------------------------------------------------+ |
-| | UNUSABLE DANGER ZONE | |
-| | If Bus A trips, Bus B instantly overloads and blackouts | |
-| 90% +================================================================+ |
-| | MAXIMUM SURVIVING LOAD (90%) | |
-| | | |
-| 50% + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -+ |
-| | THE 45% RULE: MAXIMUM STEADY-STATE PERMITTED | |
-| 45% +----------------------------------------------------------------+ |
-| | | |
-| | SAFE 2N OPERATING ENVELOPE | |
-| | Bus A Load <= 45% | Bus B Load <= 45% | |
-| 0 +----------------------------------------------------------------+ |
-+-----------------------------------------------------------------------------+
-```
+| **THE 2N CAPACITY REDUNDANCY CEILING** |
+| :--- |
+| 100% |
+| UNUSABLE DANGER ZONE |
+| If Bus A trips, Bus B instantly overloads and blackouts |
+| 90% |
+| MAXIMUM SURVIVING LOAD (90%) |
+| 50% |
+| THE 45% RULE: MAXIMUM STEADY-STATE PERMITTED |
+| 45% |
+| SAFE 2N OPERATING ENVELOPE |
+| Bus A Load <= 45% \| Bus B Load <= 45% |
+| 0 |
 
 ![2N Power Redundancy Ceiling](../figures/fig-04-2n-power-capacity-and-redundancy-ceiling.png)
 
@@ -64,19 +58,15 @@ Any shift manager who permits a 2N electrical busbar to exceed 45% steady-state 
 
 In liquid-cooled AI whitespace housing high-density compute racks (such as NVIDIA NVL72 architectures consuming up to 132 kW per rack), hydraulic capacity governance is as vital as electrical capacity:
 
-```
-+-----------------------------------------------------------------------------+
-| CDU HYDRAULIC CAPACITY CEILING |
-| |
-| Parameter Rated Design Limit Operational Redundancy Limit |
-| ------------------ ------------------------ --------------------------- |
-| Total Heat Removal 1200 kW per CDU <= 1000 kW (83% of PHE cap) |
-| Secondary Flow Rate 1440 LPM (24 LPS) <= 1200 LPM (Single Pump N) |
-| Supply Temperature 25.0°C - 32.0°C (W3/W4) <= 30.0°C (At Max Ambient) |
-| Pump Configuration N+1 Dual VFD Pumps 1 Pump Run / 1 Standby Auto |
-| Loop Pressure 0.15 - 0.90 MPa Head Loss Delta-P < 1.0 bar |
-+-----------------------------------------------------------------------------+
-```
+**CDU HYDRAULIC CAPACITY CEILING**
+
+| Parameter Rated Des | ign Limit Operational Red | undancy Limit |
+| :--- | :--- | :--- |
+| Total Heat Removal | 1200 kW per CDU <= 1000 k | W (83% of PHE cap) |
+| Secondary Flow Rate | 1440 LPM (24 LPS) <= 120 | 0 LPM (Single Pump N) |
+| Supply Temperature | 25.0°C - 32.0°C (W3/W4) < | = 30.0°C (At Max Ambient) |
+| Pump Configuration | N+1 Dual VFD Pumps 1 Pump | Run / 1 Standby Auto |
+| Loop Pressure 0.15 | - 0.90 MPa Head Loss Delt | a-P < 1.0 bar |
 
 When evaluating a customer's request to install additional high-density liquid-cooled racks, the duty manager must evaluate hydraulic constraints:
 1. **Total Flow Availability**: Verify that the secondary pumps can deliver the required volumetric flow rate (q_v) to maintain cold plate turbulent flow:
@@ -85,8 +75,7 @@ $$q_v = \frac{Q}{\rho \cdot c_p \cdot \Delta T}$$
 
 Where:
 - Q is the total thermal heat dissipation ( kW).
-- $
-- ρ is the density of 25% propylene glycol (1026\, kg/m^3at30°C$).
+- $\rho$ is the density of 25% propylene glycol ($1026\,\text{kg/m}^3$ at30°C).
 - c_p is the specific heat capacity (3.92 kJ/( kg· K)).
 - ΔT is the fluid temperature rise across the rack manifold (typically 10.0 K).
 
@@ -119,3 +108,15 @@ If a requested load deployment exceeds either the contractual allocation or the 
 - Hydraulic secondary loop flow rate, supply temperature, and differential pressure logged per CDU.
 - Remaining capacity after a single worst-case component failure: verified via named engineering study, or recorded as unknown.
 - Any request exceeding safe operational capacity rejected in writing; zero energization "to try."
+
+## Harmonic Derating ($K$-Factor) and Reactive Power ($\cos\phi$) on 2N Power Buses
+
+When auditing the $45\%$ steady-state loading ceiling on a 2N electrical distribution path, measuring real active power in kilowatts ($\text{kW}$) alone is insufficient. Switchgear busbars, dry-type isolation transformers, and UPS inverter IGBT bridges are thermally limited by total Root-Mean-Square (RMS) apparent current ($I_{\text{RMS}}$), which includes both reactive displacement current and non-linear harmonic distortion current ($I_h$):
+
+$$I_{\text{RMS}} = I_1 \sqrt{1 + \text{THD}_I^2}, \qquad \text{THD}_I = \frac{\sqrt{\sum_{h=2}^{\infty} I_h^2}}{I_1}$$
+
+Furthermore, eddy-current stray losses inside transformer windings scale with the square of harmonic order $h^2$, defined by the IEEE C57.110 **$K$-Factor**:
+
+$$K = \sum_{h=1}^{H} \left( \frac{I_h}{I_{\text{RMS}}} \right)^2 \cdot h^2$$
+
+Modern switched-mode server power supplies (80 PLUS Titanium) maintain unity power factor ($\text{PF} \ge 0.98$) and low harmonic distortion ($\text{THD}_I \le 5\%$) at full load, but at light load ($< 20\%$ PSU utilization) or when legacy VFD drives operate without active front-end filters, $\text{THD}_I$ can climb above $15\%$ and leading capacitive power factor can drop to $0.88$. Therefore, the shift manager always enforces the $45\%$ ceiling on **Apparent Power ($\text{kVA}$)** and **Phase RMS Current ($I_{\text{RMS}}$)** across all three phases ($L_1, L_2, L_3$), never on aggregate $\text{kW}$ alone.

@@ -49,3 +49,19 @@ The mention of these titles is strictly for nominative reference, citation, and 
 - The exact editions and publication dates of all standards cited in site procedures.
 - Confirmation that no copyrighted standard text or client confidential data was pasted into shift logs.
 - The active licensing and training plan for site operations staff.
+
+## Cross-Reference Matrix of Critical Facility Operations Standards
+
+Every rule enforced on the Master Day Sheet maps directly to an auditable international engineering, electrical safety, or operational standard:
+
+| Standard / Code | Issuing Body | Governing Operational Domain in Volume 05 | Mandatory Shift Application |
+| :--- | :--- | :--- | :--- |
+| **NFPA 70E** | National Fire Protection Association | Electrical Safety in the Workplace, Arc-Flash Boundaries, PPE categories, LOTO | Governs energized switching exclusions and Live-Dead-Live proofs |
+| **OSHA 29 CFR 1910.147** | U.S. Dept. of Labor (OSHA) | The Control of Hazardous Energy (Lockout/Tagout) | Governs one-person-one-lock LOTO hardware and group lockboxes |
+| **ASHRAE TC 9.9** | ASHRAE | Thermal Guidelines for Data Processing Environments (Air A1–A4, Liquid W1–W5) | Governs whitespace intake and CDU supply temperature corridors |
+| **IEEE Std 493 (Gold Book) & 3006** | IEEE | Design and Operational Reliability of Industrial and Commercial Power Systems | Governs 2N redundancy loading ceilings and maintenance bypass risk |
+| **ISO/IEC 22237 (EN 50600-3-1)** | ISO / CEN-CENELEC | Data Centre Facilities and Infrastructures — Operational Management Information | Governs SOP/MOP/EOP documentation hierarchy and shift handovers |
+
+## Annual Operational Audit and Standard Revision Control
+
+At the start of every calendar year, the Chief Engineer and Operations Manager review the site's SOP, MOP, and EOP library against the latest published editions of NFPA 70E, ASHRAE TC 9.9, and IEEE 3006. Every procedure cover sheet carries an explicit **Last Reviewed Date** and **Next Mandatory Review Date ($\le 12\,\text{months}$)**; any MOP whose review date has lapsed is automatically locked in the document management system until re-walked on the physical floor.

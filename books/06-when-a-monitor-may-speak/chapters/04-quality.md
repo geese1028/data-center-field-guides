@@ -5,20 +5,14 @@ A monitoring point displayed on an operations workstation console exists in one 
 2. **STALE (0x01)**: The system is displaying an older cached value because newer telemetry packets failed to arrive within the designated timeout window.
 3. **MISSING / FAULT (0x04)**: The communication link is severed, the transducer loop is open, or the channel is reporting an unrecoverable electrical error.
 
-```
-+-----------------------------------------------------------------------------+
-| QUALITY BITMASK SPECIFICATION |
-| |
-| Bitmask Quality State Operational Capability Console Presentation |
-| ------- ------------- ------------------------ ----------------------- |
-| 0x00 GOOD (LIVE) Valid for SLA & Alarms Standard Green / White |
-| 0x01 STALE Visible for Trends Only Amber Stripe (Muted) |
-| 0x02 UNCERTAIN Engineering Audit Only Question Mark (?) Icon |
-| 0x04 BAD / FAULT Quarantined; No Alarms Grey / Red Border (Comm) |
-+-----------------------------------------------------------------------------+
-```
+**QUALITY BITMASK SPECIFICATION**
 
-![Anatomy of an Operational Point & Quality Bitmask](../figures/fig-01-point-anatomy-and-quality-flag.png)
+| Bitmask | Quality State | Operational Capability Co | nsole Presentation |
+| :--- | :--- | :--- | :--- |
+| 0x00 GOO | D (LIVE) Valid | for SLA & Alarms Standar | d Green / White |
+| 0x01 STA | LE Visible for | Trends Only Amber Stripe | (Muted) |
+| 0x02 UNC | ERTAIN Enginee | ring Audit Only Question | Mark (?) Icon |
+| 0x04 BAD | / FAULT Quara | ntined; No Alarms Grey / | Red Border (Comm) |
 
 Never invent a fourth state called "Unknown" and then treat it operationally as if it were Live. A point is Live only when every single verification test passes.
 

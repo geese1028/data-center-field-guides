@@ -10,18 +10,14 @@ Its purpose is to enforce **The Four Audits of the Morning Ledger**:
 3. Did any monitoring system experience unrecorded clock drift, dropped gaps, or silent value caching?
 4. Did any active incident close without exactly **one concrete, owned, dated operational change**?
 
-```
-+-----------------------------------------------------------------------------+
-| THE MORNING AUDIT MATRIX |
-| |
-| Audit Dimension Verification Standard Failure Resolution |
-| ------------------ ---------------------------- ----------------------- |
-| Paging Hygiene Every page met 5-line rule Mute chattier points |
-| Point Integrity Zero orphan points triggered Audit Master Point Sheet |
-| Quality Watchdog Zero frozen cached values Execute Forced-Failure |
-| Incident Ownership 1 owned action assigned Block ticket closeout |
-+-----------------------------------------------------------------------------+
-```
+**THE MORNING AUDIT MATRIX**
+
+| Audit Dimension Ver | ification Standard Failure Re | solution |
+| :--- | :--- | :--- |
+| Paging Hygiene Ever | y page met 5-line rule Mute c | hattier points |
+| Point Integrity Zer | o orphan points triggered Aud | it Master Point Sheet |
+| Quality Watchdog Ze | ro frozen cached values Execu | te Forced-Failure |
+| Incident Ownership | 1 owned action assigned Block | ticket closeout |
 
 ## The Audit of Every Page
 
@@ -71,3 +67,14 @@ The action must have one named human owner and one calendar completion date. The
 - Any unverified orphan points identified and quarantined during the review.
 - The single owned, dated corrective action resulting from every reviewed incident.
 - The formal sign-off of the morning review ledger by the Operations Director.
+
+## Quantitative Daily Alarm Hygiene Metrics (ISA-18.2 / EEMUA 191)
+
+During the morning-after operational review, the engineering lead audits control room alarm health against ANSI/ISA-18.2 and EEMUA Publication 191 benchmark thresholds:
+
+| Alarm Hygiene Metric | Mathematical Definition | Target Benchmark (ISA-18.2) | Mandatory Engineering Action if Violated |
+| :--- | :--- | :--- | :--- |
+| **Average Alarm Rate** | Total audible/banner alerts per operator per 10-min window | $\le 1$ to $2$ per 10 min ($\le 144/\text{day}$) | Identify top 10 bad actors; widen deadband or fix sensor |
+| **Peak 10-Minute Flood Rate** | Maximum alerts in any 10-min window following a fault | $\le 10$ alerts per 10 minutes | Implement parent-child topological suppression rules |
+| **Chattering Alarm Count** | Points transitioning $\ge 3$ times within $60$ seconds | $0$ chattering points permitted | Increase hysteresis $\Delta H$ and dwell timer $t_{\text{dwell}}$ |
+| **Stale / Suppressed Inventory** | Points in `0x40` Uncertain or manual override $> 24\,\text{h}$ | $0$ unticketed overrides | Reconcile against open maintenance work orders every morning |

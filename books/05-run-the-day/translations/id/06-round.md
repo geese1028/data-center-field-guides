@@ -6,23 +6,19 @@ Dasbor telemetri bisa berbohong. Transduser tekanan Building Management System (
 
 Putaran inspeksi fisik sif adalah verifikasi mutlak bahwa realitas fisik pusat data sesuai dengan model matematis di ruang kendali.
 
-```
-+-----------------------------------------------------------------------------+
-| TOPOLOGI INSPEKSI FISIK PUTARAN SIF |
-| |
+| **TOPOLOGI INSPEKSI FISIK PUTARAN SIF** |
+| :--- |
 | [STASIUN 1] Gardu & Switchgear MV (35kV/10kV Gas SF6, Pegas, Relai) |
-| | |
+| ↓ |
 | [STASIUN 2] Ruang Transformator (Suhu Belitan, Dengung Akustik, Lug Kabel) |
-| | |
-| [STASIUN 3] Ruang UPS & Baterai (Tegangan Float DC, Suhu Deret, Buang Udara)|
-| | |
+| ↓ |
+| [STASIUN 3] Ruang UPS & Baterai (Tegangan Float DC, Suhu Deret, Buang Udara) |
+| ↓ |
 | [STASIUN 4] Instalasi Chiller Sentral (Suhu Pendekatan, Tekanan Minyak) |
-| | |
+| ↓ |
 | [STASIUN 5] Stasiun CDU Cairan (0.15-0.90 MPa, Refraktometer, Baki Kering) |
-| | |
+| ↓ |
 | [STASIUN 6] Whitespace AI & Rak NVL72 (Termal IR, Delta-P, Kopling FD83) |
-+-----------------------------------------------------------------------------+
-```
 
 ![Shift Round Inspection Topology](../figures/fig-03-shift-round-inspection-topology.png)
 
@@ -40,22 +36,18 @@ Setiap meter persegi pusat data produksi harus diaudit melalui empat saluran sen
 
 Mengikuti standar operasional yang diuraikan dalam OpenViking (`ALZJ-YW-2.6XZ02` untuk IT Whitespace dan `ALZJ-YW-2.6XZ10` untuk Infrastruktur Pendinginan Cair), putaran inspeksi sif melintasi enam stasiun wajib:
 
-```
-+-----------------------------------------------------------------------------+
-| METRIK INSPEKSI STASIUN KRITIS |
-| |
-| Stasiun / Sistem Parameter Standar Ambang Batas Penolakan |
-| ----------------------- ------------------------ ---------------------- |
-| Switchgear Tegangan Men. Tekanan Gas SF6 Nominal Alarm Tekanan Rendah |
-| Transformator Suhu Belitan < 90°C Suhu >= 110°C (Alarm) |
-| Ruang Baterai UPS Suhu Ambien 20°C - 25°C Suhu > 28°C / Baterai Melembung|
-| Instalasi Chiller Pendekatan Kondenser <1.5K Pendekatan >= 2.5 K |
-| Loop Sekunder CDU Tekanan 0.15 - 0.90 MPa Tekanan < 0.12 MPa |
-| Campuran Glikol CDU 25.0% PG (+/- 1.0%) PG < 23% atau > 27% |
-| Lorong Whitespace TI Delta-P Bawah Lantai >=5Pa Delta-P < 2.5 Pa (Kurang Udara)|
-| Rak Cairan (NVL72) Kopling FD83/UQD Kering Ada Tetesan Cairan Aktif|
-+-----------------------------------------------------------------------------+
-```
+**METRIK INSPEKSI STASIUN KRITIS**
+
+| Stasiun / Sistem Paramet | er Standar Ambang Batas P | enolakan |
+| :--- | :--- | :--- |
+| Switchgear Tegangan Men. | Tekanan Gas SF6 Nominal | Alarm Tekanan Rendah |
+| Transformator Suhu Belit | an < 90°C Suhu >= 110°C ( | Alarm) |
+| Ruang Baterai UPS Suhu A | mbien 20°C - 25°C Suhu > | 28°C / Baterai Melembung |
+| Instalasi Chiller Pendek | atan Kondenser <1.5K Pend | ekatan >= 2.5 K |
+| Loop Sekunder CDU Tekana | n 0.15 - 0.90 MPa Tekanan | < 0.12 MPa |
+| Campuran Glikol CDU 25.0 | % PG (+/- 1.0%) PG < 23% | atau > 27% |
+| Lorong Whitespace TI Del | ta-P Bawah Lantai >=5Pa D | elta-P < 2.5 Pa (Kurang Udara) |
+| Rak Cairan (NVL72) Kopli | ng FD83/UQD Kering Ada Te | tesan Cairan Aktif |
 
 ![CDU Shift Inspection Checklist](../figures/fig-05-liquid-cdu-shift-inspection-checklist.png)
 
@@ -109,3 +101,14 @@ Jika cacat tersebut mengganggu redundansi peralatan atau menyebabkan parameter o
 - Parameter operasional spesifik dicatat di keenam stasiun inspeksi.
 - Pengukuran refraktometer genggam, konduktivitas, dan pH dicatat untuk loop pendingin sekunder.
 - Semua cacat dimasukkan ke dalam register resmi lokasi sebelum keluar dari setiap ruangan, atau pernyataan eksplisit tentang nol cacat yang ditemukan.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |

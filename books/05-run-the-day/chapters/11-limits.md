@@ -43,3 +43,18 @@ This book begins when physical commissioning is complete and commercial operatio
 - The professional credentials you and your shift personnel still need to obtain from accredited training bodies.
 - The official standards and codes cited in today's MOPs, referenced by publisher, title, and edition.
 - The physical engineering boundaries between facility infrastructure and client-owned IT hardware.
+
+## Quantitative Demarcation of Operational Authority vs. Design Engineering
+
+A shift operations manual must define where operational authority stops and formal design change control (Management of Change / Engineering Change Order) begins. Facility managers under commercial pressure are frequently asked to make "temporary operational adjustments" that permanently alter the design basis of the plant.
+
+| Requested Field Adjustment | Why It Exceeds Shift Operations Authority | Required Engineering Governance Path |
+| :--- | :--- | :--- |
+| **Raising Molded-Case or ACB Trip Settings ($I_r, I_i$)** | Alters short-circuit selective coordination and increases incident arc-flash energy ($\text{cal/cm}^2$) | Formal IEEE 1584 / ETAP coordination study stamped by PE |
+| **Installing Permanent Jumper Hoses Across Manifolds** | Bypasses hydraulic balancing orifices and changes secondary loop $\Delta P$ impedance | Revised hydraulic P&ID + Volume 03 Commissioning Script |
+| **Disabling CDU Dew-Point Anti-Condensation Interlock** | Risks catastrophic moisture condensation on energized $54\,\text{VDC}$ / $400\,\text{VAC}$ busbars | Strictly prohibited; resolve hall humidity latent load first |
+| **Operating 2N Bus Above $45\%$ Steady-State Nameplate** | Eliminates automatic N-to-2N failover survivability during single-bus fault | Executive Risk Acceptance + load shed automation test |
+
+## Handling Emergency Life-Safety Overrides vs. Commercial Pressure
+
+Only one condition permits deviating from an approved operational boundary without a prior Engineering Change Order: an **imminent threat to human life safety** (such as de-energizing a live bus to rescue an electrocuted worker or isolating a ruptured high-temperature water main flooding an occupied room). Commercial pressure—such as a customer threatening SLA penalties if an unapproved rack is not energized tonight—is never a life-safety emergency and never overrides the Master Day Sheet.

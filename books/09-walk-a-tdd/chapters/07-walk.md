@@ -20,6 +20,21 @@ Do not add serials to that note if the note will be pasted into the opinion. Fun
 
 If they ask for a verbal result at the door, give the limits, not a preview of the yes. "Count done, one identity gap, performance not witnessed, second feed spoken only." That is a complete door sentence. "Looks fine" is the sentence you will spend the next week taking back.
 
+## Statistical Field Sampling Mathematics: Count, Identify, Sample, Witness
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$n_{\text{sample}} = \lceil \sqrt{N_{\text{population}}} \rceil + 1$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Statistical Field Sampling Mathematics: Count, Identify, Sample, Witness | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - Count: reconciled to their list, or inventory only.

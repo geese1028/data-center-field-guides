@@ -4,23 +4,13 @@ The thermal heat window in a data hall typically spans only a few days. The comm
 
 A test team that rolls load banks into an unfamiliar hall without a rigorous pre-mobilization survey will waste the first half of their thermal window diagnosing missing adapters, tripping upstream PDU breakers, or arguing about unverified floor loading ratings.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| PRE-MOBILIZATION MILESTONE TIMELINE |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 4 WEEKS | Site Access & Structural Survey: Path-of-travel, freight elevator capacity, |
-| | floor live load (kN/m²), electrical tap boxes, and manifold connection audit. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 3 WEEKS | Calibration & Instrumentation Audit: ISO 17025 certificates verified for all |
-| | power meters, ultrasonic flowmeters, PT100 immersion probes, and IR cameras. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 2 WEEKS | Emergency Response & MOP Authorization: Chemical spill containment, E-Stop |
-| | procedures, and energization permits signed by Owner and Facility Operations. |
-+-------------------+--------------------------------------------------------------------------------+
-| T - 1 WEEK | Floor Readiness & Blank Sheets: Script revision freeze, master sheets printed |
-| | in ink, test gear staged on site, secondary loop flushed and statically tested.|
-+-------------------+--------------------------------------------------------------------------------+
-```
+**PRE-MOBILIZATION MILESTONE TIMELINE**
+
+| T - 4 WEEKS | Site Access & Structural Survey: Path-of-travel, freight elevator capacity, floor live load (kN/m²), electrical tap boxes, and manifold connection audit. |
+| :--- | :--- |
+| T - 3 WEEKS | Calibration & Instrumentation Audit: ISO 17025 certificates verified for all power meters, ultrasonic flowmeters, PT100 immersion probes, and IR cameras. |
+| T - 2 WEEKS | Emergency Response & MOP Authorization: Chemical spill containment, E-Stop procedures, and energization permits signed by Owner and Facility Operations. |
+| T - 1 WEEK | Floor Readiness & Blank Sheets: Script revision freeze, master sheets printed in ink, test gear staged on site, secondary loop flushed and statically tested. |
 
 ## Equipment Count and Spare Strategy
 
@@ -46,19 +36,11 @@ All verification measurements are legally dependent on the calibration integrity
 
 Every field instrument deployed during the campaign must possess an active, traceable calibration certificate (ISO/IEC 17025 accredited) that remains valid throughout the entire duration of the testing window:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| MINIMUM INSTRUMENT ACCURACY STANDARDS |
-+--------------------------+-----------------------+-------------------------------------------------+
+**MINIMUM INSTRUMENT ACCURACY STANDARDS**
+
 | INSTRUMENT CLASS | ACCURACY STANDARD | MANDATORY FIELD DEPLOYMENT SPECIFICATION |
-+--------------------------+-----------------------+-------------------------------------------------+
-| Power Quality Analyzer | Class 0.2 (0.2% FS) | Calibrated 3-phase active power & THD analyzer. |
-| Ultrasonic Flow Meter | Class 0.5 (+/- 0.5%) | Dual-channel transit-time clamp-on; 10D/5D run. |
-| Immersion Temp Probes | 4-wire PT100 1/3 DIN | Calibrated to +/- 0.05 K; high-thermal paste. |
-| Differential Pressure | +/- 0.1% Full Scale | Calibrated piezoresistive transmitter. |
-| Thermal Imaging Camera | NETD < 40 mK; +/- 1 K | Calibrated focal plane array (384x288 min). |
-+--------------------------+-----------------------+-------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| Power Quality Analyzer Ultrasonic Flow Meter Immersion Temp Probes Differential Pressure Thermal Imaging Camera | Class 0.2 (0.2% FS) Class 0.5 (+/- 0.5%) 4-wire PT100 1/3 DIN +/- 0.1% Full Scale NETD < 40 mK; +/- 1 K | Calibrated 3-phase active power & THD analyzer. Dual-channel transit-time clamp-on; 10D/5D run. Calibrated to +/- 0.05 K; high-thermal paste. Calibrated piezoresistive transmitter. Calibrated focal plane array (384x288 min). |
 
 If an instrument's calibration expires during the project, it must be removed from service and replaced with a certified backup. An expired certificate invalidates all data recorded from that moment forward.
 

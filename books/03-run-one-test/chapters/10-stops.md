@@ -45,28 +45,15 @@ With the loop running under full thermal load, physically disconnect the Modbus-
 
 Demobilizing from a multi-megawatt thermal test requires the same operational discipline as initiating it. The de-energization and shutdown sequence must be executed in a strict, non-reversible order.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| MANDATORY SHUTDOWN EXECUTION SEQUENCE |
-+----+-----------------------------+-----------------------------------------------------------------+
-|STEP| ACTION COMMAND | ENGINEERING SAFETY RATIONALE |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 01 | SHED THERMAL LOAD TO 0 kW | Cut all heater contactors/SCRs. Never interrupt fluid flow |
-| | | while 1.2 MW of electrical heat is active! |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 02 | OPEN LOAD-BANK BREAKERS | Lock out and tag out (LOTO) all primary electrical feeds. |
-| | | Prove circuits dead with calibrated voltage detector. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 03 | 10-MINUTE FLUID COOLDOWN | Maintain secondary pump circulation for 10 minutes to remove |
-| | | residual core heat from elements and prevent localized boiling. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 04 | STOP CDU SECONDARY PUMPS | Power down pumps only after secondary fluid temperature drops |
-| | | safely below 30.0°C. Confirm differential pressure is 0 kPa. |
-+----+-----------------------------+-----------------------------------------------------------------+
-| 05 | ISOLATE & DISCONNECT HOSES | Close manifold isolation valves, relieve residual static head, |
-| | | and disconnect quick-disconnect couplings into catch buckets. |
-+----+-----------------------------+-----------------------------------------------------------------+
-```
+**MANDATORY SHUTDOWN EXECUTION SEQUENCE**
+
+| STEP | ACTION COMMAND | ENGINEERING SAFETY RATIONALE |
+| :--- | :--- | :--- |
+| 01 | SHED THERMAL LOAD TO 0 kW | Cut all heater contactors/SCRs. Never interrupt fluid flow while 1.2 MW of electrical heat is active! |
+| 02 | OPEN LOAD-BANK BREAKERS | Lock out and tag out (LOTO) all primary electrical feeds. Prove circuits dead with calibrated voltage detector. |
+| 03 | 10-MINUTE FLUID COOLDOWN | Maintain secondary pump circulation for 10 minutes to remove residual core heat from elements and prevent localized boiling. |
+| 04 | STOP CDU SECONDARY PUMPS | Power down pumps only after secondary fluid temperature drops safely below 30.0°C. Confirm differential pressure is 0 kPa. |
+| 05 | ISOLATE & DISCONNECT HOSES | Close manifold isolation valves, relieve residual static head, and disconnect quick-disconnect couplings into catch buckets. |
 
 > **CRITICAL REVERSE-SEQUENCE WARNING**: Never reverse Steps 1 and 4! Stopping fluid circulation while megawatts of electrical heat are engaged will cause the stagnant fluid inside the heating channels to flash into steam within seconds. The resulting rapid vapor expansion creates an explosive pressure surge that will blow out hose crimps, destroy sensor diaphragms, and present a catastrophic scalding hazard to personnel in the aisle. Sheet 5 requires every step to be ticked in strict chronological order; a tick out of sequence voids the sheet.
 

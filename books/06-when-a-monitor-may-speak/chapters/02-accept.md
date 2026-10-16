@@ -2,25 +2,19 @@
 
 A data stream from a new monitoring system, a third-party gateway, or a refurbished switchgear line-up is guilty until proven innocent. Never allow a new point to sound control room alarms, page on-call engineers, or populate contractual SLA reports based on a successful vendor demonstration.
 
-```
-+-----------------------------------------------------------------------------+
-| POINT ACCEPTANCE GATEWAY |
-| |
+| **POINT ACCEPTANCE GATEWAY** |
+| :--- |
 | [STAGE 1] Physical Loop Verification (Calibrated source applied at probe) |
-| | |
-| [STAGE 2] Full-Scale & Zero-Scale Range Check (0% / 50% / 100% calibration)|
-| | |
+| ↓ |
+| [STAGE 2] Full-Scale & Zero-Scale Range Check (0% / 50% / 100% calibration) |
+| ↓ |
 | [STAGE 3] The Forced-Failure Test (Physically sever wire / kill power) |
-| | • PASS: Console transitions to STALE / FAULT within 3x interval |
-| | • FAIL: Console holds last value or stays green -> REJECTED |
-| | |
+| • PASS: Console transitions to STALE / FAULT within 3x interval |
+| • FAIL: Console holds last value or stays green -> REJECTED |
+| ↓ |
 | [STAGE 4] Dwell & Deadband Functional Validation under simulated noise |
-| | |
+| ↓ |
 | [STAGE 5] Master Point Sheet Signed by Duty Manager & Commissioning Lead |
-+-----------------------------------------------------------------------------+
-```
-
-![The Master Point Sheet and Audit Lifecycle](../figures/fig-07-master-point-sheet-and-audit-lifecycle.png)
 
 A point is accepted into production operations only after it has survived the **Forced-Failure Test**. If a monitoring channel cannot detect and correctly report its own physical death, it is an operational hazard that will mislead technicians during a crisis.
 
@@ -61,3 +55,11 @@ For digital fieldbuses (BACnet/IP, Modbus TCP, OPC UA, SNMP):
 - The exact execution timestamp and observed console reaction for the Forced-Failure Test.
 - The measured communication round-trip latency and CRC error rate across digital fieldbuses.
 - Formal sign-off on the Master Point Sheet authorizing the point to transition from Commissioning Quarantine into Active Production.
+
+## End-to-End Point-to-Point (P2P) Commissioning and Register Endianness Verification
+
+Accepting a monitoring source into production requires an end-to-end physical-to-screen verification—never merely importing a vendor's CSV Modbus register map. In industrial Modbus TCP/RTU and BACnet/IP integrations, 32-bit IEEE 754 floating-point values occupy two consecutive 16-bit registers (`Reg N` and `Reg N+1`). Depending on the PLC architecture, byte and word ordering can follow four permutations (`ABCD` Big-Endian, `DCBA` Little-Endian, `BADC` Mid-Big Byte Swap, or `CDAB` Mid-Little Word Swap).
+
+$$V_{\text{float32}} = (-1)^s \times 2^{(E - 127)} \times \left( 1 + \sum_{k=1}^{23} b_{23-k} 2^{-k} \right)$$
+
+Furthermore, analog 4–20 mA current loops must be verified at three physical injection points ($4.00\,\text{mA} = 0\%$, $12.00\,\text{mA} = 50\%$, $20.00\,\text{mA} = 100\%$), while confirming that an open-circuit wire break ($I_{\text{loop}} \le 3.60\,\text{mA}$ per NAMUR NE43) immediately drives the point quality bitmask to `0x80` (`BAD_SENSOR_FAILURE`) rather than clamping the engineering value at zero or minimum scale!

@@ -4,19 +4,15 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Pelanggan tidak membeli tangki bahan bakar diesel Anda, penukar panas pelat titanium Anda, atau dedikasi pribadi Anda. Pelanggan membeli SLA: kontrak layanan yang ditentukan secara matematis yang menjamin ketersediaan listrik, pasokan termal, dan batas waktu eskalasi insiden. Jika Anda tidak dapat mengutip klausul yang tepat dalam perjanjian layanan induk, Anda beroperasi berdasarkan desas-desus.
 
-```
-+-----------------------------------------------------------------------------+
-| MATRIKS BATAS LAYANAN |
-| |
-| Parameter Kontrak Batas yang Dijamin Sumber Pengukuran |
-| ----------------------- ------------------------- --------------------- |
-| Ketersediaan Daya AC 99.999% (Five Nines) Meter Pendapatan PDU |
-| Suhu Pasokan Sekunder 25.0°C hingga 32.0°C Sensor RTD Pasokan CDU |
-| Air Dingin Primer 12.0°C hingga 18.0°C Aliran/Suhu Header FWS |
-| Suhu Udara (Inlet Rak) 18.0°C hingga 27.0°C Sensor Lorong Dingin |
-| Waktu Notifikasi Insiden <= 15 Menit dari Deteksi Portal Klien & Telepon |
-+-----------------------------------------------------------------------------+
-```
+**MATRIKS BATAS LAYANAN**
+
+| Parameter Kontrak Batas | yang Dijamin Sumber Penguk | uran |
+| :--- | :--- | :--- |
+| Ketersediaan Daya AC 99. | 999% (Five Nines) Meter Pe | ndapatan PDU |
+| Suhu Pasokan Sekunder 25 | .0°C hingga 32.0°C Sensor | RTD Pasokan CDU |
+| Air Dingin Primer 12.0°C | hingga 18.0°C Aliran/Suhu | Header FWS |
+| Suhu Udara (Inlet Rak) 1 | 8.0°C hingga 27.0°C Sensor | Lorong Dingin |
+| Waktu Notifikasi Insiden | <= 15 Menit dari Deteksi | Portal Klien & Telepon |
 
 ## Batas Layanan Kontraktual vs. Batas Rekayasa
 
@@ -48,17 +44,13 @@ $$\Delta t_{\text{notice}} = t_{\text{sent}} - t_{\text{detect}} \le T_{\text{co
 
 Sebagian besar SLA hyperscale memerlukan pemberitahuan insiden resmi dalam waktu **15 menit** sejak deteksi awal (T_contractual ≤ 15 menit).
 
-```
-+-------------------------------------------------------------------------+
-| JENDELA PEMBERITAHUAN 15 MENIT |
-| |
+| **JENDELA PEMBERITAHUAN 15 MENIT** |
+| :--- |
 | T = 00:00 Alarm berbunyi pada BMS/EPMS; trip terdeteksi |
-| T + 05:00 Duty Manager memverifikasi peristiwa; stabilkan status aman|
+| T + 05:00 Duty Manager memverifikasi peristiwa; stabilkan status aman |
 | T + 10:00 Draf notifikasi insiden: Gejala, Waktu, Ruang Terdampak |
 | T + 14:00 Pemberitahuan dikirim ke kontak teknis klien |
 | T + 15:00 Batas waktu pemberitahuan SLA kontraktual kedaluwarsa |
-+-------------------------------------------------------------------------+
-```
 
 Kegagalan umum di kalangan manajer operasi pemula adalah menunda pemberitahuan pelanggan awal saat teknisi masih menyelidiki akar penyebab masalah. Ini adalah bencana kontraktual. Klien akan memaafkan trip transformator yang berhasil distabilkan dalam beberapa menit; mereka tidak akan pernah memaafkan jika mengetahui server mereka mati dari telemetri mereka sendiri sementara manajer pusat data tetap bungkam selama empat puluh menit.
 
@@ -76,3 +68,18 @@ Jika rasio efisiensi bukan merupakan bagian dari kontrak komersial, mencantumkan
 - ID meter telemetri otoritatif dan sumber jam acuan yang digunakan untuk pencatatan waktu kontraktual.
 - Jendela waktu pemberitahuan kontraktual (T_contractual) dalam satuan menit.
 - Setiap deviasi SLA yang teramati selama sif, dicatat dengan cap waktu mikrodetik dari perekam urutan peristiwa (SOE).
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |
+
+$$\gamma(T, \text{RH}) = \frac{a \cdot T}{b + T} + \ln\left(\frac{\text{RH}}{100}\right), \qquad T_{\text{dp}} = \frac{b \cdot \gamma(T, \text{RH})}{a - \gamma(T, \text{RH})}$$
+
+$$\text{SLA Availability (\%)} = \left( 1 - \frac{\sum t_{\text{outage\_minutes}}}{T_{\text{month\_minutes}}} \right) \times 100\%$$

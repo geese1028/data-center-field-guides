@@ -20,10 +20,10 @@ Verifikasi bank beban cair standar terdiri dari lima skenario inti:
 Skenario gradien memverifikasi bahwa bank beban dapat bertahan secara stabil pada dataran tinggi (*plateau*) beban yang berbeda di seluruh koridor operasinya tanpa fluktuasi liar (*hunting*), degradasi elemen, atau *bypass* fluida yang berlebihan.
 
 Pengujian standar mengikuti empat fraksi beban yang berbeda:
-- **Langkah 1 (25% Beban Nominal)**: Beban listrik aktif 30{,}0 kW (24{,}6 kW cairan, 4{,}8 kW udara pendamping).
-- **Langkah 2 (50% Beban Nominal)**: Beban listrik aktif 60{,}0 kW (49{,}3 kW cairan, 9{,}6 kW udara pendamping).
-- **Langkah 3 (75% Beban Nominal)**: Beban listrik aktif 90{,}0 kW (74{,}0 kW cairan, 14{,}4 kW udara pendamping).
-- **Langkah 4 (100% Beban Nominal Penuh)**: Beban listrik aktif 120{,}0 kW (98{,}6 kW cairan, 19{,}2 kW udara pendamping).
+- **Langkah 1 (25% Beban Nominal)**: Beban listrik aktif 30,0 kW (24,6 kW cairan, 4,8 kW udara pendamping).
+- **Langkah 2 (50% Beban Nominal)**: Beban listrik aktif 60,0 kW (49,3 kW cairan, 9,6 kW udara pendamping).
+- **Langkah 3 (75% Beban Nominal)**: Beban listrik aktif 90,0 kW (74,0 kW cairan, 14,4 kW udara pendamping).
+- **Langkah 4 (100% Beban Nominal Penuh)**: Beban listrik aktif 120,0 kW (98,6 kW cairan, 19,2 kW udara pendamping).
 
 ### Aturan Jam Jeda (*Dwell Clock*)
 Pada setiap dataran tinggi, perintah beban harus ditahan konstan selama jeda terus-menerus **setidaknya 15 menit** (atau interval penahanan spesifik yang dinyatakan dalam kontrak pengujian).
@@ -33,13 +33,13 @@ Hitungan waktu 15 menit ini tidak dapat ditawar karena *loop* cairan fisik memil
 - Perhitungan keseimbangan panas yang dicoba selama jendela transien ini akan secara keliru melaporkan bahwa pemanas mengalami defisiensi daya.
 - Jendela evaluasi kondisi tunak (*steady-state*) baru dimulai setelah empat konstanta waktu (t ≥ 4τ ≈ 3 menit) berlalu. 10 menit terakhir dari masa jeda 15 menit mewakili dataran tinggi kondisi tunak yang sebenarnya.
 
-Untuk meluluskan skenario gradien, keempat langkah harus berhasil ditahan, dan kenaikan suhu fluida yang teramati (ΔT = T_out - T_in) harus meningkat secara linear terhadap daya listrik yang diperintahkan dalam rentang ± 2{,}0% dari nilai teoretis.
+Untuk meluluskan skenario gradien, keempat langkah harus berhasil ditahan, dan kenaikan suhu fluida yang teramati (ΔT = T_out - T_in) harus meningkat secara linear terhadap daya listrik yang diperintahkan dalam rentang ± 2,0% dari nilai teoretis.
 
 ## Skenario 2: Beban Lebih (Kunjungan Berbatas)
 
 Skenario beban lebih memverifikasi bahwa elemen pemanas, relai keadaan padat (*solid-state relays* - SSR) internal, kontaktor, rakitan kabel, dan gasket pipa memiliki margin keselamatan yang memadai di atas kapasitas nominal 100%.
 
-Untuk unit garis dasar 120 kW, langkah beban lebih memerintahkan daya sebesar **110% dari daya nominal (132{,}0 kW)**.
+Untuk unit garis dasar 120 kW, langkah beban lebih memerintahkan daya sebesar **110% dari daya nominal (132,0 kW)**.
 - **Aturan Kunjungan**: Skenario beban lebih secara ketat didefinisikan sebagai **kunjungan** yang disengaja, biasanya berlangsung tepat selama **5 menit**. Ini bukan peringkat operasi permanen.
 - **Mengapa Harus Berhenti di Lima Menit**: Elemen pemanas imersi yang beroperasi pada beban 110% mengalami densitas watt selongsong yang mendekati 15 W/cm². Meskipun aman untuk pemeriksaan komisioning singkat di bawah aliran cairan berkecepatan tinggi, operasi berkepanjangan pada fluks tinggi ini akan mendegradasi inhibitor korosi fluida (seperti toliltriazol) dan mempercepat pengerasan termal gasket EPDM.
 - **Kriteria Lulus/Gagal**: Skenario beban lebih lulus jika unit memasuki daya 132 kW secara bersih, mempertahankan penahanan 5 menit tanpa memicu sakelar sentak panas lebih (*overtemperature snap-switches*), tidak menunjukkan getaran kontaktor atau asap pada blok terminal, dan melepaskan beban kembali ke beban nominal atau nol sesuai perintah secara bersih.
@@ -56,19 +56,19 @@ Skenario ini mengeksekusi lompatan langkah seketika:
 4. Pelepasan beban seketika dari 100% kembali ke 25% diperintahkan.
 
 ### Hal yang Dievaluasi
-- **Pelacakan Listrik**: Kontaktor atau pengontrol daya tiristor harus beralih dan menstabilkan langkah daya dalam waktu kurang dari 1{,}5 detik.
-- **Waktu Penstabilan Loop Kendali**: Katup pendingin modulasi (TCV) CDU fasilitas harus menyesuaikan aliran cairan pendingin atau suhu pasokan sekunder untuk menstabilkan fluks panas baru dalam waktu 120 detik, dengan lonjakan melampaui batas (*overshoot*) kurang dari 5{,}0%.
-- **Peredaman Palu Air Hidrolik**: Ketika tahap pemanas besar dilepaskan atau katup modulasi mencekik aliran, pergeseran aliran yang cepat dapat memicu pulsa tekanan akustik. Sensor tekanan diferensial manifold harus memverifikasi bahwa lonjakan tekanan puncak tidak melampaui ΔP_surge ≤ 15{,}0 kPa. Jika pergerakan katup yang cepat menyebabkan guncangan pipa yang keras, benturan pada penopang pipa, atau lonjakan tekanan yang melampaui 50 kPa, skenario perubahan langkah seketika dinyatakan GAGAL (*FAIL*).
+- **Pelacakan Listrik**: Kontaktor atau pengontrol daya tiristor harus beralih dan menstabilkan langkah daya dalam waktu kurang dari 1,5 detik.
+- **Waktu Penstabilan Loop Kendali**: Katup pendingin modulasi (TCV) CDU fasilitas harus menyesuaikan aliran cairan pendingin atau suhu pasokan sekunder untuk menstabilkan fluks panas baru dalam waktu 120 detik, dengan lonjakan melampaui batas (*overshoot*) kurang dari 5,0%.
+- **Peredaman Palu Air Hidrolik**: Ketika tahap pemanas besar dilepaskan atau katup modulasi mencekik aliran, pergeseran aliran yang cepat dapat memicu pulsa tekanan akustik. Sensor tekanan diferensial manifold harus memverifikasi bahwa lonjakan tekanan puncak tidak melampaui ΔP_surge ≤ 15,0 kPa. Jika pergerakan katup yang cepat menyebabkan guncangan pipa yang keras, benturan pada penopang pipa, atau lonjakan tekanan yang melampaui 50 kPa, skenario perubahan langkah seketika dinyatakan GAGAL (*FAIL*).
 
 ## Skenario 4: Pasokan Tunggal (Uji Penurunan Kehilangan Pasokan 2N)
 
 Di aula data AI berdensitas tinggi, distribusi daya ke tingkat rak dikonfigurasikan sebagai 2N (jalur ganda penyulang A dan B) atau redundan terdistribusi. Bank beban cair yang menggantikan rak NVL72 harus mereplikasi topologi listrik jalur ganda ini.
 
 ### Pelaksanaan Pengujian
-Dengan kluster bank beban beroperasi pada kapasitas nominal 100% (120{,}0 kW per kabinet, dengan 60{,}0 kW ditarik dari Penyulang A dan 60{,}0 kW ditarik dari Penyulang B):
+Dengan kluster bank beban beroperasi pada kapasitas nominal 100% (120,0 kW per kabinet, dengan 60,0 kW ditarik dari Penyulang A dan 60,0 kW ditarik dari Penyulang B):
 1. Operator secara manual memutus pemutus arus penyulang utama yang menyuplai Penyulang A.
 2. Logika kendali kontaktor untuk Bank 1 dan Bank 2 (yang ditenagai oleh Penyulang A) harus segera mati.
-3. Kontak bantu harus terbuka dalam waktu **< 20 milidetik**, melepaskan tepat 50% dari beban aktif (60{,}0 kW) secara bersih.
+3. Kontak bantu harus terbuka dalam waktu **< 20 milidetik**, melepaskan tepat 50% dari beban aktif (60,0 kW) secara bersih.
 4. Penyulang B harus memikul Bank 3 dan Bank 4 secara mulus tanpa memicu pemutus arus di hulunya sendiri atau mengalami transien arus masuk yang melebihi 115% dari arus nominal.
 5. **Persyaratan Penurunan Tegangan Nol pada Bus Kendali**: Bus catu daya supervisi 24 VDC (yang memberi daya pada PLC, sensor, dan gerbang komunikasi Modbus/MQTT) harus digabungkan secara *diode-OR* di kedua penyulang (lihat Gambar 07). Pemutusan Penyulang A harus menghasilkan **penurunan tegangan nol (*zero brownout dip*)** (riak tegangan < 50 mV). Jika kehilangan Penyulang A menyebabkan PLC me-*reboot*, memutuskan sambungan jaringan, atau membekukan pembacaan sensor, bank beban tersebut gagal dalam uji pasokan tunggal tanpa syarat.
 6. Setelah penurunan Penyulang A divalidasi, Penyulang A dipulihkan kembali, unit kembali ke kondisi tunak 100%, dan pengujian serupa diulangi dengan memutus Penyulang B. Kedua penyulang harus diuji sebagai jalur yang mengalami kegagalan.

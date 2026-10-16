@@ -252,14 +252,25 @@ FIGS = [
 ]
 
 
+import sys
+sys.path.insert(0, str(ROOT.parent))
+from epub_renderer import (
+    SHARED_CSS as CSS,
+    blocks_to_xhtml,
+    fig_html,
+    inline_format,
+    md_to_blocks,
+)
+
+FIGS = [row for row in FIGS if row[2].startswith("fig-0")]
+
+
 def draw_all():
+    FIG.mkdir(parents=True, exist_ok=True)
+    for old_png in FIG.glob("fig-*.png"):
+        if not old_png.name.startswith("fig-0"):
+            old_png.unlink()
     draw_cover()
-    for row in FIGS:
-        _, _, filename, _, kicker, title, rows, footer = row
-        if filename.startswith("fig-0"):
-            continue
-        label = int(row[3].split(".")[0].replace("Figure ", ""))
-        draw_board(filename, label, kicker, title, rows, footer)
     try:
         import generate_engineering_diagrams
         generate_engineering_diagrams.fig_01_flash_report()
@@ -271,166 +282,6 @@ def draw_all():
         generate_engineering_diagrams.fig_07_single_feed_transient()
     except Exception as exc:
         print(f"Notice: generate_engineering_diagrams: {exc}")
-
-
-def md_to_blocks(text):
-    lines = text.replace("\r\n", "\n").split("\n")
-    blocks = []
-    buf = []
-    list_buf = []
-    table = []
-    code_buf = []
-    in_code = False
-
-    def flush_p():
-        if buf:
-            blocks.append(("p", " ".join(buf).strip()))
-            buf.clear()
-
-    def flush_list():
-        if list_buf:
-            blocks.append(("ul", list(list_buf)))
-            list_buf.clear()
-
-    def flush_table():
-        if table:
-            rows = []
-            for raw in table:
-                cells = [c.strip() for c in raw.strip().strip("|").split("|")]
-                if cells and not all(set(c) <= set("-: ") for c in cells):
-                    rows.append(cells)
-            if rows:
-                blocks.append(("table", rows))
-            table.clear()
-
-    def flush_code():
-        if code_buf:
-            blocks.append(("pre", "\n".join(code_buf)))
-            code_buf.clear()
-
-    for line in lines:
-        stripped = line.strip()
-
-        if stripped.startswith("```"):
-            flush_p()
-            flush_list()
-            flush_table()
-            if in_code:
-                flush_code()
-                in_code = False
-            else:
-                in_code = True
-            continue
-
-        if in_code:
-            code_buf.append(line)
-            continue
-
-        if stripped.startswith("|") and stripped.endswith("|"):
-            flush_p()
-            flush_list()
-            table.append(stripped)
-            continue
-        else:
-            flush_table()
-
-        if stripped.startswith("# "):
-            flush_p()
-            flush_list()
-            blocks.append(("h1", stripped[2:].strip()))
-        elif stripped.startswith("## "):
-            flush_p()
-            flush_list()
-            blocks.append(("h2", stripped[3:].strip()))
-        elif stripped.startswith("### "):
-            flush_p()
-            flush_list()
-            blocks.append(("h3", stripped[4:].strip()))
-        elif stripped.startswith("> "):
-            flush_p()
-            flush_list()
-            blocks.append(("blockquote", stripped[2:].strip()))
-        elif stripped.startswith("- ") or stripped.startswith("* "):
-            flush_p()
-            list_buf.append(stripped[2:].strip())
-        elif re.match(r"^\d+\.\s+", stripped):
-            flush_p()
-            list_buf.append(re.sub(r"^\d+\.\s+", "", stripped))
-        elif stripped == "" or stripped == "---":
-            flush_p()
-            flush_list()
-        else:
-            flush_list()
-            buf.append(stripped)
-
-    flush_p()
-    flush_list()
-    flush_table()
-    flush_code()
-    return blocks
-
-
-def fig_html(src, caption):
-    return (
-        f'<figure><img src="images/{src}" alt="{html.escape(caption)}"/>'
-        f"<figcaption>{html.escape(caption)}</figcaption></figure>"
-    )
-
-
-def inline_format(text):
-    safe = html.escape(text)
-    safe = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", safe)
-    safe = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", safe)
-    safe = re.sub(r"`([^`]+)`", r"<code>\1</code>", safe)
-    safe = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', safe)
-    return safe
-
-
-def blocks_to_xhtml(blocks, figures):
-    parts = []
-    inserted = set()
-    for kind, data in blocks:
-        if kind == "h1":
-            safe = inline_format(data)
-            parts.append(f"<h1>{safe}</h1>")
-            check_text = data
-        elif kind == "h2":
-            safe = inline_format(data)
-            parts.append(f"<h2>{safe}</h2>")
-            check_text = data
-        elif kind == "h3":
-            safe = inline_format(data)
-            parts.append(f"<h3>{safe}</h3>")
-            check_text = data
-        elif kind == "p":
-            parts.append(f"<p>{inline_format(data)}</p>")
-            continue
-        elif kind == "blockquote":
-            parts.append(f"<blockquote><p>{inline_format(data)}</p></blockquote>")
-            continue
-        elif kind == "pre":
-            parts.append(f"<pre><code>{html.escape(data)}</code></pre>")
-            continue
-        elif kind == "ul":
-            items = "".join(f"<li>{inline_format(item)}</li>" for item in data)
-            parts.append(f"<ul>{items}</ul>")
-            continue
-        elif kind == "table":
-            rows = []
-            for i, cells in enumerate(data):
-                tag = "th" if i == 0 else "td"
-                cells_html = "".join(f"<{tag}>{inline_format(c)}</{tag}>" for c in cells)
-                rows.append(f"<tr>{cells_html}</tr>")
-            parts.append(f"<table><tbody>{''.join(rows)}</tbody></table>")
-            continue
-        else:
-            continue
-
-        for key, fig in figures.items():
-            if fig and key in check_text and key not in inserted:
-                parts.append(fig)
-                inserted.add(key)
-    return "\n".join(parts)
 
 
 def xhtml(title, body, css="styles.css"):
@@ -448,34 +299,17 @@ def xhtml(title, body, css="styles.css"):
 """
 
 
-CSS = """
-@font-face { font-family: "DejaVu Sans"; src: url("fonts/DejaVuSans.ttf"); }
-@font-face { font-family: "DejaVu Sans"; src: url("fonts/DejaVuSans-Bold.ttf"); font-weight: bold; }
-body { font-family: "DejaVu Sans", sans-serif; line-height: 1.45; margin: 1.2em 8%; color: #1e1e1e; }
-h1 { font-family: "DejaVu Sans", sans-serif; font-weight: bold; font-size: 1.6em; line-height: 1.2; margin-top: 0; color: #0066ff; }
-h2 { font-family: "DejaVu Sans", sans-serif; font-weight: bold; font-size: 1.15em; margin-top: 1.6em; color: #1e1e1e; }
-h3 { font-family: "DejaVu Sans", sans-serif; font-weight: bold; font-size: 1.05em; margin-top: 1.3em; color: #1e293b; }
-p { margin: 0.7em 0; }
-figure { margin: 1.6em 0; page-break-inside: avoid; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0.8em; text-align: center; }
-img { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; }
-figcaption { font-family: "DejaVu Sans", sans-serif; font-size: 0.9em; line-height: 1.4; margin-top: 0.6em; color: #0284c7; font-weight: bold; text-align: left; }
-nav ol { line-height: 1.6; }
-blockquote { border-left: 3px solid #0066ff; margin: 1em 0; padding-left: 1em; color: #444; }
-pre { background: #f4f4f4; padding: 0.8em; overflow-x: auto; font-size: 0.88em; border-radius: 4px; }
-code { font-family: monospace; }
-table { width: 100%; border-collapse: collapse; margin: 1.2em 0; font-size: 0.9em; }
-th, td { border: 1px solid #cbd5e1; padding: 8px 12px; text-align: left; }
-th { background-color: #f1f5f9; font-weight: bold; color: #0f172a; }
-"""
-
-
 def main():
     draw_all()
-    images = {p.name: p for p in sorted(FIG.glob("*.png"))}
+    images = {
+        p.name: p
+        for p in sorted(FIG.glob("*.png"))
+        if p.name == "cover.png" or p.name.startswith("fig-0")
+    }
     chapters = sorted(CHAP.glob("*.md"))
     items = []
     for path in chapters:
-        blocks = md_to_blocks(path.read_text(encoding="utf-8"))
+        blocks = md_to_blocks(path.read_text(encoding="utf-8"), path.parent)
         title = next((t for k, t in blocks if k == "h1"), path.stem)
         figures = {}
         for prefix, heading, src, caption, *_rest in FIGS:

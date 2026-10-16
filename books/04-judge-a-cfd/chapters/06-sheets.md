@@ -126,4 +126,42 @@ Fill every cell in ink. A blank cell is an automated stop. An unverified tempera
 [ ] **CFD REPORT ACCEPTED TO SUPPORT THE SINGLE STATED DECISION** 
 [ ] **CFD REPORT REJECTED (DEFECTIVE INPUTS / FAILED CONVERGENCE / UNCALIBRATED)** 
 **Auditing Commissioning Lead Signature**: ________________________ **Date**: __________________ 
-**Facility Owner Representative Signature**: ____________________ **Date**: __________________ 
+**Facility Owner Representative Signature**: ____________________ **Date**: __________________
+
+## Worked Numerical Example: Completing Sheet 1 and Sheet 2 on a Hybrid Hall
+
+To illustrate how Sheet 1 (Field Benchmarking & Model Calibration) and Sheet 2 (Comparative Remedy Selection) govern an actual engineering decision, consider a commissioning audit of **Hall B, Row 04** containing ten high-density hybrid racks (`R04-01` through `R04-10`, each drawing $120.0\,\text{kW}$ total PDU power with $98.4\,\text{kW}$ captured by the PG25 liquid loop and $21.6\,\text{kW}$ rejected to the air stream) flanked by two enterprise network cabinets (`R04-11` and `R04-12`, $12.0\,\text{kW}$ air-cooled).
+
+### Step 1: Auditing the Uncalibrated Baseline Submission
+
+The contractor initially submits a baseline CFD report claiming all twelve cabinets pass ASHRAE Class A1 ($T_{\text{inlet}} \le 27.0^\circ\text{C}$), with a predicted maximum intake temperature of $25.4^\circ\text{C}$ at `R04-12` ($1.8\,\text{m}$). However, when the commissioning engineer executes the Sheet 1 physical walk with a calibrated 3-tier Pt100 tree and backpressure-compensated balometer:
+- Physical temperature at `R04-12` ($1.8\,\text{m}$) reads **$30.8^\circ\text{C}$** (a $+5.4\,\text{K}$ calibration error, violating both the $27.0^\circ\text{C}$ ASHRAE threshold and the $\pm 1.5\,\text{K}$ model calibration gate).
+- Balometer readings on tiles `T04-11` and `T04-12` read **$410\,\text{CFM}$** against the model's idealized **$820\,\text{CFM}$**, caused by a $400\,\text{mm}$ chilled-water header pipe obstructing the underfloor plenum directly beneath the end of Row 04 and twelve unblanked 1U slots in `R04-11`.
+
+$$\Delta T_{\text{error, R04-12}} = |25.4^\circ\text{C} - 30.8^\circ\text{C}| = 5.4\,\text{K} > 1.5\,\text{K} \implies \mathbf{\text{SHEET 1 STATUS: REFUSED}}$$
+
+### Step 2: Physical Boundary Correction and Remedy Ranking on Sheet 2
+
+The modeler adds the physical $400\,\text{mm}$ underfloor pipe obstruction, sets the measured $12 \times 1\text{U}$ unblanked slot orifice area ($A_{\text{leak}} = 0.025\,\text{m}^2$), and re-runs the baseline. The calibrated model now predicts $30.4^\circ\text{C}$ at `R04-12` ($1.8\,\text{m}$), achieving $\text{MAE}_T = 0.72\,\text{K}$ and $\text{RMSE}_T = 0.94\,\text{K}$ across all 36 rack sensors (**Sheet 1 Status: CALIBRATED**).
+
+Three physical remedies are then simulated on the calibrated model and recorded on Sheet 2:
+
+| Candidate Remedy ID | Physical Modification Modeled | Simulated `R04-12` ($1.8\,\text{m}$) | Simulated Row $\text{SHI}$ | CRAH Fan Power Delta | Sheet 2 Audit Verdict |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Calibrated Baseline** | As-walked hall (unblanked 12U + pipe blockage) | $30.4^\circ\text{C}$ (Meas: $30.8^\circ\text{C}$) | $0.29$ (Fail) | $0.0\,\text{kW}$ (Baseline) | **Fails ASHRAE $27.0^\circ\text{C}$** |
+| **Remedy Option A** | Increase CRAH-03 & CRAH-04 fan speed $75\% \to 95\%$ | $27.9^\circ\text{C}$ | $0.26$ (Fail) | $+18.4\,\text{kW}$ continuous | **Rejected** (Still $>27^\circ\text{C}$, high kW) |
+| **Remedy Option B** | Install 12U blanking panels + seal rear cable cutouts | $26.8^\circ\text{C}$ | $0.14$ (Pass) | $0.0\,\text{kW}$ | **Partial Pass** (Margin only $0.2\,\text{K}$) |
+| **Remedy Option C** | **Option B + swap `T04-11`/`12` to $50\%$ high-flow grates** | **$24.1^\circ\text{C}$** | **$0.09$ (Pass)** | **$0.0\,\text{kW}$** | **Selected for Physical Trial** |
+
+Following physical installation of Remedy Option C, the mandatory post-change walk records **$24.3^\circ\text{C}$** at `R04-12` ($1.8\,\text{m}$) and **$790\,\text{CFM}$** on the swapped grates, closing Sheet 2 with empirical field proof.
+
+## Mandatory Sign-Off Block and Calibration Instrument Traceability Log
+
+Every completed Sheet 1 and Sheet 2 package filed in the facility engineering archive must attach the **Instrument Traceability Table** listing the serial number, NIST/ISO 17025 calibration certificate ID, calibration due date, and pre-walk ice-bath / zero-pressure offset check for every RTD probe, balometer hood, micro-manometer, and clamp meter used during the walk. A sheet bearing temperatures without instrument serial numbers is treated as an unverified estimate and refused at handover.
+
+| Instrument Asset Tag | Instrument Type & Make/Model | Calibration Cert ID & Expiry | Pre-Walk Zero / Reference Check | Assigned Survey Team Member |
+| :--- | :--- | :--- | :--- | :--- |
+| `MET-RTD-01..06` | 4-Wire Pt100 Class A Vertical Tree | ISO-17025 Cert `#88412` (Valid) | Ice-bath $0.00^\circ\text{C} \pm 0.04\,\text{K}$ verified | Lead Thermal Commissioning Tech |
+| `MET-BAL-02` | Powered Backpressure-Compensated Balometer | NIST Traceable `#44109` (Valid) | Sealed zero-flow offset $= 0.0\,\text{CFM}$ | Pneumatic Balance Engineer |
+| `MET-MAN-04` | Digital Micro-Manometer ($0\text{--}250\,\text{Pa}$) | ISO-17025 Cert `#91023` (Valid) | Loop-shorted zero $= 0.00\,\text{Pa}$ | Pneumatic Balance Engineer |
+| `MET-EPMS-A/B` | Revenue-Grade Rack PDU Branch Meters | IEC 62053-22 Class 0.5S | Cross-checked vs Fluke 435-II analyzer | Electrical Commissioning Lead |

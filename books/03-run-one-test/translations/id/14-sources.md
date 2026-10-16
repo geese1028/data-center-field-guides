@@ -6,29 +6,15 @@ Panduan lapangan ini mengartikulasikan metodologi operasional untuk mengeksekusi
 
 Standar rekayasa yang dapat dibeli dari badan standar penerbit bukanlah dokumen yang boleh direproduksi dalam teks eksternal. Mengutip suatu standar berdasarkan judul, tahun, dan nomor bagian spesifik untuk menetapkan toleransi pengujian hukum adalah praktik rekayasa standar; mereproduksi bagian-bagian ekstensif dari standar tersebut di dalam manual yang dibuat oleh AI adalah tindakan yang tidak pantas.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| STANDAR INDUSTRI NORMATIF YANG DISITASI |
-+----------------------+-----------------------------------------------------------------------------+
-| PANDUAN ASHRAE 0 | "The Commissioning Process" (Edisi 2019). Prinsip-prinsip dasar untuk |
-| | lingkup komisioning, Persyaratan Proyek Pemilik (OPR), dan audit BOD. |
-+----------------------+-----------------------------------------------------------------------------+
-| PANDUAN ASHRAE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). |
-| | Metodologi untuk daftar periksa prafungsional dan kinerja fungsional. |
-+----------------------+-----------------------------------------------------------------------------+
-| PANDUAN ACG | AABC Commissioning Group "Commissioning Guideline for Building Systems". |
-| | Protokol verifikasi pihak ketiga independen dan standar penyaksian. |
-+----------------------+-----------------------------------------------------------------------------+
-| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (Edisi ke-6). Kriteria ketat |
-| | kecepatan penggerusan, pembilasan kimiawi, dan hitungan partikulat padat. |
-+----------------------+-----------------------------------------------------------------------------+
-| NFPA 70 / IEC 60364 | National Electrical Code (NEC) dan standar International Electrotechnical |
-| | Commission untuk proteksi sirkuit cabang, pentanahan, dan LOTO. |
-+----------------------+-----------------------------------------------------------------------------+
-| ISA-5.1 | "Instrumentation Symbols and Identification". Simbologi P&ID standar untuk |
-| | diagram alir proses, pemancar (TT, PT, FT), dan katup kontrol (TCV). |
-+----------------------+-----------------------------------------------------------------------------+
-```
+**STANDAR INDUSTRI NORMATIF YANG DISITASI**
+
+| PANDUAN ASHRAE 0 | "The Commissioning Process" (Edisi 2019). Prinsip-prinsip dasar untuk lingkup komisioning, Persyaratan Proyek Pemilik (OPR), dan audit BOD. |
+| :--- | :--- |
+| PANDUAN ASHRAE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). Metodologi untuk daftar periksa prafungsional dan kinerja fungsional. |
+| PANDUAN ACG | AABC Commissioning Group "Commissioning Guideline for Building Systems". Protokol verifikasi pihak ketiga independen dan standar penyaksian. |
+| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (Edisi ke-6). Kriteria ketat kecepatan penggerusan, pembilasan kimiawi, dan hitungan partikulat padat. |
+| NFPA 70 / IEC 60364 | National Electrical Code (NEC) dan standar International Electrotechnical Commission untuk proteksi sirkuit cabang, pentanahan, dan LOTO. |
+| ISA-5.1 | "Instrumentation Symbols and Identification". Simbologi P&ID standar untuk diagram alir proses, pemancar (TT, PT, FT), dan katup kontrol (TCV). |
 
 ## Penerapan Standar Normatif
 

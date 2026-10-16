@@ -2,20 +2,12 @@
 
 A liquid cooling verification conducted without clearly designated individual roles rapidly degenerates into an uncoordinated group discussion. The standard method statement calls for an exhaustive RACI matrix (Responsible, Accountable, Consulted, Informed). In the high-stakes environment of a live or near-live data hall, that structure must be distilled into three distinct commercial entities and five specific engineering functions.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE THREE-PARTY GOVERNANCE TRIANGLE |
-+------------------------------------+---------------------------------------------------------------+
-| THE FACILITY OWNER | Witnesses execution, authorizes deviations, and signs off |
-| (Client / Hyperscaler Ops) | final certificate tiers. Does not operate tools. |
-+------------------------------------+---------------------------------------------------------------+
-| THE VERIFICATION AUTHORITY (CxA) | Authors Cx Plan & scripts, manages calibration, directs steps,|
-| (Independent Testing Agency) | records data, and audits punch list. Never closes own defect. |
-+------------------------------------+---------------------------------------------------------------+
-| THE TRADE CONSTRUCTOR | Supplies as-built drawings, operates breakers and valves, |
-| (General / Mechanical / Electrical)| and performs physical punch list repairs under permit. |
-+------------------------------------+---------------------------------------------------------------+
-```
+**THE THREE-PARTY GOVERNANCE TRIANGLE**
+
+| THE FACILITY OWNER (Client / Hyperscaler Ops) | Witnesses execution, authorizes deviations, and signs off final certificate tiers. Does not operate tools. |
+| :--- | :--- |
+| THE VERIFICATION AUTHORITY (CxA) (Independent Testing Agency) | Authors Cx Plan & scripts, manages calibration, directs steps, records data, and audits punch list. Never closes own defect. |
+| THE TRADE CONSTRUCTOR (General / Mechanical / Electrical) | Supplies as-built drawings, operates breakers and valves, and performs physical punch list repairs under permit. |
 
 ## The Three Commercial Parties
 
@@ -30,26 +22,14 @@ If a single engineering firm is contracted to perform both construction and comm
 
 Within the testing team on the floor, five distinct technical functions must be staffed. These represent functional responsibilities rather than a requirement for five separate bodies; on a smaller test, one experienced engineer may cover multiple disciplines. However, no individual may act as the sole witness for an operational task they physically performed.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| THE FIVE FUNCTIONAL DISCIPLINES |
-+-------------------+------------------------------------------------------------------------------+
-| 1. TEST LEAD | Owns the approved testing window, enforces the claim, directs step timing, |
-| | manages communications, and holds sole authority to initiate thermal load. |
-+-------------------+------------------------------------------------------------------------------+
-| 2. ELECTRICAL PE | Directs lock-out/tag-out (LOTO), conducts megger insulation & ground testing,|
-| | verifies phase rotation, monitors upstream PDU trip curves, and runs IR scans|
-+-------------------+------------------------------------------------------------------------------+
-| 3. MECHANICAL PE | Manages secondary fluid loop, oversees hydrostatic pressure holds & venting, |
-| | audits CDU pump curves, and tracks quick disconnect seal integrity. |
-+-------------------+------------------------------------------------------------------------------+
-| 4. CONTROLS PE | Cross-checks BMS telemetry against calibrated field gauges, validates Modbus/|
-| | BACnet registers, and injects hardware alarm faults to verify trip logic. |
-+-------------------+------------------------------------------------------------------------------+
-| 5. TEST TECH | Manages physical load-bank connections, verifies instrument calibration logs,|
-| | records all measured values in ink on master sheets, and maintains archives. |
-+-------------------+------------------------------------------------------------------------------+
-```
+**THE FIVE FUNCTIONAL DISCIPLINES**
+
+| 1. TEST LEAD | Owns the approved testing window, enforces the claim, directs step timing, manages communications, and holds sole authority to initiate thermal load. |
+| :--- | :--- |
+| 2. ELECTRICAL PE | Directs lock-out/tag-out (LOTO), conducts megger insulation & ground testing, verifies phase rotation, monitors upstream PDU trip curves, and runs IR scans |
+| 3. MECHANICAL PE | Manages secondary fluid loop, oversees hydrostatic pressure holds & venting, audits CDU pump curves, and tracks quick disconnect seal integrity. |
+| 4. CONTROLS PE | Cross-checks BMS telemetry against calibrated field gauges, validates Modbus/ BACnet registers, and injects hardware alarm faults to verify trip logic. |
+| 5. TEST TECH | Manages physical load-bank connections, verifies instrument calibration logs, records all measured values in ink on master sheets, and maintains archives. |
 
 ### 1. The Test Lead
 Owns the approved testing window, coordinates with facility operations, directs step transitions, and ensures testing adheres strictly to the approved script revision. The Test Lead does not hold an instrument in their hand; their attention is focused on system stability, protocol compliance, and overall safety.
@@ -73,18 +53,14 @@ The distribution of authority during dynamic testing follows two absolute rules:
 1. **Singular Command Authority**: Thermal heat may be commanded by exactly **one individual**—the designated Test Lead. That individual's name is recorded in ink on Sheet 3 before the first breaker is engaged. No load step may be initiated by verbal suggestion from the owner, the contractor, or an observing vendor.
 2. **Universal Stop Authority**: An emergency stop may be called by **any individual present in the data hall**. This authority is absolute, non-negotiable, and requires no prior approval from the Test Lead. If a technician spots a leaking quick disconnect, an electrical apprentice detects an unusual odor, or an observer feels uncertain about an operational transient, they call an immediate stop. The system is shut down instantly without debate.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMAND AND STOP GOVERNANCE |
-+--------------------------------------------------+-------------------------------------------------+
+**COMMAND AND STOP GOVERNANCE**
+
 | WHO MAY COMMAND HEAT | WHO MAY CALL AN EMERGENCY STOP |
-+--------------------------------------------------+-------------------------------------------------+
+| :--- | :--- |
 | • Exactly ONE named person on site. | • EVERY PERSON in the room. |
 | • Recorded in ink on Sheet 3 before first step. | • Requires zero consensus or prior approval. |
-| • Must confirm all prerequisite gates are signed.| • Overrides all project schedules and costs. |
-| • Operates strictly within approved script steps.| • Survives the organizational chart completely. |
-+--------------------------------------------------+-------------------------------------------------+
-```
+| • Must confirm all prerequisite gates are signed. | • Overrides all project schedules and costs. |
+| • Operates strictly within approved script steps. | • Survives the organizational chart completely. |
 
 ## The Kickoff Meeting Governance
 

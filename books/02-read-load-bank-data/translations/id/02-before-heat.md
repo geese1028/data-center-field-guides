@@ -20,7 +20,7 @@ Blok persiapan membutuhkan bukti fisik bahwa:
 
 ### Gerbang 2: Pasokan daya listrik diverifikasi terhadap spesifikasi rekayasa
 Penyulang listrik yang menyalurkan daya ke bank beban harus cocok dengan dasar desain yang dinyatakan, bukan sambungan darurat sementara yang diharapkan diabaikan oleh orang lain.
-- Verifikasi tegangan saluran-ke-saluran (*line-to-line*) di semua fasa (V_AB, V_BC, V_CA) dengan multimeter digital terkalibrasi pada terminal pemutus arus utama bank beban. Ketidakseimbangan fasa harus memenuhi V_unbalance ≤ 1{,}0%.
+- Verifikasi tegangan saluran-ke-saluran (*line-to-line*) di semua fasa (V_AB, V_BC, V_CA) dengan multimeter digital terkalibrasi pada terminal pemutus arus utama bank beban. Ketidakseimbangan fasa harus memenuhi V_unbalance ≤ 1,0%.
 - Verifikasi rotasi fasa searah jarum jam yang benar (A-B-C) untuk mencegah putaran terbalik pada *blower* ventilasi bantu internal.
 - Ukur impedansi *loop* pembumian dan verifikasi bahwa konduktor pembumian peralatan (EGC) terikat ke bus pembumian fasilitas dengan kepatuhan ketat terhadap NFPA 70 (NEC Pasal 250) atau IEC 60364-5-54.
 - Lakukan pengujian operasional langsung pada sakelar pemutus utama yang dapat digembok (*lockable main disconnect switch*) untuk membuktikan bahwa unit dapat dimatikan sepenuhnya dan dikunci secara mekanis (*lockout*) dalam keadaan darurat.
@@ -42,11 +42,11 @@ Jika seorang operator menjadi tidak sabar dan menyalakan "hanya sedikit panas" (
 ## Apa yang Anda Catat Selama Garis Dasar
 
 Selama menit terakhir dari larian stabilisasi beban nol sepuluh menit, catat blok garis dasar satu menit terus-menerus. Blok ini harus merekam:
-- **Saluran Listrik**: Daya aktif P_elec harus terbaca tepat 0{,}0 kW di semua kabinet (daya *blower* parasitik bantu, biasanya 0,8 kW, harus dicatat pada baris terpisah dan tidak digabungkan dengan daya pemanas).
+- **Saluran Listrik**: Daya aktif P_elec harus terbaca tepat 0,0 kW di semua kabinet (daya *blower* parasitik bantu, biasanya 0,8 kW, harus dicatat pada baris terpisah dan tidak digabungkan dengan daya pemanas).
 - **Saluran Hidrolik**: Suhu pendingin pasokan (T_in), suhu pendingin kembali (T_out), laju aliran volumetrik (Q_v), tekanan statis pasokan (P_in), dan tekanan statis kembali (P_out).
 - **Saluran Udara Pendamping**: Suhu udara masuk ambien (T_air,in) dan suhu udara buang (T_air,out).
 
-Pada garis dasar beban nol yang sehat, perbedaan suhu di seluruh inti pemanas (ΔT = T_out - T_in) biasanya akan bernilai sedikit positif—sekitar +0{,}05 K hingga +0{,}15 K—sepenuhnya disebabkan oleh daya pemompaan mekanis yang diubah menjadi kalor gesekan viskos di dalam pemipaan dan impeler pompa CDU (P_friction = Q_v · ΔP). Mendokumentasikan deviasi kecil ini sangatlah penting: hal ini mencegah auditor di kemudian hari salah menafsirkan kalor gesekan pompa sebagai kesalahan kalibrasi listrik selama langkah beban rendah.
+Pada garis dasar beban nol yang sehat, perbedaan suhu di seluruh inti pemanas (ΔT = T_out - T_in) biasanya akan bernilai sedikit positif—sekitar +0,05 K hingga +0,15 K—sepenuhnya disebabkan oleh daya pemompaan mekanis yang diubah menjadi kalor gesekan viskos di dalam pemipaan dan impeler pompa CDU (P_friction = Q_v · ΔP). Mendokumentasikan deviasi kecil ini sangatlah penting: hal ini mencegah auditor di kemudian hari salah menafsirkan kalor gesekan pompa sebagai kesalahan kalibrasi listrik selama langkah beban rendah.
 
 Setiap saluran sensor yang akan muncul dalam blok data gradien berikutnya harus sudah ada, terbaca, dan sehat selama menit garis dasar ini. Sensor yang tiba-tiba "muncul" dalam ekspor di tengah pengujian gradien berarti belum diverifikasi selama persiapan. Datanya tidak dapat digunakan untuk membuktikan kepatuhan.
 
@@ -54,11 +54,11 @@ Setiap saluran sensor yang akan muncul dalam blok data gradien berikutnya harus 
 
 Jika lembar persyaratan Anda mencakup tugas untuk mewakili kurva resistansi hidrolik rak fisik (hubungan k_v atau C_v antara aliran dan penurunan tekanan), fase persiapan adalah tempat klaim tersebut dikalibrasi.
 
-Pendingin dingin (misalnya, PG25 pada 35,0°C) memiliki viskositas kinematik yang lebih tinggi ($\nu ≈ 2{,}85 cSt$) daripada pendingin panas pada 45,0°C ($\nu ≈ 2{,}15 cSt$). Akibatnya, penurunan tekanan garis dasar dingin di seluruh bank beban akan sedikit lebih tinggi daripada penurunan kondisi tunak saat panas.
+Pendingin dingin (misalnya, PG25 pada 35,0°C) memiliki viskositas kinematik yang lebih tinggi ($\nu ≈ 2,85 cSt$) daripada pendingin panas pada 45,0°C ($\nu ≈ 2,15 cSt$). Akibatnya, penurunan tekanan garis dasar dingin di seluruh bank beban akan sedikit lebih tinggi daripada penurunan kondisi tunak saat panas.
 
 Selama larian persiapan beban nol:
-1. Ukur tekanan diferensial di seluruh port pasokan dan kembali manifold (ΔP = P_in - P_out) pada aliran terukur (176{,}5 LPM).
-2. Jika bank beban dilengkapi katup penyeimbang manual yang dapat disetel (seperti katup penyeimbang fungsi ganda / *triple-duty* terkalibrasi), sesuaikan tuas penyetel hingga ΔP yang terukur cocok dengan kurva impedansi rak virtual yang disitasi (misalnya, 112{,}0 kPa ± 3{,}0 kPa).
+1. Ukur tekanan diferensial di seluruh port pasokan dan kembali manifold (ΔP = P_in - P_out) pada aliran terukur (176,5 LPM).
+2. Jika bank beban dilengkapi katup penyeimbang manual yang dapat disetel (seperti katup penyeimbang fungsi ganda / *triple-duty* terkalibrasi), sesuaikan tuas penyetel hingga ΔP yang terukur cocok dengan kurva impedansi rak virtual yang disitasi (misalnya, 112,0 kPa ± 3,0 kPa).
 3. Kunci posisi katup penyeimbang dengan penghenti memori mekanis atau segel bukti perusakan (*tamper-evident seal*).
 4. Catat posisi katup akhir, suhu fluida dingin, dan ΔP yang terukur pada lembar persiapan.
 

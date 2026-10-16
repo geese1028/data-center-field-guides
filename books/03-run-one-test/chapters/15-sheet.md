@@ -4,34 +4,17 @@ Chapter 16 provides the seven master engineering record sheets. Print them on wa
 
 Do not attempt to summarize these grids into high-level descriptive paragraphs after the test concludes, discarding the raw field data. An auditor inspecting a verification package expects to see the actual ink impressions, timestamped entries, witness initials, and instrument serial numbers recorded while standing in the aisle.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE SEVEN MASTER FIELD SHEETS |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| SHEET | TITLE & VERIFICATION SCOPE | CX TIER | RESPONSIBLE LEAD | MANDATORY EXECUTION TIMING|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 01 | Pre-Energization Static QA | Level 2 / 3 | Electrical PE & | Before closing any supply |
-| | & Hydraulic Hold Check | | Mechanical PE | breaker or opening fluid. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 02 | Autonomous CDU Protection | Level 4 FPT | Controls PE & | Before introducing any |
-| | & Physical Alarm Injections | | Mechanical PE | thermal heat to the loop. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 03 | Multi-Stage Thermal Step & | Level 5 IST | Test Lead & | One distinct copy executed|
-| | Enthalpy Heat Closure Log | | Test Technician | per thermal step rung. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 04 | Dynamic Transient Failure & | Level 5 IST | Test Lead & | Executed at 100% full load|
-| | Redundancy Ride-Through Log | | Controls PE | during simulated faults. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 05 | Controlled De-Energization & | Closeout | Test Lead & | Executed in strict order |
-| | Demobilization Protocol | Level 6 | Electrical PE | during shift shutdown. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 06 | Cold No-Heat Baseline Pump | Level 4 / 5 | Mechanical PE & | Executed at 20°C with VFD |
-| | & Loop Resistance Curve | | Test Technician | modulation locked off. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 07 | CDU Autonomous Control Logic | Level 4 / 5 | Controls PE & | Executed across all units |
-| | & Supervisory Interface Audit | | Vendor Specialist| with vendor logic attached|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-```
+**THE SEVEN MASTER FIELD SHEETS**
+
+| SHEET | TITLE & VERIFICATION SCOPE | CX TIER | RESPONSIBLE LEAD | MANDATORY EXECUTION TIMING |
+| :--- | :--- | :--- | :--- | :--- |
+| 01 | Pre-Energization Static QA & Hydraulic Hold Check | Level 2 / 3 | Electrical PE & Mechanical PE | Before closing any supply breaker or opening fluid. |
+| 02 | Autonomous CDU Protection & Physical Alarm Injections | Level 4 FPT | Controls PE & Mechanical PE | Before introducing any thermal heat to the loop. |
+| 03 | Multi-Stage Thermal Step & Enthalpy Heat Closure Log | Level 5 IST | Test Lead & Test Technician | One distinct copy executed per thermal step rung. |
+| 04 | Dynamic Transient Failure & Redundancy Ride-Through Log | Level 5 IST | Test Lead & Controls PE | Executed at 100% full load during simulated faults. |
+| 05 | Controlled De-Energization & Demobilization Protocol | Closeout Level 6 | Test Lead & Electrical PE | Executed in strict order during shift shutdown. |
+| 06 | Cold No-Heat Baseline Pump & Loop Resistance Curve | Level 4 / 5 | Mechanical PE & Test Technician | Executed at 20°C with VFD modulation locked off. |
+| 07 | CDU Autonomous Control Logic & Supervisory Interface Audit | Level 4 / 5 | Controls PE & Vendor Specialist | Executed across all units with vendor logic attached |
 
 ## Floor Execution Rules
 

@@ -14,21 +14,15 @@ The human mind immediately constructs a story:
 
 This is the narrative fallacy in operational engineering. It confuses temporal proximity and physical topology with physical causation.
 
-```
-+-----------------------------------------------------------------------------+
-| CAUSALITY VS. TOPOLOGY |
-| |
-| PHYSICAL TOPOLOGY (The Path) --> Physical wires, pipes, and buses |
+| **CAUSALITY VS. TOPOLOGY** |
+| :--- |
+| PHYSICAL TOPOLOGY (The Path) → Physical wires, pipes, and buses |
 | Tells you what COULD interact |
-| |
-| TEMPORAL SEQUENCE (The Clock) --> Order of millisecond arrival |
+| TEMPORAL SEQUENCE (The Clock) → Order of millisecond arrival |
 | Tells you what happened FIRST |
-| |
-| ENGINEERING FORENSICS (The Cause) --> Conservation of energy, metallurgy, |
+| ENGINEERING FORENSICS (The Cause) → Conservation of energy, metallurgy, |
 | electrical protective relay targets |
 | Tells you WHY it happened |
-+-----------------------------------------------------------------------------+
-```
 
 A physical path (the electrical busway, the chilled water piping header, the network cable) tells you where energy and data are capable of flowing. It does not prove that a specific energy transfer caused a failure.
 
@@ -61,20 +55,15 @@ If the protective relay latched element `51N` (Ground Fault), the cause was a br
 
 During a live incident investigation, intermediate working theories are necessary to direct troubleshooting. However, every unverified theory must be rigorously labeled in the site logbook:
 
-```
-+-------------------------------------------------------------------------+
-| LOGBOOK FORENSIC DISCIPLINE |
-| |
+| **LOGBOOK FORENSIC DISCIPLINE** |
+| :--- |
 | [PERMITTED FACTUAL LOG ENTRY] |
-| "09:14:18.045 UTC: Breaker SWG-02-4B tripped. Relay 87T target latched.|
+| "09:14:18.045 UTC: Breaker SWG-02-4B tripped. Relay 87T target latched. |
 | Winding resistance test shows Phase B to ground resistance = 0.2 ohms. |
 | CONCLUSION: Phase B internal transformer winding breakdown to earth." |
-| |
 | [PROHIBITED SPECULATIVE LOG ENTRY] |
 | "Chiller CH-02 probably pulled too much juice because it was hot out |
 | and tripped the breaker. We reset it and hope it holds." |
-+-------------------------------------------------------------------------+
-```
 
 An unverified hypothesis that is written into an operational turnover report without the word **"HYPOTHESIS"** prominently stamped on it will be inherited by the morning executive meeting as an established physical fact.
 
@@ -86,3 +75,11 @@ Once a false narrative enters executive slide decks, it takes weeks of contentio
 - The mandatory extraction and recording of microprocessor relay target codes prior to any breaker reset.
 - The strict requirement that all working theories be formally labeled as `HYPOTHESIS` until verified.
 - The physical energy balance calculations required to substantiate any forensic RCA claim.
+
+## Distinguishing Spurious Correlation from Physical Causality in Telemetry
+
+In a coupled thermodynamic loop, diurnal ambient temperature swings ($T_{\text{wb}}(t)$) drive simultaneous variations in cooling tower fan speed, condenser water temperature, chiller compressor kW, and power transformer winding temperature. Plotting two time-series $X(t)$ and $Y(t)$ that share a common diurnal driver will easily yield a Pearson correlation coefficient $r_{XY} > 0.92$:
+
+$$r_{XY} = \frac{\sum_{t=1}^{N} (X_t - \bar{X})(Y_t - \bar{Y})}{\sqrt{\sum_{t=1}^{N} (X_t - \bar{X})^2} \sqrt{\sum_{t=1}^{N} (Y_t - \bar{Y})^2}}$$
+
+High correlation across a shared 24-hour cycle never proves that $X$ caused a fault in $Y$. Causal incident closure requires a physical mechanism verified by directional step-response testing or microsecond SOE precedence.

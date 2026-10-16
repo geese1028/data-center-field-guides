@@ -14,6 +14,21 @@ The party under review will offer more access than the engagement, because more 
 
 If the reader later wishes the line had been wider, that is a new engagement, with access and a method, not a sentence you add because you happened to see a screen. Happened to see is not a sample rule. It is how one machine becomes "the platform."
 
+## Strict Scope Demarcation Between Technical, Legal, and Financial Advisors
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{Scope}_{\text{TDD}} = \{\text{CapEx}, \text{OpEx}_{\text{tech}}, \text{Availability}, \text{Permits}_{\text{tech}}\}$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Strict Scope Demarcation Between Technical, Legal, and Financial Advisors | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - The lowest layer in scope, and the first layer out of scope.

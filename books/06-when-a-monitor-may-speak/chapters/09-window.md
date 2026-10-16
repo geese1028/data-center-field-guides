@@ -6,26 +6,20 @@ When technicians execute maintenance under an approved Method of Procedure (MOP)
 
 To prevent these expected maintenance transients from sounding control room horns, triggering automated paging escalation ladders, or falsely penalizing contractual SLA availability metrics, the Duty Manager places the affected equipment points into **Maintenance Window Masking**.
 
-```
-+-----------------------------------------------------------------------------+
-| MAINTENANCE WINDOW GOVERNANCE ENVELOPE |
-| |
+| **MAINTENANCE WINDOW GOVERNANCE ENVELOPE** |
+| :--- |
 | [PRE-WINDOW GATE] |
-| • Approved MOP & PTW Attached | CAB Ticket Verified |
-| • Explicit Point Mask List (Muting entire plant/hall is strictly forbidden)|
+| • Approved MOP & PTW Attached \| CAB Ticket Verified |
+| • Explicit Point Mask List (Muting entire plant/hall is strictly forbidden) |
 | • Countdown Timer Initialized (Hard ceiling: e.g. 120 minutes) |
-| |
 | [DURING THE WINDOW] |
 | • Telemetry fully recorded to disk; only horns and paging muted |
 | • Workstation displays diagonal AMBER WATERMARK on masked screens |
 | • Physical abnormal state whiteboard updated in central control room |
-| |
 | [FAILSAFE WATCHDOG GATE] |
 | • T - 15 min: Pre-Unmask Warning dispatched to Duty Manager console |
 | • T = 0 min: Window EXPIRES; points automatically RE-ARM |
 | • Duty Manager must sign physical unmask verification ledger |
-+-----------------------------------------------------------------------------+
-```
 
 ![Maintenance Window Masking and Failsafe Watchdogs](../figures/fig-05-maintenance-window-masking-matrix.png)
 

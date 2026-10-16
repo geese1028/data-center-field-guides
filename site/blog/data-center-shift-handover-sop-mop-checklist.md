@@ -34,24 +34,12 @@ P_{\text{transferred}} &= P_{\text{path\_A}} + P_{\text{path\_B}} \\
 P_{\text{steady-state}} &\le 0.45 \times P_{\text{rated}}
 \end{aligned}$$
 
-```
-+-------------------------------------------------------------+
-| 2N ELECTRICAL REDUNDANCY BOUNDARY |
-+------------------------------+------------------------------+
-| PATH A (Utility 1) | PATH B (Utility 2) |
-| Current Load: 42% (SAFE) | Current Load: 44% (SAFE) |
-| Rated: 2,500 kVA | Rated: 2,500 kVA |
-+------------------------------+------------------------------+
- |
- [CATSTROPHIC BREAKER TRIP ON A]
- |
- v
-+-------------------------------------------------------------+
-| PATH B IMMEDIATELY ABSORBS 100% OF PATH A LOAD: |
-| New Load = 42% + 44% = 86% of Rated Capacity |
-| Margin Remaining = 14% (Below Overcurrent Trip Curve) |
-+-------------------------------------------------------------+
-```
+**2N ELECTRICAL REDUNDANCY BOUNDARY**
+
+| PATH A (Utility 1) Current Load: 42% (SAFE) Rated: 2,500 kVA | PATH B (Utility 2) Current Load: 44% (SAFE) Rated: 2,500 kVA |
+| :--- | :--- |
+|  |  |
+| PATH B IMMEDIATELY ABSORBS 100% OF PATH A LOAD: New Load = 42% + 44% = 86% of Rated Capacity Margin Remaining = 14% (Below Overcurrent Trip Curve) |  |
 
 ### The Cascade Blackout Trap
 If operations teams allow steady-state loading on Path A to reach 55% and Path B to reach 52%, both paths appear safely under their individual 100% nameplates on the daily dashboard. 

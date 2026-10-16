@@ -12,6 +12,21 @@ Life in the model is the generation question, chapter 22. Do not let a depreciat
 
 If they ask you to sensitize the model, refuse. Sensitivity is their case. Your case is which inputs you will stand behind, and which you will not. A table of your alternative loads is a second model with your name on it. Do not build it.
 
+## Auditing Maintenance CapEx Reserves, PUE Power Pass-Throughs, and Insurance Limits
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{CapEx}_{\text{reserve}}(y) = \sum_{k} C_{\text{overhaul}, k} \cdot \mathbb{I}(t_{\text{age}, k} + y \ge L_{\text{service}, k})$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Auditing Maintenance CapEx Reserves, PUE Power Pass-Throughs, and Insurance Limits | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - Model load tagged: measured, contract quantity, design, or not adopted.

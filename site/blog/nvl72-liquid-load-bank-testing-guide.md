@@ -33,27 +33,12 @@ A liquid load bank and a Coolant Distribution Unit (CDU) perform opposite thermo
 - **The Coolant Distribution Unit (CDU)** is the **source plant**. It contains the heat exchanger, circulating pumps, expansion vessel, de-ionization bypass, and proportional control valves that condition the secondary liquid loop.
 - **The Liquid Load Bank** is the **heat and flow sink**. It contains electric immersion heating elements, flow-balancing orifices, calibrated pressure transducers, and quick-disconnect manifolds designed to mimic the thermal and hydraulic impedance of 72 Blackwell GPUs.
 
-```
-+-------------------------------------------------------------+
-| FACILITY PRIMARY LOOP |
-| (Chilled Water / FWS) |
-+------------------------------+------------------------------+
- |
- v
-+-------------------------------------------------------------+
-| COOLANT DISTRIBUTION UNIT (CDU) |
-| [Plant: Heat Exchanger + Pumps] |
-+------------------------------+------------------------------+
- |
- Secondary Supply | Secondary Return
- (T_in = 30°C) | (T_out = 45°C)
- v
-+-------------------------------------------------------------+
-| LIQUID LOAD BANK (LLB) |
-| [Sink: Heaters + Calibrated Orifices] |
-| Simulating: 132 kW Heat & 110 L/min Flow |
-+-------------------------------------------------------------+
-```
+| FACILITY PRIMARY LOOP (Chilled Water / FWS) |  |
+| :--- | :--- |
+|  |  |
+| COOLANT DISTRIBUTION UNIT (CDU) [Plant: Heat Exchanger + Pumps] |  |
+|  |  |
+| LIQUID LOAD BANK (LLB) [Sink: Heaters + Calibrated Orifices] Simulating: 132 kW Heat & 110 L/min Flow |  |
 
 If you combine the pump and the load into a single custom box, you have not tested the facility. You have merely tested a closed-loop recirculation cart. When the permanent CDU arrives, your previous commissioning pass is completely invalid.
 

@@ -45,10 +45,10 @@ Di bawah setiap panel plot yang dihasilkan, mesin pelaporan otomatis harus mengh
 4. **Nilai Median ($\tilde{x}$)**
 
 ### Mengapa Median Wajib Dicantumkan
-Dalam penyerapan telemetri otomatis, peralihan kontaktor listrik dan operasi pemutus arus tegangan tinggi dapat memicu denyut interferensi elektromagnetik (EMI) yang menyebabkan pengonversi analog-ke-digital (ADC) mencatat lonjakan palsu tunggal berdurasi 1 milidetik (misalnya, mencatat satu sampel 1200 kW sebelum kembali ke 120{,}0 kW).
-- Dalam masa jeda 900 sampel, satu sampel buruk tersebut akan menarik rata-rata aritmatika ke atas sebesar 1{,}2 kW, mendistorsi perhitungan penutupan energi.
-- Nilai median secara inheren kebal terhadap lonjakan pencilan (*outlier*) yang terisolasi. Membandingkan rata-rata (μ = 121{,}2 kW) terhadap median ($\tilde{x} = 120{,}0 kW$) langsung mengungkap adanya lonjakan asimetris.
-- Jika nilai maksimum dan minimum identik ($\max = \min = 45{,}000°C$), mesin pelaporan harus secara otomatis menyorot tabel tersebut dengan warna merah dengan label: **"PERINGATAN: VARIANS NOL TERDETEKSI (BUFFER BEKU)."**
+Dalam penyerapan telemetri otomatis, peralihan kontaktor listrik dan operasi pemutus arus tegangan tinggi dapat memicu denyut interferensi elektromagnetik (EMI) yang menyebabkan pengonversi analog-ke-digital (ADC) mencatat lonjakan palsu tunggal berdurasi 1 milidetik (misalnya, mencatat satu sampel 1200 kW sebelum kembali ke 120,0 kW).
+- Dalam masa jeda 900 sampel, satu sampel buruk tersebut akan menarik rata-rata aritmatika ke atas sebesar 1,2 kW, mendistorsi perhitungan penutupan energi.
+- Nilai median secara inheren kebal terhadap lonjakan pencilan (*outlier*) yang terisolasi. Membandingkan rata-rata (μ = 121,2 kW) terhadap median ($\tilde{x} = 120,0 kW$) langsung mengungkap adanya lonjakan asimetris.
+- Jika nilai maksimum dan minimum identik ($\max = \min = 45,000°C$), mesin pelaporan harus secara otomatis menyorot tabel tersebut dengan warna merah dengan label: **"PERINGATAN: VARIANS NOL TERDETEKSI (BUFFER BEKU)."**
 
 ## Kategori Grafik Inti
 
@@ -58,7 +58,7 @@ Laporan otomatis harus menghasilkan lima rangkaian grafik terstandarisasi:
 - Total daya aktif kluster (kW) seiring waktu.
 - Daya aktif kabinet individual yang dihamparkan (*overlaid*) dan terpisah.
 - Tegangan saluran-ke-saluran 3-fasa dan arus fasa penyulang.
-- Verifikasi bahwa Penyulang A dan Penyulang B membagi daya secara simetris (50% ± 1{,}0%).
+- Verifikasi bahwa Penyulang A dan Penyulang B membagi daya secara simetris (50% ± 1,0%).
 
 ### 2. Rangkaian Grafik Hidrolika Cairan Pendingin
 - Laju aliran volumetrik per kabinet (Q_v, dilaporkan dalam LPM).
@@ -85,7 +85,7 @@ Laporan otomatis harus menghasilkan lima rangkaian grafik terstandarisasi:
 Skala visual tidak boleh dimanipulasi untuk memuji-muji kinerja peralatan. Aturan pembuatan grafik berikut ini bersifat wajib:
 
 - **Larangan Penekanan Titik Nol untuk Klaim Kapasitas**: Saat memplot total daya atau total aliran terhadap kapasitas nominal terukur, sumbu vertikal harus menyertakan garis dasar nol sehingga pengamat dapat melihat besaran langkah yang sebenarnya.
-- **Larangan Sumbu yang Diperluas Berlebihan untuk Menyembunyikan Varians**: Saat memplot stabilitas suhu atau keseragaman aliran di sepanjang masa jeda tunak, sumbu vertikal tidak boleh diperluas secara artifisial hingga ± 100 K atau ± 500 LPM demi membuat fluktuasi liar tampak seperti garis lurus. Sumbu harus diskalakan secara ketat pada batas toleransi yang disitasi (misalnya, T_nominal ± 5{,}0 K).
+- **Larangan Sumbu yang Diperluas Berlebihan untuk Menyembunyikan Varians**: Saat memplot stabilitas suhu atau keseragaman aliran di sepanjang masa jeda tunak, sumbu vertikal tidak boleh diperluas secara artifisial hingga ± 100 K atau ± 500 LPM demi membuat fluktuasi liar tampak seperti garis lurus. Sumbu harus diskalakan secara ketat pada batas toleransi yang disitasi (misalnya, T_nominal ± 5,0 K).
 - **Garis Kisi Eksplisit**: Setiap grafik harus menampilkan garis kisi (*gridlines*) horizontal dan vertikal yang tipis pada interval rekayasa standar (misalnya, setiap 5 menit, setiap 10 kW, setiap 1,0 K) guna memungkinkan audit visual cepat tanpa penggaris digital.
 
 ## Keputusan yang Harus Dicatat

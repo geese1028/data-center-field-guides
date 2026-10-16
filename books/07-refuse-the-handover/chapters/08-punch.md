@@ -29,6 +29,23 @@ A line closed on a photograph may be enough for a label. It is not enough for a 
 
 Defects found after they left the hall are still defects. If you already know of one, it goes in the register before you sign, with the date you learned it. Signing first and adding it after is how your own finding becomes a favor instead of a condition. Put it on page two before the pen.
 
+## Quantitative Punch-List Classification (Cat A / B / C) and Retainage Math
+
+### Enforcing the 200% Financial Escrow Holdback for Open Defects
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$E_{\text{holdback}} = 2.0 \times \sum_{j=1}^{M} \left( C_{\text{materials}, j} + C_{\text{labor}, j} + C_{\text{retest}, j} \right)$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing Handover While Any Category A Life-Safety or SPOF Item Remains Open | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Open lines that block a proved-sentence, named by function, not by a site code.

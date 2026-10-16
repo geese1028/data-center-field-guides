@@ -8,28 +8,14 @@ As a Commissioning Lead, technical auditor, or facility engineer, your professio
 
 ## The Four Primary Refused Statements
 
-```
-+----------------------------------------------------------------------------------------------------+
-| PROHIBITED CFD REPORT STATEMENTS |
-+------------------------------------+---------------------------------------------------------------+
+**PROHIBITED CFD REPORT STATEMENTS**
+
 | PROHIBITED STATEMENT IN DRAFT | MANDATORY AUDIT REFUSAL RATIONALE & REMEDIATION |
-+------------------------------------+---------------------------------------------------------------+
-| 1. "The data hall has passed | REFUSED. CFD is a mathematical simulation, not a physical |
-| commissioning." | test. Commissioning pass/fail is proven exclusively by Level 5|
-| | physical load-bank testing (Book 03). Strike sentence. |
-+------------------------------------+---------------------------------------------------------------+
-| 2. "Add 100 kW of cooling capacity | REFUSED. An untested proposal is not an engineering result. |
-| to eliminate the hotspot." | Must be modeled as a verified rerun script with the new unit |
-| | added. If not rerun, label: "PROPOSAL - NOT DEMONSTRATED". |
-+------------------------------------+---------------------------------------------------------------+
-| 3. "Compute servers will train AI | REFUSED. CFD simulates whitespace air temperatures; it does not|
-| workloads reliably." | model silicon junction temperatures, throttling, or NVLink. |
-| | Strike sentence. Limit claim strictly to intake air envelope. |
-+------------------------------------+---------------------------------------------------------------+
-| 4. "Streamline velocity confirms | REFUSED. A streamline shows flow direction, not mass flux. |
-| airflow rate is 450 L/s." | Demand numerical surface integral or physical hood data. |
-+------------------------------------+---------------------------------------------------------------+
-```
+| :--- | :--- |
+| 1. "The data hall has passed commissioning." | REFUSED. CFD is a mathematical simulation, not a physical test. Commissioning pass/fail is proven exclusively by Level 5 physical load-bank testing (Book 03). Strike sentence. |
+| 2. "Add 100 kW of cooling capacity to eliminate the hotspot." | REFUSED. An untested proposal is not an engineering result. Must be modeled as a verified rerun script with the new unit added. If not rerun, label: "PROPOSAL - NOT DEMONSTRATED". |
+| 3. "Compute servers will train AI workloads reliably." | REFUSED. CFD simulates whitespace air temperatures; it does not model silicon junction temperatures, throttling, or NVLink. Strike sentence. Limit claim strictly to intake air envelope. |
+| 4. "Streamline velocity confirms airflow rate is 450 L/s." | REFUSED. A streamline shows flow direction, not mass flux. Demand numerical surface integral or physical hood data. |
 
 ### Refusal 1: "The Data Hall Has Passed Commissioning"
 A consultant whose simulation shows comfortable blue contours across all server aisles will frequently conclude: *"Based on CFD modeling, the data hall cooling system has successfully passed commissioning and is cleared for IT deployment."*
@@ -70,6 +56,58 @@ Volumetric flow rate across a boundary must be calculated via a formal surface i
 $$Q = \int_{A} (\vec{v} \cdot \vec{n}) \, dA \approx \sum_{k=1}^{M} v_{n, k} \cdot A_k$$
 
 If the report does not present this numerical integration—or if physical flow hood measurements were not taken—the flow rate claim is an unverified visual estimate.
+
+## Forensic Detection of Manipulated CFD Contours and N-1 Failure Modeling
+
+In commercial commissioning disputes, CFD reports are frequently formatted to make a marginal or failing whitespace design appear compliant. Beyond verbal over-claims like *"the hall is optimized,"* the reviewing engineer must audit the visual and numerical artifacts of the report to detect four classic manipulation techniques.
+
+### 1. Horizontal Slice Plane Elevation Cherry-Picking
+
+A standard 42U–48U server rack stands $2.0\,\text{m}$ to $2.25\,\text{m}$ tall. Buoyancy-driven hot exhaust air naturally stratifies near the ceiling and rolls over the top of uncontained rows, or leaks through roof brush gaps at $1.7\,\text{m}$ to $2.0\,\text{m}$ elevation. If a consultant presents only a single horizontal temperature contour slice cut at $z = 1.0\,\text{m}$ (waist height), the plot will show a uniform blue/green cold aisle ($22^\circ\text{C}$) while servers mounted at U38–U45 ($z = 1.85\,\text{m}$) are ingesting $33.5^\circ\text{C}$ recirculated exhaust air.
+
+$$T_{\text{slice}}(z = 1.0\,\text{m}) \ll \max_{z \in [0.2, 2.0]} T_{\text{bezel}}(x, y, z)$$
+
+Refuse any CFD package that omits horizontal temperature slices at $z = 1.8\,\text{m}$ (Top Intake) or omits front-bezel surface temperature maps across every cabinet row.
+
+### 2. Steady-State N-1 CRAH Failure vs. Transient Thermal Flywheel Claims
+
+A simulation labeled "N-1 Cooling Failure Pass" must state which specific CRAH unit was tripped and whether the solver ran to a true steady-state equilibrium or was halted after an arbitrary $60$-second transient window. When a CRAH unit trips:
+1. Its motorized isolation damper must close (or backdraft reverse-flow through the stopped fan wheel must be explicitly modeled as an open bypass orifice inside the CRAH cabinet).
+2. If the modeler deletes the tripped CRAH opening as a solid wall without verifying that motorized backdraft dampers are physically installed on site, the model hides the catastrophic subfloor pressure collapse caused by supply air short-circuiting backwards up through the idle CRAH unit!
+
+$$Q_{\text{backdraft}} = C_d \cdot A_{\text{CRAH\_wheel}} \cdot \sqrt{\frac{2 \left( P_{\text{subfloor}} - P_{\text{return}} \right)}{\rho_{\text{air}}}}$$
+
+| CFD Report Defect / Manipulation | Visual Symptom in Submitted PDF | Underlying Numerical Mechanism | Mandatory Refusal & Remediation Action |
+| :--- | :--- | :--- | :--- |
+| **Mid-Height Slice Selection** | Only $z = 1.0\,\text{m}$ plan view shown; no $1.8\,\text{m}$ slice | Masks buoyancy stratification and top-of-rack roll-over | Demand horizontal cuts at $0.3\,\text{m}, 1.2\,\text{m}, 1.8\,\text{m}$ + rack bezel maps |
+| **Truncated Color Scale Bar** | Legend capped at $35^\circ\text{C}$ (green) or $40^\circ\text{C}$ (red) | Compresses ASHRAE $27^\circ\text{C}$ threshold into cool blue/cyan | Require discrete threshold contour step at exact $27.0^\circ\text{C}$ limit |
+| **Sealed Idle CRAH in N-1 Run** | N-1 subfloor static pressure remains uniform | Stopped CRAH modeled as solid wall without physical damper | Model open backdraft resistance unless physical damper is witnessed |
+| **Volume-Averaged Rack Metric** | Table lists "Mean Rack Temp" instead of peak node | Averages cold bottom intake ($19^\circ\text{C}$) with hot top ($32^\circ\text{C}$) | Reject table; require $\max(T_{0.3}, T_{1.2}, T_{1.8})$ per cabinet ID |
+
+## Auditing Boundary Condition Completeness in Submitted Solver Decks
+
+When a CFD consultant submits a PDF report without providing the solver boundary-condition summary table, the reviewer cannot verify whether the laws of conservation of mass and energy were respected. Require every CFD submission to include the **Global Boundary Conservation Ledger** directly in the report preface:
+
+$$\sum_{k=1}^{N_{\text{CRAH}}} \dot{m}_{\text{CRAH}, k} \cdot c_p \cdot \left( T_{\text{return}, k} - T_{\text{supply}, k} \right) = \sum_{j=1}^{N_{\text{racks}}} Q_{\text{air}, j} + Q_{\text{envelope}} + Q_{\text{lighting}} \quad (\pm 1.0\%)$$
+
+| Mandatory Solver Deck Disclosure | Required Engineering Unit | What a Missing or Mismatched Value Proves |
+| :--- | :--- | :--- |
+| **Total Domain Mesh Cell Count** | Millions of cells ($\ge 5\text{--}15\,\text{M}$ per hall) | $< 500\text{k}$ cells indicates a coarse cartoon grid incapable of resolving U-slots |
+| **Sum of Active Rack Heat Sources ($\sum Q_{\text{air}}$)** | $\text{kW}$ (Sensible air fraction only) | Must match active PDU kW minus CDU liquid heat ($P_{\text{elec}} - Q_{\text{liq}}$) |
+| **Sum of CRAH Enthalpy Removal ($\sum Q_{\text{CRAH}}$)** | $\text{kW}$ ($\sum \dot{m} c_p \Delta T$) | If $\left|\sum Q_{\text{CRAH}} - \sum Q_{\text{air}}\right| > 2\%$, the solver never converged thermally |
+| **Server Flow Law ($Q_{\text{server}}$ vs $T_{\text{in}}$)** | $\text{CFM/kW}$ curve (e.g., $85 \to 125\,\text{CFM/kW}$) | Fixed-flow server models miss thermal fan ramp-up and aisle starvation |
+
+## Rejecting Extrapolated "Phase 2" Claims From Unreconciled Phase 1 Geometries
+
+Contractors frequently attempt to reuse a Phase 1 CFD report (calibrated when the hall held $20$ cabinets at $5\,\text{kW}$) to certify a Phase 2 expansion adding $80$ dense AI cabinets at $40\text{--}120\,\text{kW}$ without re-benchmarking the subfloor plenum or primary chilled-water hydraulic loop. Nonlinear fluid friction ($\Delta P \propto Q^2$) guarantees that tripling volumetric airflow increases plenum and duct pressure losses by $900\%$. Any expansion exceeding $+20\%$ of benchmarked hall thermal load requires a fresh Sheet 1 physical baseline walk.
+
+### Summary of Automatic Refusal Triggers for Whitespace Simulation Submittals
+
+1. **Missing Physical Benchmark Walk**: No Sheet 1 field readings attached for an existing hall.
+2. **Nameplate Power Inflation**: Heat sources assigned from PSU nameplate ratings instead of active metered PDU kilowatts.
+3. **Uncompensated Liquid Split**: Hybrid liquid/air racks modeled without subtracting measured CDU enthalpy ($Q_{\text{liquid}}$).
+4. **Slice Plane Omission**: Missing horizontal temperature contours at $z = 1.8\,\text{m}$ (Top Intake) or missing front-bezel temperature maps.
+5. **Unverified N-1 Damper Assumption**: Tripped CRAH units modeled as sealed walls without witnessed motorized backdraft dampers.
 
 ## Decisions to record before test start
 

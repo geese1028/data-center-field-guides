@@ -16,6 +16,23 @@ Several gaps they call small are sometimes one refusal. A missing judgment, a pa
 
 A single typo, a name spelled two ways, a tab numbered out of order: those can be small, and you may ignore them if they do not change a sentence. Write that you ignored them, in one line, so a later reader does not think you did not notice. Ignoring a typo is not ignoring an open changeover. Say which is which. If you cannot tell, it is not a typo. It is a line you have not understood, and an understood line is the third book's minimum. Ununderstood is open. Chapter 8.
 
+## Quantitative Risk Test for Defects Labeled 'Minor' by Contractors
+
+### Evaluating Single-Point-of-Failure Exposure and Mean Time To Repair
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{If } \text{MTTR}_{\text{defect}} > \tau_{\text{ride\_through}} \text{ or } \text{Redundancy} < N+1 \implies \text{NOT MINOR}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Reclassifying Hidden Operational Hazards Before Signing | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The adjective they used, and the gate you named in reply.
@@ -23,5 +40,3 @@ A single typo, a name spelled two ways, a tab numbered out of order: those can b
 - Gates you refused to convert into a bundle of conditions.
 - Typos you ignored, listed, so they are not confused with open lines.
 
-
-![The Punch List Defect Triad Matrix](../figures/fig-02-punchlist-defect-triad-matrix.png)

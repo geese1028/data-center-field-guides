@@ -16,25 +16,21 @@ Buku-buku sebelumnya dalam seri panduan lapangan ini berhenti pada mesin, berkas
 
 Buku ini dimulai ketika para agen komisioning telah mengemas koper pelican mereka, bank beban sementara telah dinaikkan ke truk bak datar, server TI telah beroperasi aktif di bawah beban nyata, dan seseorang akan disalahkan jika ruang data mendadak gelap gulita.
 
-```
-+-----------------------------------------------------------------------------+
-| SIKLUS HIDUP SIF PUSAT DATA |
-| |
+| **SIKLUS HIDUP SIF PUSAT DATA** |
+| :--- |
 | [07:00] Pemeriksaan Fisik Bersama Sif Masuk & Keluar (30 mnt, 6 stasiun) |
-| | |
-| [07:30] Gerbang Serah Terima Sif (Tanda Tangan Lembar Hari: Cacat, PTW, MOP)|
-| | |
+| ↓ |
+| [07:30] Gerbang Serah Terima Sif (Tanda Tangan Lembar Hari: Cacat, PTW, MOP) |
+| ↓ |
 | [08:00] Telemetri Dasar Pagi & Inspeksi Baki Penampung / Kebocoran |
-| | |
+| ↓ |
 | [10:00] Jendela Pemeliharaan Resmi (Eksekusi MOP, LOTO, Pengawalan Aktif) |
-| | |
+| ↓ |
 | [14:00] Putaran Mendalam Siang (Akustik, Termal IR, Refraktometer, Delta-P) |
-| | |
+| ↓ |
 | [18:30] Audit Pra-Tutup: Penyelesaian Izin, Verifikasi Konfigurasi Normal |
-| | |
-| [19:00] Kalimat Penutup: Pernyataan tunggal yang mengikat secara operasional|
-+-----------------------------------------------------------------------------+
-```
+| ↓ |
+| [19:00] Kalimat Penutup: Pernyataan tunggal yang mengikat secara operasional |
 
 ![Shift Lifecycle and Handover Architecture](../figures/fig-01-shift-lifecycle-and-handover.png)
 
@@ -49,3 +45,18 @@ Anda boleh menyalin judul-judul kolom lembar kerja ini ke dalam buku log operasi
 - Kalimat mengikat tunggal yang diizinkan untuk didukung oleh hari tersebut.
 - Standar, kode keselamatan, atau kontrak yang akan Anda kutip berdasarkan judul dan edisi, bukan disalin-tempel.
 - Lembar hari yang akan Anda tandatangani secara fisik sebelum Anda menyerahkan radio komunikasi ke sif berikutnya.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |
+
+$$\text{3. Change Window Safety}: \quad t_{\text{cutoff}} = T_{\text{window\_end}} - \left( t_{\text{rollback}} + t_{\text{verification}} \right)$$
+
+$$\text{4. Staffing Coverage}: \quad N_{\text{licensed\_techs}}(t) \ge 2 \quad \forall t \in [t_{\text{shift\_start}}, \, t_{\text{shift\_end}}]$$

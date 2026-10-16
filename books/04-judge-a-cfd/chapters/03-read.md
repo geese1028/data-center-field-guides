@@ -77,6 +77,68 @@ $$\left| \frac{\sum \dot{m}_{\text{supply}} - \sum \dot{m}_{\text{exhaust}}}{\su
 
 - **Point Monitor History**: Point temperature monitors placed at critical server intakes must be plotted over solver iterations. If point temperatures are still drifting upwards or oscillating when the solver stops, the calculation was halted prematurely and the results are invalid.
 
+## Quantitative Air-Management Indices: SHI, RHI, RCI, and Capture Index
+
+Reading a CFD report requires translating qualitative 3D streamline ribbons into dimensionless thermodynamic performance indices. Industry standards—including ASHRAE TC 9.9 and Uptime Institute whitespace metrics—evaluate airflow separation using four coupled mathematical indices that expose whether a cooling problem is caused by insufficient cold air supply (starvation) or parasitic mixing of hot exhaust (recirculation).
+
+### 1. Supply Heat Index (SHI) and Return Heat Index (RHI)
+
+Defined by Sharma et al. and adopted across enterprise data hall audits, the **Supply Heat Index ($\text{SHI}$)** measures the fraction of total rack heat pickup that occurs *before* the cooling air ever enters the server intake bezel due to hot-aisle infiltration, over-the-top roll, or missing blanking panels:
+
+$$\text{SHI} = \frac{\delta Q}{Q + \delta Q} = \frac{\sum_{j} \sum_{i} \dot{m}_{i,j}^{\text{rack}} c_p \left( T_{\text{in}, i,j}^{\text{rack}} - T_{\text{ref}}^{\text{supply}} \right)}{\sum_{j} \sum_{i} \dot{m}_{i,j}^{\text{rack}} c_p \left( T_{\text{out}, i,j}^{\text{rack}} - T_{\text{ref}}^{\text{supply}} \right)}$$
+
+Conversely, the **Return Heat Index ($\text{RHI}$)** measures the fraction of cooling air that actually absorbs server heat rather than bypassing directly from the floor tiles into the CRAH return grilles:
+
+$$\text{RHI} = \frac{Q}{Q + \delta Q} = 1 - \text{SHI}$$
+
+In a well-sealed cold-aisle or hot-aisle containment architecture, $\text{SHI}$ must satisfy $\text{SHI} \le 0.15$ (and $\text{RHI} \ge 0.85$). When $\text{SHI} > 0.25$, lowering the CRAH supply water setpoint is a waste of chiller energy because more than a quarter of the cooling stream is being contaminated by hot exhaust recirculation before reaching the silicon.
+
+### 2. Rack Cooling Index ($\text{RCI}_{\text{HI}}$ and $\text{RCI}_{\text{LO}}$)
+
+While $\text{SHI}$ evaluates aerodynamic mixing, the **Rack Cooling Index ($\text{RCI}$)** evaluates compliance against the ASHRAE TC 9.9 Recommended and Allowable thermal envelopes across all $N$ rack intake nodes:
+
+$$\text{RCI}_{\text{HI}} = \left[ 1 - \frac{\sum_{i=1}^{N} \max\left(0, \, T_{\text{in}, i} - T_{\text{max, rec}}\right)}{N \cdot \left( T_{\text{max, allow}} - T_{\text{max, rec}} \right)} \right] \times 100\%$$
+
+$$\text{RCI}_{\text{LO}} = \left[ 1 - \frac{\sum_{i=1}^{N} \max\left(0, \, T_{\text{min, rec}} - T_{\text{in}, i}\right)}{N \cdot \left( T_{\text{min, rec}} - T_{\text{min, allow}} \right)} \right] \times 100\%$$
+
+For ASHRAE Class A1/A2 whitespace ($T_{\text{max, rec}} = 27.0^\circ\text{C}$, $T_{\text{max, allow}} = 32.0^\circ\text{C}$ for A1 or $35.0^\circ\text{C}$ for A2), an auditable hall requires $\text{RCI}_{\text{HI}} \ge 96.0\%$. If a vendor report claims "average room temperature is $23.5^\circ\text{C}$" while four end-of-row racks sit at $31.2^\circ\text{C}$, $\text{RCI}_{\text{HI}}$ immediately drops and exposes the localized violation.
+
+| Aerodynamic Diagnostic Metric | Mathematical Formula | Target Commissioning Pass Band | Physical Failure Mode Indicated by Violation |
+| :--- | :--- | :--- | :--- |
+| **Supply Heat Index ($\text{SHI}$)** | $\delta Q / (Q + \delta Q)$ | $\le 0.15$ (Contained) / $\le 0.20$ (Open) | Hot exhaust roll-over, unblanked U-slots, negative aisle $\Delta P$ |
+| **Return Heat Index ($\text{RHI}$)** | $Q / (Q + \delta Q) = 1 - \text{SHI}$ | $\ge 0.85$ (Contained) / $\ge 0.80$ (Open) | Excessive tile supply flow bypassing racks directly to return |
+| **Rack Cooling Index High ($\text{RCI}_{\text{HI}}$)** | $1 - \frac{\sum (T_i - T_{\text{rec}})_+}{N(T_{\text{allow}} - T_{\text{rec}})}$ | $\ge 96.0\%$ ($100\%$ ideal) | Localized top-of-rack or end-of-row thermal excursions |
+| **Flow Provisioning Ratio ($\Phi$)** | $\sum Q_{\text{tile, aisle}} / \sum Q_{\text{rack, demand}}$ | $1.05 \le \Phi \le 1.25$ | $\Phi < 1.0$: Severe aisle starvation; $\Phi > 1.35$: Fan energy waste |
+| **Containment Differential ($\Delta P_{\text{CAC}}$)** | $P_{\text{cold\_aisle}} - P_{\text{hot\_aisle}}$ | $+1.5\,\text{Pa} \le \Delta P_{\text{CAC}} \le +5.0\,\text{Pa}$ | $\Delta P < 0$: Hot air sucked into cold aisle; $\Delta P > 10\,\text{Pa}$: Door force hazard |
+
+## Auditing Capture Index ($\text{CI}$) and Containment Pressurization Balance
+
+In addition to $\text{SHI}$ and $\text{RCI}$, modern whitespace audits evaluate the **Cold-Aisle Capture Index ($\text{CI}_{\text{cold}}$)** and **Hot-Aisle Capture Index ($\text{CI}_{\text{hot}}$)** using passive tracer-species transport equations in the CFD solver:
+
+$$\text{CI}_{\text{cold}, i} = \frac{\sum_{t} \dot{m}_{i, t}^{\text{tile}\to\text{rack}}}{\dot{m}_i^{\text{rack}}}, \qquad \text{CI}_{\text{hot}, i} = \frac{\sum_{c} \dot{m}_{i, c}^{\text{rack}\to\text{CRAH}}}{\dot{m}_i^{\text{rack}}}$$
+
+ specifically:
+- $\text{CI}_{\text{cold}, i}$ is the mass fraction of air ingested by Rack $i$ that originated directly from the dedicated cold-aisle supply tiles (target $\ge 92\%$).
+- $\text{CI}_{\text{hot}, i}$ is the mass fraction of hot exhaust discharged by Rack $i$ that is captured directly by the return plenum or CRAH intakes without escaping into the room (target $\ge 92\%$).
+
+### Mass-Flow Balance and Door-Opening Force Limits in Contained Aisles
+
+When sizing cold-aisle containment (CAC) or hot-aisle containment (HAC), total CRAH supply volumetric flow ($\sum Q_{\text{CRAH}}$) must exceed total server fan demand ($\sum Q_{\text{server}}$) by a controlled positive over-provisioning margin ($\Delta Q_{\text{excess}} = 5\%$ to $15\%$) so that air leaks *out* of the cold aisle rather than infiltrating *in*:
+
+$$\Delta P_{\text{CAC}} = \frac{\rho_{\text{air}}}{2} \left( \frac{\sum Q_{\text{CRAH}} - \sum Q_{\text{server}}}{C_d \cdot A_{\text{containment\_leak}}} \right)^2 \in [+1.5\,\text{Pa}, \, +5.0\,\text{Pa}]$$
+
+However, if a tight containment enclosure is over-pressurized beyond $+12.0\,\text{Pa}$ to $+15.0\,\text{Pa}$, the pneumatic force exerted across a $2.1\,\text{m} \times 1.0\,\text{m}$ hinged containment door ($F = \Delta P \cdot A_{\text{door}} \approx 30\,\text{N}$) prevents the mechanical door closer from latching shut, or violates NFPA 101 life-safety egress force limits! Always verify both the lower bound ($\ge +1.5\,\text{Pa}$) and upper bound ($\le +8.0\,\text{Pa}$) during the physical walk.
+
+## Evaluating Thermal Stratification Gradients ($\partial T / \partial z$) in High-Bay Whitespace
+
+In modern hyperscale data halls with $4.5\,\text{m}$ to $6.0\,\text{m}$ slab-to-ceiling heights and overhead hot-aisle return plenums, vertical temperature stratification $\partial T / \partial z$ governs whether hot exhaust air stays buoyant above the rack line or mixes downward into the cold aisle. The dimensionless Archimedes / Richardson number across the aisle height $H_{\text{rack}}$ must be evaluated at the lowest turndown CRAH fan speed to confirm that buoyancy forces do not stall cold supply jets before they reach the $1.8\,\text{m}$ top server intake elevation.
+
+| Rack Elevation Zone | Standard Measurement Height | Typical Dominant Aerodynamic Mechanism | Primary Diagnostic Signature of Failure |
+| :--- | :--- | :--- | :--- |
+| **Lower Zone (U01–U14)** | $z = 0.3\,\text{m}$ | High-momentum floor tile jet & Venturi entrainment | $T_{0.3\text{m}} > T_{\text{sup}} + 3\,\text{K}$ indicates subfloor Venturi reverse induction |
+| **Middle Zone (U15–U30)** | $z = 1.2\,\text{m}$ | Core horizontal cross-flow into server fan array | $T_{1.2\text{m}} > T_{0.3\text{m}} + 2\,\text{K}$ indicates unblanked adjacent U-slot bypass |
+| **Upper Zone (U31–U48)** | $z = 1.8\,\text{m}$ | Buoyant exhaust plume roll-over & roof curtain leakage | $T_{1.8\text{m}} > T_{0.3\text{m}} + 5\,\text{K}$ indicates aisle starvation ($\Phi < 1.0$) or roof gap |
+
 ## Decisions to record before test start
 
 - Verification that underfloor plenum static regain and tile momentum were physically resolved.

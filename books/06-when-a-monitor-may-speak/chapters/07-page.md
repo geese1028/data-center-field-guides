@@ -6,19 +6,13 @@ If the emergency page consists of a cryptic string of hexadecimal characters, a 
 
 Every automated emergency page dispatched by a critical monitoring system must fit into **The Five Mandatory Lines**:
 
-```
-+-----------------------------------------------------------------------------+
-| THE FIVE-LINE EMERGENCY PAGE |
-| |
-| LINE 1: EXACT TIME --> 2026-10-14 02:34:12 UTC (Source measurement t) |
-| LINE 2: POINT & PATH --> CDU-04 TCS Supply Temp (modbus://cdu-04/40102) |
-| LINE 3: THE VALUE/LINE --> T = 33.4°C (Exceeded High Alarm Line: 32.0°C) |
-| LINE 4: PERSON WOKEN --> Lead Mech Engineer (Shift Roster Tier 1) |
-| LINE 5: THE FIRST STOP --> Verify EOP-M-02 (CDU-04 Staging) & Confirm Live|
-+-----------------------------------------------------------------------------+
-```
-
-![The Human Escalation Gate: An Alert is Not an Incident](../figures/fig-03-alert-to-incident-escalation-gate.png)
+| **THE FIVE-LINE EMERGENCY PAGE** |
+| :--- |
+| LINE 1: EXACT TIME → 2026-10-14 02:34:12 UTC (Source measurement t) |
+| LINE 2: POINT & PATH → CDU-04 TCS Supply Temp (modbus://cdu-04/40102) |
+| LINE 3: THE VALUE/LINE → T = 33.4°C (Exceeded High Alarm Line: 32.0°C) |
+| LINE 4: PERSON WOKEN → Lead Mech Engineer (Shift Roster Tier 1) |
+| LINE 5: THE FIRST STOP → Verify EOP-M-02 (CDU-04 Staging) & Confirm Live |
 
 If a page cannot deliver those five clean lines, the page must not be transmitted.
 
@@ -68,3 +62,11 @@ If the engineer fails to log the four-part reply within the contractual escalati
 - The active paging escalation ladder, defining names, phone numbers, and timeout windows.
 - The Four-Part Reply protocol required from every responding engineer.
 - The post-shift audit logging every emergency page transmitted and verifying compliance.
+
+## Calculating Dynamic Time-to-Limit ($\tau_{\text{limit}}$) in Outgoing Pager Payloads
+
+An outgoing wake-up page is twice as effective when the monitoring payload includes not only the instantaneous crossing value $V(t_0)$ and threshold $T_{\text{limit}}$, but also the first-order rate of change ($dV/dt$) and the projected time remaining until hardware trip ($\tau_{\text{trip}}$):
+
+$$\frac{dV}{dt} \approx \frac{V(t_0) - V(t_0 - \Delta t)}{\Delta t}, \qquad \tau_{\text{trip}} = \frac{T_{\text{trip}} - V(t_0)}{\max\left(\epsilon, \, \frac{dV}{dt}\right)}$$
+
+When a CDU secondary return temperature crosses the $46.0^\circ\text{C}$ High Warning line at $+0.15\,\text{K/s}$ toward a $52.0^\circ\text{C}$ hardware trip, the page displays `Est. Time to Trip: 40 sec`, immediately telling the shift operator to execute an EOP pump transfer rather than walking to fetch a laptop.

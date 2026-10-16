@@ -2,25 +2,21 @@
 
 Work performed in a production data center without a validated, written method is not engineering; it is gambling with the customer's business.
 
-```
-+-----------------------------------------------------------------------------+
-| OPERATIONAL DOCUMENTATION PYRAMID |
-| |
+| **OPERATIONAL DOCUMENTATION PYRAMID** |
+| :--- |
 | /\ |
 | / \ |
 | / PTW\ PERMIT TO WORK |
 | /------\ Who, Where, When, Tools |
 | / \ |
 | / MOP \ METHOD OF PROCEDURE |
-| /------------\ Step-by-Step, Isolations, Backout|
+| /------------\ Step-by-Step, Isolations, Backout |
 | / \ |
 | / SOP \ STANDARD OPERATING PROCEDURE |
-| /------------------\ Routine Shift Rounds & Valve Lineups|
+| /------------------\ Routine Shift Rounds & Valve Lineups |
 | / \ |
 | / EOP \ EMERGENCY OPERATING PROCEDURE |
 | /------------------------\ Immediate Muscle Memory Safe-State |
-+-----------------------------------------------------------------------------+
-```
 
 ![Procedural Governance Pyramid](../figures/fig-02-sop-mop-eop-governance-pyramid.png)
 
@@ -81,17 +77,13 @@ A valid PTW enforces four hard constraints:
 - **Personnel**: Named individuals with verified qualification records on file.
 - **Lockout/Tagout (LOTO)**: Verification that all hazardous electrical, hydraulic, pneumatic, and chemical energy sources are physically locked, tagged, and zero-energy verified (test-before-touch).
 
-```
-+-------------------------------------------------------------------------+
-| PTW & LOTO AUDIT GATES |
-| |
+| **PTW & LOTO AUDIT GATES** |
+| :--- |
 | [GATE 1] Approved MOP attached with complete back-out procedure |
 | [GATE 2] Personnel qualifications verified against site trade matrix |
 | [GATE 3] Zero Energy Verification: Multi-meter test & pressure bleed |
 | [GATE 4] Physical LOTO hasp, red lock, and danger tag applied |
 | [GATE 5] Redundancy check: Alternate path verified carrying load |
-+-------------------------------------------------------------------------+
-```
 
 ## Critical Spares Verification
 
@@ -112,3 +104,27 @@ If the technician opens the CDU enclosure and then discovers that the replacemen
 - LOTO registry numbers and physical padlock tag IDs applied to equipment.
 - Exact expiration timestamps for all active Permits to Work.
 - Confirmation that all critical spares were visually inspected and verified on site before permit issuance.
+
+## Lockout/Tagout (LOTO) Zero-Energy Verification and Two-Person Switching Rules
+
+Even the most thoroughly peer-reviewed Method of Procedure (MOP) fails if the technician on the floor applies a lock to Cabinet `UPS-1B` while standing in front of Cabinet `UPS-1A`. Human visual confirmation bias under fluorescent plant lighting is eliminated only by executing the **Select-Before-Operate (SBO) Two-Person Point-and-Call Protocol** combined with a **Live-Dead-Live** zero-energy verification test.
+
+### The Live-Dead-Live Zero-Energy Proof Sequence
+
+Before any enclosure door is opened for invasive maintenance or any busbar/pipe joint is unbolted under a MOP:
+1. **Verify Boundary Tag ID**: The Switching Operator touches the engraved phenolic nameplate on the breaker or valve, reads the full alphanumeric identifier aloud (`MV-SWG-A-52-04`), and waits for the Independent Verifier to confirm the exact character string against Step $k$ of the signed MOP.
+2. **Apply Personal LOTO Hardware**: Each technician working on the boundary applies their own individually keyed personal padlock and signed danger tag to the multi-lock hasp. A supervisor may never apply or remove a lock on behalf of another technician.
+3. **Execute Live-Dead-Live Voltage Proof**: For electrical isolation, using a CAT IV 1000V rated digital multimeter or non-contact high-voltage phasing stick:
+   - **Live**: Test the meter on a known energized voltage source to prove the meter and leads are functional.
+   - **Dead**: Measure Phase-to-Phase ($L_1$-$L_2$, $L_2$-$L_3$, $L_3$-$L_1$) and Phase-to-Ground ($L_1$-$PE$, $L_2$-$PE$, $L_3$-$PE$) on the isolated load terminals, confirming $0.0\,\text{V}$.
+   - **Live**: Re-test the meter immediately on the known energized source to prove the meter battery or fuse did not fail during the dead measurement.
+
+| Document Type | Permitted Scope of Action | Required Authorization Level | Mandatory Abort / Handoff Rule |
+| :--- | :--- | :--- | :--- |
+| **SOP (Standard Operating Procedure)** | Non-invasive rounds, log reading, filter cleaning, local HMI viewing | Shift Lead assignment on daily roster | If an abnormal meter reading or leak is found, stop SOP and escalate |
+| **MOP (Method of Procedure)** | Breaker switching, UPS bypass transfer, valve isolation, firmware update | Pre-approved by Chief Engineer + Shift Manager permit | Abort immediately and execute Pre-PONR Back-Out if abort trigger is hit |
+| **EOP (Emergency Operating Procedure)** | Immediate fault containment during unplanned fire, arc fault, or coolant spill | Any qualified shift technician on scene | Stop at the **First Safe State**; never improvise repair inside an EOP |
+
+## Emergency Operating Procedure (EOP) Memory Items vs. Reference Checklists
+
+Every site EOP is structured into two distinct sections: **Immediate Action Memory Items** (maximum $3$ to $5$ physical steps boxed at the top of Page 1 that a qualified technician can execute within $30$ seconds without holding a clipboard, such as hitting an EPO shunt trip, closing a main fuel leak isolation valve, or verifying automatic tie-breaker closure) and **Subsequent Reference Steps** (executed with the two-person printed checklist in hand once the immediate life-safety or equipment destruction hazard is contained).

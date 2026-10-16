@@ -51,6 +51,23 @@ A recipe. A percentage. A bed depth you calculated in the meeting. A brand as if
 
 A filled bed you cannot see is not yet a filled bed. If the only access is a closed door and a datasheet, you have a datasheet. Ask for the door to be opened on the day air is supposed to go through, long enough to see fill at the edges and a blank-off that meets the frame. You are not sampling the chemistry. You are refusing an empty frame. If their handling title says you may not open it, a named person who is allowed to open it does the look, and signs the look. No look, no after coupon. The crate can wait.
 
+## Chemisorption vs. Physisorption Media Engineering and Empty Bed Contact Time
+
+### Activated Alumina + KMnO4 vs. Impregnated Carbon Residence Time Math
+
+Under **ANSI/ISA-71.04-2013** (*Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants*) and **ASHRAE TC 9.9** guidance for RoHS-compliant lead-free IT equipment (which utilizes immersion silver PCB finishes and tin-silver-copper SAC305 solder joints), whitespace air quality is governed by the quantitative corrosion film growth rate on **both** copper ($\text{Cu}$) and silver ($\text{Ag}$) reference strips normalized to a 30-day exposure window:
+
+$$\text{EBCT} = \frac{V_{\text{media\_bed}}}{Q_{\text{air}}} = \frac{L_{\text{bed}}}{v_{\text{face}}} \ge 0.15\text{--}0.30\,\text{s}$$
+
+Because reduced sulfur species ($\text{H}_2\text{S}$, carbonyl sulfide $\text{OCS}$, elemental sulfur $\text{S}_8$) combined with oxidizing gases ($\text{NO}_2, \text{O}_3, \text{Cl}_2$) and relative humidity ($\text{RH} > 50\%$) drive aggressive silver sulfide ($\text{Ag}_2\text{S}$) whisker creep across fine-pitch PCB traces even when copper reactivity remains below $300\,\text{\AA}/30\text{d}$, environmental acceptance requires dual-metal verification paired with strict chain-of-custody controls.
+
+| Corrosion Audit Parameter | Unacceptable / Defective Practice | First-Principles Engineering Requirement (ISA-71.04 / ASTM B825) | Mandatory Refusal or Remediation Action |
+| :--- | :--- | :--- | :--- |
+| **Core Chapter Focus** | Auditing Bypass Seals, Face Velocity Limits, and Relative Humidity Deliquescence | Dual $\text{Cu} + \text{Ag}$ coulometric reduction with documented exposure timestamps | Refuse any environmental fitness claim missing $\text{Ag}$ or hang interval |
+| **Class G1 Mild Pass Gate** | Quoting Copper rate alone ($<300\,\text{\AA}$) or visual strip color | $d_{\text{Cu}} < 300\,\text{\AA}/30\text{d}$ **AND** $d_{\text{Ag}} < 200\,\text{\AA}/30\text{d}$ (zero $\text{Cu}_2\text{S}$ on copper) | Classify G2 ($<1000/1000\,\text{\AA}$), G3 ($<2000/2000\,\text{\AA}$), or GX as non-compliant |
+| **Chain of Custody & Blank** | Mailing strips without a sealed Field Travel Blank (`FTB`) | Sealed lot-matched travel blank $d_{\text{blank}} \le 25\text{--}35\,\text{\AA}$ subtracted/verified | Invalidate "Fit" certification if no unopened travel blank accompanied lot |
+| **Filtration & Envelope Proof** | Installing recirculation filters in an unsealed negative-$\Delta P$ hall | Vapor-sealed envelope ($\Delta P \ge +12.5\,\text{Pa}$) + gas-matched media ($\text{EBCT} \ge 0.2\,\text{s}$) | Pull coupon at any media/envelope change; start new post-change interval |
+
 ## Decisions to record
 
 - Category, and the family claimed. Unnamed family: not accepted as corrosion control.

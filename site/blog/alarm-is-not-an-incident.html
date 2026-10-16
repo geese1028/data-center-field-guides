@@ -12,19 +12,21 @@
   </script>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>An alarm is not an incident | Data Center Field Guides</title>
-  <meta name="description" content="The test a data center shift uses before a noisy alarm is written up as an incident."/>
+  <title>An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline | Data Center Field Guides</title>
+  <meta name="description" content="How critical facility operations teams distinguish between noisy BMS alarms and true SLA-impacting incidents using physical boundary tests, first-hour sequence logging, and hypothesis separation."/>
   <link rel="canonical" href="https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html"/>
   
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="An alarm is not an incident"/>
-  <meta property="og:description" content="The test a data center shift uses before a noisy alarm is written up as an incident."/>
+  <meta property="og:title" content="An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline"/>
+  <meta property="og:description" content="How critical facility operations teams distinguish between noisy BMS alarms and true SLA-impacting incidents using physical boundary tests, first-hour sequence logging, and hypothesis separation."/>
   <meta property="og:url" content="https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
+  <meta property="og:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-shift-lifecycle-and-handover.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="An alarm is not an incident | Data Center Field Guides"/>
-  <meta name="twitter:description" content="The test a data center shift uses before a noisy alarm is written up as an incident."/>
+  <meta name="twitter:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-shift-lifecycle-and-handover.png"/>
+  <meta name="twitter:title" content="An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline | Data Center Field Guides"/>
+  <meta name="twitter:description" content="How critical facility operations teams distinguish between noisy BMS alarms and true SLA-impacting incidents using physical boundary tests, first-hour sequence logging, and hypothesis separation."/>
   
   <!-- KaTeX CSS & JS for Math Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
@@ -41,75 +43,103 @@
           });"></script>
 
   <!-- Structured Data -->
-  
     <script type="application/ld+json">
-    [
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline",
+    "description": "How critical facility operations teams distinguish between noisy BMS alarms and true SLA-impacting incidents using physical boundary tests, first-hour sequence logging, and hypothesis separation.",
+    "author": {
+      "@type": "Person",
+      "name": "Tristan",
+      "jobTitle": "Data Center Commissioning & Verification Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Data Center Field Guides"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Data Center Field Guides",
+      "url": "https://datacenterfieldguides.com"
+    },
+    "datePublished": "2026-10-16",
+    "mainEntityOfPage": "https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html",
+    "proficiencyLevel": "Expert"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Run the Data Center Day: What the Manager Must Sign Before the Shift Ends",
+    "author": {
+      "@type": "Person",
+      "name": "Tristan"
+    },
+    "url": "https://datacenterfieldguides.com/book/05-run-the-day.html",
+    "bookFormat": "EBook",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/PreOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
       {
-        "@context": "https://schema.org",
-        "@type": "TechArticle",
-        "headline": "An alarm is not an incident",
-        "description": "The test a data center shift uses before a noisy alarm is written up as an incident.",
-        "author": {
-          "@type": "Person",
-          "name": "Tristan",
-          "jobTitle": "Data Center Commissioning & Verification Engineer",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Data Center Field Guides"
-          }
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Data Center Field Guides",
-          "url": "https://datacenterfieldguides.com"
-        },
-        "datePublished": "2026-10-14",
-        "mainEntityOfPage": "https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html",
-        "proficiencyLevel": "Expert"
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://datacenterfieldguides.com/"
       },
       {
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": "Run the Data Center Day: What the Manager Must Sign Before the Shift Ends",
-        "author": {
-          "@type": "Person",
-          "name": "Tristan"
-        },
-        "url": "https://datacenterfieldguides.com/catalog/05-run-the-day.html",
-        "bookFormat": "EBook",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/PreOrder"
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Field Protocols",
+        "item": "https://datacenterfieldguides.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline",
+        "item": "https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When does a chattering BMS alarm become a formal facility incident?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A chattering alarm is a telemetry or sensor defect (managed via a maintenance work order and hysteresis deadband tuning) unless the underlying physical process actually crosses a customer SLA boundary, threatens personnel safety, or strips the facility of its required N+1 or 2N fault tolerance. However, if a chattering sensor drives an automated control loop into hunting or trips a real piece of equipment, the resulting redundancy loss immediately becomes an incident."
         }
       },
       {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://datacenterfieldguides.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Field Protocols",
-            "item": "https://datacenterfieldguides.com/blog/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "An alarm is not an incident",
-            "item": "https://datacenterfieldguides.com/blog/alarm-is-not-an-incident.html"
-          }
-        ]
+        "@type": "Question",
+        "name": "Why shouldn't the shift lead include the suspected root cause in the initial 15-minute or 60-minute customer advisory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "During active stabilization, field data is incomplete and sequence-of-events (SOE) logs have not yet been time-aligned across relays and PLCs. Stating a suspected root cause prematurely locks the organization into a speculative narrative that often proves inaccurate once forensic logs are pulled, damaging technical credibility and creating commercial liability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can an incident be downgraded if the customer never lost power or cooling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An incident is classified by both service impact and redundancy loss. If one side of a 2N UPS system trips offline unexpectedly, customers experience zero power interruption (a \"zero-downtime event\"), but the facility was exposed to single-point failure during the outage. It remains a formal critical facility incident (often classified as a Near-Miss or Redundancy Loss Incident) requiring full EOP response and root-cause analysis. From *Run the Data Center Day*, Tristan, Data Center Field Guides. Related: [A green tile can be stale](06-stale-is-not-green.md)."
+        }
       }
     ]
-    </script>
-    
+  }
+]
+  </script>
 
   <style>
     :root {
@@ -136,6 +166,42 @@
       --green-subtle: rgba(16, 185, 129, 0.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    .math-block {
+      margin: 1.35rem 0;
+      padding: 1rem 1.25rem;
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+      font-size: 1.08rem;
+      color: var(--text-primary);
+      overflow-x: auto;
+      text-align: center;
+    }
+    .math-inline {
+      font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+      color: #e2e8f0;
+      padding: 0 0.1rem;
+    }
+    .frac {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 0.2rem;
+    }
+    .frac .num {
+      display: block;
+      border-bottom: 1px solid #94a3b8;
+      padding: 0 0.25rem;
+      font-size: 0.92em;
+    }
+    .frac .slash { display: none; }
+    .frac .den {
+      display: block;
+      padding: 0 0.25rem;
+      font-size: 0.92em;
+    }
     body {
       background-color: var(--bg);
       color: var(--text-secondary);
@@ -786,15 +852,15 @@
       <span class="crumb-separator">/</span>
       <a href="../book/05-run-the-day.html">Vol 05: Daily Operations &amp; SOP/MOP/EOP</a>
       <span class="crumb-separator">/</span>
-      <span class="crumb-current">An alarm is not an incident</span>
+      <span class="crumb-current">An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline</span>
     </nav>
 
     <div class="article-header-meta">
-      <span class="kicker-tag ">AUDITABLE FIELD PROTOCOL</span>
+      <span class="kicker-tag is-deep-dive">FLAGSHIP GUIDE</span>
       <span class="meta-pipe">&bull;</span>
       <span class="meta-vol">VOL 05: Daily Operations &amp; SOP/MOP/EOP</span>
       <span class="meta-pipe">&bull;</span>
-      <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2 MIN READ</span>
+      <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 9 MIN READ</span>
     </div>
 
     
@@ -811,20 +877,49 @@
     </aside>
     
 
-    <h1>An alarm is not an incident</h1>
-<figure class="diagram-figure"><img src="figures/incident.png" alt="Write the clock. Do not write the cause." loading="lazy" class="responsive-img"/><figcaption>Write the clock. Do not write the cause.</figcaption></figure>
-<p><em>Original diagram. Not a site record.</em></p>
-<p>An incident is the service leaving the state you owe, or a person in danger, or a plant about to do either. A noisy alarm that does none of those is an alarm. Do not promote it because it has been loud for an hour. Do not demote a real incident because the room still looks calm. The test is the service and the person, not the volume of the horn.</p>
-<p>In the first hour, write the minute you knew, what you saw, the safe state you reached, who you called, and what you told the customer. Not the root cause. You do not know it yet. A cause handed to you in that minute is a hypothesis. Label it. If it enters the notice, it will be quoted as a finding.</p>
-<p>Closing the alarm is not closing the incident. The incident stays open until the service is restored and the notice matches what you owe. A replaced part is not that restoration until you have confirmed the service.</p>
-<p>Afterwards, one change, owned and dated, is a review. A meeting that only retells the fear is not.</p>
-<p>From <em>Run the Data Center Day</em>, Tristan, Data Center Field Guides. No store link until the Kindle edition is listed.</p>
+    <h1>An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline</h1>
+<blockquote class="direct-answer"><p><strong>Direct Answer Block</strong>: In data center operations, an alarm is a telemetry notification indicating that a single monitored point has crossed a configured threshold, whereas an incident is an unplanned event where critical service leaves its contracted SLA boundary, personnel safety is threatened, or redundant plant capacity is degraded below single-fault tolerance. Shift teams must never promote a noisy chattering alarm into an incident solely because of its duration, nor demote a true redundancy loss because the data hall remains quiet.</p></blockquote>
+<figure class="diagram-figure"><img src="figures/flagship/fig-02-sop-mop-eop-governance-pyramid.png" alt="Write the clock. Do not write the cause." loading="lazy" class="responsive-img"/><figcaption>Write the clock. Do not write the cause.</figcaption></figure>
+<p>In high-density critical facilities, thousands of Building Management System (BMS) and Electrical Power Monitoring System (EPMS) points report state changes every minute. A fundamental failure of undisciplined operations teams is confusing the volume of the audible horn with the severity of the physical event.</p>
+<p>An incident occurs when—and only when—one of three physical conditions is met:</p>
+<ul><li><strong>Service Boundary Breach</strong>: The delivered power, cooling, or environmental envelope crosses a contracted Service Level Agreement (SLA) limit (e.g., ASHRAE supply air temperature <span class="math-inline">&gt; 27^\circC</span> or loss of one customer PDU feed).</li><li><strong>Personnel Safety Hazard</strong>: Any condition involving arc-flash exposure, refrigerant asphyxiation risk, thermal runaway, life-safety fire detection, or unsafe physical access.</li><li><strong>Loss of Fault Tolerance (Redundancy Degradation)</strong>: A primary or standby machine fails or trips such that the next single component failure will cause an immediate customer outage (e.g., an <span class="math-inline">N+1</span> chiller plant loses one chiller, dropping to <span class="math-inline">N+0</span> exposed operation).</li></ul>
+<p>A chattering differential pressure sensor or a condensersump high-water warning that meets none of these three criteria is an <strong>alarm</strong>—it requires a maintenance work order and sensor calibration, not an executive incident bridge. Conversely, a silent trip of a 2N static transfer switch (STS) primary silicon-controlled rectifier (SCR) gate drive—even if the room sounds completely normal and IT racks remain online—is an immediate <strong>incident</strong> because fault tolerance has vanished.</p>
+<h2>1. The Quantitative Alarm-to-Incident Escalation Matrix</h2>
+<p>To remove subjective guesswork during a 03:00 AM shift disturbance, critical facility engineers evaluate every abnormal event against two physical equations: <strong>Thermal Ride-Through Margin (<span class="math-inline">t<sub>ride</sub></span>)</strong> and <strong>Remaining Redundant Capacity (<span class="math-inline">C<sub>rem</sub></span>)</strong>.</p>
+<div class="math-block"> t<sub>ride</sub>  = <span class="frac"><span class="num">M<sub>thermal</sub> · c<sub>p</sub> · ( T<sub>SLA<sub>m</sub>ax</sub> - T<sub>current</sub> )</span><span class="slash">/</span><span class="den">Q̇<sub>IT</sub> - Q̇<sub>cooling<sub>a</sub>vailable</sub></span></span>   #160;; #160;  C<sub>rem</sub>  = <span class="frac"><span class="num">∑<sub>i=1</sub><sup>N<sub>online</sub></sup> P<sub>rated, i</sub> - P<sub>IT<sub>l</sub>oad</sub></span><span class="slash">/</span><span class="den">P<sub>IT<sub>l</sub>oad</sub></span></span> </div>
+<p>When net cooling deficit (<span class="math-inline">Q̇<sub>IT</sub> &gt; Q̇<sub>cooling<sub>a</sub>vailable</sub></span>) causes a finite <span class="math-inline">t<sub>ride</sub></span> countdown toward <span class="math-inline">T<sub>SLA<sub>m</sub>ax</sub></span>, or when <span class="math-inline">C<sub>rem</sub></span> drops below the required <span class="math-inline">N+1</span> reserve threshold after a breaker or compressor trip, the event automatically crosses the gate from an operational alarm into a formal incident.</p>
+<div class="table-container"><table><thead><tr><th>Operational Parameter</th><th>Condition A: Operational Alarm (Work Order)</th><th>Condition B: Critical Incident (SLA / Redundancy Event)</th></tr></thead><tbody><tr><td><strong>Redundancy State</strong></td><td>Full <span class="math-inline">2N</span> or <span class="math-inline">N+1</span> fault tolerance intact (<span class="math-inline">C<sub>rem</sub> ≥ 1</span> unit).</td><td>Degraded to <span class="math-inline">N+0</span> (single-threaded) or running on emergency battery/tank reserve.</td></tr><tr><td><strong>Customer SLA Boundary</strong></td><td>All voltage, frequency, pressure, and temperature metrics inside normal band.</td><td>Any customer boundary metric outside contracted SLA or trending toward breach (<span class="math-inline">t<sub>ride</sub> &lt; 30min</span>).</td></tr><tr><td><strong>Life &amp; Plant Safety</strong></td><td>Zero personnel hazard; fault isolated within non-critical sub-circuit.</td><td>Active VESDA smoke pre-alarm, battery H2/thermal runaway, or arc fault trip.</td></tr><tr><td><strong>Required Governance</strong></td><td>Log on shift sheet; open corrective maintenance ticket; repair under SOP/MOP.</td><td>Declare Sev-1/Sev-2 Incident; execute EOP to First Safe State; issue 60-minute customer notice.</td></tr></tbody></table></div>
+<h2>2. The First-Hour Rule: Write the Clock, Never the Root Cause</h2>
+<p>During the first 60 minutes of a declared incident, the shift manager faces intense pressure from account executives and tenants demanding to know <em>&quot;Why did this happen?&quot;</em> Yielding to that pressure by writing an unverified guess into the initial incident notification is one of the most destructive mistakes in facility management.</p>
+<p><strong>THE FIRST-HOUR INCIDENT DOCUMENTATION GATE</strong></p>
+<div class="table-container"><table><thead><tr><th>MANDATORY FACTS TO LOG &amp; TRANSMIT</th><th>STRICTLY FORBIDDEN IN HOUR ONE</th></tr></thead><tbody><tr><td>1. Exact minute of detection (UTC)</td><td>1. Unverified Root Cause claims</td></tr><tr><td>2. Physical symptoms witnessed</td><td>2. Blaming OEM firmware or utility</td></tr><tr><td>3. Minute First Safe State reached</td><td>3. Speculative repair timelines</td></tr><tr><td>4. Named individuals contacted</td><td>4. Declaring incident &quot;Closed&quot;</td></tr><tr><td>5. Current customer impact state</td><td>solely because alarms cleared</td></tr></tbody></table></div>
+<p>In the first hour, you do not know the root cause. A protective relay target showing <code>87T Differential Trip</code> tells you which protection element operated; it does not tell you whether the trip was caused by an internal winding turn-to-turn fault, a saturated current transformer (CT), or moisture ingress in a marshalling cabinet. Any cause proposed in the first 60 minutes is strictly a <strong>working hypothesis</strong>.</p>
+<p>If a working hypothesis is typed into a customer incident notice without being explicitly labeled as an unverified hypothesis under investigation, legal and commercial teams will quote that preliminary guess as a binding admission of fault for the next twelve months. Your first-hour record must state five verified facts and nothing more:</p>
+<ul><li><strong>Detection Timestamp</strong>: The exact minute the shift knew of the abnormality (distinguishing between actual measurement timestamp and operator observation time).</li><li><strong>Witnessed Physical State</strong>: The specific gauges, breaker flags, and boundary readings observed on the floor.</li><li><strong>Safe State Timestamp</strong>: The exact minute the Emergency Operating Procedure (EOP) stabilized the plant in its First Safe State.</li><li><strong>Escalation Chain</strong>: The specific named individuals (never generic group aliases) who answered the escalation call.</li><li><strong>Customer Boundary Status</strong>: Whether critical load is held within SLA tolerances and what redundancy protection currently backs it.</li></ul>
+<h2>3. Why Clearing the Alarm Does Not Close the Incident</h2>
+<p>A critical error in BMS-driven operations is closing an incident ticket the moment the red alarm row disappears from the operator workstation or the replacement component is bolted into the rack.</p>
+<p>Consider a chilled water loop low-differential-pressure incident where a primary VFD pump trips offline and the standby pump fails to auto-start. If a technician manually starts the standby pump locally in <code>HAND</code> mode at the variable frequency drive keypad, differential pressure recovers and the BMS low-<span class="math-inline">Δ P</span> alarm clears to green. <strong>The incident is not closed.</strong></p>
+<p>While the pump runs in local <code>HAND</code> mode:</p>
+<ul><li>The central PLC automatic lead/lag staging sequence is bypassed.</li><li>Automatic pressure-relief modulation is disabled.</li><li>If that pump trips, no secondary standby automation will respond.</li></ul>
+<p>An incident remains open until three independent closure gates are satisfied:</p>
+<ul><li><strong>Service Confirmation</strong>: Downstream physical service metrics (cold aisle temperatures, PDU voltage stability, differential pressures) are verified via live sensors across a full thermal/electrical stabilization dwell.</li><li><strong>Redundancy &amp; Auto-Control Restoration</strong>: All standby paths, automatic transfer switches, and PLC control loops are returned to <code>AUTO</code> with verified health flags, or a formal risk-accepted temporary operating configuration is signed by the Operations Director.</li><li><strong>Notice Alignment</strong>: The customer closeout notice accurately reflects the true duration of degraded redundancy and the verified restoration timestamp.</li></ul>
+<h2>4. Post-Incident Review: One Owned Change Beat Ten Meetings</h2>
+<p>After the plant is restored, organizations often conduct sprawling post-mortem meetings that merely retell the chronology of fear without altering the physical or procedural condition that permitted the failure. A post-incident review that ends with <em>&quot;Technicians reminded to be more careful&quot;</em> is an engineering failure.</p>
+<p>Every authentic incident review produces at least <strong>one concrete, owned, and dated engineering change</strong>—for example, modifying a PLC start-failure timer from <span class="math-inline">15s</span> to <span class="math-inline">5s</span>, adding a physical Kirk-key interlock, or splitting an ambiguous SOP into a dedicated MOP. If no physical or procedural change is required, the review must document an explicit engineering justification signed by the Chief Engineer.</p>
+<h2>Frequently Asked Questions (FAQ)</h2>
+<h3>When does a chattering BMS alarm become a formal facility incident?</h3>
+<p>A chattering alarm is a telemetry or sensor defect (managed via a maintenance work order and hysteresis deadband tuning) unless the underlying physical process actually crosses a customer SLA boundary, threatens personnel safety, or strips the facility of its required <span class="math-inline">N+1</span> or <span class="math-inline">2N</span> fault tolerance. However, if a chattering sensor drives an automated control loop into hunting or trips a real piece of equipment, the resulting redundancy loss immediately becomes an incident.</p>
+<h3>Why shouldn&#x27;t the shift lead include the suspected root cause in the initial 15-minute or 60-minute customer advisory?</h3>
+<p>During active stabilization, field data is incomplete and sequence-of-events (SOE) logs have not yet been time-aligned across relays and PLCs. Stating a suspected root cause prematurely locks the organization into a speculative narrative that often proves inaccurate once forensic logs are pulled, damaging technical credibility and creating commercial liability.</p>
+<h3>Can an incident be downgraded if the customer never lost power or cooling?</h3>
+<p>An incident is classified by both service impact and redundancy loss. If one side of a 2N UPS system trips offline unexpectedly, customers experience zero power interruption (a &quot;zero-downtime event&quot;), but the facility was exposed to single-point failure during the outage. It remains a formal critical facility incident (often classified as a Near-Miss or Redundancy Loss Incident) requiring full EOP response and root-cause analysis.</p>
+<p>From <em>Run the Data Center Day</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="stale-is-not-green.html">A green tile can be stale</a>.</p>
 
     
     <div class="article-tags-wrap">
       <span class="tags-header">FIELD PROTOCOL TAGS:</span>
-      <div class="tags-cloud"><span class="article-tag-item">#Daily</span><span class="article-tag-item">#Operations</span><span class="article-tag-item">#AlarmIsNotAnIncide</span></div>
+      <div class="tags-cloud"><span class="article-tag-item">#Daily</span><span class="article-tag-item">#Operations</span><span class="article-tag-item">#DataCenterAlarmVsI</span></div>
     </div>
     
 
@@ -836,33 +931,33 @@
       </div>
       <div class="related-grid">
         
-        <a href="data-center-shift-handover-sop-mop-checklist.html" class="related-card deep-dive">
+        <a href="a-change-needs-a-back-out.html" class="related-card deep-dive">
           <div class="related-card-meta">
             <span class="related-badge">★ DEEP-DIVE</span>
-            <span class="related-time">⏱️ 7m</span>
+            <span class="related-time">⏱️ 9m</span>
           </div>
-          <h4>Data Center Shift Handover Checklist: 2N Power Redundancy Math, 6 Stations, and SOP/MOP/EOP</h4>
-          <p>A comprehensive shift handover protocol for critical facilities managers. Covers the 2N power redundancy cascade equation, 6 mandatory physical inspection stations, and MOP back-out plans.</p>
+          <h4>A Data Center Change Needs a Back-Out: MOP Point of No Return, LOTO Isolation, and Rollback Timing</h4>
+          <p>Why every critical facility Method of Procedure (MOP) requires a timed Point of No Return (PONR), deterministic state-restoration steps, and explicit back-out triggers before opening switchgear or changing setpoints.</p>
           <span class="related-link">Read Protocol →</span>
         </a>
         
-        <a href="a-change-needs-a-back-out.html" class="related-card ">
+        <a href="do-not-start-on-a-dashboard.html" class="related-card deep-dive">
           <div class="related-card-meta">
-            <span class="related-badge">VOL 05</span>
-            <span class="related-time">⏱️ 2m</span>
+            <span class="related-badge">★ DEEP-DIVE</span>
+            <span class="related-time">⏱️ 8m</span>
           </div>
-          <h4>A data center change needs a back-out</h4>
-          <p>What has to be written before a shift is allowed to open a plant or change a setpoint.</p>
+          <h4>Do Not Start the Shift on a Dashboard: Paper-First Handover, Physical Rounds, and Why PUE Ratios Lie</h4>
+          <p>Why critical facility managers never begin a shift by reading PUE ratios or green BMS summary tiles. Learn the paper-first shift startup sequence, permit audits, and physical inspection hierarchy.</p>
           <span class="related-link">Read Protocol →</span>
         </a>
         
-        <a href="do-not-start-on-a-dashboard.html" class="related-card ">
+        <a href="nameplate-is-not-capacity.html" class="related-card deep-dive">
           <div class="related-card-meta">
-            <span class="related-badge">VOL 05</span>
-            <span class="related-time">⏱️ 2m</span>
+            <span class="related-badge">★ DEEP-DIVE</span>
+            <span class="related-time">⏱️ 8m</span>
           </div>
-          <h4>Do not start the shift on a dashboard</h4>
-          <p>What a data center manager checks before a ratio on a screen is allowed to describe the day.</p>
+          <h4>A Nameplate Is Not Used Capacity: Data Center 2N Power Derating, Live Metering, and Redundancy Math</h4>
+          <p>Why critical facility managers must never enter equipment nameplate kVA or design kilowatts into the daily capacity log. Covers live metering rules, 2N redundancy ceilings, and derating math.</p>
           <span class="related-link">Read Protocol →</span>
         </a>
         

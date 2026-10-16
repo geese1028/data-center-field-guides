@@ -6,19 +6,15 @@ An alert is a row in a software database. It is a mathematical statement that a 
 
 An incident is a business, technical, and legal event. It is an operational state where contractual service delivery has failed, where human safety is endangered, or where plant redundancy has collapsed to an extent that imminent catastrophic failure is probable.
 
-```
-+-----------------------------------------------------------------------------+
-| ALERT VS. INCIDENT GOVERNANCE |
-| |
-| Dimension Software Alert Production Incident |
-| ------------------ ---------------------------- ----------------------- |
-| Origin Automated SCADA / BMS Engine Human Operational Command|
-| Volume Hundreds per week Rare (Zero is the goal) |
-| Authority Required Software algorithm Licensed Duty Manager |
-| Client Visibility Strictly Internal / Muted Formal Contractual SLA |
-| Resolution Action Auto-clear / Sensor tuning Formal EOP / MOP / RCA |
-+-----------------------------------------------------------------------------+
-```
+**ALERT VS. INCIDENT GOVERNANCE**
+
+| Dimension Software | Alert Production Incident |  |
+| :--- | :--- | :--- |
+| Origin Automated SC | ADA / BMS Engine Human Operat | ional Command |
+| Volume Hundreds per | week Rare (Zero is the goal) |  |
+| Authority Required | Software algorithm Licensed D | uty Manager |
+| Client Visibility S | trictly Internal / Muted Form | al Contractual SLA |
+| Resolution Action A | uto-clear / Sensor tuning For | mal EOP / MOP / RCA |
 
 ![The Human Escalation Gate: An Alert is Not an Incident](../figures/fig-03-alert-to-incident-escalation-gate.png)
 
@@ -72,3 +68,13 @@ Keep internal maintenance warnings strictly within the facility maintenance tick
 - The audited test checklist (SLA, Safety, Redundancy) applied prior to incident ticket creation.
 - The formal rejection of automated incident dispatching directly from telemetry triggers.
 - The separation between internal maintenance work orders and client-facing incident records.
+
+## Quantitative Alert-to-Incident Escalation Matrix and Pager Fatigue Prevention
+
+To protect on-call human cognition, monitoring thresholds are partitioned into three strict severity tiers based on remaining time-to-SLA-breach ($\tau_{\text{margin}}$) and required human intervention authority:
+
+| Telemetry Event Tier | Physical / Redundancy State | Remaining SLA Margin ($\tau_{\text{margin}}$) | Permitted Notification Channel | Mandatory Closure Requirement |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tier 3: Diagnostic Log** | Single sensor drift or minor VFD speed hunt within normal band | $\tau_{\text{margin}} = \infty$ (No redundancy loss) | Historian log & next-day shift queue (Zero audible/push alert) | Reviewed during daily morning log triage |
+| **Tier 2: Actionable Warning** | Redundant component degraded (e.g., 1 of N+2 pumps faulted; filter $\Delta P$ high) | $\tau_{\text{margin}} > 8.0\,\text{hours}$ | Control room console banner + work-order ticket | Closed by completed maintenance ticket + point clear |
+| **Tier 1: Critical Incident Page** | Active loss of N+1/2N boundary or imminent thermal/power excursion | $\tau_{\text{margin}} < 30\,\text{minutes}$ | Immediate Pager / Phone wake-up + EOP activation | Formal Incident Record + witnessed physical verification |

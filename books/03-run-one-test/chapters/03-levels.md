@@ -35,21 +35,17 @@ Filing a site walk-through into a factory acceptance binder is documentation fra
 
 To prevent this compliance breach, the first page of the Commissioning Plan must feature a prominent cross-reference matrix:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMISSIONING TIER TRANSLATION MATRIX |
-+--------------------------+----------------------------+--------------------------------------------+
-| GLOBAL CERTIFICATE TIER | LOCAL FIELD CONTRACTOR TERM| MANDATORY VERIFICATION BOUNDARY |
-+--------------------------+----------------------------+--------------------------------------------+
+**COMMISSIONING TIER TRANSLATION MATRIX**
+
+| GLOBAL CERTIFICATE TIER | LOCAL FIELD CONTRACTOR TERM | MANDATORY VERIFICATION BOUNDARY |
+| :--- | :--- | :--- |
 | Level 0: Design Audit | Excluded / Attached | OPR & BOD sign-off; design review waiver. |
 | Level 1: Factory Testing | FAT Vendor Documentation | Factory test records attached as evidence. |
 | Level 2: Site Receipt QA | Stage 1 (Static Part A) | Sheet 1: Unpack, megger, phase rotation. |
 | Level 3: PFC & Start-Up | Stage 1 (Static Part B) | Sheet 1: Flush, hydro-hold, fill and vent. |
-| Level 4: Functional (FPT)| Stage 2 (Single System) | Sheet 2, Sheet 6, Sheet 7: CDU & alarms. |
-| Level 5: Integrated (IST)| Stage 3 (Heat Window) | Sheet 3, Sheet 4: Thermal ladder & 2N pull.|
+| Level 4: Functional (FPT) | Stage 2 (Single System) | Sheet 2, Sheet 6, Sheet 7: CDU & alarms. |
+| Level 5: Integrated (IST) | Stage 3 (Heat Window) | Sheet 3, Sheet 4: Thermal ladder & 2N pull. |
 | Level 6: Turnover | Closeout Handover | Sheet 5, Punch list clearance, Cx pack. |
-+--------------------------+----------------------------+--------------------------------------------+
-```
 
 ## Mandatory Gating and Interlock Rules
 

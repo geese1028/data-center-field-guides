@@ -22,6 +22,23 @@ Consumables and chemicals follow the same split. You do not sign that you receiv
 
 Chapter 18 took the drawing as evidence. This chapter takes it as an object you might be blamed for losing. If you accept custody of the as-built, you need the second person who can open the backup, chapter 3, and you need to know which revision you took. Accepting "the drawings" without a revision is accepting a pile. Piles are how the design PDF returns under an as-built name.
 
+## Physical Key Control, LOTO Transfer, and Spare Parts Custody Audit
+
+### Separating Plant Custody from Contractor Tool Storage and Access
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$N_{\text{spares\_on\_shelf}} \ge N_{\text{critical\_BOM}}, \quad \text{Access}_{\text{contractor}} = \text{Revoked}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Requiring Lock-Cylinder Re-Keying and Spare Inventory Count at Turnover | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Isolation a second person on your side can reach, or the operated-sentence refused.

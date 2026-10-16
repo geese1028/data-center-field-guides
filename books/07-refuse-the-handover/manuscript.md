@@ -18,13 +18,28 @@ A tester who signs their own close-out has finished the third book's job. That s
 
 You may copy the sheet headings. You may not paste a sentence from this book into a customer's procedure and call it their rule. Their contract, their code, and their point list stay in their file. If a code or a facilities title is already named in the contract, cite the edition. Do not paste it. Do not ask this book to remember a limit from it.
 
+## Tripartite Handover Governance & Custody Transfer Boundaries
+
+### Tester Proof vs. Owner Turnover vs. Operator Readiness
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Gate}_{\text{handover}} = \prod_{k=1}^{7} G_k \in \{0, 1\}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Scope, Date, and Explicit Operational Refusal Boundaries | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The sentence they want you to sign, in their words, before you edit it.
 - The sentence you are willing to sign, if it is narrower.
 - The one item you will not wave through tomorrow.
-
----
 
 # 1. A signature is a sentence
 
@@ -57,6 +72,23 @@ A meeting that ends on time is not a result. A pack that is heavy is not a resul
 
 Do not sign a page you have not read, including the attachments the page incorporates by reference. A sentence that says "including all appendices" incorporates the empty tabs too. Either you have seen them, or you strike the words. Striking words is allowed. Pretending you saw them is not.
 
+## Legal & Technical Anatomy of the Three Handover Signatures
+
+### Separating Commissioning Proof from Commercial Warranty Clocks
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$T_{\text{warranty\_start}} \neq T_{\text{operational\_acceptance}} \text{ when } N_{\text{Cat\_A}} > 0$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Drafting the Bounded Operator Acceptance Sentence | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Their sentence, copied before you edit it.
@@ -64,8 +96,6 @@ Do not sign a page you have not read, including the attachments the page incorpo
 - Words you struck, and that you said so in the meeting.
 - Whether you are signing as operator, as owner, or refusing both.
 - Warranty or payment clocks read, and kept off the sentence you sign.
-
----
 
 # 2. You are not the tester
 
@@ -85,17 +115,29 @@ You do not fill gaps in their pack with your own knowledge of the site. What you
 
 You may ask for the page that should already exist: the sentence of what was proved, the level map, the printed punch, the file judgment, the list of what was witnessed and what was accepted as a document, the operator pages. Asking is not testing. If they cannot produce the page in the meeting, the item is missing. Missing is a refusal of any sentence that needed that page. You do not give them until the end of the day to write it while you wait with the pen, unless you have left the meeting and opened a new one after you have read what they wrote. A page written while you wait is a story. Stories do not become evidence because they are fresh.
 
+## Role Segregation Between Commissioning Agent (CxA) and Receiver
+
+### Why Live Ad-Hoc Demonstrations During Handover Meetings Are Invalid
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Validity}(\text{Test}_{\text{unscripted}}) = 0$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Enforcing Pre-Approved Script and Witness Separation | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Your hat: reader and signer, or tester. Not both in the same hour.
 - The demonstration you refused to treat as a test.
 - The page you asked for that was not in the pack.
 - The memory you did not allow to stand in for a missing page.
-
-
-![Commissioning Levels Gating Pyramid](../figures/fig-05-commissioning-levels-gating-pyramid.png)
-
----
 
 # 3. A missing sheet is a refusal
 
@@ -135,6 +177,23 @@ An empty tab with a hopeful title is a missing sheet. A sheet dated the morning 
 
 A backup location that only one person can open is a missing sheet for the next shift. The third book put backup locations in the pack. You check that a second person, named, can open them. If not, the pack exists only while the author is in the building. That is not a handover.
 
+## The Seven Mandatory Closeout Binder Deliverables
+
+### Auditing Empty Tabs, Borrowed Logs, and Wrong-Revision Certificates
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$I_{\text{completeness}} = \frac{N_{\text{verified\_sheets}}}{N_{\text{required\_sheets}}} = 100\%$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Automatic Sentence Refusal for Missing Evidence Sheets | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Each signature-sentence, and the sheet that supports it. Missing sheet, sentence refused.
@@ -142,11 +201,6 @@ A backup location that only one person can open is a missing sheet for the next 
 - Empty tabs, morning-of sheets, borrowed sheets, and wrong documents, treated as missing.
 - A stack of shift logs you did not accept as the close-out pack.
 - The second person who can open the backups, or the pack refused.
-
-
-![As-Built vs. Redline Forensic Custody Audit](../figures/fig-03-as-built-redline-custody-audit.png)
-
----
 
 # 4. A file is not a pass
 
@@ -172,14 +226,29 @@ You may accept a sentence that names the systems the valid file actually covered
 
 A bad clock is not automatically a punch item against the constructor. A real leak is not automatically a software story. If you sign a sentence that mixes them, you have chosen an owner for the next year, and you may have chosen the wrong one. Leave the file invalid. Leave the plant unproved. Open a separate line only when a valid file shows a plant failure. Until then, the refusal is of the sentence, not of a named party.
 
+## Auditing Raw Telemetry Exports Behind Commissioning Curves
+
+### Validating 1-Second Sampling, Clock Sync, and Enthalpy Balance
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\left| P_{\text{elec}} - \dot{m} c_p \Delta T \right| \le 0.03 P_{\text{elec}}, \quad \Delta t_{\text{gap, max}} \le 3.0\,\text{s}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing Smoothed Plots Without Underlying CSV/Parquet Files | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Proved-sentence refused, because the file judgment is missing or negative.
 - The kinder summary you did not sign.
 - Scope of any valid file, matched to the signature, extra words struck.
 - File invalid and plant unproved kept as two facts. No punch owner invented in the meeting.
-
----
 
 # 5. A picture is not a measurement
 
@@ -205,14 +274,29 @@ You may accept a measurement sheet that names the points, the instrument, the ti
 
 If the measurement sheet is promised for next week, the airflow sentence waits until next week. You do not sign it now and add "subject to measurement." Subject to is how the sentence gets quoted without the subject.
 
+## Refusing Uncalibrated CFD and Electrical Short-Circuit Models
+
+### Verifying Physical Walk Benchmarks Before Accepting Simulation Claims
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{MAE}_T = \frac{1}{N}\sum |T_{\text{sim}} - T_{\text{meas}}| \le 1.5\,\text{K}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Downgrading Unverified Models to Non-Binding Design Pictures | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Airflow sentence refused, or accepted only as a picture. Which.
 - The measurement sheet present or missing.
 - A model of a previous layout, not signed as the current hall.
 - No limit copied from a slide or from a title you did not read.
-
----
 
 # 6. A green tile is not a handover
 
@@ -240,6 +324,23 @@ You may accept a named list of points that passed, and refuse the platform as a 
 
 You may accept that the screen is installed and not accepted. Installed is a delivery fact. Accepted is your sentence. Vendors mix them because installed is already true and accepted is what they need. You keep them apart.
 
+## Auditing BMS/EPMS Point Quality and Forced-Failure Proof at Handover
+
+### Why a Green Summary Tile Does Not Prove Live Sensor Integrity
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$P_{\text{accepted}} \iff \text{Tested}(4\,\text{mA}, 20\,\text{mA}, \text{Wire\_Pull} \to \texttt{0x80})$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing Pasted Register Lists Without Forced-Failure Records | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Monitor sentence refused, or limited to named points that passed a forced failure on this image.
@@ -247,8 +348,6 @@ You may accept that the screen is installed and not accepted. Installed is a del
 - Design value kept out of the capacity cell.
 - The five lines they could not read, if you asked.
 - Installed and accepted written as two facts.
-
----
 
 # 7. A drawing is not a capacity
 
@@ -272,14 +371,29 @@ You may accept a blank cell. Blank is honest. It is better than a design number 
 
 You may accept a measured value with its time, its source path, and the sentence it supports, if the sixth book's quality mark is live. One feed, one number. Do not let them roll feeds into a hall total in the meeting unless the roll-up is already a calculated point with its inputs written. A total invented on a whiteboard is a new calculation. It does not get a pen in this hour.
 
+## Proving Nameplate vs. Derated N+1/2N Operational Capacity
+
+### Accounting for Ambient Wet-Bulb Extremes and Harmonic Derating
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$P_{\text{deliverable}} = \min\left(0.45 S_{\text{2N\_bus}}, \, Q_{\text{cooling}}(T_{\text{wb, 99.6\%}})\right)$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Leaving the Capacity Cell Blank When Only Design Drawings Exist | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Capacity cell: measured and live, or blank. Design written beside it, not inside it.
 - Redundancy sentence refused unless a test showed the remaining capacity.
 - The ratio you did not sign.
 - The whiteboard total you did not accept.
-
----
 
 # 8. An open line is not a signature
 
@@ -312,6 +426,23 @@ A line closed on a photograph may be enough for a label. It is not enough for a 
 
 Defects found after they left the hall are still defects. If you already know of one, it goes in the register before you sign, with the date you learned it. Signing first and adding it after is how your own finding becomes a favor instead of a condition. Put it on page two before the pen.
 
+## Quantitative Punch-List Classification (Cat A / B / C) and Retainage Math
+
+### Enforcing the 200% Financial Escrow Holdback for Open Defects
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$E_{\text{holdback}} = 2.0 \times \sum_{j=1}^{M} \left( C_{\text{materials}, j} + C_{\text{labor}, j} + C_{\text{retest}, j} \right)$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing Handover While Any Category A Life-Safety or SPOF Item Remains Open | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Open lines that block a proved-sentence, named by function, not by a site code.
@@ -320,8 +451,6 @@ Defects found after they left the hall are still defects. If you already know of
 - Closes you did not inherit: photograph used where a witnessed retest was required.
 - Your own known defect, on page two before you sign.
 - Open questions your sentence depends on, treated as open lines. The answer you did not invent in the room.
-
----
 
 # 9. Slides are not a staff
 
@@ -345,17 +474,29 @@ Do not paste their spare catalog into the pack you sign, and do not copy it here
 
 An operations and maintenance document that exists only as a template with the project name typed on the cover is a missing sheet. You are not collecting manuals to fill a shelf. You are checking that the stops, the isolation, and the deviation are written where the night shift will look. If the manual contradicts the operator pages, the pages win until the manual is corrected, and you do not sign that the manual was handed over. Two documents that disagree are not a set. They are a dispute you would be accepting.
 
+## Auditing SOP/MOP/EOP Completeness and Hands-On Staff Qualification
+
+### Why Vendor Slide Decks Do Not Satisfy Operator Training Requirements
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$t_{\text{EOP\_drill}} \le t_{\text{thermal\_ride\_through}} \quad (\text{typically } \le 90\,\text{s})$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Requiring Walked EOP Drills and Valve Tag Verification Before Sign-Off | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Operated-sentence refused, or staff-handover split from plant-tested.
 - Operator pages readable aloud, stops present, deviations listed. Or refused.
 - Named job whose spare is missing, sentence for that job refused.
 - Manual that contradicts the pages, not signed as handed over.
-
-
-![Physical Custody Transfer and Lockout/Tagout Interlocking](../figures/fig-06-custody-transfer-and-loto-handover.png)
-
----
 
 # 10. The certificate must match the map
 
@@ -377,6 +518,23 @@ It may mean the levels named on the map were signed, with the limits written. It
 
 You may sign that named levels were not run, and that you are not claiming them. That sentence is useful. It stops the next person from assuming silence means pass. Write it even if they did not ask. A map that hides the refused levels is a brochure. Your sentence puts them back.
 
+## Reconciling Commissioning Level Numbering Systems (L1–L5)
+
+### Preventing Factory Witness Certificates from Posing as Site IST
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Level}_{\text{site}}(k) \leftrightarrow \text{ASHRAE Guideline 0 / 202 Stage } k$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Auditing the Certificate-to-Level Map Across All Subsystems | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Map present: issued, attached, refused. Or certificates unread.
@@ -386,8 +544,6 @@ You may sign that named levels were not run, and that you are not claiming them.
 
 
 ![Commissioning Levels Gating Pyramid](../figures/fig-05-commissioning-levels-gating-pyramid.png)
-
----
 
 # 11. A letter is not a witness
 
@@ -405,14 +561,29 @@ A document you cannot open is not a document. A path that only the author can re
 
 You may accept a witnessed script and refuse a documented one, or the reverse, if you write which. You may accept a sample for the systems in the sample. You may file the unwitnessed rest as not proved. None of that requires you to insult the document. It requires you to keep the verb accurate. Witnessed, accepted as a document, or not done. The third book’s three words are enough. Do not add "substantially complete." Substantially is a fourth word that means not done, wearing a better coat.
 
+## Witnessed Physical Execution vs. Paper Document Review
+
+### Sampling Ratios and Sign-Off Integrity for Commissioning Scripts
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$N_{\text{witnessed}} = 100\% \text{ for Level 4/5}, \quad N_{\text{sample}} \ge \lceil\sqrt{N}\rceil + 1 \text{ for Level 2/3}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Separating 'Witnessed on Floor' from 'Accepted Paper Submittal' | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - For each proved-sentence: witnessed, accepted as a document, or not done.
 - Sample rule written, or the hall-wide claim struck.
 - A letter or a photograph you did not allow to close a fail.
 - A path a second person could not open, not relied on.
-
----
 
 # 12. Conditional is a refusal of the rest
 
@@ -443,6 +614,23 @@ You do not condition a sentence that should have been refused outright, in order
 
 Helpful conditions are how a refusal is talked out of the room. If you hear yourself saying subject to, check whether the missing thing is allowed to be late or is allowed to be absent. Late can be a condition. Absent, for a gate in chapters 4 through 7, cannot.
 
+## Structuring Conditional Acceptance and Time-Bounded Operating Derogations
+
+### Enforcing Automatic Expiry Dates, Load Caps, and Retainage Triggers
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$P_{\text{allowed}}(t) = P_{\text{derated}} \text{ for } t \le t_{\text{expiry}}, \quad P_{\text{allowed}}(t > t_{\text{expiry}}) = 0$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Writing Conditional Acceptance as an Explicit Refusal of Unproved Scope | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The yes, and the refusal of the rest, in the same document.
@@ -450,8 +638,6 @@ Helpful conditions are how a refusal is talked out of the room. If you hear your
 - What you will not do on Monday on the strength of this meeting.
 - A "subject to" you struck because the gap was a gate, not a delay.
 - Allowed operation, readable aloud by the shift. Or an explicit nothing.
-
----
 
 # 13. Who may sign
 
@@ -473,14 +659,29 @@ You say your sentence, and you say what you are not signing. You do not argue th
 
 You do not promise to "sort it out after signature." After signature is when the wide sentence starts being quoted. Sort it out before, or write the condition in the same document, with an end date. Chapter 12.
 
+## Signatory Authority Matrix and Personal Operational Accountability
+
+### Matching Sign-Off Authority to Night-Shift Incident Responsibility
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Signer}(\text{Operational\_Acceptance}) \equiv \text{Owner}(\text{24/7 Incident Pager})$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Preventing Project Construction Managers from Signing on Behalf of Operations | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The name allowed to sign the operator's sentence, written before the meeting.
 - Pages unread, therefore unsigned.
 - A spoken summary you did not treat as a translation.
 - Schedule and cost kept off your signature page.
-
----
 
 # 14. One meeting, as a method
 
@@ -520,6 +721,23 @@ If two people ask you to sign two different small sentences, chapter 24 applies.
 
 You leave with their sentence copied, your sentence written, four refusals, a blank capacity cell, and no root cause, no temperature, and no site. The next reader of your sheet can see what you refused without opening their slides. That is the handover record. Their pack, unchanged, is still their pack.
 
+## Worked Handover Meeting Walkthrough and Line-by-Line Refusal Protocol
+
+### Executing the Gatekeeper Sheet Under Schedule Pressure
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Verdict}_{\text{meeting}} = \text{Conditional}(P \le 60\%) \text{ due to Open Cat B Items}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Maintaining Written Record Discipline During Multi-Party Turnover | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Their sentence, refused.
@@ -527,8 +745,6 @@ You leave with their sentence copied, your sentence written, four refusals, a bl
 - Capacity cell blank. Commissioned struck.
 - No retest, no favor-walk, no verbal close.
 - Same-document refusal, or no signature at all.
-
----
 
 # 15. The refusal sheet
 
@@ -604,7 +820,22 @@ Copy the headings. Fill them before you pick up the pen, not from memory after y
 
 ![The Master Refusal Sheet and Dissent Ledger](../figures/fig-07-master-refusal-sheet-and-dissent-ledger.png)
 
----
+## The Master Handover Refusal & Conditional Acceptance Ledger
+
+### Twelve Mandatory Audit Fields Required Before Picking Up the Pen
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\forall k \in \{1..12\}: \text{Field}_k \neq \text{Blank} \implies \text{Eligible for Signature}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Filing the Completed Sheet in Both Project and Operations Archives | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
 
 # 16. What this book does not own
 
@@ -620,13 +851,28 @@ It does not own a real meeting. Chapter 14 is a method. It is not a case you may
 
 It does not own the repair, the commercial claim, or the schedule. Those may be urgent. They do not convert missing evidence into present evidence. Record them on a different page, under a different name.
 
+## Scope Boundaries Between Handover Governance and Legal/Commercial Disputes
+
+### Separating Technical Evidence Refusal from Liquidated Damages Claims
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Technical Refusal} \perp \text{Commercial Settlement Negotiation}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Keeping Engineering Verdicts Free of Contractual Speculation | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The sequence you did not reteach.
 - The code, the procedure, and the point list you did not paste.
 - The real meeting you did not write down.
-
----
 
 # 17. Titles, Standards, and the Copyright Line
 
@@ -681,7 +927,22 @@ The mention of these titles is strictly for nominative reference, technical cita
 - Confirmation that no copyrighted standard text or contractor proprietary methods were pasted into shift turnover sheets.
 - The signed statement confirming that commercial milestone payment schedules were excluded from technical acceptance.
 
----
+## Cross-Reference Matrix of International Commissioning & Handover Standards
+
+### ASHRAE Guideline 0, Guideline 202, ISO/IEC 22237, and NETA ATS
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Compliance} = \text{Verified Against Cited Edition & Revision in Force}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Enforcing Copyright and Citation Hygiene in Closeout Binders | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
 
 # 18. A renamed drawing is not as-built
 
@@ -710,14 +971,29 @@ You may accept an as-built only when a named person says it was checked against 
 
 Partial floors and partial suites follow the scope letter. A drawing of the whole building does not prove the suite you are being asked to run, and a drawing of the suite does not prove the building. Strike the extra words. Chapter 1.
 
+## Field-Walked As-Built Redline Verification vs. Renamed Design CAD
+
+### Statistical Sampling of Physical Breaker, Valve, and Sensor Tags
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\varepsilon_{\text{redline}} = \frac{N_{\text{mismatched\_tags}}}{N_{\text{walked\_sample}}} = 0\% \text{ across } n = 25 \text{ nodes}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing 'Issued for Construction' Drawings Stamped as As-Built | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Design, shop, and as-built told apart, or the drawing sentence refused.
 - Revision tied to the witnessed test, or the drawing not used for the proved-sentence.
 - Graphic and operator page: page wins where they disagree.
 - As-built check dated after the last change that your sentence depends on, or not accepted as current.
-
----
 
 # 19. Custody is not a compliment
 
@@ -743,6 +1019,23 @@ Consumables and chemicals follow the same split. You do not sign that you receiv
 
 Chapter 18 took the drawing as evidence. This chapter takes it as an object you might be blamed for losing. If you accept custody of the as-built, you need the second person who can open the backup, chapter 3, and you need to know which revision you took. Accepting "the drawings" without a revision is accepting a pile. Piles are how the design PDF returns under an as-built name.
 
+## Physical Key Control, LOTO Transfer, and Spare Parts Custody Audit
+
+### Separating Plant Custody from Contractor Tool Storage and Access
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$N_{\text{spares\_on\_shelf}} \ge N_{\text{critical\_BOM}}, \quad \text{Access}_{\text{contractor}} = \text{Revoked}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Requiring Lock-Cylinder Re-Keying and Spare Inventory Count at Turnover | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Isolation a second person on your side can reach, or the operated-sentence refused.
@@ -754,8 +1047,6 @@ Chapter 18 took the drawing as evidence. This chapter takes it as an object you 
 
 
 ![Physical Custody Transfer and Lockout/Tagout Interlocking](../figures/fig-06-custody-transfer-and-loto-handover.png)
-
----
 
 # 20. The day after
 
@@ -783,6 +1074,23 @@ You do not start a customer service, an IT load, or a public claim on the streng
 
 You do not publish the meeting. No slides of their drawings, no punch lines with their identifiers, no photograph of the room. The method you may reuse is the refusal. The pack stays theirs.
 
+## Day-One Post-Handover Guardrails Against Scope Creep
+
+### Enforcing Conditional Load Caps andEscorted Contractor Remediation
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\forall \text{Punch Fix } j: \text{Requires Approved Operations MOP + LOTO Permit}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Preventing Unproved Systems from Quietly Entering Production on Day Two | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Prohibitions written the same day, read to the shift if you signed a narrow yes.
@@ -790,8 +1098,6 @@ You do not publish the meeting. No slides of their drawings, no punch lines with
 - A quiet week you did not treat as a close.
 - Items closed one at a time, without widening the old sentence.
 - The IT load, the customer claim, and the photograph you did not start.
-
----
 
 # 21. Minor is not a size
 
@@ -811,17 +1117,29 @@ Several gaps they call small are sometimes one refusal. A missing judgment, a pa
 
 A single typo, a name spelled two ways, a tab numbered out of order: those can be small, and you may ignore them if they do not change a sentence. Write that you ignored them, in one line, so a later reader does not think you did not notice. Ignoring a typo is not ignoring an open changeover. Say which is which. If you cannot tell, it is not a typo. It is a line you have not understood, and an understood line is the third book's minimum. Ununderstood is open. Chapter 8.
 
+## Quantitative Risk Test for Defects Labeled 'Minor' by Contractors
+
+### Evaluating Single-Point-of-Failure Exposure and Mean Time To Repair
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{If } \text{MTTR}_{\text{defect}} > \tau_{\text{ride\_through}} \text{ or } \text{Redundancy} < N+1 \implies \text{NOT MINOR}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Reclassifying Hidden Operational Hazards Before Signing | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The adjective they used, and the gate you named in reply.
 - Minor struck from any line you did not agree to live with.
 - Gates you refused to convert into a bundle of conditions.
 - Typos you ignored, listed, so they are not confused with open lines.
-
-
-![The Punch List Defect Triad Matrix](../figures/fig-02-punchlist-defect-triad-matrix.png)
-
----
 
 # 22. Another hall is not this pack
 
@@ -841,13 +1159,28 @@ If you know the other project failed a gate you are being asked to wave through,
 
 If the other hall is their proof that "everyone signs," everyone is not a witness. Chapter 11. A room full of previous signatures is a chorus, chapter 13, not a control. You are one name. The name signs this sentence or it does not.
 
+## Rejecting Cross-Site Analogy and Sister-Hall Similarity Claims
+
+### Why Commissioning Proof Cannot Be Transferred Across Physical Plants
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Proof}(\text{Hall A}) \not\implies \text{Proof}(\text{Hall B}) \text{ due to } \Delta Z_{\text{piping}}, \Delta I_{\text{fault}}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Demanding Site-Specific Physical Verification on Every Hall | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - The other project named, and that you did not use it as evidence. You do not need to record the name. "Another project was cited. Not used."
 - A certificate, setpoint, waiver, or screen you refused to copy across.
 - A story about a previous failure you did not put in this record.
-
----
 
 # 23. Read the pack before you enter
 
@@ -873,14 +1206,29 @@ You arrive with their sentence copied, the gates marked yes or no, and your sent
 
 Leave the identifiers, the photographs, and the logs in their file. Your notes name functions and gates. A note that only makes sense next to their screenshot is a caption. Chapter 13 of the monitor book made the same demand of a morning file. It holds here.
 
+## The 72-Hour Pre-Meeting Binder Audit Sequence
+
+### Triage Order for Detecting Fatal Closeout Gaps Before Entering the Room
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$t_{\text{delivery}}(\text{Closeout\_Pack}) \le t_{\text{meeting}} - 72\,\text{hours}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Automatic Postponement of Handover Meetings When Packs Arrive Late | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Pack received before the meeting: Y / N. If N, no signature in the room.
 - Order followed, or the step where you stopped because a gate had already failed.
 - Your sentence drafted before you entered.
 - A sheet produced in the room, taken away unread for signature. Not signed across the table.
-
----
 
 # 24. Their signatures are not yours
 
@@ -899,6 +1247,23 @@ If they refuse to split the page, and the only way to record their legitimate si
 A building delivered in parts will produce a stack of narrow signatures that someone later staples into one wide one. Your sheet for this part names the part. It says the other parts were not in this meeting. When the next part comes, you write a new sheet. You do not initial the old one to cover the new part. The old limits are still true. The new part has its own file, its own points, its own punch. Stapling is how a suite that passed launders a suite that did not.
 
 If they ask you to sign the common plant once, for all future suites, refuse the future. You may sign the common plant for the sentence the evidence supports today. A future suite that connects to it is a new meeting. Connection is not inheritance. The sixth book's rename rule is the right shape: a new path is a new source. A new suite is a new path until its own sheets exist.
+
+## Decoupling Multi-Party Signatures Across Construction, CxA, and Operations
+
+### Using Separate Signature Blocks to Prevent Scope Contamination
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Block}_{\text{GC}} \neq \text{Block}_{\text{CxA}} \neq \text{Block}_{\text{Ops}}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Ensuring Each Party Signs Strictly for Its Own Evidenced Act | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
 
 ## Decisions to record
 

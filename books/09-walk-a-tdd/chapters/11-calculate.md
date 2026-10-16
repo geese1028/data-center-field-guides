@@ -18,6 +18,21 @@ You will be tempted by a short calculation. Take a figure you half remember for 
 
 The control that belongs in the opinion is ordinary and checkable. Is there a spare for the failure the contract assumes. Is there a person. Is there a paper that stops at a safe state. Did you see them, or only hear them. Those three sentences do the work the probability was meant to do, without inventing a rate. If any of the three is missing, the service level is not evidenced. You do not need a tiny number to say that. A tiny number would hide it.
 
+## Auditing Seller Financial Model Inputs vs. Independent Engineering Calculations
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{PUE}_{\text{annual}} = \frac{E_{\text{IT}} + E_{\text{cooling}}(T_{\text{wb}}) + E_{\text{losses}}}{E_{\text{IT}}}$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Auditing Seller Financial Model Inputs vs. Independent Engineering Calculations | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - The probability you refused to print.

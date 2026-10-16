@@ -12,29 +12,23 @@ Instead, within a six-second window, the console is hit by an explosive **Alarm 
 - Hundreds of computer room air handling (CRAH) units report fan failure.
 - Thousands of server rack power distribution units report loss of A-feed input voltage.
 
-```
-+-----------------------------------------------------------------------------+
-| TOPOLOGICAL ALARM STORM SUPPRESSION |
-| |
+| **TOPOLOGICAL ALARM STORM SUPPRESSION** |
+| :--- |
 | [UPSTREAM ROOT EVENT] 35kV Utility Feeder Breaker Trip (Time: T_0) |
-| | |
-| +---> [PARENT NODE] Main Incomer Breaker Open |
-| | | |
-| | v |
-| | TOPOLOGICAL INGESTION ENGINE: Ingests parent event; |
-| | ACTIVELY QUENCHES all downstream dependent symptom alarms: |
-| | | |
-| | +---x [SUPPRESSED] 480V Substation Under-Voltage |
-| | +---x [SUPPRESSED] UPS Transfer to Battery (12 units) |
-| | +---x [SUPPRESSED] Chiller Compressor Trips (4 units) |
-| | +---x [SUPPRESSED] CRAH Fan Low Airflow (32 units) |
-| | +---x [SUPPRESSED] Server Rack PDU A-Lost (480 racks) |
-| | |
-| v |
+| ↓ |
+| ↳ [PARENT NODE] Main Incomer Breaker Open |
+| ↓ |
+| TOPOLOGICAL INGESTION ENGINE: Ingests parent event; |
+| ACTIVELY QUENCHES all downstream dependent symptom alarms: |
+| ✕ [SUPPRESSED] 480V Substation Under-Voltage |
+| ✕ [SUPPRESSED] UPS Transfer to Battery (12 units) |
+| ✕ [SUPPRESSED] Chiller Compressor Trips (4 units) |
+| ✕ [SUPPRESSED] CRAH Fan Low Airflow (32 units) |
+| ✕ [SUPPRESSED] Server Rack PDU A-Lost (480 racks) |
+| ↓ |
+| ↓ |
 | [CONSOLIDATED DISPLAY] Single P1 Incident Ticket: "Feeder A Incomer Open" |
-| Symptom count: 548 suppressed | Surviving: Bus B OK |
-+-----------------------------------------------------------------------------+
-```
+| Symptom count: 548 suppressed \| Surviving: Bus B OK |
 
 ![Topology-Aware Ingestion: Alarm Storm Suppression](../figures/fig-04-alarm-storm-suppression-and-topology.png)
 

@@ -6,21 +6,14 @@ Tidak ada pengujian komisioning dinamis yang boleh dieksekusi berdasarkan ingata
 
 Skrip yang disusun oleh tim penguji tetapi belum ditinjau dan ditandatangani secara formal oleh Insinyur Proyek Pemilik (*Owner’s Project Engineer*) hanyalah dokumen kerja internal. Dokumen itu tidak memiliki kekuatan kontrak. Mengeksekusi pengujian terhadap draf yang belum disetujui membuat tim penguji terpapar sepenuhnya pada perselisihan komersial dan tanggung jawab hukum jika terjadi kerusakan peralatan.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| HIERARKI DOKUMEN KOMISIONING |
-+------------------------------------+---------------------------------------------------------------+
+**HIERARKI DOKUMEN KOMISIONING**
+
 | 1. KODE & STANDAR | ASHRAE 0-2019, ASHRAE 90.4, NFPA 70, IEC 60364, BSRIA BG 29. |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | 2. SPESIFIKASI KONTRAK & BOD | CSI Div 23 & 26, Persyaratan Proyek Pemilik, P&ID As-Built. |
-+------------------------------------+---------------------------------------------------------------+
 | 3. RENCANA KOMISIONING (Cx Plan) | Aturan tata kelola, gerbang level, protokol saksi, jadwal. |
-+------------------------------------+---------------------------------------------------------------+
 | 4. PROSEDUR UJI FUNGSIONAL (FPT) | Skrip bertahap disetujui di muka dgn rentang numerik pasti. |
-+------------------------------------+---------------------------------------------------------------+
 | 5. LEMBAR MASTER LAPANGAN (TINTA) | Rekaman lantai tertulis tinta; berkas deret waktu mentah. |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## Anatomi Skrip Pengujian yang Dapat Diaudit
 
@@ -34,17 +27,11 @@ Setiap skrip Prosedur Uji Fungsional (*Functional Test Procedure* - FPT) dan Uji
 6. **Urutan Eksekusi Langkah demi Langkah**: Tabel sekuensial yang merinci setiap tindakan manual, umpan balik fisik pasti yang harus diamati, rentang toleransi numerik yang diharapkan, dan sel persetujuan khusus untuk data terukur serta inisial saksi.
 7. **Kondisi Penghentian Eksplisit**: Batas operasional yang jelas yang mewajibkan penghentian pengujian segera jika terlanggar (seperti suhu pendingin sekunder melebihi 45,0°C, tekanan sekunder turun di bawah 100 kPa, atau ketidakseimbangan tegangan fasa pasokan melebihi 2,0%).
 
-```
-+----------------------------------------------------------------------------------------------------+
-| STRUKTUR LANGKAH SKRIP PENGUJIAN STANDAR |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|LANG| PERINTAH TINDAKAN | HASIL FISIK YANG DIHARAPKAN | RENTANG PENERIMAAN |UKURAN |PARAF / WKT |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|4.2 | Naikkan Beban ke 50% | Daya aktif stabil | 600 kW +/- 1,5% | [ ] | Paraf: ___ |
-| | (Tahap 2: total 600kW)| Suhu pasokan sekunder naik | 36,0°C +/- 0,5°C | [ ] | Waktu: ___ |
-| | Tunggu: 45 menit | Rasio penutupan entalpi | 97,0% s/d 101,5% | [ ] | Lembar 3 |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-```
+**STRUKTUR LANGKAH SKRIP PENGUJIAN STANDAR**
+
+| LANG | PERINTAH TINDAKAN | HASIL FISIK YANG DIHARAPKAN | RENTANG PENERIMAAN | UKURAN | PARAF / WKT |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 4.2 | Naikkan Beban ke 50% (Tahap 2: total 600kW) Tunggu: 45 menit | Daya aktif stabil Suhu pasokan sekunder naik Rasio penutupan entalpi | 600 kW +/- 1,5% 36,0°C +/- 0,5°C 97,0% s/d 101,5% | [ ] [ ] [ ] | Paraf: ___ Waktu: ___ Lembar 3 |
 
 ## Membekukan Revisi Skrip di Lantai Kerja
 

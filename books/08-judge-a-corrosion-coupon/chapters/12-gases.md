@@ -22,6 +22,23 @@ You do not open a standard in an AI tool to fill the gap. The copyright line in 
 
 You can check whether makeup is on, whether a door is propped, whether a battery room shares air, whether cleaning happened in the interval, whether construction dust and sealant were in the hall. Those are conditions, like humidity in chapter 4. They explain nothing by themselves. They stop you buying a media for a door. Close the door, or name it as an intended path, before you name a gas. Chapter 5. A gas name that exists only because a path was left open is a story about a hole.
 
+## Multi-Species Gas Synergies: H2S, SO2, NO2, O3, and Cl2 Film Signatures
+
+### Interpreting Differential Cu vs. Ag Film Speciation from Coulometric Plateaus
+
+Under **ANSI/ISA-71.04-2013** (*Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants*) and **ASHRAE TC 9.9** guidance for RoHS-compliant lead-free IT equipment (which utilizes immersion silver PCB finishes and tin-silver-copper SAC305 solder joints), whitespace air quality is governed by the quantitative corrosion film growth rate on **both** copper ($\text{Cu}$) and silver ($\text{Ag}$) reference strips normalized to a 30-day exposure window:
+
+$$\text{Ratio } \frac{d(\text{Ag}_2\text{S})}{d(\text{Cu}_2\text{S})} \gg 1 \implies \text{Free Elemental Sulfur or H}_2\text{S + Oxidizer Synergy}$$
+
+Because reduced sulfur species ($\text{H}_2\text{S}$, carbonyl sulfide $\text{OCS}$, elemental sulfur $\text{S}_8$) combined with oxidizing gases ($\text{NO}_2, \text{O}_3, \text{Cl}_2$) and relative humidity ($\text{RH} > 50\%$) drive aggressive silver sulfide ($\text{Ag}_2\text{S}$) whisker creep across fine-pitch PCB traces even when copper reactivity remains below $300\,\text{\AA}/30\text{d}$, environmental acceptance requires dual-metal verification paired with strict chain-of-custody controls.
+
+| Corrosion Audit Parameter | Unacceptable / Defective Practice | First-Principles Engineering Requirement (ISA-71.04 / ASTM B825) | Mandatory Refusal or Remediation Action |
+| :--- | :--- | :--- | :--- |
+| **Core Chapter Focus** | Mapping Observed Metallic Tarnish Films to Target Gas Families | Dual $\text{Cu} + \text{Ag}$ coulometric reduction with documented exposure timestamps | Refuse any environmental fitness claim missing $\text{Ag}$ or hang interval |
+| **Class G1 Mild Pass Gate** | Quoting Copper rate alone ($<300\,\text{\AA}$) or visual strip color | $d_{\text{Cu}} < 300\,\text{\AA}/30\text{d}$ **AND** $d_{\text{Ag}} < 200\,\text{\AA}/30\text{d}$ (zero $\text{Cu}_2\text{S}$ on copper) | Classify G2 ($<1000/1000\,\text{\AA}$), G3 ($<2000/2000\,\text{\AA}$), or GX as non-compliant |
+| **Chain of Custody & Blank** | Mailing strips without a sealed Field Travel Blank (`FTB`) | Sealed lot-matched travel blank $d_{\text{blank}} \le 25\text{--}35\,\text{\AA}$ subtracted/verified | Invalidate "Fit" certification if no unopened travel blank accompanied lot |
+| **Filtration & Envelope Proof** | Installing recirculation filters in an unsealed negative-$\Delta P$ hall | Vapor-sealed envelope ($\Delta P \ge +12.5\,\text{Pa}$) + gas-matched media ($\text{EBCT} \ge 0.2\,\text{s}$) | Pull coupon at any media/envelope change; start new post-change interval |
+
 ## Decisions to record
 
 - Copper and silver reported separately. A single collapsed class is not used for the joints.

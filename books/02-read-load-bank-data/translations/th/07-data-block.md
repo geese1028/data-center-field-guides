@@ -55,10 +55,10 @@
  $$\rho = 1025.0\,\text{kg/m}^3, \quad C_p = 3.980\,\text{kJ/(kg}\cdot\text{K)}$$
 6. **ความร้อนทางความร้อนของของเหลวที่อนุมานได้ (Q_liquid)**:
  คำนวณโดยตรงจากหลักการมูลฐานทางอุณหพลศาสตร์:
- $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60{,}000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
+ $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60,000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
 
 สำหรับโมเดลอ้างอิงเพื่อการศึกษาที่ทำงาน ณ พิกัดเต็มที่กำหนด (Q_v = 176.5 LPM, ΔT = 10.04 K):
-$$\dot{m} = 176.5 \times \frac{1025.0}{60{,}000} = 3.015\,\text{kg/s}$$
+$$\dot{m} = 176.5 \times \frac{1025.0}{60,000} = 3.015\,\text{kg/s}$$
 $$Q_{\text{liquid}} = 3.015\,\text{kg/s} \times 3.980\,\text{kJ/(kg}\cdot\text{K)} \times 10.04\,\text{K} = 120.48\,\text{kW} \times \text{อัตราส่วนแบ่ง} \approx 98.6\,\text{kW}$$
 
 ## หัวข้อที่ 5: อากาศร่วมและการปิดสมดุลทางความร้อนตามหลักการมูลฐาน

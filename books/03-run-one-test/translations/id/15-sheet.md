@@ -6,34 +6,17 @@ Bab 16 menyediakan tujuh lembar rekaman rekayasa master. Cetak lembar-lembar ini
 
 Jangan mencoba meringkas kisi-kisi ini menjadi paragraf deskriptif tingkat tinggi setelah pengujian selesai, lalu membuang data mentah lapangan. Seorang auditor yang memeriksa paket verifikasi mengharapkan untuk melihat torehan tinta asli, entri berstempel waktu, inisial saksi, dan nomor seri instrumen yang dicatat saat berdiri di lorong aula.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| TUJUH LEMBAR LAPANGAN MASTER |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-|LEMBAR | JUDUL & LINGKUP VERIFIKASI | TINGKAT CX | PENANGGUNG JAWAB | WAKTU EKSEKUSI WAJIB |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 01 | QA Statis Pra-Pemberian Energi| Level 2 / 3 | Insinyur Elektro | Sebelum menutup pemutus |
-| | & Uji Penahanan Hidrolik | | & Insinyur Mesin | pasokan / membuka fluida. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 02 | Proteksi CDU Otonom & Injeksi | Level 4 FPT | Insinyur Kontrol | Sebelum memasukkan beban |
-| | Alarm Fisik | | & Insinyur Mesin | termal ke dalam loop. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 03 | Tangga Termal Bertingkat & Log| Level 5 IST | Pimpinan Uji & | Satu salinan terpisah |
-| | Penutupan Panas Entalpi | | Teknisi Uji | per anak tangga termal. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 04 | Kegagalan Transien Dinamis & | Level 5 IST | Pimpinan Uji & | Dieksekusi pd beban 100% |
-| | Log Ketahanan Redundansi | | Insinyur Kontrol | saat simulasi gangguan. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 05 | Protokol Pemadaman Energi | Penutupan | Pimpinan Uji & | Dieksekusi urutan ketat |
-| | Terkendali & Demobilisasi | Level 6 | Insinyur Elektro | saat pemadaman giliran. |
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 06 | Kurva Pompa Garis Dasar Dingin| Level 4 / 5 | Insinyur Mesin & | Dieksekusi pd 20°C dgn |
-| | & Resistansi Loop Tanpa Panas | | Teknisi Uji | modulasi VFD dikunci mati.|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-| 07 | Logika Kontrol Otonom CDU & | Level 4 / 5 | Insinyur Kontrol | Dieksekusi seluruh unit |
-| | Audit Antarmuka Pengawas | | & Spesialis Vendor| dgn logika vendor terlampir|
-+-------+-------------------------------+-------------+------------------+---------------------------+
-```
+**TUJUH LEMBAR LAPANGAN MASTER**
+
+| LEMBAR | JUDUL & LINGKUP VERIFIKASI | TINGKAT CX | PENANGGUNG JAWAB | WAKTU EKSEKUSI WAJIB |
+| :--- | :--- | :--- | :--- | :--- |
+| 01 | QA Statis Pra-Pemberian Energi & Uji Penahanan Hidrolik | Level 2 / 3 | Insinyur Elektro & Insinyur Mesin | Sebelum menutup pemutus pasokan / membuka fluida. |
+| 02 | Proteksi CDU Otonom & Injeksi Alarm Fisik | Level 4 FPT | Insinyur Kontrol & Insinyur Mesin | Sebelum memasukkan beban termal ke dalam loop. |
+| 03 | Tangga Termal Bertingkat & Log Penutupan Panas Entalpi | Level 5 IST | Pimpinan Uji & Teknisi Uji | Satu salinan terpisah per anak tangga termal. |
+| 04 | Kegagalan Transien Dinamis & Log Ketahanan Redundansi | Level 5 IST | Pimpinan Uji & Insinyur Kontrol | Dieksekusi pd beban 100% saat simulasi gangguan. |
+| 05 | Protokol Pemadaman Energi Terkendali & Demobilisasi | Penutupan Level 6 | Pimpinan Uji & Insinyur Elektro | Dieksekusi urutan ketat saat pemadaman giliran. |
+| 06 | Kurva Pompa Garis Dasar Dingin & Resistansi Loop Tanpa Panas | Level 4 / 5 | Insinyur Mesin & Teknisi Uji | Dieksekusi pd 20°C dgn modulasi VFD dikunci mati. |
+| 07 | Logika Kontrol Otonom CDU & Audit Antarmuka Pengawas | Level 4 / 5 | Insinyur Kontrol & Spesialis Vendor | Dieksekusi seluruh unit dgn logika vendor terlampir |
 
 ## Aturan Eksekusi di Lantai Kerja
 

@@ -10,29 +10,22 @@ Where:
 - URI_source is the physical hardware origin path down to the terminal block.
 - Q is the quality bitmask certifying the integrity of the signal.
 
-```
-+-----------------------------------------------------------------------------+
-| THE FOUR PILLARS OF A POINT |
-| |
+| **THE FOUR PILLARS OF A POINT** |
+| :--- |
 | [1. VALUE] Float64 / Boolean / Discrete State |
 | • Strictly defined engineering units (°C, kPa, LPM, A) |
 | • Scaling applied once at ingestion; raw counts logged |
-| |
 | [2. TIMESTAMP] UTC Timestamp synchronized via PTP / NTP Stratum-1 |
 | • Source generation time, NOT database arrival time |
 | • Sub-millisecond resolution for electrical SOE events |
-| |
 | [3. SOURCE PATH] Immutable Physical Hardware Address |
 | • modbus://cdu-04/reg-40102 or bacnet://bms-pod3/ai-14 |
 | • Fully decoupled from UI display labels |
-| |
 | [4. QUALITY MASK] Hardware & Communication Status Bitmask |
 | • 0x00 = GOOD (Verified fresh and valid) |
 | • 0x01 = STALE (Missed polling intervals; t > 3*T_poll) |
 | • 0x02 = UNCERTAIN (Out of calibration range) |
 | • 0x04 = BAD / FAULT (Wire break, short, CRC failure) |
-+-----------------------------------------------------------------------------+
-```
 
 ![Anatomy of an Operational Point & Quality Bitmask](../figures/fig-01-point-anatomy-and-quality-flag.png)
 

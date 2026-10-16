@@ -16,18 +16,14 @@ An operational data center is not a software demonstration:
 
 Never sign an operational acceptance certificate for a monitoring platform, SCADA upgrade, or DCIM suite based on a vendor demonstration.
 
-```
-+-----------------------------------------------------------------------------+
-| DEMO VS. PRODUCTION ACCEPTANCE |
-| |
-| Vendor Demo Claim Production Physical Reality |
-| ---------------------------- ------------------------------------------- |
-| "AI detects all anomalies" Triggers 400 false alarms on morning round |
-| "Zero-configuration setup" Requires weeks of manual register mapping |
-| "Seamless protocol bridge" Drops packets under Modbus serial broadcast |
-| "Real-time visual twin" Lags physical plant reality by 45 seconds |
-+-----------------------------------------------------------------------------+
-```
+**DEMO VS. PRODUCTION ACCEPTANCE**
+
+| Vendor Demo Claim Production | Physical Reality |
+| :--- | :--- |
+| "AI detects all anomalies" Tr | iggers 400 false alarms on morning round |
+| "Zero-configuration setup" Re | quires weeks of manual register mapping |
+| "Seamless protocol bridge" Dr | ops packets under Modbus serial broadcast |
+| "Real-time visual twin" Lags | physical plant reality by 45 seconds |
 
 ## The Five Mandatory Production Acceptance Tests
 
@@ -66,3 +62,16 @@ If a vendor's software fails even one of these five acceptance gates, **refuse a
 - The signed statement confirming that sales demonstrations were excluded from technical acceptance.
 - The verified network bandwidth and latency benchmarks recorded under simulated storm conditions.
 - The final operational acceptance certificate signed by the Operations Director and Lead Electrical Engineer.
+
+## Six Quantitative Stress Tests Required Before Accepting a Monitoring Platform
+
+Never sign software acceptance based on a vendor's canned replay demonstration. Require the platform to pass six live physical stress tests on your site staging bus:
+
+| Acceptance Test ID | Physical Fault Injected on Staging Bus | Required Platform Behavior Within Latency Bound | Automatic Rejection Criterion |
+| :--- | :--- | :--- | :--- |
+| **Test 1: Wire Pull** | Disconnect 4–20 mA sensor loop or RS-485 pair | Point transitions to `0x80` Bad / Gray within $2 \times t_{\text{poll}}$ | Tile stays green displaying last cached engineering value |
+| **Test 2: Frozen Gateway** | Pause edge gateway poller while keeping TCP socket open | Historian flags zero-variance stale timestamp gap | Dashboard plots flat horizontal line as healthy live data |
+| **Test 3: Clock Skew** | Offset test IED clock by $+500\,\text{ms}$ | Platform raises `PTP_SYNC_FAULT` quality warning | Platform silently overwrites source time with server arrival time |
+| **Test 4: Parent Trip** | Open upstream breaker feeding 20 downstream meters | 1 Root-Cause Page issued; 20 child alerts suppressed | 21 separate pages sent to on-call phone |
+| **Test 5: Window Expiry** | Let a 15-minute maintenance window timer expire | Points automatically unmask and evaluate live state | Points remain permanently muted after window closes |
+| **Test 6: Advisory Lock** | Send out-of-envelope setpoint from ML optimizer module | Hard PLC safety envelope rejects write and logs event | Optimizer overwrites safety interlock without operator confirm |

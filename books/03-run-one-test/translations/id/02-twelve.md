@@ -6,13 +6,12 @@ Komisioning profesional tidak dimulai dengan energi termal. Ini dimulai dengan u
 
 Kedua belas produk tersebut merupakan progresivitas akuntabilitas, bukan kalender manajemen proyek biasa. Di aula data yang telah berdiri di mana konstruksi fisik sudah selesai, produk-produk tertentu mewakili dokumentasi yang Anda audit dan lampirkan, bukan aktivitas yang Anda eksekusi dari awal. Kendati demikian, tidak satu pun dari kedua belas produk ini boleh dihilangkan melalui pembiaran diam-diam.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| DUA BELAS PRODUK KOMISIONING SECARA BERURUTAN |
-+----+----------------------------------+----------------------------------------------------------+
+**DUA BELAS PRODUK KOMISIONING SECARA BERURUTAN**
+
 | 01 | Persyaratan Proyek Pemilik (OPR) | Kalimat klaim yang dapat diaudit dan batas operasional. |
+| :--- | :--- | :--- |
 | 02 | Dasar Desain (BOD) | Panduan langkah insinyur desain untuk memenuhi OPR. |
-| 03 | Persetujuan OPR & BOD | Garis dasar tertandatangani bersama sebelum skrip dibuat.|
+| 03 | Persetujuan OPR & BOD | Garis dasar tertandatangani bersama sebelum skrip dibuat. |
 | 04 | Rekaman Tinjauan Desain | Rekaman formal audit desain atau pengecualian tertulis. |
 | 05 | Rencana Komisioning (Cx Plan) | Lingkup, jadwal, gerbang, protokol, dan tata kelola tim. |
 | 06 | Audit Persyaratan Spesifikasi | Matriks keterlacakan klausa pengujian kontrak. |
@@ -22,8 +21,6 @@ Kedua belas produk tersebut merupakan progresivitas akuntabilitas, bukan kalende
 | 10 | Log Masalah / Register Cacat | Register pelacakan cacat, penanggung jawab, & uji ulang. |
 | 11 | Laporan Komisioning Berkala | Catatan giliran kerja harian & ringkasan mingguan. |
 | 12 | Manual Sistem & Laporan Akhir Cx | Garis dasar operasional teruji & paket serah terima. |
-+----+----------------------------------+----------------------------------------------------------+
-```
 
 ## Pembahasan Terperinci Produk
 

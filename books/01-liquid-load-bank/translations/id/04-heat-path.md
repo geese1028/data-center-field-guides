@@ -29,11 +29,11 @@ Di mana:
 
 Sifat fisik cairan pendingin menentukan rezim aliran yang diperlukan untuk menyerap daya nominal. Dalam pendinginan cair pusat data, loop sekunder sebagian besar mengedarkan Propilen Glikol 25% berdasarkan volume (PG25) atau air Deionisasi (DI) yang diolah:
 - **Cairan Pendingin PG25 (@ rata-rata curah 40°C)**: Massa jenis ρ = 1025 kg/m³, Kalor Jenis C_p = 3.980 kJ/(kg·K).
-- **Air DI (@ rata-rata curah 40°C)**: Massa jenis ρ = 992 kg/m³, Kalor Jenis = 4.179\, kJ/(kg\cdot K)$.
+- **Air DI (@ rata-rata curah 40°C)**: Massa jenis ρ = 992 kg/m³, Kalor Jenis $C_p = 4,179\,\text{kJ/(kg}\cdot\text{K)}$.
 
-Karena PG25 memiliki kapasitas kalor jenis sekitar 5% lebih rendah daripada air murni, penyerapan beban termal 120,0 kW pada ΔT sebesar 10,0 K membutuhkan laju aliran massa {,}015\, kg/s({,}5 L/min untuk PG25) dibandingkan dengan {,}871\, kg/s({,}2 L/min untuk air DI).
+Karena PG25 memiliki kapasitas kalor jenis sekitar 5% lebih rendah daripada air murni, penyerapan beban termal 120,0 kW pada ΔT sebesar 10,0 K membutuhkan laju aliran massa 3,015 kg/s (176,5 L/min untuk PG25) dibandingkan dengan 2,871 kg/s (172,2 L/min untuk air DI).
 
-Jika seorang operator uji mengasumsikan konstanta air murni ({,}18\, kJ/(kg\cdot K)$) saat mengedarkan PG25, kalor termal yang dihitung akan menaksir terlalu tinggi kenyataan sebesar ~5%, menghasilkan diskrepansi buatan dalam neraca listrik-ke-termal. Setiap perhitungan pada lembar penerimaan harus mencantumkan campuran fluida tertentu dan sifat-sifatnya yang bergantung pada suhu.
+Jika seorang operator uji mengasumsikan konstanta air murni (4,18 kJ/(kg·K)) saat mengedarkan PG25, kalor termal yang dihitung akan menaksir terlalu tinggi kenyataan sebesar ~5%, menghasilkan diskrepansi buatan dalam neraca listrik-ke-termal. Setiap perhitungan pada lembar penerimaan harus mencantumkan campuran fluida tertentu dan sifat-sifatnya yang bergantung pada suhu.
 
 ## Langkah adalah dataran, bukan kenop
 

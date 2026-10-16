@@ -4,25 +4,21 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Insiden adalah setiap peristiwa di mana infrastruktur kritis gagal menyalurkan batas layanan kontraktual, di mana nyawa manusia terancam, atau di mana fasilitas memasuki kondisi tidak stabil yang akan segera menyebabkan salah satu dari kedua hasil tersebut.
 
-```
-+-----------------------------------------------------------------------------+
-| LINIMASA ESKALASI INSIDEN |
-| |
+| **LINIMASA ESKALASI INSIDEN** |
+| :--- |
 | [T = 00:00] PENEMUAN PERISTIWA (Trip telemetri, alarm akustik, visual) |
-| | |
+| ↓ |
 | [T + 02:00] BERHENTI & NILAI: Matikan klakson; identifikasi subsistem |
-| | |
+| ↓ |
 | [T + 05:00] EKSEKUSI EOP: Stabilkan status aman terdekat; isolasi bahaya |
-| | |
+| ↓ |
 | [T + 10:00] PANGGIL KOMANDO INSIDEN: Buka log insiden; tetapkan peran |
-| | |
+| ↓ |
 | [T + 15:00] PEMBERITAHUAN SLA KLIEN: Kirim fakta (TANPA HIPOTESIS) |
-| | |
-| [T + 60:00] PENGENDALIAN TEKNIS: Terapkan perbaikan MOP; pembaruan berkala|
-| | |
+| ↓ |
+| [T + 60:00] PENGENDALIAN TEKNIS: Terapkan perbaikan MOP; pembaruan berkala |
+| ↓ |
 | [PASCA-ACARA] ANALISIS AKAR PENYEBAB (RCA): 5-Whys, 1 tindakan bertuan |
-+-----------------------------------------------------------------------------+
-```
 
 ![Incident Escalation and SLA Timeline](../figures/fig-06-incident-escalation-and-sla-timeline.png)
 
@@ -32,20 +28,16 @@ Alarm bising yang tidak mengancam penyampaian layanan atau keselamatan manusia h
 
 Setiap peristiwa abnormal harus diklasifikasikan ke dalam salah satu dari tiga tingkat keparahan yang ketat dalam waktu dua menit sejak penemuan:
 
-```
-+-----------------------------------------------------------------------------+
-| KLASIFIKASI KEPARAHAN INSIDEN |
-| |
-| Tingkat Klasifikasi Dampak Operasional Pemberitahuan Klien |
-| ------ ------------ ----------------------------- -------------------- |
-| P1 Kritis Kehilangan total daya/pendingin <= 15 Mnt; Per Jam |
-| pada beban TI; keselamatan jiwa |
-| P2 Mayor Kehilangan redundansi sistem <= 30 Mnt; Tiap 2 Jam |
-| (status N-1); peringatan suhu |
-| P3 Minor Kegagalan komponen tunggal Log Ringkasan Sif |
-| tanpa dampak redundansi |
-+-----------------------------------------------------------------------------+
-```
+**KLASIFIKASI KEPARAHAN INSIDEN**
+
+| Tingkat | Klasifikasi | Dampak Operasional Pemberitahu | an Klien |
+| :--- | :--- | :--- | :--- |
+| P1 Krit | is Kehilangan | total daya/pendingin <= 15 Mn | t; Per Jam |
+| pada be | ban TI; kesel | amatan jiwa |  |
+| P2 Mayo | r Kehilangan | redundansi sistem <= 30 Mnt; T | iap 2 Jam |
+| (status | N-1); pering | atan suhu |  |
+| P3 Mino | r Kegagalan k | omponen tunggal Log Ringkasan | Sif |
+| tanpa d | ampak redunda | nsi |  |
 
 ## Satu Jam Pertama: Jam Insiden
 
@@ -53,10 +45,8 @@ Selama insiden langsung berlangsung, ingatan manusia menurun dengan cepat di baw
 
 Duty manager wajib membuka **Log Kronologi Insiden** yang tidak dapat diubah dan bertanda waktu pada menit yang tepat saat peristiwa dimulai:
 
-```
-+-------------------------------------------------------------------------+
-| LOG KRONOLOGI INSIDEN |
-| |
+| **LOG KRONOLOGI INSIDEN** |
+| :--- |
 | [09:14:22] EPMS lapor Pemutus B-SWG-02 trip seketika pada penyulang B |
 | [09:16:00] Duty Manager memulai EOP-E-04 (Kehilangan Penyulang 2N B) |
 | [09:18:45] Teknisi Chen konfirmasi Bus A pikul 82% beban total |
@@ -64,8 +54,6 @@ Duty manager wajib membuka **Log Kronologi Insiden** yang tidak dapat diubah dan
 | [09:24:00] Pemberitahuan SLA Klien 1 dikirim via portal (T+10 menit) |
 | [09:32:00] Pemindaian IR switchgear Bus A tunjukkan 58°C; stabil |
 | [09:45:00] Vendor switchgear dihubungi; tiket #84920 dibuka |
-+-------------------------------------------------------------------------+
-```
 
 Catat setiap peristiwa dengan cap waktu yang tepat:
 - Menit saat alarm terdeteksi di konsol pemantauan.
@@ -95,23 +83,18 @@ Pahlawan yang mencoba memperbaiki peralatan bertegangan saat sirene meraung-raun
 
 Saat menyusun draf pemberitahuan insiden awal kepada pelanggan, patuhi aturan kaku ini: **Laporkan hanya fakta fisik yang telah dikonfirmasi; jauhkan hipotesis sama sekali dari pemberitahuan.**
 
-```
-+-------------------------------------------------------------------------+
-| DISIPLIN PEMBERITAHUAN KLIEN |
-| |
+| **DISIPLIN PEMBERITAHUAN KLIEN** |
+| :--- |
 | [PEMBERITAHUAN FAKTUAL YANG DIIZINKAN] |
 | "Pada pukul 09:14 UTC, Penyulang Listrik B mengalami trip otomatis. |
 | Semua ruang TI kritis tetap berdaya penuh melalui Penyulang A |
 | yang redundan. Fasilitas saat ini beroperasi dalam status N-1. |
 | Tim operasi sedang menyelidiki penyebab trip Penyulang B. |
 | Pembaruan resmi berikutnya akan diberikan pada pukul 10:15 UTC." |
-| |
 | [PEMBERITAHUAN SPEKULATIF YANG DILARANG] |
 | "Kami menduga kontraktor menyenggol relai pada Penyulang B, atau |
 | mungkin ada sambaran petir pada jaringan listrik PLN di dekat sini. |
-| Kami sedang mereset pemutus sekarang dan berharap normal 10 menit lagi"|
-+-------------------------------------------------------------------------+
-```
+| Kami sedang mereset pemutus sekarang dan berharap normal 10 menit lagi" |
 
 Jika Anda mengirimkan teori spekulatif dalam pemberitahuan pertama Anda dan analisis forensik rekayasa selanjutnya membuktikan bahwa teori tersebut salah:
 - Anda menghancurkan kepercayaan pelanggan terhadap kompetensi operasional Anda.
@@ -141,3 +124,14 @@ Tindakan korektif harus memiliki pemilik nama tunggal dan tenggat penyelesaian y
 - Salinan pemberitahuan klien awal, memverifikasi nol hipotesis spekulatif yang disertakan.
 - Konfirmasi pemulihan teknis yang ditandatangani di bawah kondisi beban tunak.
 - Satu tindakan korektif bertuan dan bertanggal yang dihasilkan dari Analisis Akar Penyebab.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |

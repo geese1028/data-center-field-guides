@@ -4,9 +4,6 @@ The report is the record. The slide is not. Read the report before the meeting i
 
 ## What has to be on it
 
-![ISA-71.04-2013 Environmental Severity Classification Matrix](../figures/fig-02-isa-71-04-severity-classification-matrix.png)
-
-
 The metal, named, not "coupon." The method the lab used, named well enough that a second lab would know what was asked, without you pasting their procedure into this piece. The place, by function, matching the sheet. The start and the end. The rate, with its unit, and the hang time visible so you are not asked to trust a normalized month that hides a short visit. Chapter 2.
 
 If a class is printed, the edition is printed next to it. No edition, no class, whatever word they used. "Equivalent to" a class is not the class. It is a translation someone made. Ask for the translation rule in writing, or strike the word. You will not reconstruct the rule in the margin.
@@ -30,6 +27,23 @@ A class does not have a unit. It is a word the report is allowed to print only b
 The person who read the metal signs the report, by name or by the lab's role, not by the vendor's sales deck. If the reader and the seller are the same party, chapter 2 already marked it a hypothesis until a second read agrees. Agreement is the same metal, place, and interval. A second vendor who says "looks right" is not a second read.
 
 Chain of custody is a sentence, not a form you must reprint. Who took it down, who carried it, whether it sat in a hot vehicle or an open drawer. If nobody can say, the interval includes unknown hours. Unknown hours are a gap. A gap does not support a fine class. You may still file the report. You may not call it clean custody.
+
+## Forensic Line-by-Line Audit of Laboratory Coupon Analysis Reports
+
+### Checking Stripping Potential Plateaus, Surface Area Normalization, and Blanks
+
+Under **ANSI/ISA-71.04-2013** (*Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants*) and **ASHRAE TC 9.9** guidance for RoHS-compliant lead-free IT equipment (which utilizes immersion silver PCB finishes and tin-silver-copper SAC305 solder joints), whitespace air quality is governed by the quantitative corrosion film growth rate on **both** copper ($\text{Cu}$) and silver ($\text{Ag}$) reference strips normalized to a 30-day exposure window:
+
+$$E_{\text{strip}}(\text{Cu}_2\text{O}) \approx -0.35\,\text{V}, \quad E_{\text{strip}}(\text{Cu}_2\text{S}) \approx -0.75\,\text{V}, \quad E_{\text{strip}}(\text{Ag}_2\text{S}) \approx -0.68\,\text{V}$$
+
+Because reduced sulfur species ($\text{H}_2\text{S}$, carbonyl sulfide $\text{OCS}$, elemental sulfur $\text{S}_8$) combined with oxidizing gases ($\text{NO}_2, \text{O}_3, \text{Cl}_2$) and relative humidity ($\text{RH} > 50\%$) drive aggressive silver sulfide ($\text{Ag}_2\text{S}$) whisker creep across fine-pitch PCB traces even when copper reactivity remains below $300\,\text{\AA}/30\text{d}$, environmental acceptance requires dual-metal verification paired with strict chain-of-custody controls.
+
+| Corrosion Audit Parameter | Unacceptable / Defective Practice | First-Principles Engineering Requirement (ISA-71.04 / ASTM B825) | Mandatory Refusal or Remediation Action |
+| :--- | :--- | :--- | :--- |
+| **Core Chapter Focus** | Detecting Truncated Reduction Scans and Unreported Hang Intervals | Dual $\text{Cu} + \text{Ag}$ coulometric reduction with documented exposure timestamps | Refuse any environmental fitness claim missing $\text{Ag}$ or hang interval |
+| **Class G1 Mild Pass Gate** | Quoting Copper rate alone ($<300\,\text{\AA}$) or visual strip color | $d_{\text{Cu}} < 300\,\text{\AA}/30\text{d}$ **AND** $d_{\text{Ag}} < 200\,\text{\AA}/30\text{d}$ (zero $\text{Cu}_2\text{S}$ on copper) | Classify G2 ($<1000/1000\,\text{\AA}$), G3 ($<2000/2000\,\text{\AA}$), or GX as non-compliant |
+| **Chain of Custody & Blank** | Mailing strips without a sealed Field Travel Blank (`FTB`) | Sealed lot-matched travel blank $d_{\text{blank}} \le 25\text{--}35\,\text{\AA}$ subtracted/verified | Invalidate "Fit" certification if no unopened travel blank accompanied lot |
+| **Filtration & Envelope Proof** | Installing recirculation filters in an unsealed negative-$\Delta P$ hall | Vapor-sealed envelope ($\Delta P \ge +12.5\,\text{Pa}$) + gas-matched media ($\text{EBCT} \ge 0.2\,\text{s}$) | Pull coupon at any media/envelope change; start new post-change interval |
 
 ## Decisions to record
 

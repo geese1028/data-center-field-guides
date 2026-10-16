@@ -8,23 +8,17 @@ The physical plant—the medium-voltage transformers, centrifugal chillers, seco
 - A chiller electrical trip requires microsecond time synchronization.
 - A pump room alarm storm requires topological dependency masking.
 
-```
-+-----------------------------------------------------------------------------+
-| FACILITY TELEMETRY GOVERNANCE MATRIX |
-| |
-| Subsystem / Instrument Standard Telemetry Parameter Governing Code |
-| ----------------------- ---------------------------- ------------------ |
-| MV Switchgear (35kV) Bus Voltage, Current, THD, PF GB/T 51409-2020 |
-| Dry-Type Transformers Winding Temperature (< 90°C) IEEE C57.12 / NFPA |
-| UPS Battery Rooms DC Float Voltage, Ambient T IEEE 1188 / 1491 |
-| Centrifugal Chillers Condenser Approach (<= 1.5K) ASHRAE Standard 90.4|
-| Secondary CDU Loops Pressure (0.15 - 0.90 MPa) OpenViking 2.6XZ10 |
-| Secondary Coolant Chem 25.0% Propylene Glycol wt ASTM D3306 / D1384 |
-| IT Whitespace Aisles Containment DP (>= 5.0 Pa) ASHRAE TC 9.9 |
-+-----------------------------------------------------------------------------+
-```
+**FACILITY TELEMETRY GOVERNANCE MATRIX**
 
-![The Master Point Sheet and Audit Lifecycle](../figures/fig-07-master-point-sheet-and-audit-lifecycle.png)
+| Subsystem / Instrument S | tandard Telemetry Parameter G | overning Code |
+| :--- | :--- | :--- |
+| MV Switchgear (35kV) Bus | Voltage, Current, THD, PF GB | /T 51409-2020 |
+| Dry-Type Transformers Wi | nding Temperature (< 90°C) IE | EE C57.12 / NFPA |
+| UPS Battery Rooms DC Flo | at Voltage, Ambient T IEEE 11 | 88 / 1491 |
+| Centrifugal Chillers Con | denser Approach (<= 1.5K) ASH | RAE Standard 90.4 |
+| Secondary CDU Loops Pres | sure (0.15 - 0.90 MPa) OpenVi | king 2.6XZ10 |
+| Secondary Coolant Chem 2 | 5.0% Propylene Glycol wt ASTM | D3306 / D1384 |
+| IT Whitespace Aisles Con | tainment DP (>= 5.0 Pa) ASHRA | E TC 9.9 |
 
 Following the authoritative engineering standards outlined in **GB/T 51409-2020** (*Technical Standard for Integrated Monitoring System of Data Centers*) and OpenViking operational guidelines (`ALZJ-YW-2.6XZ02` and `ALZJ-YW-2.6XZ10`), every physical facility point must be operated under rigorous engineering constraints.
 

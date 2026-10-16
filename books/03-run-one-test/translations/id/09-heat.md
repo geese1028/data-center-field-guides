@@ -37,19 +37,15 @@ Jika Anda gagal menetapkan garis dasar resistansi hidrolik pada kondisi dingin, 
 
 Setelah garis dasar hidrolik dingin disetujui, pembebanan termal dimulai di bawah Skrip 08. Tangga termal adalah urutan progresif yang dirancang untuk memverifikasi bahwa distribusi daya fasilitas, penukar panas CDU, *loop* air primer, dan manajemen udara ruang putih (*whitespace*) stabil pada setiap kenaikan beban.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| PARAMETER TAHAPAN TANGGA TERMAL |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-| TAHAP | BEBAN TERMAL| kW DESAIN | WAKTU TUNGGU MIN | TUJUAN STABILISASI | LEMBAR REFERENSI |
-+-------+------------+------------+--------------------+----------------------+----------------------+
+**PARAMETER TAHAPAN TANGGA TERMAL**
+
+| TAHAP | BEBAN TERMAL | kW DESAIN | WAKTU TUNGGU MIN | TUJUAN STABILISASI | LEMBAR REFERENSI |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | Tahap 25% | 300 kW | 45 menit | Pelacakan TCV awal | Lembar 3 (Salinan 1) |
 | 2 | Tahap 50% | 600 kW | 45 menit | Keseimbangan parsial | Lembar 3 (Salinan 2) |
 | 3 | Tahap 75% | 900 kW | 45 menit | Audit geser hidrolik | Lembar 3 (Salinan 3) |
 | 4 | Tahap 100% | 1200 kW | Perendaman 4,0 jam | Keseimbangan penuh | Lembar 3 (Salinan 4) |
-| 5 | Tahap 110% | 1320 kW | 60 menit | Uji stres beban lebih| Lembar 3 (Salinan 5) |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-```
+| 5 | Tahap 110% | 1320 kW | 60 menit | Uji stres beban lebih | Lembar 3 (Salinan 5) |
 
 ### Kriteria Waktu Tunggu Keseimbangan Termal
 Jangan pernah melangkah ke tahap beban berikutnya hanya berdasarkan waktu yang berlalu. Suatu tahap beban dianggap selesai hanya jika sistem telah mencapai **keseimbangan termal** yang terverifikasi:

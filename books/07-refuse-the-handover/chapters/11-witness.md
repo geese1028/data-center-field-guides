@@ -14,6 +14,23 @@ A document you cannot open is not a document. A path that only the author can re
 
 You may accept a witnessed script and refuse a documented one, or the reverse, if you write which. You may accept a sample for the systems in the sample. You may file the unwitnessed rest as not proved. None of that requires you to insult the document. It requires you to keep the verb accurate. Witnessed, accepted as a document, or not done. The third book’s three words are enough. Do not add "substantially complete." Substantially is a fourth word that means not done, wearing a better coat.
 
+## Witnessed Physical Execution vs. Paper Document Review
+
+### Sampling Ratios and Sign-Off Integrity for Commissioning Scripts
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$N_{\text{witnessed}} = 100\% \text{ for Level 4/5}, \quad N_{\text{sample}} \ge \lceil\sqrt{N}\rceil + 1 \text{ for Level 2/3}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Separating 'Witnessed on Floor' from 'Accepted Paper Submittal' | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - For each proved-sentence: witnessed, accepted as a document, or not done.

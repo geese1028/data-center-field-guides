@@ -4,19 +4,15 @@ A liquid cooling verification project fails during its first week when nobody wr
 
 On the AI data hall projects from which this field guide is drawn, that commercial decision was whether the facility cooling infrastructure was legally and mechanically acceptable for IT deployment. It was not whether an accelerated compute chip would successfully run a distributed model training workload. It was not whether a prototype liquid load bank met manufacturing R&D standards. Those claims belong to other engineering scopes, other test benches, and other signatures.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THE BOUNDARY OF THE CLAIM SENTENCE |
-+------------------------------------+---------------------------------------------------------------+
+**THE BOUNDARY OF THE CLAIM SENTENCE**
+
 | WHAT THE CLAIM LEGALLY PROVES | WHAT THE CLAIM CANNOT PROVE |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | • CDU heat transfer at 1.2 MW duty | • Silicon compute efficiency or tensor performance |
-| • Secondary pump N+1 failover speed| • Quick-disconnect long-term galvanic corrosion rates |
+| • Secondary pump N+1 failover speed | • Quick-disconnect long-term galvanic corrosion rates |
 | • Manifold reverse-return balance | • Facility central chiller plant seasonal free-cooling PUE |
-| • Enthalpy heat closure >= 97.0% | • Prototype load-bank heater element manufacturing durability|
+| • Enthalpy heat closure >= 97.0% | • Prototype load-bank heater element manufacturing durability |
 | • 2N electrical feed transfer ride | • Facility building envelope structural wind-load compliance |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## Formulating the project claim
 

@@ -25,6 +25,23 @@ You may accept an as-built only when a named person says it was checked against 
 
 Partial floors and partial suites follow the scope letter. A drawing of the whole building does not prove the suite you are being asked to run, and a drawing of the suite does not prove the building. Strike the extra words. Chapter 1.
 
+## Field-Walked As-Built Redline Verification vs. Renamed Design CAD
+
+### Statistical Sampling of Physical Breaker, Valve, and Sensor Tags
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\varepsilon_{\text{redline}} = \frac{N_{\text{mismatched\_tags}}}{N_{\text{walked\_sample}}} = 0\% \text{ across } n = 25 \text{ nodes}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Refusing 'Issued for Construction' Drawings Stamped as As-Built | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Design, shop, and as-built told apart, or the drawing sentence refused.

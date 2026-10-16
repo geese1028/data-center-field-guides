@@ -4,21 +4,14 @@ No dynamic commissioning test may be executed from memory or oral instructions. 
 
 A script that the testing team drafted but which the Owner’s Project Engineer has not formally reviewed and signed is merely an internal working document. It carries no contractual authority. Executing against an unapproved draft leaves the testing team fully exposed to commercial disputes and legal liability if an equipment failure occurs.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| COMMISSIONING DOCUMENT HIERARCHY |
-+------------------------------------+---------------------------------------------------------------+
+**COMMISSIONING DOCUMENT HIERARCHY**
+
 | 1. CODES & STANDARDS | ASHRAE 0-2019, ASHRAE 90.4, NFPA 70, IEC 60364, BSRIA BG 29. |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | 2. CONTRACT SPECIFICATIONS & BOD | CSI Div 23 & 26, Owner Project Requirements, As-Built P&IDs. |
-+------------------------------------+---------------------------------------------------------------+
 | 3. COMMISSIONING PLAN (Cx Plan) | Governance rules, level gates, witness protocols, schedules. |
-+------------------------------------+---------------------------------------------------------------+
-| 4. FUNCTIONAL TEST PROCEDURES (FPT)| Pre-approved, step-by-step scripts with exact numeric bands. |
-+------------------------------------+---------------------------------------------------------------+
+| 4. FUNCTIONAL TEST PROCEDURES (FPT) | Pre-approved, step-by-step scripts with exact numeric bands. |
 | 5. MASTER FIELD SHEETS (INK LOGS) | Floor records signed in ink; raw time-series sensor files. |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## The Anatomy of an Auditable Test Script
 
@@ -32,17 +25,11 @@ Every Functional Test Procedure (FPT) and Integrated System Test (IST) script mu
 6. **Step-by-Step Execution Sequence**: A sequential table detailing every manual action, the exact physical feedback to observe, the expected numerical tolerance band, and dedicated sign-off cells for measured data and witness initials.
 7. **Explicit Stop Conditions**: Clear operational limits that mandate an immediate test halt if breached (such as secondary coolant temperature exceeding 45.0°C, secondary pressure dropping below 100 kPa, or supply phase voltage unbalance exceeding 2.0%).
 
-```
-+----------------------------------------------------------------------------------------------------+
-| STANDARD TEST SCRIPT STEP STRUCTURE |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|STEP| ACTION COMMAND | EXPECTED PHYSICAL RESULT | ACCEPTANCE BAND |MEASURE|SIGN / TIME |
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-|4.2 | Ramp Load Bank to 50% | Active power stabilizes | 600 kW +/- 1.5% | [ ] | Init: ____ |
-| | (Step 2: 600 kW total)| Secondary supply T increases| 36.0°C +/- 0.5°C | [ ] | Time: ____ |
-| | Dwell: 45 minutes | Heat balance closure ratio | 97.0% to 101.5% | [ ] | Sheet 3 ref|
-+----+-----------------------+-----------------------------+--------------------+-------+------------+
-```
+**STANDARD TEST SCRIPT STEP STRUCTURE**
+
+| STEP | ACTION COMMAND | EXPECTED PHYSICAL RESULT | ACCEPTANCE BAND | MEASURE | SIGN / TIME |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 4.2 | Ramp Load Bank to 50% (Step 2: 600 kW total) Dwell: 45 minutes | Active power stabilizes Secondary supply T increases Heat balance closure ratio | 600 kW +/- 1.5% 36.0°C +/- 0.5°C 97.0% to 101.5% | [ ] [ ] [ ] | Init: ____ Time: ____ Sheet 3 ref |
 
 ## Freezing Script Revisions on the Floor
 

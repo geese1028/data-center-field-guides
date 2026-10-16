@@ -12,30 +12,13 @@ Daftar cacat master (*master punch list*) ditetapkan selama Rapat Perdana Komisi
 
 Setiap temuan yang dicatat dalam Log Masalah harus diklasifikasikan ke dalam salah satu dari tiga tingkat keparahan standar:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| KLASIFIKASI KEPARAHAN CACAT |
-+------------+-------------------------------+-------------------------------------------------------+
+**KLASIFIKASI KEPARAHAN CACAT**
+
 | TINGKAT | DEFINISI & CONTOH | DAMPAK INTERLOCK TAHAP KOMISIONING |
-+------------+-------------------------------+-------------------------------------------------------+
-| KATEGORI 1 | Kritis Keselamatan / Blokir: | PENGHENTIAN TOTAL MUTLAK. Melarang kelanjutan ke level|
-| | Kebocoran aktif > 0 tetes/mnt;| komisioning berikutnya. Pemberian energi termal Lv 5 |
-| | fasa terbalik; gagal E-Stop; | dilarang secara hukum selama ada butir Kat 1 terbuka. |
-| | batas waktu pompa > 1,5 s; | |
-| | isolasi < 100 MOhm. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| KATEGORI 2 | Deviasi Operabilitas Utama: | KELANJUTAN BERSYARAT. Kelanjutan diizinkan hanya jika |
-| | Penutupan entalpi < 97,0%; | Insinyur Pemilik menandatangani pelepasan deviasi dgn |
-| | variasi aliran rak CV > 5,0%; | mitigasi operasional. Resolusi 14 hari kalender. |
-| | sensor hanyut > 0,5 K; | Pengujian ulang wajib disyaratkan. |
-| | katup kontrol berburu. | |
-+------------+-------------------------------+-------------------------------------------------------+
-| KATEGORI 3 | Kosmetik / Dokumen Minor: | TANPA INTERLOCK. Tidak menghambat pengujian dinamis |
-| | Panah aliran pipa terbalik; | atau sertifikat tonggak capaian. Diverifikasi melalui |
-| | lecet cat baki kabel; | bukti foto dalam waktu 30 hari pasca-serah terima. |
-| | label kalibrasi tercoreng. | |
-+------------+-------------------------------+-------------------------------------------------------+
-```
+| :--- | :--- | :--- |
+| KATEGORI 1 | Kritis Keselamatan / Blokir: Kebocoran aktif > 0 tetes/mnt; fasa terbalik; gagal E-Stop; batas waktu pompa > 1,5 s; isolasi < 100 MOhm. | PENGHENTIAN TOTAL MUTLAK. Melarang kelanjutan ke level komisioning berikutnya. Pemberian energi termal Lv 5 dilarang secara hukum selama ada butir Kat 1 terbuka. |
+| KATEGORI 2 | Deviasi Operabilitas Utama: Penutupan entalpi < 97,0%; variasi aliran rak CV > 5,0%; sensor hanyut > 0,5 K; katup kontrol berburu. | KELANJUTAN BERSYARAT. Kelanjutan diizinkan hanya jika Insinyur Pemilik menandatangani pelepasan deviasi dgn mitigasi operasional. Resolusi 14 hari kalender. Pengujian ulang wajib disyaratkan. |
+| KATEGORI 3 | Kosmetik / Dokumen Minor: Panah aliran pipa terbalik; lecet cat baki kabel; label kalibrasi tercoreng. | TANPA INTERLOCK. Tidak menghambat pengujian dinamis atau sertifikat tonggak capaian. Diverifikasi melalui bukti foto dalam waktu 30 hari pasca-serah terima. |
 
 ## Interlock Tahap dan Protokol Pelepasan Tanggung Jawab (Waiver)
 

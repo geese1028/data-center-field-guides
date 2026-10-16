@@ -379,7 +379,7 @@ def render_order_now_block(book_num, b, is_cta=False):
             
     badges_str = "".join(badges_html)
     extra_class = " cta-order-block" if is_cta else ""
-    format_notes = '<div class="platform-format-notes">Instant Delivery &bull; DRM-Free Field EPUB Included</div>' if is_live else '<div class="platform-format-notes">Pre-Release Technical Binder &bull; EPUB &bull; Print</div>'
+    format_notes = '<div class="platform-format-notes">Instant Digital Delivery &bull; 7 High-Res Engineering Diagrams &amp; Checklists</div>' if is_live else '<div class="platform-format-notes">Pre-Release Technical Binder &bull; EPUB &bull; Print</div>'
     
     if not is_live and not is_cta:
         return f'''
@@ -569,11 +569,29 @@ def parse_frontmatter(raw_text):
     return meta, body.strip()
 
 
+def clean_plain_math(text: str) -> str:
+    """Convert inline LaTeX math in plain-text metadata/descriptions/JSON-LD into clean Unicode."""
+    if not text:
+        return ""
+    import sys
+    if str(ROOT / "books") not in sys.path:
+        sys.path.insert(0, str(ROOT / "books"))
+    from epub_renderer import render_latex_math
+    def _strip_tags(s):
+        return re.sub(r"<[^>]+>", "", html.unescape(s))
+    s = re.sub(r"\$\$(.+?)\$\$", lambda m: _strip_tags(render_latex_math(m.group(1), is_block=False)), text, flags=re.S)
+    s = re.sub(r"(?<!\$)\$(?!\$)([^\$\n]+?)(?<!\$)\$(?!\$)", lambda m: _strip_tags(render_latex_math(m.group(1), is_block=False)), s)
+    return _strip_tags(s)
+
+
 def inline_format(text, md_to_html_map=None):
-    """Format inline markdown: bold, italics, code, and resolved links."""
-    text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
-    text = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", text)
-    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    """Format inline markdown: bold, italics, code, math, and resolved links."""
+    if not text:
+        return ""
+    import sys
+    if str(ROOT / "books") not in sys.path:
+        sys.path.insert(0, str(ROOT / "books"))
+    from epub_renderer import inline_format as epub_inline_format
 
     def replace_link(match):
         label = match.group(1)
@@ -581,19 +599,26 @@ def inline_format(text, md_to_html_map=None):
         if md_to_html_map and url.endswith(".md"):
             target_file = Path(url).name
             resolved = md_to_html_map.get(target_file, md_to_html_map.get(url, url.replace(".md", ".html")))
-            return f'<a href="{resolved}">{label}</a>'
-        return f'<a href="{url}">{label}</a>'
+            return f"[{label}]({resolved})"
+        return match.group(0)
 
-    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", replace_link, text)
-    return text
+    text_links = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", replace_link, text)
+    return epub_inline_format(text_links)
 
 
 def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
-    """Convert markdown elements to semantic HTML with KaTeX and schema awareness."""
+    """Convert markdown elements to semantic HTML with pre-rendered math and schema awareness."""
+    import sys
+    if str(ROOT / "books") not in sys.path:
+        sys.path.insert(0, str(ROOT / "books"))
+    from epub_renderer import parse_ascii_block, render_ascii_table_xhtml, render_latex_math
+
     lines = md_text.replace("\r\n", "\n").split("\n")
     html_out = []
     in_code = False
     code_buf = []
+    in_math = False
+    math_buf = []
     in_table = False
     table_buf = []
     in_list = False
@@ -615,7 +640,12 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
         if in_table and table_buf:
             rows = []
             for r in table_buf:
-                cells = [c.strip() for c in r.strip().strip("|").split("|")]
+                safe_r = re.sub(
+                    r"\$([^\$]+)\$",
+                    lambda m: "$" + m.group(1).replace("|", r"\lvert ") + "$",
+                    r.strip().strip("|"),
+                )
+                cells = [c.strip() for c in safe_r.split("|")]
                 if cells and not all(set(c) <= set("-: ") for c in cells):
                     rows.append(cells)
             if rows:
@@ -625,11 +655,19 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
             table_buf = []
             in_table = False
 
+    def flush_math():
+        nonlocal in_math, math_buf
+        if math_buf:
+            expr = " ".join(math_buf).strip()
+            html_out.append(f'<div class="math-block">{render_latex_math(expr, is_block=True)}</div>')
+            math_buf = []
+        in_math = False
+
     def flush_faq():
         nonlocal current_faq_q, current_faq_a
         if current_faq_q and current_faq_a:
-            ans_html = " ".join(current_faq_a).strip()
-            faqs.append((current_faq_q, ans_html))
+            ans_txt = clean_plain_math(" ".join(current_faq_a).strip())
+            faqs.append((clean_plain_math(current_faq_q), ans_txt))
             current_faq_q = None
             current_faq_a = []
 
@@ -643,8 +681,13 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
             flush_list()
             flush_table()
             if in_code:
-                code_content = html.escape("\n".join(code_buf))
-                html_out.append(f'<pre><code>{code_content}</code></pre>')
+                raw_code = "\n".join(code_buf)
+                parsed_ascii = parse_ascii_block(raw_code)
+                if parsed_ascii:
+                    html_out.append(render_ascii_table_xhtml(parsed_ascii))
+                else:
+                    code_content = html.escape(raw_code)
+                    html_out.append(f'<pre><code>{code_content}</code></pre>')
                 code_buf = []
                 in_code = False
             else:
@@ -653,6 +696,36 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
 
         if in_code:
             code_buf.append(line)
+            continue
+
+        # Display math block $$...$$
+        if stripped.startswith("$$") and (stripped.count("$$") == 1 or (stripped.endswith("$$") and stripped.count("$$") == 2)):
+            flush_list()
+            flush_table()
+            if in_math:
+                inner = stripped[:-2].strip() if stripped.endswith("$$") and len(stripped) > 2 else stripped[2:].strip()
+                if inner:
+                    math_buf.append(inner)
+                flush_math()
+            else:
+                if stripped.endswith("$$") and len(stripped) > 4:
+                    expr = stripped[2:-2].strip()
+                    html_out.append(f'<div class="math-block">{render_latex_math(expr, is_block=True)}</div>')
+                else:
+                    in_math = True
+                    rem = stripped[2:].strip()
+                    if rem:
+                        math_buf.append(rem)
+            continue
+
+        if in_math:
+            if stripped.endswith("$$"):
+                rem = stripped[:-2].strip()
+                if rem:
+                    math_buf.append(rem)
+                flush_math()
+            else:
+                math_buf.append(stripped)
             continue
 
         # Markdown tables
@@ -668,19 +741,23 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
         if stripped.startswith("# "):
             flush_list()
             title_text = stripped[2:].strip()
-            html_out.append(f'<h1>{title_text}</h1>')
+            html_out.append(f'<h1>{inline_format(title_text, md_to_html_map)}</h1>')
         elif stripped.startswith("## "):
             flush_list()
             flush_faq()
             h2_text = stripped[3:].strip()
-            html_out.append(f'<h2>{h2_text}</h2>')
+            html_out.append(f'<h2>{inline_format(h2_text, md_to_html_map)}</h2>')
         elif stripped.startswith("### "):
             flush_list()
             h3_text = stripped[4:].strip()
             if "?" in h3_text:
                 flush_faq()
                 current_faq_q = h3_text
-            html_out.append(f'<h3>{h3_text}</h3>')
+            html_out.append(f'<h3>{inline_format(h3_text, md_to_html_map)}</h3>')
+        elif stripped.startswith("#### "):
+            flush_list()
+            h4_text = stripped[5:].strip()
+            html_out.append(f'<h3>{inline_format(h4_text, md_to_html_map)}</h3>')
         elif stripped.startswith("> "):
             flush_list()
             bq_text = stripped[2:].strip()
@@ -699,7 +776,7 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
             html_out.append(
                 f'<figure class="diagram-figure">'
                 f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy" class="responsive-img"/>'
-                f'<figcaption>{html.escape(alt)}</figcaption>'
+                f'<figcaption>{inline_format(alt, md_to_html_map)}</figcaption>'
                 f'</figure>'
             )
         elif stripped == "" or stripped == "---":
@@ -712,6 +789,7 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
 
     flush_list()
     flush_table()
+    flush_math()
     flush_faq()
 
     return "\n".join(html_out), faqs
@@ -720,9 +798,9 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
 def infer_article_metadata(path, meta, body):
     """Infers volume number, topic, reading time, and tier for any article."""
     filename = path.name
-    title = meta.get("title", path.stem.replace("-", " ").title())
+    title = clean_plain_math(meta.get("title", path.stem.replace("-", " ").title()))
     slug = meta.get("slug", path.stem)
-    desc = meta.get("description", f"Mission-critical data center engineering protocol for {title}.")
+    desc = clean_plain_math(meta.get("description", f"Mission-critical data center engineering protocol for {title}."))
 
     if meta.get("book_number"):
         try:
@@ -761,6 +839,10 @@ def infer_article_metadata(path, meta, body):
         clean_slug = re.sub(r"^[0-9]+[a-z]?-", "", slug).replace("-", " ")
         primary_keyword = clean_slug
 
+    meta_clean = dict(meta)
+    meta_clean["title"] = title
+    meta_clean["description"] = desc
+
     return {
         "title": title,
         "slug": slug,
@@ -774,112 +856,103 @@ def infer_article_metadata(path, meta, body):
         "is_deep_dive": is_deep_dive,
         "read_mins": read_mins,
         "primary_keyword": primary_keyword,
-        "raw_meta": meta
+        "raw_meta": meta_clean
     }
 
 
 def generate_json_ld(meta, faqs, canonical_url, book_num):
     """Generate structured data for TechArticle, Book, FAQPage, BreadcrumbList."""
-    title = meta.get("title", "Data Center Engineering Field Guide")
-    desc = meta.get("description", "")
+    title = clean_plain_math(meta.get("title", "Data Center Engineering Field Guide"))
+    desc = clean_plain_math(meta.get("description", ""))
     pub_date = meta.get("publish_date", "2026-10-14")
     book_info = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])
-
-    faq_entities = []
-    for q, a in faqs:
-        clean_a = re.sub(r"<[^>]+>", "", a)
-        faq_entities.append(f"""
-        {{
-          "@type": "Question",
-          "name": "{html.escape(q)}",
-          "acceptedAnswer": {{
-            "@type": "Answer",
-            "text": "{html.escape(clean_a)}"
-          }}
-        }}""")
-
-    faq_schema = ""
-    if faq_entities:
-        faq_schema = f""",
-        {{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [{','.join(faq_entities)}
-          ]
-        }}"""
-
     availability = "https://schema.org/InStock" if book_info.get("status") == "live" else "https://schema.org/PreOrder"
 
-    schema_json = f"""
-    <script type="application/ld+json">
-    [
-      {{
-        "@context": "https://schema.org",
-        "@type": "TechArticle",
-        "headline": "{html.escape(title)}",
-        "description": "{html.escape(desc)}",
-        "author": {{
-          "@type": "Person",
-          "name": "Tristan",
-          "jobTitle": "Data Center Commissioning & Verification Engineer",
-          "worksFor": {{
-            "@type": "Organization",
-            "name": "Data Center Field Guides"
-          }}
-        }},
-        "publisher": {{
-          "@type": "Organization",
-          "name": "Data Center Field Guides",
-          "url": "{BASE_URL}"
-        }},
-        "datePublished": "{pub_date}",
-        "mainEntityOfPage": "{canonical_url}",
-        "proficiencyLevel": "Expert"
-      }},
-      {{
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": "{html.escape(book_info['title'])}",
-        "author": {{
-          "@type": "Person",
-          "name": "Tristan"
-        }},
-        "url": "{BASE_URL}/catalog/{book_info['slug']}.html",
-        "bookFormat": "EBook",
-        "offers": {{
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "availability": "{availability}"
-        }}
-      }},
-      {{
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{BASE_URL}/"
-          }},
-          {{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Field Protocols",
-            "item": "{BASE_URL}/blog/"
-          }},
-          {{
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{html.escape(title)}",
-            "item": "{canonical_url}"
-          }}
-        ]
-      }}{faq_schema}
+    schema_list = [
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": title,
+            "description": desc,
+            "author": {
+                "@type": "Person",
+                "name": "Tristan",
+                "jobTitle": "Data Center Commissioning & Verification Engineer",
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Data Center Field Guides"
+                }
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Data Center Field Guides",
+                "url": BASE_URL
+            },
+            "datePublished": pub_date,
+            "mainEntityOfPage": canonical_url,
+            "proficiencyLevel": "Expert"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": book_info["title"],
+            "author": {
+                "@type": "Person",
+                "name": "Tristan"
+            },
+            "url": f"{BASE_URL}/book/{book_info['slug']}.html",
+            "bookFormat": "EBook",
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "availability": availability
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": f"{BASE_URL}/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Field Protocols",
+                    "item": f"{BASE_URL}/blog/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": title,
+                    "item": canonical_url
+                }
+            ]
+        }
     ]
-    </script>
-    """
-    return schema_json
+
+    if faqs:
+        faq_entities = []
+        for q, a in faqs:
+            faq_entities.append({
+                "@type": "Question",
+                "name": clean_plain_math(q),
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": clean_plain_math(a)
+                }
+            })
+        schema_list.append({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faq_entities
+        })
+
+    json_str = json.dumps(schema_list, ensure_ascii=False, indent=2)
+    return f'  <script type="application/ld+json">\n{json_str}\n  </script>'
 
 
 def render_book_cta(book_num):
@@ -892,7 +965,7 @@ def render_book_cta(book_num):
         badge_html = '<div class="book-cta-badge">OFFICIAL FIELD MANUAL</div>'
         action_html = f"""
           {order_block}
-          <span class="book-cta-guarantee">✓ Instant Delivery &bull; Multi-Platform Reading &bull; DRM-Free Field EPUB</span>
+          <span class="book-cta-guarantee">✓ Instant Digital Delivery &bull; 7 High-Res Engineering Diagrams &bull; Field Checklists</span>
         """
         card_class = "book-cta-card"
     else:
@@ -995,7 +1068,9 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <meta property="og:description" content="{html.escape(desc)}"/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
+  <meta property="og:image" content="{BASE_URL}/blog/{b_info['cover']}"/>
   <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="{BASE_URL}/blog/{b_info['cover']}"/>
   <meta name="twitter:title" content="{html.escape(title)} | Data Center Field Guides"/>
   <meta name="twitter:description" content="{html.escape(desc)}"/>
   
@@ -1041,6 +1116,42 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       --green-subtle: rgba(16, 185, 129, 0.12);
     }}
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    .math-block {{
+      margin: 1.35rem 0;
+      padding: 1rem 1.25rem;
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+      font-size: 1.08rem;
+      color: var(--text-primary);
+      overflow-x: auto;
+      text-align: center;
+    }}
+    .math-inline {{
+      font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+      color: #e2e8f0;
+      padding: 0 0.1rem;
+    }}
+    .frac {{
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 0.2rem;
+    }}
+    .frac .num {{
+      display: block;
+      border-bottom: 1px solid #94a3b8;
+      padding: 0 0.25rem;
+      font-size: 0.92em;
+    }}
+    .frac .slash {{ display: none; }}
+    .frac .den {{
+      display: block;
+      padding: 0 0.25rem;
+      font-size: 0.92em;
+    }}
     body {{
       background-color: var(--bg);
       color: var(--text-secondary);
@@ -1834,6 +1945,8 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
   
   <meta property="og:type" content="book"/>
   <meta property="og:title" content="Volume 0{num}: {html.escape(b['title'])}"/>
+  <meta property="og:image" content="{BASE_URL}/blog/{b['cover']}"/>
+  <meta name="twitter:image" content="{BASE_URL}/blog/{b['cover']}"/>
   <meta property="og:description" content="{html.escape(b['subtitle'])}"/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
@@ -2742,6 +2855,8 @@ def generate_hub_index(articles, is_subfolder=False):
   
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="{page_title}"/>
+  <meta property="og:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
+  <meta name="twitter:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
   <meta property="og:description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
@@ -4257,6 +4372,8 @@ def generate_about_page():
   
   <meta property="og:type" content="profile"/>
   <meta property="og:title" content="About Tristan | Data Center Commissioning Authority &amp; Author"/>
+  <meta property="og:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
+  <meta name="twitter:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
   <meta property="og:description" content="Professional background of Tristan, 15+ years lead data center commissioning authority, Uptime Institute ATS, EPI CDFOM, CDFOS, and CDFOS Instructor."/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
@@ -4849,7 +4966,7 @@ def generate_about_page():
         </p>
         <ul class="project-highlights">
           <li>Engineered and witnessed liquid load bank interface testing, validating CDU hydraulic curves, Danfoss FD83 quick-disconnect pressure drops, and supply temperature stability.</li>
-          <li>Established 1-second telemetry pipelines to audit polling gaps, sensor stale flags, and heat balance verification ($P_{{\\text{{load}}}} = \\rho \\cdot C_p \\cdot Q \\cdot \\Delta T$).</li>
+          <li>Established 1-second telemetry pipelines to audit polling gaps, sensor stale flags, and heat balance verification (<span class="math-inline"><em>P</em><sub>load</sub> = ρ · <em>C</em><sub>p</sub> · <em>Q</em> · Δ<em>T</em></span>).</li>
           <li>Formulated auditable 7-sheet closeout binders and signed refusal matrices to separate true technical performance from contractor marketing claims.</li>
         </ul>
       </div>
@@ -5126,6 +5243,8 @@ def generate_buy_page():
   
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Buy Field Guides | Official Bookseller &amp; Distribution Hub"/>
+  <meta property="og:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
+  <meta name="twitter:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
   <meta property="og:description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
@@ -5926,7 +6045,7 @@ def generate_buy_page():
           <div class="guarantee-icon">⚡</div>
           <div class="guarantee-text">
             <strong>Instant Delivery</strong>
-            <span>Direct digital delivery on Kindle &amp; DRM-Free field EPUB</span>
+            <span>Direct digital delivery with 7 high-resolution engineering diagrams &amp; field sheets</span>
           </div>
         </div>
         <div class="guarantee-item">

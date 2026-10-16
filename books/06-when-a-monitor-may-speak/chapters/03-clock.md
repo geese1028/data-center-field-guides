@@ -6,18 +6,14 @@ $$\Delta t = t_2 - t_1$$
 
 If the clock on your Electrical Power Monitoring System (EPMS) drifts by even two seconds relative to the Building Management System (BMS), cause and effect will be mathematically inverted during post-incident forensics. A chiller electrical trip that caused a primary cooling flow collapse will appear in the combined logs as a cooling flow collapse that magically caused an upstream electrical trip three seconds before the breaker opened.
 
-```
-+-----------------------------------------------------------------------------+
-| TIME SYNCHRONIZATION ACCURACY ENVELOPE |
-| |
-| Protocol / Standard Synchronization Precision Target Subsystems |
-| -------------------- -------------------------- ----------------------- |
-| IEEE 1588v2 (PTP) <= 1.0 Microsecond (1 µs) Protective Relays, DFRs |
-| IRIG-B (Hardwired) <= 10.0 Microseconds (10 µs) MV Switchgear, Breakers |
-| NTP Stratum-1 (GNSS) <= 1.0 Millisecond (1 ms) BMS Servers, RTUs, PLCs |
-| Modbus Serial Polling 1.0 to 5.0 Seconds (UNRATED) Field Sensors (No SOE) |
-+-----------------------------------------------------------------------------+
-```
+**TIME SYNCHRONIZATION ACCURACY ENVELOPE**
+
+| Protocol / Standard S | ynchronization Precision Ta | rget Subsystems |
+| :--- | :--- | :--- |
+| IEEE 1588v2 (PTP) <= | 1.0 Microsecond (1 µs) Prot | ective Relays, DFRs |
+| IRIG-B (Hardwired) <= | 10.0 Microseconds (10 µs) | MV Switchgear, Breakers |
+| NTP Stratum-1 (GNSS) | <= 1.0 Millisecond (1 ms) B | MS Servers, RTUs, PLCs |
+| Modbus Serial Polling | 1.0 to 5.0 Seconds (UNRATE | D) Field Sensors (No SOE) |
 
 ![Sequence of Events and Time Synchronization](../figures/fig-06-sequence-of-events-microsecond-chronology.png)
 
@@ -65,3 +61,11 @@ An explicit statement of temporal uncertainty is an honest engineering finding. 
 - The verified clock drift tolerance (≤ 1.0 ms for electrical switchgear, ≤ 1.0 s for thermal BMS).
 - The explicit separation between edge measurement timestamp (t_meas) and central database ingestion timestamp (t_ingest).
 - Any observed clock offset between disjoint monitoring databases documented prior to joint forensic analysis.
+
+## IEEE 1588v2 PTP vs. NTP Clock Skew Mathematics in Fault Reconstruction
+
+During an electrical fault cascade, protective relays operate in $0.5$ to $3.0$ power cycles ($8.3\,\text{ms}$ to $50.0\,\text{ms}$ at $60\,\text{Hz}$). Suppose Main Breaker `52-M1` trips on instantaneous overcurrent at $t_0 = 0.000\,\text{s}$, causing UPS Static Bypass Switch `STS-01` to transfer at $t_1 = +0.004\,\text{s}$ ($+4.0\,\text{ms}$), and Downstream PDU Breaker `PDU-04` to drop under-voltage at $t_2 = +0.018\,\text{s}$ ($+18.0\,\text{ms}$).
+
+If the switchgear IED and the UPS controller are polled over unsynchronized NTP or local RTC crystal oscillators with a relative clock skew of $\Delta t_{\text{skew}} = -45.0\,\text{ms}$, the historian records `PDU-04` tripping $27\,\text{ms}$ *before* `52-M1`! The incident review team will waste days tearing apart a healthy downstream PDU searching for a phantom short circuit.
+
+$$\Delta t_{\text{SOE\_resolution}} \le \frac{1}{4} \min \left( t_{\text{relay\_pickup}}, \, t_{\text{STS\_transfer}} \right) \approx 1.0\,\text{ms}$$

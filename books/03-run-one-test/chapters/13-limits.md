@@ -4,20 +4,16 @@ This book will inevitably be misused by individuals who attempt to expand it int
 
 A commissioning verification project maintains legal and engineering authority only when its boundaries are sharply defined. Expanding a verification scope into adjacent engineering disciplines on the fly produces flawed testing, diluted accountability, and severe contractual disputes.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| EXPLICIT NEGATIVE SCOPE BOUNDARIES |
-+------------------------------------+---------------------------------------------------------------+
+**EXPLICIT NEGATIVE SCOPE BOUNDARIES**
+
 | WHAT THIS PROJECT VERIFIES | WHAT THIS PROJECT CANNOT AND DOES NOT OWN |
-+------------------------------------+---------------------------------------------------------------+
+| :--- | :--- |
 | • Simulated thermal heat transfer | • Book 01 Scope: Load-bank design, R&D, and manufacturing QA |
-| • Secondary pump curve baseline | • Book 02 Scope: Telemetry math, anomaly detection algorithms|
-| • 2N electrical feed transfer ride | • Facility Design: Architectural, structural, MEP engineering|
+| • Secondary pump curve baseline | • Book 02 Scope: Telemetry math, anomaly detection algorithms |
+| • 2N electrical feed transfer ride | • Facility Design: Architectural, structural, MEP engineering |
 | • Multi-rack manifold flow balance | • Silicon Performance: GPU compute, memory bus, AI workload |
-| • CDU local autonomous safety loops| • Metallurgy & Chemistry: Water corrosion, biocide (Book 08) |
+| • CDU local autonomous safety loops | • Metallurgy & Chemistry: Water corrosion, biocide (Book 08) |
 | • Physical hardware alarm trips | • Next Data Hall: Extrapolated universal building code rules |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## The Dedicated Boundaries
 

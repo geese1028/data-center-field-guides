@@ -4,16 +4,10 @@ This book is for the person who runs a load-bank test on a liquid-cooled data ce
 
 It is not a building commissioning manual. The overarching method statement tells you which contract deliverables to file and which completion certificates you are legally authorized to sign. The work itself is the verification of the liquid loop: physical uncrating, megger and ground isolation, secondary flushing and hydrostatic pressure holds, cold pump curve baselining, alarm loops, multi-tier thermal steps, transient failure rides, and a structured shutdown. If a paragraph starts to become an architectural tour of the facility, cut it. Leave the engineering sheet.
 
-```
-+---------------------------------------------------------------------------------------------+
-| THREE INDEPENDENT COMMISSIONING GATES |
-+------------------------------+------------------------------+-------------------------------+
-| THE SCRIPT DRAFT | THE FIELD EXECUTION | THE AUDITED PACK |
-| Pre-approved tolerances, | One person measures, | Seven completed sheets, |
-| instrument calibration IDs, | one writes in ink; | trend logs, raw time series, |
-| and non-negotiable stops | zero unapproved overrides | and signed punch registers |
-+------------------------------+------------------------------+-------------------------------+
-```
+**THREE INDEPENDENT COMMISSIONING GATES**
+
+| THE SCRIPT DRAFT Pre-approved tolerances, instrument calibration IDs, and non-negotiable stops | THE FIELD EXECUTION One person measures, one writes in ink; zero unapproved overrides | THE AUDITED PACK Seven completed sheets, trend logs, raw time series, and signed punch registers |
+| :--- | :--- | :--- |
 
 If you are on the tools tomorrow, turn to Chapter 16 and take the master sheets onto the floor. Read Chapters 2 and 3 before anyone asks you to sign a Level 1 or Level 4 certificate; those chapters prevent a field walk-through from being filed into a factory acceptance binder. They keep two distinct commissioning numbering systems from destroying project compliance.
 

@@ -4,23 +4,19 @@ Terjemahan berbantuan AI dari edisi bahasa Inggris.
 
 Vendor pihak ketiga atau teknisi pabrikan peralatan yang bekerja di dalam pusat data Anda adalah sepasang tangan yang beroperasi di bawah izin hukum Anda. Mereka bukanlah entitas otonom yang dapat Anda tinggalkan tanpa pengawasan di dalam ruang peralatan listrik.
 
-```
-+-----------------------------------------------------------------------------+
-| GERBANG TATA KELOLA VENDOR |
-| |
-| [GATE 1] Lingkup Pra-Kedatangan: Tugas spesifik, MOP disetujui, daftar alat|
-| | |
+| **GERBANG TATA KELOLA VENDOR** |
+| :--- |
+| [GATE 1] Lingkup Pra-Kedatangan: Tugas spesifik, MOP disetujui, daftar alat |
+| ↓ |
 | [GATE 2] Briefing Keamanan & Keselamatan: Lencana, LOTO terverifikasi, APD |
-| | |
-| [GATE 3] Pengawalan Aktif: Teknisi resmi ditugaskan; tidak pernah sendirian|
-| | |
+| ↓ |
+| [GATE 3] Pengawalan Aktif: Teknisi resmi ditugaskan; tidak pernah sendirian |
+| ↓ |
 | [GATE 4] Penegakan Batas Lingkup: Stop Work jika menyimpang dari MOP |
-| | |
+| ↓ |
 | [GATE 5] Penutupan Teknis: Audit fisik pekerjaan, suku cadang lama, bersih |
-| | |
+| ↓ |
 | [GATE 6] Pemisahan Komersial: Tanda tangan teknis != Penerimaan faktur |
-+-----------------------------------------------------------------------------+
-```
 
 Seorang manajer yang menandatangani lencana pengunjung, menunjuk ke arah ruang baterai, dan kembali ke kantornya telah melepaskan kendali atas fasilitas tersebut. Jika vendor tersebut menjatuhkan kunci pas di atas busbar 480V atau membuka katup isolasi yang salah, pemadaman yang terjadi adalah milik manajer, bukan milik vendor.
 
@@ -79,3 +75,14 @@ Dokumen ini bukan merupakan penerimaan komersial atas faktur, dan tidak melepask
 - Pemeriksaan batas lingkup: Dikonfirmasi nol penyimpangan dari MOP tertulis, atau catatan perintah Stop Work.
 - Penerimaan teknis ditandatangani hanya setelah inspeksi fisik dan verifikasi pengujian beban nyata.
 - Nomor seri komponen yang dipasang dan lokasi kotak karantina dari komponen yang rusak.
+
+## Batas Demarkasi Fisik dan Protokol Audit Sif Kuantitatif
+
+Manajer operasional sif wajib menjaga titik demarkasi fisik (`DEMARC`) di seluruh empat cincin fasilitas (Ring 1: Utilitas & Perimeter, Ring 2: Ruang Mekanikal/Elektrikal Utama, Ring 3: Distribusi Whitespace & CDU Sekunder, Ring 4: Interior Rak Penyewa) dan mencatat matriks tolok ukur kuantitatif berikut pada Lembar Hari (Day Sheet):
+
+| Area Audit Sif | Parameter Pemantauan & Metrologi | Amplop Operasi Normal | Ambang Intervensi / Hentikan Pekerjaan (Stop Work) |
+| :--- | :--- | :--- | :--- |
+| **Batas Beban Redundansi Listrik 2N** | Utilisasi tunak Bus A / Bus B ($P_{\text{bus}} / P_{\text{rated}}$) | $\le 45.0\%$ (Saat gagal 1 jalur $\le 90.0\%$) | Tolak segera penambahan beban rak jika utilisasi $> 45.0\%$ |
+| **Hidraulik & Kimiawi CDU Sekunder** | Tekanan pasokan $P_{\text{sup}}$, pendekatan $\Delta T_{\text{PHE}}$, kadar PG | $0.15\sim 0.90\,\text{MPa}$, $\Delta T_{\text{PHE}} \le 8.0\,\text{K}$, PG $25.0\% \pm 1.0\%$ | $\Delta P > 1.0\,\text{bar}$, konduktivitas $> 10\,\mu\text{S/cm}$, atau tetesan kopling |
+| **Izin Kerja (PTW) & Energi-Nol LOTO** | Kunci LOTO, pelepasan muatan kapasitor, katup pintas | 100% didampingi host situs; tutup sebelum kedaluwarsa | Penyimpangan dari MOP tertulis atau pekerjaan tambahan spontan |
+| **Jam Insiden & Notifikasi SLA** | Deteksi ($T_0$), kondisi aman EOP, pemberitahuan klien | P1: Kirim fakta terverifikasi dalam $\le 15\,\text{menit}$ | Dilarang mencantumkan hipotesis/spekulasi pada notifikasi |

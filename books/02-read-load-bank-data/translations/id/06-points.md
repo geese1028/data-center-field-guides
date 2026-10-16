@@ -23,17 +23,17 @@ Laju akuisisi standar untuk semua saluran primer dalam panduan lapangan ini adal
 
 Enam puluh sampel mentah yang merupakan salinan identik dari satu nilai pecahan (*float*) tunggal dalam *cache* bukanlah rata-rata 60 sampel. Itu adalah satu nilai tunggal yang mengenakan enam puluh stempel waktu.
 
-Dalam aliran fluida turbulen yang mengalirkan 176{,}5 LPM cairan melalui diameter pipa 1,5 inci (DN39), bilangan Reynolds dengan mudah melampaui Re ≈ 28.000. Aliran fluida dalam rezim ini sangatlah turbulen. Pusaran mikro (*micro-eddies*) konvektif, pelepasan pusaran (*vortex shedding*) lapisan batas, dan frekuensi lintasan sudu impeler pompa secara konstan menghasilkan fluktuasi termal dan tekanan mikroskopis.
+Dalam aliran fluida turbulen yang mengalirkan 176,5 LPM cairan melalui diameter pipa 1,5 inci (DN39), bilangan Reynolds dengan mudah melampaui Re ≈ 28.000. Aliran fluida dalam rezim ini sangatlah turbulen. Pusaran mikro (*micro-eddies*) konvektif, pelepasan pusaran (*vortex shedding*) lapisan batas, dan frekuensi lintasan sudu impeler pompa secara konstan menghasilkan fluktuasi termal dan tekanan mikroskopis.
 - RTD imersi fisik asli dalam fluida langsung akan selalu menunjukkan varians sampel bukan-nol:
  $$\sigma_t^2 = \frac{1}{60} \sum_{i=1}^{60} (x_i - \mu_t)^2 > 0$$
- Biasanya, aliran suhu 1 detik yang sehat menunjukkan deviasi standar sebesar σ ≈ 0{,}05 K hingga 0{,}20 K (σ² ≈ 0{,}0025 hingga 0{,}0400 K²).
-- **Tanda Garis Datar Kecurangan**: Jika *thread* komunikasi *edge gateway* terkunci, atau jika *driver* ADC macet dan terus menggemakan register terakhir yang diketahui dari memori RAM, nilai yang tercatat akan menjadi datar secara matematis. Setiap sampel selama rentang lima menit terbaca tepat 45{,}000000°C hingga ke bit paling tidak signifikan (*least significant bit*). Varians sampel terhitung runtuh menjadi:
- $$\sigma_t^2 \equiv 0{,}000000\,\text{K}^2$$
+ Biasanya, aliran suhu 1 detik yang sehat menunjukkan deviasi standar sebesar σ ≈ 0,05 K hingga 0,20 K (σ² ≈ 0,0025 hingga 0,0400 K²).
+- **Tanda Garis Datar Kecurangan**: Jika *thread* komunikasi *edge gateway* terkunci, atau jika *driver* ADC macet dan terus menggemakan register terakhir yang diketahui dari memori RAM, nilai yang tercatat akan menjadi datar secara matematis. Setiap sampel selama rentang lima menit terbaca tepat 45,000000°C hingga ke bit paling tidak signifikan (*least significant bit*). Varians sampel terhitung runtuh menjadi:
+ $$\sigma_t^2 \equiv 0,000000\,\text{K}^2$$
 
 Dalam *loop* pendinginan cair yang aktif, varians yang tepat bernilai nol adalah hal yang mustahil secara fisik. Itu adalah bukti nyata tak terbantahkan (*smoking gun*) dari **kecurangan data basi (*stale data fraud*)**.
 
 Mesin penyerapan data otomatis laporan kilat harus menjalankan pemeriksaan varians terus-menerus:
-$$\text{Jika } \sigma_t^2 \le 1{,}0 \times 10^{-4}\,\text{K}^2 \text{ selama lebih dari 3 menit berturut-turut, aktifkan bendera } CHANNEL\_FROZEN\_STALE.$$
+$$\text{Jika } \sigma_t^2 \le 1,0 \times 10^{-4}\,\text{K}^2 \text{ selama lebih dari 3 menit berturut-turut, aktifkan bendera } CHANNEL\_FROZEN\_STALE.$$
 Ketika bendera ini aktif, mesin pelaporan harus menolak blok menit tersebut, membunyikan peringatan yang dapat didengar, dan menolak menghitung nilai rata-rata yang patuh. Pengulangan data basi secara otomatis menggagalkan dataran tinggi langkah beban.
 
 ## Persyaratan Empat Ringkasan pada Setiap Langkah
@@ -47,9 +47,9 @@ Setiap blok data langkah harus melaporkan **empat kuantitas statistik wajib** un
 4. **Deviasi Standar Sampel (σ)**: Ukuran turbulensi fisik dan stabilitas kendali.
 
 ### Mengapa Nilai Maksimum Sangat Penting
-Pertimbangkan langkah beban 120 kW dengan suhu pendingin rata-rata sebesar 45{,}0°C. Jika pompa sempat mengalami kavitasi sejenak atau gelembung udara melewati bejana pemanas selama 10 detik, suhu fluida lokal mungkin telah melonjak ke 68{,}5°C sebelum kembali pulih.
-- Dalam rata-rata 15 menit dari 900 titik data, lonjakan 10 detik sebesar 68{,}5°C tersebut hanya akan menaikkan rata-rata sebesar 0{,}26 K yang dapat diabaikan—pergeseran yang akan dianggap remeh oleh auditor mana pun sebagai kesalahan pembulatan.
-- Namun melaporkan nilai maksimum langsung mengekspos puncak tersebut: $\max = 68{,}5°C$. Hal ini seketika memperingatkan tim rekayasa bahwa batas suhu selang EPDM telah dilanggar dan bahwa kavitasi telah terjadi.
+Pertimbangkan langkah beban 120 kW dengan suhu pendingin rata-rata sebesar 45,0°C. Jika pompa sempat mengalami kavitasi sejenak atau gelembung udara melewati bejana pemanas selama 10 detik, suhu fluida lokal mungkin telah melonjak ke 68,5°C sebelum kembali pulih.
+- Dalam rata-rata 15 menit dari 900 titik data, lonjakan 10 detik sebesar 68,5°C tersebut hanya akan menaikkan rata-rata sebesar 0,26 K yang dapat diabaikan—pergeseran yang akan dianggap remeh oleh auditor mana pun sebagai kesalahan pembulatan.
+- Namun melaporkan nilai maksimum langsung mengekspos puncak tersebut: $\max = 68,5°C$. Hal ini seketika memperingatkan tim rekayasa bahwa batas suhu selang EPDM telah dilanggar dan bahwa kavitasi telah terjadi.
 
 Laporan yang menghilangkan nilai maksimum adalah upaya untuk mengubur kondisi operasional ekstrem di dalam rata-rata yang tampak nyaman. Wajibkan keempat angka ini pada setiap baris.
 

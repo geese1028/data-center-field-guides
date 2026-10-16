@@ -4,29 +4,15 @@ This field guide articulates an operational methodology for executing and auditi
 
 An engineering standard that can be purchased from an issuing standards body is not a document that may be reproduced in an external text. Citing a standard by title, year, and specific section number to establish a legal testing tolerance is standard engineering practice; reproducing extensive passages from those standards within an AI-generated manual is improper.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| NORMATIVE INDUSTRY STANDARDS CITED |
-+----------------------+-----------------------------------------------------------------------------+
-| ASHRAE GUIDELINE 0 | "The Commissioning Process" (2019 Edition). Foundational principles for |
-| | commissioning scope, Owner's Project Requirements (OPR), and BOD auditing. |
-+----------------------+-----------------------------------------------------------------------------+
-| ASHRAE GUIDELINE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). |
-| | Methodologies for pre-functional checklists and functional performance. |
-+----------------------+-----------------------------------------------------------------------------+
-| ACG GUIDELINE | AABC Commissioning Group "Commissioning Guideline for Building Systems". |
-| | Independent third-party verification protocols and witness standards. |
-+----------------------+-----------------------------------------------------------------------------+
-| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (6th Edition). Strict criteria|
-| | for scouring velocities, chemical flushing, and solid particulate counts. |
-+----------------------+-----------------------------------------------------------------------------+
-| NFPA 70 / IEC 60364 | National Electrical Code (NEC) and International Electrotechnical |
-| | Commission standards for branch circuit protection, grounding, and LOTO. |
-+----------------------+-----------------------------------------------------------------------------+
-| ISA-5.1 | "Instrumentation Symbols and Identification". Standard P&ID symbology for |
-| | process flow diagrams, transmitters (TT, PT, FT), and control valves (TCV). |
-+----------------------+-----------------------------------------------------------------------------+
-```
+**NORMATIVE INDUSTRY STANDARDS CITED**
+
+| ASHRAE GUIDELINE 0 | "The Commissioning Process" (2019 Edition). Foundational principles for commissioning scope, Owner's Project Requirements (OPR), and BOD auditing. |
+| :--- | :--- |
+| ASHRAE GUIDELINE 1.1 | "HVAC&R Technical Requirements for The Commissioning Process" (2007/2014). Methodologies for pre-functional checklists and functional performance. |
+| ACG GUIDELINE | AABC Commissioning Group "Commissioning Guideline for Building Systems". Independent third-party verification protocols and witness standards. |
+| BSRIA BG 29/2020 | "Pre-Commission Cleaning of Pipework Systems" (6th Edition). Strict criteria for scouring velocities, chemical flushing, and solid particulate counts. |
+| NFPA 70 / IEC 60364 | National Electrical Code (NEC) and International Electrotechnical Commission standards for branch circuit protection, grounding, and LOTO. |
+| ISA-5.1 | "Instrumentation Symbols and Identification". Standard P&ID symbology for process flow diagrams, transmitters (TT, PT, FT), and control valves (TCV). |
 
 ## Application of Normative Standards
 

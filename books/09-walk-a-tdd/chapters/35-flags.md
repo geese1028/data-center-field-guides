@@ -22,6 +22,21 @@ As structured in Figures 09.1 and 09.7, the Interim Red-Flag Report is delivered
  - **Tier 3: Operational Defects / Conditions Subsequent (Green)**: Low-risk items that the borrower is legally covenanted to cure within 60 to 90 days following financial close (e.g. updating as-built redlines, completing minor spare parts inventory replenishment).
 3. **Closing a Flag**: A flag can only be closed by a verifiable evidentiary artifact: an executed utility agreement, an stamped structural engineering calculation, a certified laboratory test report, or a re-inspection photo. Verbal assurances in a conference call do not close a flag.
 
+## Distinguishing Early Deal-Breaker Red Flags from Final CapEx Schedule Adjustments
+
+In institutional M&A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:
+
+$$\text{Red Flag Criterion}: \Delta \text{CapEx} > 5\% \text{ Deal Value} \lor \Delta t_{\text{COD}} > 6\,\text{months}$$
+
+An observation that merely remarks on plant appearance without quantifying its impact on **Firm Deliverable IT Capacity ($\text{MW}$)**, **Single-Point-of-Failure ($\text{SPOF}$) Availability**, **Immediate Catch-Up Capital Expenditure ($\text{CapEx}$)**, or **Conditions Precedent ($\text{CP}$) / Conditions Subsequent ($\text{CS}$)** fails to protect the relying party.
+
+| TDD Audit Evaluation Axis | Seller / Data Room Presentation | Independent Engineer Verification Protocol | Financing / Acquisition Covenant Impact |
+| :--- | :--- | :--- | :--- |
+| **Primary Audit Objective** | Distinguishing Early Deal-Breaker Red Flags from Final CapEx Schedule Adjustments | Cross-check VDR contracts against physical nameplates & test logs | Convert unverified claims into explicit CP/CS or valuation haircuts |
+| **Sampling & Evidence Rule** | Curated tour of flagship hall or summary slide | Statistical random sample ($n = \lceil\sqrt{N}\rceil + 1$) chosen by auditor | Any sample mismatch triggers expanded $100\%$ population audit |
+| **Redundancy & Capacity Gate** | Nameplate sum of generators, chillers, or transformers | Derate for $99.6\%$ ASHRAE extreme wet-bulb and N+1/2N fault paths | Lock underwritten revenue model to firm derated MW ceiling |
+| **Financial Protection Mechanism** | Seller warranty representation in purchase agreement | Quantify remediation cost $C_{\text{fix}}$ + schedule delay risk | Require $150\%\text{--}200\%$ cash escrow holdback at financial close |
+
 ## Decisions to record
 
 - Flag list labeled not the opinion, in the first lines.

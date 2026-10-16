@@ -4,11 +4,10 @@ Professional commissioning does not begin with thermal energy. It begins with a 
 
 The twelve products constitute a progression of accountability, not a project management calendar. In an existing data hall where physical construction is already complete, certain products represent documentation you audit and attach rather than activities you execute from scratch. However, none of the twelve products may be omitted through silence.
 
-```
-+--------------------------------------------------------------------------------------------------+
-| THE TWELVE COMMISSIONING PRODUCTS IN ORDER |
-+----+----------------------------------+----------------------------------------------------------+
+**THE TWELVE COMMISSIONING PRODUCTS IN ORDER**
+
 | 01 | Owner's Project Requirements | The auditable claim sentence and operational boundary. |
+| :--- | :--- | :--- |
 | 02 | Basis of Design (BOD) | The design engineer's roadmap for satisfying the OPR. |
 | 03 | Approval of OPR & BOD | Mutual signed baseline before scripts are authored. |
 | 04 | Design Review Record | Formal record of design audit or signed scope exclusion. |
@@ -19,9 +18,7 @@ The twelve products constitute a progression of accountability, not a project ma
 | 09 | Verification & Witness Records | Third-party witnessed execution logs and field sheets. |
 | 10 | Issues Log / Punch List Register | Tracked register of defects, owners, and closure tests. |
 | 11 | Regular Commissioning Reports | Daily shift notes and weekly executive summaries. |
-| 12 | Systems Manual & Final Cx Report | Complete as-tested operational baseline and turnover pack.|
-+----+----------------------------------+----------------------------------------------------------+
-```
+| 12 | Systems Manual & Final Cx Report | Complete as-tested operational baseline and turnover pack. |
 
 ## The Products Deconstructed
 

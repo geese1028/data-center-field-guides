@@ -95,15 +95,31 @@ def draw_valve(d, x, y, size=16, color=VALVE_BODY, label=""):
     if label:
         d.text((x - 20, y + size + 6), label, font=get_font(12, True), fill=TEXT_MUTED)
 
-def draw_danfoss_coupling(d, x, y, label="Danfoss FD83"):
+def draw_danfoss_coupling(d, x, y, label="Danfoss FD83", align="center"):
     # High-flow dual interlock coupling symbol
     d.rectangle((x - 22, y - 18, x + 22, y + 18), fill=(226, 232, 240), outline=NAVY, width=2)
     d.rectangle((x - 14, y - 24, x + 14, y - 18), fill=AMBER, outline=NAVY, width=2) # Dual interlock latch
     d.rectangle((x - 14, y + 18, x + 14, y + 24), fill=AMBER, outline=NAVY, width=2)
     d.line((x - 2, y - 16, x - 2, y + 16), fill=NAVY, width=3)
     d.line((x + 2, y - 16, x + 2, y + 16), fill=NAVY, width=3)
-    d.text((x - 45, y + 28), label, font=get_font(13, True), fill=PIPE_COLD)
-    d.text((x - 45, y + 44), "Dual Interlock", font=get_font(11, False), fill=TEXT_MUTED)
+    f_lbl = get_font(12, True)
+    f_sub = get_font(11, False)
+    w_lbl = d.textlength(label, font=f_lbl)
+    w_sub = d.textlength("Dual Interlock", font=f_sub)
+    if align == "outside_left":
+        tx_lbl = x - 28 - w_lbl
+        tx_sub = x - 28 - w_sub
+    elif align == "right":
+        tx_lbl = x + 20 - w_lbl
+        tx_sub = x + 20 - w_sub
+    elif align == "left":
+        tx_lbl = x - 22
+        tx_sub = x - 22
+    else:
+        tx_lbl = x - w_lbl / 2
+        tx_sub = x - w_sub / 2
+    d.text((tx_lbl, y + 28), label, font=f_lbl, fill=PIPE_COLD)
+    d.text((tx_sub, y + 44), "Dual Interlock", font=f_sub, fill=TEXT_MUTED)
 
 def draw_sensor(d, x, y, code, desc=""):
     # Circle with instrument code
@@ -127,7 +143,7 @@ def fig_01_boundary():
     # Zone 1: Primary Facility Loop
     draw_card(d, (40, 120, 520, 780), "PRIMARY FACILITY LOOP (FWS)", badge="BUILDING SIDE", badge_color=TEXT_MUTED)
     # Zone 2: CDU System
-    draw_card(d, (560, 120, 1140, 780), "COOLANT DISTRIBUTION UNIT (CDU)", badge="PRIMARY/SECONDARY BOUNDARY", badge_color=NAVY)
+    draw_card(d, (560, 120, 1140, 780), "COOLANT DISTRIBUTION UNIT", badge="CDU BOUNDARY", badge_color=NAVY)
     # Zone 3: Secondary Rack-Side Load Bank
     draw_card(d, (1180, 120, 1760, 780), "SECONDARY RACK LOAD BANK", badge="RACK STAND-IN SIDE", badge_color=PIPE_COLD)
     
@@ -143,54 +159,54 @@ def fig_01_boundary():
     
     # CDU Internals
     # Heat Exchanger
-    d.rectangle((600, 200, 800, 460), fill=(224, 231, 255), outline=PURPLE, width=2)
-    d.text((620, 220), "Plate Heat Exchanger", font=get_font(16, True), fill=PURPLE)
-    d.text((640, 245), "(PHE Boundary)", font=get_font(14, True), fill=PURPLE)
-    d.text((620, 290), "• Liquid-to-Liquid", font=get_font(13), fill=NAVY)
-    d.text((620, 315), "• 4°C Approach ATD", font=get_font(13), fill=NAVY)
-    d.text((620, 340), "• Complete Isolation", font=get_font(13), fill=NAVY)
-    d.text((620, 365), "  (Zero Cross-Fluid)", font=get_font(13), fill=NAVY)
+    d.rectangle((590, 200, 825, 460), fill=(224, 231, 255), outline=PURPLE, width=2)
+    d.text((605, 220), "Plate Heat Exchanger", font=get_font(15, True), fill=PURPLE)
+    d.text((635, 245), "(PHE Boundary)", font=get_font(14, True), fill=PURPLE)
+    d.text((610, 290), "• Liquid-to-Liquid", font=get_font(13), fill=NAVY)
+    d.text((610, 315), "• 4°C Approach ATD", font=get_font(13), fill=NAVY)
+    d.text((610, 340), "• Complete Isolation", font=get_font(13), fill=NAVY)
+    d.text((610, 365), "  (Zero Cross-Fluid)", font=get_font(13), fill=NAVY)
     
     # Secondary Pump Skid
-    d.rectangle((860, 200, 1100, 360), fill=(241, 245, 249), outline=NAVY, width=2)
-    d.text((880, 220), "Secondary VFD Pumps", font=get_font(16, True), fill=NAVY)
-    d.text((880, 250), "• N+1 / 2N Redundancy", font=get_font(14), fill=NAVY)
-    d.text((880, 275), "• High Flow: 150-200+ LPM", font=get_font(14), fill=PIPE_COLD)
-    d.text((880, 300), "• Expansion Tank & Res", font=get_font(13), fill=TEXT_MUTED)
+    d.rectangle((855, 200, 1110, 360), fill=(241, 245, 249), outline=NAVY, width=2)
+    d.text((875, 220), "Secondary VFD Pumps", font=get_font(16, True), fill=NAVY)
+    d.text((875, 250), "• N+1 / 2N Redundancy", font=get_font(14), fill=NAVY)
+    d.text((875, 275), "• High Flow: 150-200+ LPM", font=get_font(14), fill=PIPE_COLD)
+    d.text((875, 300), "• Expansion Tank & Res", font=get_font(13), fill=TEXT_MUTED)
     
     # Dew Point Controller
-    d.rectangle((600, 520, 1100, 740), fill=(254, 243, 199), outline=AMBER, width=2)
-    d.text((620, 540), "CRITICAL: Dew Point Interlock Control (TDp)", font=get_font(16, True), fill=AMBER)
-    d.text((620, 575), "• Room Humidity & Temp Sensor feeds Hall Dew Point (TDp)", font=get_font(14), fill=NAVY)
-    d.text((620, 605), "• Rule: Supply Temp T_in >= TDp + 2.0°C Safety Margin", font=get_font(14, True), fill=RED)
-    d.text((620, 635), "• If T_in approaches TDp: Modulating bypass valve closes immediately", font=get_font(13), fill=NAVY)
-    d.text((620, 665), "• Failure mode without interlock: Massive condensation dripping onto busbars!", font=get_font(13, True), fill=RED)
+    d.rectangle((590, 520, 1115, 740), fill=(254, 243, 199), outline=AMBER, width=2)
+    d.text((610, 540), "CRITICAL: Dew Point Interlock Control (TDp)", font=get_font(16, True), fill=AMBER)
+    d.text((610, 575), "• Room Humidity & Temp Sensor feeds Hall Dew Point (TDp)", font=get_font(13), fill=NAVY)
+    d.text((610, 605), "• Rule: Supply Temp T_in >= TDp + 2.0°C Safety Margin", font=get_font(13, True), fill=RED)
+    d.text((610, 635), "• If T_in approaches TDp: Modulating bypass valve closes immediately", font=get_font(12), fill=NAVY)
+    d.text((610, 665), "• Failure mode without interlock: Condensation drips onto busbars!", font=get_font(12, True), fill=RED)
     
     # Pipes: Primary
-    d.line((480, 270, 600, 270), fill=PIPE_COLD, width=6)
-    d.line((480, 440, 600, 440), fill=PIPE_HOT, width=6)
+    d.line((480, 270, 590, 270), fill=PIPE_COLD, width=6)
+    d.line((480, 440, 590, 440), fill=PIPE_HOT, width=6)
     
     # Secondary Loop from CDU to Load Bank
     # Supply Pipe
-    d.line((1100, 270, 1280, 270), fill=PIPE_COLD, width=8)
+    d.line((1110, 270, 1260, 270), fill=PIPE_COLD, width=8)
     # Return Pipe
-    d.line((1280, 420, 1000, 420), fill=PIPE_HOT, width=8)
+    d.line((1260, 420, 1000, 420), fill=PIPE_HOT, width=8)
     d.line((1000, 420, 1000, 460), fill=PIPE_HOT, width=8)
-    d.line((1000, 460, 800, 460), fill=PIPE_HOT, width=8)
+    d.line((1000, 460, 825, 460), fill=PIPE_HOT, width=8)
     
     # Danfoss Couplings at the Boundary
-    draw_danfoss_coupling(d, 1160, 270, "Danfoss FD83 Supply")
-    draw_danfoss_coupling(d, 1160, 420, "Danfoss FD83 Return")
+    draw_danfoss_coupling(d, 1160, 270, "Danfoss FD83 Supply", align="center")
+    draw_danfoss_coupling(d, 1160, 420, "Danfoss FD83 Return", align="center")
     
     # Secondary Load Bank Internals
-    d.rectangle((1240, 200, 1720, 600), fill=(248, 250, 252), outline=PIPE_COLD, width=2)
-    d.text((1260, 220), "Liquid Load Bank Core (120 kW)", font=get_font(18, True), fill=PIPE_COLD)
-    d.text((1260, 255), "• Multistage Immersion Elements", font=get_font(14), fill=NAVY)
-    d.text((1260, 280), "• Full Hydraulic Drop Emulation", font=get_font(14), fill=NAVY)
-    d.text((1260, 305), "• Modbus-TCP / Local PLC", font=get_font(14), fill=NAVY)
-    d.text((1260, 330), "• PT100 Supply & Return RTDs", font=get_font(14), fill=PIPE_HOT)
-    d.text((1260, 355), "• Dual High/Low Pressure Taps", font=get_font(14), fill=NAVY)
-    d.text((1260, 380), "• High-Flow Turbine/Mag Meter", font=get_font(14), fill=PIPE_COLD)
+    d.rectangle((1260, 200, 1730, 600), fill=(248, 250, 252), outline=PIPE_COLD, width=2)
+    d.text((1280, 220), "Liquid Load Bank Core (120 kW)", font=get_font(18, True), fill=PIPE_COLD)
+    d.text((1280, 255), "• Multistage Immersion Elements", font=get_font(14), fill=NAVY)
+    d.text((1280, 280), "• Full Hydraulic Drop Emulation", font=get_font(14), fill=NAVY)
+    d.text((1280, 305), "• Modbus-TCP / Local PLC", font=get_font(14), fill=NAVY)
+    d.text((1280, 330), "• PT100 Supply & Return RTDs", font=get_font(14), fill=PIPE_HOT)
+    d.text((1280, 355), "• Dual High/Low Pressure Taps", font=get_font(14), fill=NAVY)
+    d.text((1280, 380), "• High-Flow Turbine/Mag Meter", font=get_font(14), fill=PIPE_COLD)
     
     # Bottom Zone: 80/20 Air-Liquid Split
     draw_card(d, (40, 810, 1760, 1040), "THE 80:20 / 85:15 AIR-LIQUID THERMAL SPLIT PRINCIPLE", badge="FACILITY INTEGRATION", badge_color=PIPE_HOT)
@@ -221,44 +237,44 @@ def fig_02_pid():
     )
     
     # Boundary Frame of Load Bank Chassis
-    d.rectangle((180, 140, 1680, 960), fill=(255, 255, 255), outline=NAVY, width=3)
-    d.text((210, 160), "LOAD BANK ENCLOSURE CHASSIS BOUNDARY (STAINLESS 304 PIPING)", font=get_font(16, True), fill=NAVY)
+    d.rectangle((260, 140, 1680, 960), fill=(255, 255, 255), outline=NAVY, width=3)
+    d.text((285, 160), "LOAD BANK ENCLOSURE CHASSIS BOUNDARY (STAINLESS 304 PIPING)", font=get_font(16, True), fill=NAVY)
     
     # Flow Lines
-    # Supply Main Line: enters at X=100, Y=300
-    d.line((80, 300, 1300, 300), fill=PIPE_COLD, width=8)
-    # Return Main Line: exits at X=1300, Y=780 -> X=80
-    d.line((1300, 780, 80, 780), fill=PIPE_HOT, width=8)
+    # Supply Main Line: enters at X=80, Y=300 -> X=1240
+    d.line((80, 300, 1240, 300), fill=PIPE_COLD, width=8)
+    # Return Main Line: exits at X=1240, Y=780 -> X=80
+    d.line((1240, 780, 80, 780), fill=PIPE_HOT, width=8)
     
     # Arrows for flow direction
     # Supply arrow
-    d.polygon([(460, 300), (440, 290), (440, 310)], fill=PIPE_COLD)
-    d.polygon([(920, 300), (900, 290), (900, 310)], fill=PIPE_COLD)
+    d.polygon([(490, 300), (470, 290), (470, 310)], fill=PIPE_COLD)
+    d.polygon([(900, 300), (880, 290), (880, 310)], fill=PIPE_COLD)
     # Return arrow
-    d.polygon([(900, 780), (920, 770), (920, 790)], fill=PIPE_HOT)
-    d.polygon([(440, 780), (460, 770), (460, 790)], fill=PIPE_HOT)
+    d.polygon([(880, 780), (900, 770), (900, 790)], fill=PIPE_HOT)
+    d.polygon([(470, 780), (490, 770), (490, 790)], fill=PIPE_HOT)
     
-    # Couplings at Boundary (Left Edge)
-    draw_danfoss_coupling(d, 180, 300, "SUPPLY: Danfoss FD83-2051")
-    draw_danfoss_coupling(d, 180, 780, "RETURN: Danfoss FD83-2051")
+    # Couplings at Boundary (Left Edge at X=260, labels placed cleanly to the left of X=235 so chassis line never crosses text)
+    draw_danfoss_coupling(d, 260, 300, "SUPPLY: Danfoss FD83-2051", align="outside_left")
+    draw_danfoss_coupling(d, 260, 780, "RETURN: Danfoss FD83-2051", align="outside_left")
     
     # Supply Isolation Valve V-101
-    draw_valve(d, 320, 300, size=20, color=NAVY, label="V-101 (Isolation)")
+    draw_valve(d, 360, 300, size=20, color=NAVY, label="V-101 (Isolation)")
     
-    # Pre-commissioning Flushing Bypass Loop
-    d.line((380, 300, 380, 500), fill=PIPE_COLD, width=4)
-    d.line((380, 500, 520, 500), fill=PIPE_COLD, width=4)
+    # Pre-commissioning Flushing Bypass Loop (starts at X=455, completely clear of V-101 label)
+    d.line((455, 300, 455, 500), fill=PIPE_COLD, width=4)
+    d.line((455, 500, 520, 500), fill=PIPE_COLD, width=4)
     # Bypass Strainer (Filter)
     d.rectangle((520, 480, 580, 520), fill=(254, 243, 199), outline=AMBER, width=2)
     d.text((526, 492), "50 μm", font=get_font(12, True), fill=NAVY)
-    d.text((510, 526), "Flushing Strainer", font=get_font(11), fill=TEXT_MUTED)
-    draw_valve(d, 660, 500, size=16, color=AMBER, label="V-105 (Bypass)")
-    d.line((580, 500, 720, 500), fill=PIPE_HOT, width=4)
-    d.line((720, 500, 720, 780), fill=PIPE_HOT, width=4)
+    d.text((505, 526), "Flushing Strainer", font=get_font(11), fill=TEXT_MUTED)
+    d.line((580, 500, 740, 500), fill=PIPE_HOT, width=4)
+    draw_valve(d, 640, 500, size=16, color=AMBER, label="V-105 (Bypass)")
+    d.line((740, 500, 740, 780), fill=PIPE_HOT, width=4)
     
     # Upstream Straight Section 10D
-    d.rectangle((440, 275, 580, 285), fill=AMBER)
-    d.text((470, 255), "≥ 10D Straight Run", font=get_font(12, True), fill=AMBER)
+    d.rectangle((450, 275, 585, 285), fill=AMBER)
+    d.text((462, 255), "≥ 10D Straight Run", font=get_font(12, True), fill=AMBER)
     
     # Flow Meter FT-101
     d.rectangle((600, 280, 680, 320), fill=(241, 245, 249), outline=NAVY, width=2)
@@ -271,66 +287,69 @@ def fig_02_pid():
     d.text((710, 255), "≥ 5D Run", font=get_font(12, True), fill=AMBER)
     
     # Temperature Transmitter TT-101 (Supply)
-    draw_sensor(d, 840, 210, "TT1", "Inlet Pt100 RTD")
-    d.line((840, 232, 840, 300), fill=NAVY, width=2)
+    draw_sensor(d, 830, 210, "TT1", "Inlet Pt100 RTD")
+    d.line((830, 232, 830, 300), fill=NAVY, width=2)
     
     # Pressure Tap High PT-101H
-    draw_sensor(d, 940, 210, "PT1", "Supply Press.")
-    d.line((940, 232, 940, 300), fill=NAVY, width=2)
+    draw_sensor(d, 950, 210, "PT1", "Supply Press.")
+    d.line((950, 232, 950, 300), fill=NAVY, width=2)
     
     # Modulating Flow Control Valve TCV-101
-    draw_valve(d, 1060, 300, size=22, color=PIPE_COLD, label="TCV-101 (Modulating)")
-    d.rectangle((1045, 240, 1075, 266), fill=(254, 243, 199), outline=AMBER, width=2)
-    d.text((1052, 246), "M", font=get_font(14, True), fill=NAVY)
-    d.line((1060, 266, 1060, 280), fill=NAVY, width=2)
+    draw_valve(d, 1080, 300, size=22, color=PIPE_COLD, label="TCV-101 (Modulating)")
+    d.rectangle((1065, 240, 1095, 266), fill=(254, 243, 199), outline=AMBER, width=2)
+    d.text((1072, 246), "M", font=get_font(14, True), fill=NAVY)
+    d.line((1080, 266, 1080, 280), fill=NAVY, width=2)
     
     # Heater Core Vessel
-    d.rectangle((1220, 240, 1540, 840), fill=(255, 241, 242), outline=RED, width=3)
-    d.text((1240, 260), "ELECTRIC IMMERSION HEATER VESSEL", font=get_font(15, True), fill=RED)
-    d.text((1240, 285), "Total: 120 kW (3-Phase Stepped)", font=get_font(13, True), fill=NAVY)
+    d.rectangle((1210, 235, 1620, 840), fill=(255, 241, 242), outline=RED, width=3)
+    d.text((1235, 255), "ELECTRIC IMMERSION HEATER VESSEL", font=get_font(15, True), fill=RED)
+    d.text((1235, 280), "Total: 120 kW (3-Phase Stepped)", font=get_font(13, True), fill=NAVY)
     
-    # Internal heater stages
+    # Internal heater stages (routed via left supply manifold at X=1240 and right return manifold at X=1590 so zero lines cross text!)
+    d.line((1240, 300, 1240, 590), fill=PIPE_COLD, width=5)
+    d.line((1590, 370, 1590, 780), fill=PIPE_HOT, width=5)
+    d.line((1590, 780, 1240, 780), fill=PIPE_HOT, width=8)
     for idx, (label, kw) in enumerate([("Stage 1", "30 kW"), ("Stage 2", "45 kW"), ("Stage 3", "45 kW")]):
         y_box = 330 + idx * 110
-        d.rectangle((1250, y_box, 1510, y_box + 80), fill=(255, 255, 255), outline=RED, width=2)
-        d.text((1270, y_box + 15), f"{label}: {kw} Heating Bank", font=get_font(14, True), fill=RED)
-        d.text((1270, y_box + 42), "Incoloy 800 Elements / Over-temp Snap", font=get_font(12), fill=TEXT_MUTED)
-        # Connection to flow
-        d.line((1300, 300, 1300, y_box), fill=PIPE_COLD, width=3)
-        d.line((1460, y_box + 80, 1460, 780), fill=PIPE_HOT, width=3)
+        d.rectangle((1270, y_box, 1560, y_box + 80), fill=(255, 255, 255), outline=RED, width=2)
+        d.text((1288, y_box + 15), f"{label}: {kw} Heating Bank", font=get_font(14, True), fill=RED)
+        d.text((1288, y_box + 42), "Incoloy 800 Elements / Over-temp Snap", font=get_font(12), fill=TEXT_MUTED)
+        # Clean side manifold connections
+        d.line((1240, y_box + 40, 1270, y_box + 40), fill=PIPE_COLD, width=4)
+        d.line((1560, y_box + 40, 1590, y_box + 40), fill=PIPE_HOT, width=4)
         
     # Pressure Tap Low PT-102L
-    draw_sensor(d, 940, 870, "PT2", "Return Press.")
-    d.line((940, 848, 940, 780), fill=NAVY, width=2)
+    draw_sensor(d, 950, 870, "PT2", "Return Press.")
+    d.line((950, 848, 950, 780), fill=NAVY, width=2)
     
-    # Differential Pressure Transmitter DPT-101
-    draw_sensor(d, 940, 540, "DPT", "Delta-P (Rack Drop)")
-    d.line((940, 232, 940, 518), fill=AMBER, width=2)
-    d.line((940, 562, 940, 848), fill=AMBER, width=2)
+    # Differential Pressure Transmitter DPT-101 (routed neatly to the right so sense lines never cut through labels)
+    draw_sensor(d, 950, 540, "DPT", "Delta-P (Rack Drop)")
+    d.line((950, 300, 950, 518), fill=AMBER, width=2)
+    d.line((950, 590, 950, 780), fill=AMBER, width=2)
     
     # Temperature Transmitter TT-102 (Return)
-    draw_sensor(d, 840, 870, "TT2", "Outlet Pt100 RTD")
-    d.line((840, 848, 840, 780), fill=NAVY, width=2)
+    draw_sensor(d, 830, 870, "TT2", "Outlet Pt100 RTD")
+    d.line((830, 848, 830, 780), fill=NAVY, width=2)
     
     # Return Isolation Valve V-102
-    draw_valve(d, 320, 780, size=20, color=NAVY, label="V-102 (Isolation)")
+    draw_valve(d, 350, 780, size=20, color=NAVY, label="V-102 (Isolation)")
     
     # Ancillaries: Automatic Air Vent (AAV) at top
-    d.line((1460, 240, 1460, 180), fill=PIPE_COLD, width=3)
+    d.line((1460, 235, 1460, 180), fill=PIPE_COLD, width=3)
     draw_valve(d, 1460, 180, size=12, color=NAVY)
     d.ellipse((1445, 145, 1475, 165), fill=(241, 245, 249), outline=NAVY, width=2)
     d.text((1485, 150), "AAV-101 (Auto Vent)", font=get_font(12, True), fill=NAVY)
     
     # Drain Valve at lowest point
-    d.line((1260, 840, 1260, 900), fill=PIPE_HOT, width=3)
-    draw_valve(d, 1260, 900, size=12, color=NAVY)
-    d.rectangle((1250, 920, 1270, 930), fill=AMBER, outline=NAVY, width=2)
-    d.text((1280, 915), "V-103 Drain (Captive Cap)", font=get_font(12, True), fill=NAVY)
+    d.line((1260, 840, 1260, 885), fill=PIPE_HOT, width=3)
+    draw_valve(d, 1260, 885, size=12, color=NAVY)
+    d.rectangle((1250, 905, 1270, 915), fill=AMBER, outline=NAVY, width=2)
+    d.text((1280, 900), "V-103 Drain (Captive Cap)", font=get_font(12, True), fill=NAVY)
     
     # Drip Tray and Leak Rope
-    d.rectangle((200, 930, 1660, 950), fill=(226, 232, 240), outline=NAVY, width=2)
-    d.line((220, 940, 1640, 940), fill=AMBER, width=3)
-    d.text((220, 910), "Full Containment Drip Tray with Conductive Leak Sensing Rope (LS-101)", font=get_font(13, True), fill=AMBER)
+    d.rectangle((240, 932, 1660, 950), fill=(226, 232, 240), outline=NAVY, width=2)
+    d.line((260, 941, 1640, 941), fill=AMBER, width=3)
+    d.text((260, 912), "Full Containment Drip Tray with Conductive Leak Sensing Rope (LS-101)", font=get_font(13, True), fill=AMBER)
     
     path = FIG / "fig-02-loadbank-pid.png"
     im.save(path, "PNG")
@@ -350,30 +369,30 @@ def fig_03_sensor_cutaway():
     draw_card(d, (40, 120, 880, 1020), "ACCEPTABLE: CORE STREAM BULK IMMERSION", badge="VERIFIED COMPLIANCE", badge_color=GREEN)
     
     # Pipe drawing (Left)
-    d.rectangle((100, 260, 820, 480), fill=(226, 232, 240), outline=NAVY, width=3)
-    d.rectangle((100, 290, 820, 450), fill=(239, 246, 255)) # Liquid flow core
+    d.rectangle((100, 290, 820, 490), fill=(226, 232, 240), outline=NAVY, width=3)
+    d.rectangle((100, 320, 820, 460), fill=(239, 246, 255)) # Liquid flow core
     
     # Parabolic flow velocity profile
-    for idx in range(12):
-        y_val = 300 + idx * 12
-        vel_len = int(120 * math.sin((idx + 0.5) / 12 * math.pi))
-        d.line((180, y_val, 180 + vel_len, y_val), fill=PIPE_COLD, width=2)
-        d.polygon([(180 + vel_len, y_val), (170 + vel_len, y_val - 3), (170 + vel_len, y_val + 3)], fill=PIPE_COLD)
-    d.text((120, 460), "Parabolic Velocity Profile (Core: V_max)", font=get_font(13, True), fill=PIPE_COLD)
+    for idx in range(11):
+        y_val = 330 + idx * 12
+        vel_len = int(120 * math.sin((idx + 0.5) / 11 * math.pi))
+        d.line((160, y_val, 160 + vel_len, y_val), fill=PIPE_COLD, width=2)
+        d.polygon([(160 + vel_len, y_val), (150 + vel_len, y_val - 3), (150 + vel_len, y_val + 3)], fill=PIPE_COLD)
+    d.text((120, 468), "Parabolic Velocity Profile (Core: V_max)", font=get_font(13, True), fill=PIPE_COLD)
     
     # Angled Thermowell 45 deg
-    d.line((480, 200, 480, 260), fill=NAVY, width=12) # Weldolet
+    d.line((480, 225, 480, 290), fill=NAVY, width=12) # Weldolet
     # Probe into core
-    d.line((480, 260, 560, 370), fill=(148, 163, 184), width=14)
-    d.line((480, 260, 560, 370), fill=AMBER, width=6) # RTD element
-    d.ellipse((550, 360, 570, 380), fill=RED) # Sensing tip
-    d.text((580, 365), "Tip in Core Stream (1/3 - 1/2 D)", font=get_font(14, True), fill=RED)
+    d.line((480, 290, 555, 390), fill=(148, 163, 184), width=14)
+    d.line((480, 290, 555, 390), fill=AMBER, width=6) # RTD element
+    d.ellipse((545, 380, 565, 400), fill=RED) # Sensing tip
+    d.text((575, 382), "Tip in Core Stream (1/3 - 1/2 D)", font=get_font(14, True), fill=RED)
     
-    # Pressure Tap (Flush)
-    d.rectangle((340, 250, 356, 260), fill=NAVY)
-    d.line((348, 200, 348, 250), fill=NAVY, width=3)
-    d.text((250, 180), "Flush Deburred Tap", font=get_font(13, True), fill=NAVY)
-    d.text((250, 200), "(Zero Burr / Zero Recess)", font=get_font(12), fill=TEXT_MUTED)
+    # Pressure Tap (Flush) - stem routed below text so zero overlap
+    d.rectangle((310, 280, 326, 290), fill=NAVY)
+    d.line((318, 230, 318, 280), fill=NAVY, width=3)
+    d.text((220, 182), "Flush Deburred Tap", font=get_font(13, True), fill=NAVY)
+    d.text((220, 202), "(Zero Burr / Zero Recess)", font=get_font(12), fill=TEXT_MUTED)
     
     # Bullet checklist (Left)
     d.rectangle((100, 540, 820, 980), fill=(240, 253, 244), outline=GREEN, width=2)
@@ -391,28 +410,28 @@ def fig_03_sensor_cutaway():
     # Right Panel: Rejected
     draw_card(d, (920, 120, 1760, 1020), "REJECTED: DEAD-LEG CAVITY & TURBULENT RECESSED TAPS", badge="FALSE COMPLIANCE", badge_color=RED)
     
-    # Pipe drawing (Right)
-    d.rectangle((980, 260, 1700, 480), fill=(226, 232, 240), outline=NAVY, width=3)
-    d.rectangle((980, 290, 1700, 450), fill=(239, 246, 255))
+    # Pipe drawing (Right) shifted down to Y=290..490 so dead-leg tee stays cleanly below card header!
+    d.rectangle((980, 290, 1700, 490), fill=(226, 232, 240), outline=NAVY, width=3)
+    d.rectangle((980, 320, 1700, 460), fill=(239, 246, 255))
     
-    # Dead leg vertical tee
-    d.rectangle((1320, 140, 1420, 260), fill=(226, 232, 240), outline=NAVY, width=3)
-    d.rectangle((1335, 140, 1405, 290), fill=(254, 226, 226)) # Stagnant water pocket
-    d.text((1430, 170), "DEAD-LEG TEE STUB (100mm)", font=get_font(14, True), fill=RED)
-    d.text((1430, 195), "Stagnant uncirculated pocket", font=get_font(13), fill=TEXT_MUTED)
+    # Dead leg vertical tee (starts at Y=195, well below card header at Y=154)
+    d.rectangle((1320, 195, 1420, 290), fill=(226, 232, 240), outline=NAVY, width=3)
+    d.rectangle((1335, 198, 1405, 320), fill=(254, 226, 226)) # Stagnant water pocket
+    d.text((1435, 210), "DEAD-LEG TEE STUB (100mm)", font=get_font(14, True), fill=RED)
+    d.text((1435, 235), "Stagnant uncirculated pocket", font=get_font(13), fill=TEXT_MUTED)
     
     # Sensor stranded in dead leg
-    d.line((1370, 100, 1370, 220), fill=NAVY, width=10)
-    d.ellipse((1360, 215, 1380, 235), fill=AMBER)
-    d.text((1310, 80), "RTD Stranded in Dead Leg", font=get_font(13, True), fill=RED)
+    d.line((1370, 182, 1370, 255), fill=NAVY, width=10)
+    d.ellipse((1360, 250, 1380, 270), fill=AMBER)
+    d.text((1285, 162), "RTD Stranded in Dead Leg", font=get_font(13, True), fill=RED)
     
     # Turbulent throttle valve right upstream of pressure tap
-    draw_valve(d, 1140, 370, size=24, color=NAVY, label="Throttling Valve")
+    draw_valve(d, 1120, 390, size=24, color=NAVY, label="Throttling Valve")
     # Swirling eddies
-    d.text((1180, 330), "Turbulent Eddies & Cavitation", font=get_font(12, True), fill=AMBER)
+    d.text((1165, 345), "Turbulent Eddies & Cavitation", font=get_font(12, True), fill=AMBER)
     # Bad pressure tap in turbulence
-    d.line((1240, 260, 1240, 200), fill=RED, width=3)
-    d.text((1200, 180), "Recessed Burred Tap", font=get_font(13, True), fill=RED)
+    d.line((1210, 290, 1210, 240), fill=RED, width=3)
+    d.text((1115, 215), "Recessed Burred Tap", font=get_font(13, True), fill=RED)
     
     # Bullet checklist (Right)
     d.rectangle((980, 540, 1700, 980), fill=(254, 242, 242), outline=RED, width=2)
@@ -507,10 +526,10 @@ def fig_04_electrical():
         if idx < 4:
             d.line((1310, y_l + 75, 1310, y_l + 95), fill=RED, width=4)
             
-    # Coil at end of series loop
-    d.rectangle((1080, 890, 1540, 980), fill=(241, 245, 249), outline=NAVY, width=3)
-    d.text((1110, 908), "MAIN POWER CONTACTOR COILS (K1..K4)", font=get_font(15, True), fill=NAVY)
-    d.text((1110, 935), "Spring-loaded force-guided contacts. De-energize to open.", font=get_font(13, True), fill=GREEN)
+    # Coil at end of series loop (widened so green text fits with generous margin)
+    d.rectangle((1040, 890, 1580, 980), fill=(241, 245, 249), outline=NAVY, width=3)
+    d.text((1080, 908), "MAIN POWER CONTACTOR COILS (K1..K4)", font=get_font(15, True), fill=NAVY)
+    d.text((1080, 935), "Spring-loaded force-guided contacts. De-energize to open.", font=get_font(13, True), fill=GREEN)
     d.line((1310, 855, 1310, 890), fill=RED, width=4)
     
     path = FIG / "fig-04-electrical-interlock-2n.png"
@@ -569,9 +588,9 @@ def fig_05_timeseries():
             y_i = int(365 - (365 - 265) * (1 - math.exp(-tau)))
         pts_t.append((x_i, y_i))
     d.line(pts_t, fill=PIPE_HOT, width=3)
-    # Dwell annotation
-    d.rectangle((580, 230, 820, 280), fill=(240, 253, 244), outline=GREEN, width=1)
-    d.text((595, 245), "Steady Dwell: ΔT=10.0K (Q_therm = P_elec ±3%)", font=get_font(11, True), fill=GREEN)
+    # Dwell annotation (widened box so text fits cleanly inside)
+    d.rectangle((500, 285, 830, 330), fill=(240, 253, 244), outline=GREEN, width=2)
+    d.text((512, 300), "Steady Dwell: ΔT=10.0K (Q_therm = P_elec ±3%)", font=get_font(11, True), fill=GREEN)
     d.text((80, 500), "Legend: [Dark: Commanded kW]  [Red: Return Temp RTD]  [Blue: Flow Meter]", font=get_font(12, True), fill=NAVY)
     d.text((80, 525), "Pass: Smooth thermal lag response, holds steady plateau for >= 15 min dwell.", font=get_font(12), fill=TEXT_MUTED)
     
@@ -703,10 +722,10 @@ def fig_07_sandbox_model():
         "FIG 07"
     )
     
-    # 3 Main Pillars
-    draw_card(d, (40, 120, 560, 1020), "1. BASELINE DESIGN PARAMETERS", badge="120 kW RACK MODEL", badge_color=PIPE_COLD)
-    draw_card(d, (600, 120, 1200, 1020), "2. THERMODYNAMIC & HYDRAULIC DERIVATION", badge="FIRST-PRINCIPLES MATH", badge_color=NAVY)
-    draw_card(d, (1240, 120, 1760, 1020), "3. DEW POINT & OPERATING ENVELOPE", badge="SAFETY BOUNDARY", badge_color=AMBER)
+    # 3 Main Pillars (shortened headers so zero badge collision)
+    draw_card(d, (40, 120, 560, 1020), "1. BASELINE DESIGN INPUTS", badge="120 kW RACK MODEL", badge_color=PIPE_COLD)
+    draw_card(d, (600, 120, 1200, 1020), "2. THERMODYNAMIC DERIVATION", badge="FIRST-PRINCIPLES MATH", badge_color=NAVY)
+    draw_card(d, (1240, 120, 1760, 1020), "3. DEW POINT ENVELOPE", badge="SAFETY BOUNDARY", badge_color=AMBER)
     
     # Pillar 1: Baseline Inputs
     inputs = [
@@ -733,7 +752,7 @@ def fig_07_sandbox_model():
     d.text((640, 230), "• First Law Thermal Formula: P = m_dot · Cp · ΔT", font=get_font(14, True), fill=NAVY)
     d.text((640, 260), "  m_dot = 120 kW / (3.980 kJ/kg·K × 10.0 K) = 3.015 kg/s", font=get_font(14), fill=NAVY)
     d.text((640, 290), "• Volumetric Flow Conversion (Q_v):", font=get_font(14, True), fill=NAVY)
-    d.text((640, 315), "  Q_v = (3.015 / 1025) × 60,000 = 176.5 L/min (46.6 GPM)", font=get_font(15, True), fill=PIPE_COLD)
+    d.text((640, 315), "  Q_v = (3.015 / 1025) × 60,000 = 176.5 L/min (46.6 GPM)", font=get_font(14, True), fill=PIPE_COLD)
     
     # Box 2: Pipe Velocity & Erosion
     d.rectangle((620, 390, 1180, 570), fill=(240, 253, 244), outline=GREEN, width=2)
@@ -747,14 +766,14 @@ def fig_07_sandbox_model():
     d.rectangle((620, 600, 1180, 980), fill=(255, 255, 255), outline=NAVY, width=2)
     d.text((640, 615), "STEP 3: HYDRAULIC RESISTANCE DROP (ΔP)", font=get_font(15, True), fill=NAVY)
     d.text((640, 650), "• Quadratic Flow Law: ΔP = k_rack · (Q_v)²", font=get_font(14, True), fill=NAVY)
-    d.text((640, 680), "• Target Resistance @ 176.5 LPM: ΔP_nominal = 115 kPa (1.15 bar)", font=get_font(14, True), fill=PIPE_COLD)
+    d.text((640, 680), "• Target Resistance @ 176.5 LPM: ΔP_nom = 115 kPa (1.15 bar)", font=get_font(13, True), fill=PIPE_COLD)
     d.text((640, 715), "• Acceptance Tolerance Band: ± 10% (103.5 kPa - 126.5 kPa)", font=get_font(13), fill=TEXT_MUTED)
     d.text((640, 755), "DIAGNOSTIC TEST CASE: Thermal Mystery Discovered", font=get_font(14, True), fill=RED)
     d.text((640, 785), "• Field Reading: Electrical=120kW, Flow=176.5LPM, but ΔT=6.0K!", font=get_font(13), fill=NAVY)
-    d.text((640, 810), "• Deduction: Q_thermal = 3.015 × 3.98 × 6.0 = 72.0 kW (Missing 48kW!)", font=get_font(13, True), fill=RED)
+    d.text((640, 810), "• Deduction: Q_therm = 3.015 × 3.98 × 6.0 = 72.0 kW (-48 kW!)", font=get_font(13, True), fill=RED)
     d.text((640, 840), "• Investigation tree: 1) Leaking bypass valve? 2) Failed elements?", font=get_font(13), fill=NAVY)
     d.text((640, 865), "  3) False sensor calibration? 4) Unmeasured air heat radiation?", font=get_font(13), fill=NAVY)
-    d.text((640, 900), "VERDICT: NEVER adjust calibration constants to force agreement!", font=get_font(13, True), fill=RED)
+    d.text((640, 900), "VERDICT: NEVER adjust calibration constants to force agreement!", font=get_font(12, True), fill=RED)
     
     # Pillar 3: Dew Point Safety Envelope
     d.rectangle((1260, 180, 1740, 480), fill=(254, 243, 199), outline=AMBER, width=2)

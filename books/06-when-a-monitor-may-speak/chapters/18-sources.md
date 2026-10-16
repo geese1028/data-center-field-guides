@@ -48,3 +48,14 @@ The mention of these titles and technologies is strictly for nominative referenc
 - The exact editions and publication dates of all standards cited in site monitoring specifications.
 - Confirmation that no copyrighted standard text, proprietary register maps, or client confidential data was pasted into shift logs.
 - The active calibration and verification schedule for all site telemetry instruments.
+
+## Quantitative Cross-Reference Matrix of Telemetry, Alarm, and Time Standards
+
+| Governing Standard | Issuing Organization | Technical Scope in Volume 06 | Mandatory Audit Application |
+| :--- | :--- | :--- | :--- |
+| **ANSI/ISA-18.2 (IEC 62682)** | ISA / IEC | Management of Alarm Systems for the Process Industries | Governs alarm rationalization, dwell/deadband tuning, and flood rate limits ($\le 1\text{--}2 / 10\,\text{min}$) |
+| **EEMUA Publication 191** | EEMUA | Alarm Systems: A Guide to Design, Management and Procurement | Governs operator cognitive load limits, priority distribution (80% Low, 15% Med, 5% High), and alarm shelving |
+| **IEEE Std 1588v2 (PTP) & C37.238** | IEEE | Precision Clock Synchronization Protocol for Networked Measurement and Control Systems | Governs sub-millisecond ($\pm 1\,\text{ms}$) Sequence of Events (SOE) timestamp accuracy |
+| **IEC 62541 (OPC-UA Part 4 & 8)** | IEC | OPC Unified Architecture Data Access and StatusCode Quality Bitmasks | Governs `Good (0x00)`, `Uncertain (0x40)`, and `Bad (0x80)` data quality propagation |
+| **NAMUR NE 43** | NAMUR | Standardization of the Signal Level for Failure Information of Digital Transmitters | Governs 4–20 mA analog fault current thresholds ($\le 3.6\,\text{mA}$ downscale, $\ge 21.0\,\text{mA}$ upscale) |
+| **ASHRAE Guideline 14** | ASHRAE | Measurement of Energy, Demand, and Water Savings (CV-RMSE & NMBE) | Governs cooling-tower and chiller plant baseline regression model validation |

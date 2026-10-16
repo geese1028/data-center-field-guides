@@ -19,7 +19,7 @@ Tulis kolom: titik unit, titik perbandingan, selisih apa yang diharapkan. Bebera
 Sensor mengukur mikroklimat termodinamika dari titik persis di mana elemen penginderaannya berada, bukan aliran abstrak dalam label perangkat lunaknya. Suhu pasok yang ditempatkan di puntung pipa yang tergenang mengukur puntung pipa tersebut. Suhu kembali di hilir campuran bypass mengukur campuran. (Lihat Gambar 03 untuk perbandingan penampang terperinci dari perendaman inti yang patuh versus kecurangan kantong mati).
 
 Untuk mencapai metrologi valid yang tahan terhadap pengawasan matematis, empat aturan pemasangan tidak dapat dinegosiasikan:
-1. **Perendaman Aliran Inti (/3 \sim 1/2 D$)**: Ujung thermowell harus menembus melampaui lapisan batas dan berada langsung di dalam inti tengah berkecepatan tinggi dari aliran (antara 35% dan 50% dari diameter dalam pipa). Probe dangkal yang rata dengan dinding pipa mengukur cairan batas laminar yang dingin dan konduksi logam sekitar.
+1. **Perendaman Aliran Inti ($1/3 \sim 1/2 D$)**: Ujung thermowell harus menembus melampaui lapisan batas dan berada langsung di dalam inti tengah berkecepatan tinggi dari aliran (antara 35% dan 50% dari diameter dalam pipa). Probe dangkal yang rata dengan dinding pipa mengukur cairan batas laminar yang dingin dan konduksi logam sekitar.
 2. **Sudut Serang**: Miringkan thermowell 45° ke arah hulu melawan arah aliran fluida yang datang. Hal ini memaksimalkan perpindahan panas konvektif melintasi selubung, menghilangkan pusaran stagnan, dan memastikan respons termal yang cepat.
 3. **Senyawa Konduktif Termal**: Celah annular antara elemen RTD dan selongsong thermowell dalam harus diisi dengan pasta termal suhu tinggi (gemuk seng oksida/silikon). Thermowell kering menciptakan penghalang isolasi celah udara dengan kelambatan termal 30 detik, menutupi lonjakan transien yang cepat.
 4. **Sadap Tekanan Statis Rata dan Dihaluskan**: Sadap tekanan untuk pengukuran diferensial (DPT) harus dibor tegak lurus sempurna terhadap sumbu pipa, dengan tepi dalam sepenuhnya dihaluskan (deburred) dan dipoles rata. Sadap yang dibor tepat di hilir katup kupu-kupu yang dicekik atau belokan siku berada dalam pusaran turbulen, mengubah tekanan kecepatan dinamis menjadi head statis palsu yang berfluktuasi masif.
@@ -46,15 +46,15 @@ Pengendali bank beban harus mengekspos antarmuka telemetri yang terisolasi dan t
 ## Kelas toleransi kalibrasi dan pemeriksaan silang sensor ganda
 
 Metrologi pada hari penerimaan tidak boleh bergantung pada pengukur proses yang tidak terkalibrasi. Instrumen harus mematuhi kelas toleransi kalibrasi yang ditentukan:
-1. **Sensor Suhu**: Elemen RTD Pt100 4-kawat yang sesuai dengan IEC 60751 Kelas A (toleransi ± 0,15°C pada 0°C, ± 0,23°C pada 40°C). Pasangan ganda yang cocok harus dikalibrasi bersama untuk memastikan kesalahan pengukuran suhu diferensial (ΔT) tetap ≤ 0{,}10 K.
-2. **Pengukur Aliran**: Pengukur aliran massa Coriolis atau elektromagnetik berakurasi tinggi dengan akurasi terkalibrasi pabrik ≤ ± 0{,}5% dari laju aliran melintasi selubung 50–250 L/min. Pengukur vortex atau turbin dengan akurasi\pm 2{,}0\%hanya dapat diterima jika persyaratan bentang pipa lurus (10D ke hulu, 5D ke hilir) dipenuhi secara ketat.
-3. **Pemancar Tekanan Diferensial (DPT)**: Pemancar piezoresistif stabilitas tinggi dengan ≤ ± 0{,}10% dari rentang terkalibrasi (misalnya ± 0,25 kPa pada rentang 0–250 kPa).
+1. **Sensor Suhu**: Elemen RTD Pt100 4-kawat yang sesuai dengan IEC 60751 Kelas A (toleransi ± 0,15°C pada 0°C, ± 0,23°C pada 40°C). Pasangan ganda yang cocok harus dikalibrasi bersama untuk memastikan kesalahan pengukuran suhu diferensial (ΔT) tetap ≤ 0,10 K.
+2. **Pengukur Aliran**: Pengukur aliran massa Coriolis atau elektromagnetik berakurasi tinggi dengan akurasi terkalibrasi pabrik ≤ ± 0,5% dari laju aliran melintasi selubung 50–250 L/min. Pengukur vortex atau turbin dengan akurasi $\pm 2,0\%$ hanya dapat diterima jika persyaratan bentang pipa lurus (10D ke hulu, 5D ke hilir) dipenuhi secara ketat.
+3. **Pemancar Tekanan Diferensial (DPT)**: Pemancar piezoresistif stabilitas tinggi dengan ≤ ± 0,10% dari rentang terkalibrasi (misalnya ± 0,25 kPa pada rentang 0–250 kPa).
 
 Selama Gate 2 dan Gate 3, pemeriksaan silang antara sensor bawaan unit dan probe pembanding sisi rak fasilitas harus memenuhi batas delta yang ketat:
-- **Pemeriksaan Silang Suhu**: |T_unit - T_rak| ≤ 0{,}20 K.
-- **Delta Suhu Diferensial**: |ΔT_unit - ΔT_rak| ≤ 0{,}15 K.
-- **Pemeriksaan Silang Tekanan Diferensial**: |ΔP_unit - ΔP_rak| ≤ 5{,}0 kPa (setelah mengurangkan rugi selang dan kopling terkalibrasi).
-- **Pemeriksaan Silang Aliran**: |Q_unit - Q_rak| ≤ 1{,}0 L/min (atau ≤ 1{,}0%).
+- **Pemeriksaan Silang Suhu**: |T_unit - T_rak| ≤ 0,20 K.
+- **Delta Suhu Diferensial**: |ΔT_unit - ΔT_rak| ≤ 0,15 K.
+- **Pemeriksaan Silang Tekanan Diferensial**: |ΔP_unit - ΔP_rak| ≤ 5,0 kPa (setelah mengurangkan rugi selang dan kopling terkalibrasi).
+- **Pemeriksaan Silang Aliran**: |Q_unit - Q_rak| ≤ 1,0 L/min (atau ≤ 1,0%).
 
 Setiap varians yang melebihi batas ini menghentikan gate hingga diselesaikan. Jangan pernah menyesuaikan offset sensor dalam perangkat lunak untuk memaksakan kesepakatan sewenang-wenang.
 

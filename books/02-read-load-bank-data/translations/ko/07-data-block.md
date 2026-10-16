@@ -55,10 +55,10 @@
  $$\rho = 1025.0\,\text{kg/m}^3, \quad C_p = 3.980\,\text{kJ/(kg}\cdot\text{K)}$$
 6. **추정 액체 열량 (Q_liquid)**:
  열역학 제1원리로부터 직접 도출된다:
- $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60{,}000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
+ $$Q_{\text{liquid}} = \dot{m} \cdot C_p \cdot \Delta T = \left( Q_v \times \frac{\rho}{60,000} \right) \cdot C_p \cdot (T_{\text{out}} - T_{\text{in}})$$
 
 정격 전부하(Q_v = 176.5 LPM, ΔT = 10.04 K)로 작동하는 기준 교육용 모델의 경우:
-$$\dot{m} = 176.5 \times \frac{1025.0}{60{,}000} = 3.015\,\text{kg/s}$$
+$$\dot{m} = 176.5 \times \frac{1025.0}{60,000} = 3.015\,\text{kg/s}$$
 $$Q_{\text{liquid}} = 3.015\,\text{kg/s} \times 3.980\,\text{kJ/(kg}\cdot\text{K)} \times 10.04\,\text{K} = 120.48\,\text{kW} \times \text{분배 비율} \approx 98.6\,\text{kW}$$
 
 ## 제목 5: 동반 공기 및 제1원리 열 폐합

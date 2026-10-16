@@ -20,6 +20,23 @@ Do not seal a relief or a smoke path because it was convenient to the corrosion 
 
 Seals fail. A cable pull next month opens what you closed. The coupon does not know why the rate returned. The note has to. If work opened the envelope during an interval, that interval is tainted the same way a moved coupon is tainted. Mark it. Do not let a vendor call the return a proof that you need a larger machine. You may need a larger machine. You may need the hole closed again. The coupon alone cannot say which. Go and look.
 
+## Building Envelope Vapor Barriers and Positive Pressurization Hydraulics
+
+### Calculating Makeup Air Volume Required to Prevent Unfiltered Infiltration
+
+Under **ANSI/ISA-71.04-2013** (*Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants*) and **ASHRAE TC 9.9** guidance for RoHS-compliant lead-free IT equipment (which utilizes immersion silver PCB finishes and tin-silver-copper SAC305 solder joints), whitespace air quality is governed by the quantitative corrosion film growth rate on **both** copper ($\text{Cu}$) and silver ($\text{Ag}$) reference strips normalized to a 30-day exposure window:
+
+$$\Delta P_{\text{hall}} = \frac{\rho_{\text{air}}}{2} \left( \frac{Q_{\text{makeup}} - Q_{\text{exhaust}}}{C_d \cdot A_{\text{envelope\_leak}}} \right)^2 \ge +12.5\,\text{Pa}$$
+
+Because reduced sulfur species ($\text{H}_2\text{S}$, carbonyl sulfide $\text{OCS}$, elemental sulfur $\text{S}_8$) combined with oxidizing gases ($\text{NO}_2, \text{O}_3, \text{Cl}_2$) and relative humidity ($\text{RH} > 50\%$) drive aggressive silver sulfide ($\text{Ag}_2\text{S}$) whisker creep across fine-pitch PCB traces even when copper reactivity remains below $300\,\text{\AA}/30\text{d}$, environmental acceptance requires dual-metal verification paired with strict chain-of-custody controls.
+
+| Corrosion Audit Parameter | Unacceptable / Defective Practice | First-Principles Engineering Requirement (ISA-71.04 / ASTM B825) | Mandatory Refusal or Remediation Action |
+| :--- | :--- | :--- | :--- |
+| **Core Chapter Focus** | Sealing Cable Penetrations, Airlocks, and Battery Room Exhausts Before Buying Media | Dual $\text{Cu} + \text{Ag}$ coulometric reduction with documented exposure timestamps | Refuse any environmental fitness claim missing $\text{Ag}$ or hang interval |
+| **Class G1 Mild Pass Gate** | Quoting Copper rate alone ($<300\,\text{\AA}$) or visual strip color | $d_{\text{Cu}} < 300\,\text{\AA}/30\text{d}$ **AND** $d_{\text{Ag}} < 200\,\text{\AA}/30\text{d}$ (zero $\text{Cu}_2\text{S}$ on copper) | Classify G2 ($<1000/1000\,\text{\AA}$), G3 ($<2000/2000\,\text{\AA}$), or GX as non-compliant |
+| **Chain of Custody & Blank** | Mailing strips without a sealed Field Travel Blank (`FTB`) | Sealed lot-matched travel blank $d_{\text{blank}} \le 25\text{--}35\,\text{\AA}$ subtracted/verified | Invalidate "Fit" certification if no unopened travel blank accompanied lot |
+| **Filtration & Envelope Proof** | Installing recirculation filters in an unsealed negative-$\Delta P$ hall | Vapor-sealed envelope ($\Delta P \ge +12.5\,\text{Pa}$) + gas-matched media ($\text{EBCT} \ge 0.2\,\text{s}$) | Pull coupon at any media/envelope change; start new post-change interval |
+
 ## Decisions to record
 
 - Holes closed, by function, dated against the coupon interval.
@@ -27,5 +44,3 @@ Seals fail. A cable pull next month opens what you closed. The coupon does not k
 - A life-safety path left open on purpose, and treated as a source, not marked closed.
 - An interval tainted by later cable work, not used as a sizing argument.
 
-
-![Makeup Air Positive Pressurization & Envelope Sealing](../figures/fig-05-makeup-air-pressurization-and-leak-paths.png)

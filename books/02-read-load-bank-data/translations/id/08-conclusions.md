@@ -18,7 +18,7 @@ Laporan kilat menyertakan bagian Peralatan Eksternal dengan empat baris eksplisi
 CDU bertanggung jawab untuk mensirkulasikan cairan pendingin sekunder melalui bank beban dan mentransfer panas ke *loop* air dingin primer fasilitas melalui penukar panas internal tipe pelat terpatri (*brazed plate*) atau selongsong-dan-tabung (*shell-and-tube*).
 
 Laporan kilat memantau empat metrik antarmuka CDU:
-- **Suhu Pasokan Loop Sekunder (T_CDU,sup)**: Suhu fluida yang keluar dari penukar panas CDU sebelum memasuki manifold pasokan bank beban. Laporan memverifikasi bahwa CDU mempertahankan nilai setelan (*setpoint*) pasokannya yang dinyatakan (misalnya, 35{,}0°C ± 1{,}0 K). Jika air primer fasilitas menghangat, menyebabkan T_CDU,sup berhanyut ke atas hingga 42{,}0°C, hanyutan tersebut dicatat sebagai **ekskursi kondisi batas CDU**, bukan sebagai kesalahan pemanasan bank beban.
+- **Suhu Pasokan Loop Sekunder (T_CDU,sup)**: Suhu fluida yang keluar dari penukar panas CDU sebelum memasuki manifold pasokan bank beban. Laporan memverifikasi bahwa CDU mempertahankan nilai setelan (*setpoint*) pasokannya yang dinyatakan (misalnya, 35,0°C ± 1,0 K). Jika air primer fasilitas menghangat, menyebabkan T_CDU,sup berhanyut ke atas hingga 42,0°C, hanyutan tersebut dicatat sebagai **ekskursi kondisi batas CDU**, bukan sebagai kesalahan pemanasan bank beban.
 - **Tekanan Penyaluran Sekunder & Kurva Pompa**: Tekanan statis yang tersedia yang disalurkan oleh pompa CDU pada aliran kluster terukur nominal. Jika kecepatan pompa CDU berfluktuasi (*hunting*) atau mengalami kavitasi akibat tekanan hisap yang buruk, fluktuasi aliran yang dihasilkan akan dicatat pada baris CDU.
 - **Suhu Pendekatan (*Approach Temperature*) CDU**: Selisih suhu antara fluida kembali sekunder dan air pasokan primer fasilitas (Pendekatan = T_sec,ret - T_pri,sup). Peningkatan suhu pendekatan seiring waktu mengindikasikan pengotoran (*fouling*) pada pelat penukar panas CDU, bukan degradasi elemen pada bank beban.
 
@@ -32,7 +32,7 @@ Laporan kilat memantau:
 ### Baris 3: Unit Distribusi Daya (PDU) dan Saluran Bus (*Busways*)
 Jalur daya fisik dari papan panel listrik melalui kotak sadapan (*tap-off box*) saluran bus dan kabel penurunan (*drop cables*) ke terminal bank beban:
 - **Kenaikan Suhu Terminal (ΔT_terminal)**: Pemantauan termografi inframerah atau termokopel terkalibrasi pada sepatu kabel dan terminal kontaktor. Suhu terminal tidak boleh melampaui 70°C (atau peringkat spesifik dari konduktor RHW-2 90°C).
-- **Penurunan Tegangan Saluran Bus**: Penurunan tegangan di sepanjang kabel penyulang sementara harus dibatasi ≤ 2{,}0%.
+- **Penurunan Tegangan Saluran Bus**: Penurunan tegangan di sepanjang kabel penyulang sementara harus dibatasi ≤ 2,0%.
 
 ### Baris 4: Pengondisi Udara Ruang Komputer (CRAH / CRAC / Fan Wall)
 Unit penanganan udara fasilitas yang bertanggung jawab menyerap 16% hingga 20% kalor sensibel udara pendamping yang dibuang oleh *blower* bank beban:

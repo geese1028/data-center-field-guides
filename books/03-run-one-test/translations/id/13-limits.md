@@ -6,20 +6,16 @@ Buku ini pasti akan disalahgunakan oleh individu yang berusaha memperluasnya men
 
 Proyek verifikasi komisioning mempertahankan otoritas hukum dan rekayasanya hanya jika batas-batasnya didefinisikan secara tajam. Memperluas lingkup verifikasi ke dalam disiplin rekayasa yang berdekatan secara mendadak akan menghasilkan pengujian yang cacat, akuntabilitas yang kabur, dan perselisihan kontrak yang parah.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| BATASAN LINGKUP NEGATIF EKSPLISIT |
-+------------------------------------+---------------------------------------------------------------+
+**BATASAN LINGKUP NEGATIF EKSPLISIT**
+
 | APA YANG DIVERIFIKASI PROYEK INI | APA YANG TIDAK DAPAT DAN TIDAK MENJADI MILIK PROYEK INI |
-+------------------------------------+---------------------------------------------------------------+
-| • Perpindahan panas termal simulasi| • Lingkup Buku 01: Desain bank beban, R&D, & QA manufaktur |
+| :--- | :--- |
+| • Perpindahan panas termal simulasi | • Lingkup Buku 01: Desain bank beban, R&D, & QA manufaktur |
 | • Garis dasar kurva pompa sekunder | • Lingkup Buku 02: Matematika telemetri, deteksi anomali |
 | • Ketahanan transfer daya 2N | • Desain Fasilitas: Rekayasa arsitektural, struktural, MEP |
 | • Keseimbangan aliran multi-rak | • Kinerja Silikon: Komputasi GPU, bus memori, beban kerja AI |
 | • Loop keselamatan otonom CDU | • Metalurgi & Kimia: Korosi air, biosida (Buku 08) |
 | • Trip alarm perangkat keras fisik | • Aula Data Berikutnya: Ekstrapolasi kode gedung universal |
-+------------------------------------+---------------------------------------------------------------+
-```
 
 ## Batasan-Batasan Khusus
 

@@ -63,7 +63,7 @@ di mana K adalah jumlah titik perubahan, f_k adalah segmen linear, dan β adalah
 
 ### Hal yang Dievaluasi CPOP
 CPOP diterapkan secara eksklusif pada bagian penahanan kondisi tunak dari masa jeda, dengan sengaja mengecualikan transien pemanasan termal yang telah diketahui (t ≥ 4τ).
-- **Satu Kemiringan Bersih Tunggal (K = 0)**: Jika CPOP mencocokkan penahanan sebagai satu garis horizontal tunggal dengan kemiringan mendekati nol (|m| ≤ 0{,}001 K/s), hal ini memberikan konfirmasi matematis bahwa dataran tinggi tersebut mencapai keseimbangan termal sejati.
+- **Satu Kemiringan Bersih Tunggal (K = 0)**: Jika CPOP mencocokkan penahanan sebagai satu garis horizontal tunggal dengan kemiringan mendekati nol (|m| ≤ 0,001 K/s), hal ini memberikan konfirmasi matematis bahwa dataran tinggi tersebut mencapai keseimbangan termal sejati.
 - **Patahan Kemiringan di Tengah Penahanan (K ≥ 1)**: Jika CPOP mendeteksi titik perubahan di tengah-tengah penahanan tunak, hal ini mengindikasikan bahwa telah terjadi pergeseran fisik:
  - Jika daya listrik datar, tetapi kemiringan suhu fluida tiba-tiba berbelok ke atas, CPOP telah mendeteksi pembatasan aliran hidrolik (seperti pergeseran katup tanpa perintah atau penyumbatan saringan).
  - Jika kemiringan suhu fluida tiba-tiba berbelok ke bawah, ini mengungkap kebocoran katup *bypass* yang mencampurkan fluida dingin ke dalam aliran kembali.

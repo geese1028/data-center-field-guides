@@ -6,21 +6,15 @@ A health score is typically a normalized number from 0 to 100, or a cheerful gre
 
 The absolute operational law of data center engineering is: **A score does not get a pen.**
 
-```
-+-----------------------------------------------------------------------------+
-| COMPOSITE SCORE ANATOMY |
-| |
-| 0.40 * (Chiller Delta-T) --> Healthy (Score = 98) |
-| + 0.30 * (UPS Efficiency) --> Healthy (Score = 96) |
-| + 0.20 * (Cold Aisle Air) --> Healthy (Score = 95) |
-| + 0.10 * (CDU Pump Vibration)--> CATASTROPHIC FAILURE (Score = 0) |
-| ========================================================================= |
-| WEIGHTED COMPOSITE SCORE --> 89.1 / 100 ("EXCELLENT HEALTH" - GREEN) |
-| |
+| **COMPOSITE SCORE ANATOMY** |
+| :--- |
+| 0.40 * (Chiller Delta-T) → Healthy (Score = 98) |
+| + 0.30 * (UPS Efficiency) → Healthy (Score = 96) |
+| + 0.20 * (Cold Aisle Air) → Healthy (Score = 95) |
+| + 0.10 * (CDU Pump Vibration)→ CATASTROPHIC FAILURE (Score = 0) |
+| WEIGHTED COMPOSITE SCORE → 89.1 / 100 ("EXCELLENT HEALTH" - GREEN) |
 | REALITY: CDU Pump mechanical seal has disintegrated; bearing is seizing; |
 | secondary loop flow is collapsing; GPU cluster will overheat in 2 minutes. |
-+-----------------------------------------------------------------------------+
-```
 
 A composite score is a mathematical abstraction. It is an opinion created by an algorithm that took forty genuine physical measurements, multiplied each by an arbitrary weighting factor, added them together, and divided by a constant.
 
@@ -71,3 +65,15 @@ Control commands belong exclusively to certified, deterministic programmable log
 - The mathematical formula, weighting constants, and input dependencies for every composite score displayed on site.
 - The deterministic, single-variable physical threshold criteria governing all automated equipment failovers.
 - The protocol requiring operators to audit underlying physical telemetry rather than composite index gauges.
+
+## Mathematical Failure of Weighted Linear Composite Health Scores
+
+Vendor dashboards frequently combine $M$ heterogeneous telemetry points into a single normalized "Facility Health Score" $S_{\text{health}} \in [0, 100]$ using a weighted linear sum:
+
+$$S_{\text{health}} = \sum_{k=1}^{M} w_k \cdot s_k(V_k), \qquad \sum_{k=1}^{M} w_k = 1.0$$
+
+Consider a liquid-cooled AI hall where $49$ environmental sensors sit at $100\%$ nominal ($s_k = 100$), while $1$ critical secondary coolant differential pressure sensor drops to $0\,\text{kPa}$ due to a sheared pump shaft ($s_{50} = 0$, weight $w_{50} = 0.02$). The composite health score evaluates to:
+
+$$S_{\text{health}} = 0.98 \times 100 + 0.02 \times 0 = \mathbf{98.0\% \text{ (GREEN)}}$$
+
+The racks will thermally trip in $45$ seconds while the executive dashboard proudly displays a **98% Green Health Score**. Series reliability systems are governed by the minimum operator ($S_{\text{system}} = \min_k s_k$), never by an arithmetic average.

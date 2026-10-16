@@ -35,19 +35,15 @@ If you fail to baseline the hydraulic resistance cold, you cannot decouple pipin
 
 Once the cold hydraulic baseline is signed off, thermal loading commences under Script 08. The thermal ladder is a progressive sequence designed to verify that the facility power distribution, CDU heat exchangers, primary water loop, and whitespace air management stabilize at each load increment.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| THERMAL LADDER STAGE PARAMETERS |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-| STAGE | THERMAL LOAD| DESIGN kW | MINIMUM DWELL TIME | STABILIZATION GOAL | SHEET REFERENCED |
-+-------+------------+------------+--------------------+----------------------+----------------------+
+**THERMAL LADDER STAGE PARAMETERS**
+
+| STAGE | THERMAL LOAD | DESIGN kW | MINIMUM DWELL TIME | STABILIZATION GOAL | SHEET REFERENCED |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | 25% Step | 300 kW | 45 minutes | Initial TCV tracking | Sheet 3 (Copy 1) |
 | 2 | 50% Step | 600 kW | 45 minutes | Partial-load balance | Sheet 3 (Copy 2) |
-| 3 | 75% Step | 900 kW | 45 minutes | Hydraulic shift audit| Sheet 3 (Copy 3) |
-| 4 | 100% Step | 1200 kW | 4.0 hours soak | Full-load equilibrium| Sheet 3 (Copy 4) |
+| 3 | 75% Step | 900 kW | 45 minutes | Hydraulic shift audit | Sheet 3 (Copy 3) |
+| 4 | 100% Step | 1200 kW | 4.0 hours soak | Full-load equilibrium | Sheet 3 (Copy 4) |
 | 5 | 110% Step | 1320 kW | 60 minutes | Overload stress test | Sheet 3 (Copy 5) |
-+-------+------------+------------+--------------------+----------------------+----------------------+
-```
 
 ### The Thermal Equilibrium Dwell Criteria
 Never advance to the next load step based solely on elapsed time. A load stage is deemed complete only when the system achieves verified **thermal equilibrium**:

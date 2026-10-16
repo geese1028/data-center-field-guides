@@ -42,20 +42,16 @@ Periksa katup bypass modulasi BPV-201, yang dipasang di antara *header* pasokan 
 
 Jangan pernah mengasumsikan bahwa nilai yang ditampilkan pada layar Sistem Manajemen Bangunan (*Building Management System* - BMS) atau antarmuka mesin-manusia (*Human-Machine Interface* - HMI) CDU mencerminkan kenyataan fisik. Setiap titik telemetri yang didefinisikan dalam klaim proyek harus menjalani pemeriksaan silang fisik titik-ke-titik terhadap instrumen referensi lapangan yang terkalibrasi:
 
-```
-+----------------------------------------------------------------------------------------------------+
-| AUDIT KALIBRASI TELEMETRI TITIK-KE-TITIK |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-| TITIK TELEMETRI | PEMBACAAN BMS/HMI | REF TERKALIBRASI LAP| DELTA DIIZINKAN | KEPUTUSAN AUDIT |
-+---------------------+-------------------+---------------------+------------------+-----------------+
+**AUDIT KALIBRASI TELEMETRI TITIK-KE-TITIK**
+
+| TITIK TELEMETRI | PEMBACAAN BMS/HMI | REF TERKALIBRASI LAP | DELTA DIIZINKAN | KEPUTUSAN AUDIT |
+| :--- | :--- | :--- | :--- | :--- |
 | Suhu Pasokan Sekun | 40,12 °C | 40,08 °C (PT100) | +/- 0,30 K | LULUS |
 | Suhu Balik Sekunder | 50,25 °C | 50,15 °C (PT100) | +/- 0,30 K | LULUS |
-| Laju Aliran Sekunder| 115,4 m³/h | 116,1 m³/h (Ultrason| +/- 2,0% | LULUS |
-| Tekanan Pasokan Sek | 285,0 kPa | 282,5 kPa (Manometer| +/- 10,0 kPa | LULUS |
-| Tekanan Balik Sek | 115,0 kPa | 118,0 kPa (Manometer| +/- 10,0 kPa | LULUS |
-| Level Tangki Ekspans| 68,0 % | 67,5 % (Kaca Intip) | +/- 3,0 % | LULUS |
-+---------------------+-------------------+---------------------+------------------+-----------------+
-```
+| Laju Aliran Sekunder | 115,4 m³/h | 116,1 m³/h (Ultrason | +/- 2,0% | LULUS |
+| Tekanan Pasokan Sek | 285,0 kPa | 282,5 kPa (Manometer | +/- 10,0 kPa | LULUS |
+| Tekanan Balik Sek | 115,0 kPa | 118,0 kPa (Manometer | +/- 10,0 kPa | LULUS |
+| Level Tangki Ekspans | 68,0 % | 67,5 % (Kaca Intip) | +/- 3,0 % | LULUS |
 
 Jika diskrepansi melebihi toleransi yang diizinkan, *offset* sensor harus dikalibrasi ulang atau sensor diganti. Jangan pernah menyesuaikan rentang toleransi yang dapat diterima hanya untuk mencocokkan sensor yang mengalami pergeseran (*drifting*).
 
@@ -68,20 +64,12 @@ Eksekusi pengujian alarm fisik di bawah Skrip 06:
 - **Level Cairan Rendah Tangki Ekspansi**: Tekan tuas uji pada sakelar pelampung magnetik tangki ekspansi secara manual. Pastikan bahwa CDU memperingatkan operator, mengunci pemanas listrik (*lock-out*), dan memerintahkan pompa air pengisi otomatis (*makeup water pump*) untuk menyala.
 - **Deteksi Kebocoran Cairan Loop Sekunder**: Teteskan 5 mL air demineralisasi melintasi tali penginderaan deteksi kebocoran eksternal yang ditempatkan di bawah sambungan pipa CDU dan baki manifold. Pastikan pengontrol deteksi kebocoran terpicu dalam waktu < 2,0 detik, menampilkan lokasi jarak kebocoran yang tepat, dan mengirimkan alarm mengunci (*latching alarm*) kritis ke BMS pengawas.
 
-```
-+----------------------------------------------------------------------------------------------------+
-| TIGA KEPUTUSAN AUDIT YANG MUNGKIN UNTUK SUATU ALARM |
-+-------------------+--------------------------------------------------------------------------------+
-| 1. LULUS (PASS) | Alarm diinjeksi fisik pd sensor; penampil lokal aktif; BMS mencatat peristiwa |
-| | dgn stempel waktu & deskripsi benar; interlock dieksekusi bersih. |
-+-------------------+--------------------------------------------------------------------------------+
-| 2. GAGAL (FAIL) | Alarm diinjeksi tapi sensor gagal mendeteksi; penundaan melebihi toleransi; |
-| | relai interlock gagal lepas; langsung dicatat pd Log Cacat Master. |
-+-------------------+--------------------------------------------------------------------------------+
-| 3. TIDAK | Peralatan tdk memiliki sensor fisik, kabel, atau register perangkat lunak |
-| DIDEMONSTRASIKAN| utk memicu alarm ini. Dicatat sbg "TIDAK DIDEMONSTRASIKAN" di Lembar 2. |
-+-------------------+--------------------------------------------------------------------------------+
-```
+**TIGA KEPUTUSAN AUDIT YANG MUNGKIN UNTUK SUATU ALARM**
+
+| 1. LULUS (PASS) | Alarm diinjeksi fisik pd sensor; penampil lokal aktif; BMS mencatat peristiwa dgn stempel waktu & deskripsi benar; interlock dieksekusi bersih. |
+| :--- | :--- |
+| 2. GAGAL (FAIL) | Alarm diinjeksi tapi sensor gagal mendeteksi; penundaan melebihi toleransi; relai interlock gagal lepas; langsung dicatat pd Log Cacat Master. |
+| 3. TIDAK DIDEMONSTRASIKAN | Peralatan tdk memiliki sensor fisik, kabel, atau register perangkat lunak utk memicu alarm ini. Dicatat sbg "TIDAK DIDEMONSTRASIKAN" di Lembar 2. |
 
 Jika alarm tertentu tidak dapat didemonstrasikan karena perangkat kerasnya dihilangkan selama konstruksi, baris pada Lembar 2 harus dicatat sebagai **TIDAK DIDEMONSTRASIKAN** (*NOT DEMONSTRATED*). Mencatat alarm yang belum diuji sebagai "LULUS" hanya karena "vendor berjanji logikanya bekerja" adalah pelanggaran profesional yang serius.
 

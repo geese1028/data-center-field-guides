@@ -16,6 +16,23 @@ A building delivered in parts will produce a stack of narrow signatures that som
 
 If they ask you to sign the common plant once, for all future suites, refuse the future. You may sign the common plant for the sentence the evidence supports today. A future suite that connects to it is a new meeting. Connection is not inheritance. The sixth book's rename rule is the right shape: a new path is a new source. A new suite is a new path until its own sheets exist.
 
+## Decoupling Multi-Party Signatures Across Construction, CxA, and Operations
+
+### Using Separate Signature Blocks to Prevent Scope Contamination
+
+In institutional data center project delivery, the transition from construction and commissioning (ASHRAE Guideline 0 / Guideline 202 Levels 1 through 5) to live 24/7 operations is governed by measurable engineering gates rather than schedule milestones. Whenever a handover package asks the receiving operations lead to certify a plant attribute, that attribute must satisfy the quantitative gating relationship:
+
+$$\text{Block}_{\text{GC}} \neq \text{Block}_{\text{CxA}} \neq \text{Block}_{\text{Ops}}$$
+
+If any supporting evidence file, witnessed test script, or as-built redline verification falls outside its acceptance corridor, the operations representative must either issue a formal **Notice of Handover Refusal** or execute a narrow **Conditional Acceptance with 200% Retainage Escrow** that explicitly bounds the permitted operating envelope until the defect is cured and re-tested.
+
+| Handover Audit Dimension | Contractor / Project Team Submission | Operations Gatekeeper Verification Protocol | Mandatory Refusal or Escrow Action |
+| :--- | :--- | :--- | :--- |
+| **Primary Governance Focus** | Ensuring Each Party Signs Strictly for Its Own Evidenced Act | Independent line-by-line audit against Volumes 01–06 criteria | Strike unsupported words from certificate before signing |
+| **Quantitative Proof Standard** | Summary pass/fail cover sheet or verbal assurance | Raw 1-second telemetry CSV, signed witness sheet, and field walk | Classify missing proof as Category A/B defect on Refusal Sheet |
+| **Financial & Operational Lever** | Request for 100% milestone release and full load | Enforce $200\%$ retainage holdback ($E = 2.0 \times C_{\text{fix}}$) and load cap | Hold plant at zero or derated load until remediation passes |
+| **Post-Meeting Custody Rule** | Unfettered contractor access to finish open work | Transition space to Operations LOTO; require approved MOP per fix | Deny unescorted access; log all post-handover interventions |
+
 ## Decisions to record
 
 - Other names on the day, and that none of them replaced your gates.
