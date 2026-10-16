@@ -28,20 +28,6 @@
   <meta name="twitter:title" content="Two documents before you cut metal: First-Principles Data Center Engineering Protocol | Data Center Field Guides"/>
   <meta name="twitter:description" content="The two mandatory engineering documents—the Requirements List and the Prototype Acceptance Sheet—required before fabricating a high-density liquid load bank."/>
   
-  <!-- KaTeX CSS & JS for Math Rendering -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-          onload="renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\(', right: '\)', display: false},
-              {left: '\[', right: '\]', display: true}
-            ],
-            throwOnError: false
-          });"></script>
-
   <!-- Structured Data -->
     <script type="application/ld+json">
 [
@@ -890,7 +876,7 @@
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
 <h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
-<p>The following field protocol—adapted directly from **Volume 01: *Design and Build a Liquid Load Bank for NVL72 Racks***—establishes the step-by-step verification mechanics required on the data hall floor:</p>
+<p>The following field protocol—adapted directly from <strong>Volume 01: <em>Design and Build a Liquid Load Bank for NVL72 Racks</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>This book is a field guide for people who must specify and accept a liquid load bank that can stand in for an NVL72-class rack. It is not a fabrication package. It is not a vendor specification rewritten in friendlier English. It is not a site procedure.</p>
 <p>When you finish it, you should be able to hand a stranger two documents and have those documents survive contact with a prototype. The first is a requirements list. The second is a prototype acceptance sheet. If you cannot produce those two documents from what you have written in the margins, you have not finished the book. You have only read it.</p>
 <p>The load bank replaces the rack-side thermal duty and the rack-side hydraulic duty. It does not replace the coolant distribution unit. It does not accept the hall. It does not prove that the IT equipment will boot, train, or stay within its own limits. Those are different machines and different arguments. Mixing them is how a load-bank project becomes a liquid-cooling project with no owner.</p>

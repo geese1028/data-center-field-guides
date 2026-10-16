@@ -28,20 +28,6 @@
   <meta name="twitter:title" content="A commercial pack is not a technical pass | Data Center Field Guides"/>
   <meta name="twitter:description" content="Why a vendor&#x27;s signed commercial service ticket or invoice never closes a technical data center defect without independent witnessed verification."/>
   
-  <!-- KaTeX CSS & JS for Math Rendering -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-          onload="renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\(', right: '\)', display: false},
-              {left: '\[', right: '\]', display: true}
-            ],
-            throwOnError: false
-          });"></script>
-
   <!-- Structured Data -->
     <script type="application/ld+json">
 [
@@ -891,7 +877,7 @@
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
 <h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
-<p>The following field protocol—adapted directly from **Volume 05: *Run the Data Center Day: What the Manager Must Sign Before the Shift Ends***—establishes the step-by-step verification mechanics required on the data hall floor:</p>
+<p>The following field protocol—adapted directly from <strong>Volume 05: <em>Run the Data Center Day: What the Manager Must Sign Before the Shift Ends</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>A third-party vendor or equipment manufacturer technician working inside your data center is a pair of hands operating under your legal permit. They are not an autonomous entity that you can leave unsupervised in an electrical vault.</p>
 <div class="table-container"><table><thead><tr><th><strong>VENDOR GOVERNANCE GATEWAY</strong></th></tr></thead><tbody><tr><td>[GATE 1] Pre-Arrival Scope: Specific task, approved MOP, tool registry</td></tr><tr><td>↓</td></tr><tr><td>[GATE 2] Security &amp; Safety In-Brief: Badge issued, LOTO verified, PPE audit</td></tr><tr><td>↓</td></tr><tr><td>[GATE 3] Active Escort: Qualified site technician assigned; never unescorted</td></tr><tr><td>↓</td></tr><tr><td>[GATE 4] Scope Boundary Enforcement: Stop Work if task leaves written MOP</td></tr><tr><td>↓</td></tr><tr><td>[GATE 5] Technical Closeout: Physical audit of work, old parts, site clean</td></tr><tr><td>↓</td></tr><tr><td>[GATE 6] Commercial Separation: Technical sign-off != Commercial invoice</td></tr></tbody></table></div>
 <p>A manager who signs a visitor badge, points toward the battery room, and returns to their office has abandoned control of the facility. If that vendor drops a ratchet across a 480V busbar or opens the wrong isolation valve, the outage belongs to the manager, not the vendor.</p>

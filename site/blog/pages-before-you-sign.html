@@ -28,20 +28,6 @@
   <meta name="twitter:title" content="Pages a data center handover must show | Data Center Field Guides"/>
   <meta name="twitter:description" content="The seven non-negotiable closeout binder pages required at least 72 hours before signing operational handover of a mission-critical data hall."/>
   
-  <!-- KaTeX CSS & JS for Math Rendering -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-          onload="renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\(', right: '\)', display: false},
-              {left: '\[', right: '\]', display: true}
-            ],
-            throwOnError: false
-          });"></script>
-
   <!-- Structured Data -->
     <script type="application/ld+json">
 [
@@ -890,7 +876,7 @@
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
 <h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
-<p>The following field protocol—adapted directly from **Volume 07: *Refuse the Handover***—establishes the step-by-step verification mechanics required on the data hall floor:</p>
+<p>The following field protocol—adapted directly from <strong>Volume 07: <em>Refuse the Handover</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>The third book already listed the short pack a liquid verification owes, and it already said an empty tab is a false document. This chapter is the receiver&#x27;s use of that list. You are not collecting tabs to feel complete. You are checking that each sentence they want you to sign has the sheet that supports it. No sheet, no sentence.</p>
 <p>You do not demand the long building list. Seasonal tests, fire integration, an enclosure test, a sampling essay: include them only if the claim included them. Demanding empty categories so your checklist looks like a code is the same sin as their empty tab. Cite a code by title if the contract already names it. Do not paste it, and do not invent its clauses from memory.</p>
 <h2>The sheets that gate your signature</h2>

@@ -28,20 +28,6 @@
   <meta name="twitter:title" content="A data center TDD is not a commissioning | Data Center Field Guides"/>
   <meta name="twitter:description" content="Understanding the structural difference between a buyer/lender Technical Due Diligence (TDD) risk audit and an ASHRAE Level 1–5 commissioning execution."/>
   
-  <!-- KaTeX CSS & JS for Math Rendering -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-          onload="renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\(', right: '\)', display: false},
-              {left: '\[', right: '\]', display: true}
-            ],
-            throwOnError: false
-          });"></script>
-
   <!-- Structured Data -->
     <script type="application/ld+json">
 [
@@ -890,7 +876,7 @@
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
 <h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
-<p>The following field protocol—adapted directly from **Volume 09: *Walk a TDD: Technical Due Diligence Physical Site Audit***—establishes the step-by-step verification mechanics required on the data hall floor:</p>
+<p>The following field protocol—adapted directly from <strong>Volume 09: <em>Walk a TDD: Technical Due Diligence Physical Site Audit</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>A technical due diligence is a reading of technical risk against a contract, done by someone who does not own the plant and will not operate it. The reader is usually a lender, sometimes a buyer. They need to know whether the thing they are financing can do the job the papers say, and what happens if a named assumption fails. They do not need a second design, and they do not need you to be enthusiastic.</p>
 <p>Three principles are enough. You are independent of the parties. You follow risk to a delivery node or to later operation, not every interesting detail. You check compliance by citing the title the contract already names, not by pasting the standard. If a finding does not change a delivery date, a contracted performance, a permit, or the ability to operate, it is a note. Notes may be filed. They do not get the tone of a red flag.</p>
 <p>You will be asked to certify things the financing documents name. Read that list before you travel. A certification you did not see in the engagement is not yours to invent on site. A certification you cannot evidence is refused, in the same document as any yes. The handover book already required that shape. It applies here with a lender in the room instead of an operator.</p>

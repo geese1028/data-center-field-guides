@@ -290,7 +290,13 @@ def inline_format(text: str) -> str:
 
     # 6. Format bold, italic, links, and explicit <br/> tags from table parser
     safe = safe.replace("&lt;br/&gt;", "<br/>")
+    # Support ***bold italic***
+    safe = re.sub(r"\*\*\*([^*]+)\*\*\*", r"<strong><em>\1</em></strong>", safe)
+    # Support **bold *italic* bold**
+    safe = re.sub(r"\*\*([^*]*)\*([^*]+)\*([^*]*)\*\*", r"<strong>\1<em>\2</em>\3</strong>", safe)
+    # Standard bold
     safe = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", safe)
+    # Standard italic
     safe = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", safe)
     safe = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', safe)
 
