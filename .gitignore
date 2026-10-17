@@ -27,4 +27,8 @@ node_modules/
 .linkedin-credentials.json
 .linkedin-published.json
 .linkedin-cron.log
+.reddit-credentials.json
+.reddit-published.json
+.reddit-cron.log
+.reddit-launchpad.html
 
