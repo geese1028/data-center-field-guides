@@ -24,4 +24,5 @@ scratch/
 .opencode/node_modules/
 node_modules/
 .gsc-credentials.json
+.linkedin-credentials.json
 

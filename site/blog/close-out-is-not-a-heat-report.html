@@ -10,6 +10,9 @@
 
     gtag('config', 'AW-16517762043');
   </script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/logo.png"/>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Close-out is not a heat-test report: First-Principles Data Center Engineering Protocol | Data Center Field Guides</title>
@@ -48,7 +51,11 @@
     "publisher": {
       "@type": "Organization",
       "name": "Data Center Field Guides",
-      "url": "https://datacenterfieldguides.com"
+      "url": "https://datacenterfieldguides.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://datacenterfieldguides.com/logo.png"
+      }
     },
     "datePublished": "2026-10-16",
     "mainEntityOfPage": "https://datacenterfieldguides.com/blog/close-out-is-not-a-heat-report",
@@ -223,10 +230,9 @@
       gap: 0.6rem;
     }
     .brand-mark {
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }
@@ -804,7 +810,7 @@
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#books">The 9 Books</a>

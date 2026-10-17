@@ -39,7 +39,7 @@ OUT_SEARCH_DATA = SITE / "search-data.js"
 BASE_URL = "https://datacenterfieldguides.com"  # Canonical production domain
 AMAZON_BOOK_URL = "https://www.amazon.com/dp/B0HMWDV6LT"  # Direct link to Book 1 on Amazon
 
-# Google Tag (gtag.js) for Google Ads conversion tracking and analytics
+# Google Tag (gtag.js) for Google Ads conversion tracking and analytics + Brand Favicons
 GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
@@ -48,7 +48,11 @@ GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
     gtag('js', new Date());
 
     gtag('config', 'AW-16517762043');
-  </script>"""
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/logo.png"/>"""
+
 
 # Book Catalog Metadata for Amazon Funnel Mapping
 BOOK_CATALOG = {
@@ -886,7 +890,11 @@ def generate_json_ld(meta, faqs, canonical_url, book_num):
             "publisher": {
                 "@type": "Organization",
                 "name": "Data Center Field Guides",
-                "url": BASE_URL
+                "url": BASE_URL,
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": f"{BASE_URL}/logo.png"
+                }
             },
             "datePublished": pub_date,
             "mainEntityOfPage": canonical_url,
@@ -1173,10 +1181,9 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       gap: 0.6rem;
     }}
     .brand-mark {{
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }}
@@ -1754,7 +1761,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#books">The 9 Books</a>
@@ -2002,10 +2009,9 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
       gap: 0.6rem;
     }}
     .brand-mark {{
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }}
@@ -2587,7 +2593,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#books">The 9 Books</a>
@@ -2909,10 +2915,9 @@ def generate_hub_index(articles, is_subfolder=False):
       gap: 0.6rem;
     }}
     .brand-mark {{
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }}
@@ -3984,7 +3989,7 @@ def generate_hub_index(articles, is_subfolder=False):
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="{home_link}" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="{home_link}" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="{home_link}">Home</a>
         <a href="{books_link}">The 9 Books</a>
@@ -4427,10 +4432,9 @@ def generate_about_page():
       gap: 0.6rem;
     }}
     .brand-mark {{
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }}
@@ -4736,7 +4740,7 @@ def generate_about_page():
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#books">The 9 Books</a>
@@ -5302,10 +5306,9 @@ def generate_buy_page():
       gap: 0.6rem;
     }}
     .brand-mark {{
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
       display: inline-block;
       flex-shrink: 0;
     }}
@@ -5985,7 +5988,7 @@ def generate_buy_page():
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#books">The 9 Books</a>

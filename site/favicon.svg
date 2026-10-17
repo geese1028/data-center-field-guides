@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1120"/>
+      <stop offset="55%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#172033"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="blueAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Rounded Technical Chassis -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bgGrad)" stroke="url(#frameGrad)" stroke-width="12"/>
+  
+  <!-- Subtle Inner Blueprint Grid Lines -->
+  <g stroke="#1E293B" stroke-width="2" opacity="0.55">
+    <line x1="96" y1="64" x2="96" y2="448"/>
+    <line x1="416" y1="64" x2="416" y2="448"/>
+    <line x1="64" y1="120" x2="448" y2="120"/>
+    <line x1="64" y1="392" x2="448" y2="392"/>
+  </g>
+
+  <!-- Corner Alignment Reticles (Commissioning Target Marks) -->
+  <g stroke="#3B82F6" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M 68 96 L 68 68 L 96 68"/>
+    <path d="M 444 96 L 444 68 L 416 68"/>
+    <path d="M 68 416 L 68 444 L 96 444"/>
+    <path d="M 444 416 L 444 444 L 416 444"/>
+  </g>
+
+  <!-- Dual-Feed 2N Redundancy Vertical Busbars (Left: Feed A Blue, Right: Feed B Emerald) -->
+  <path d="M 104 132 L 104 348" stroke="#3B82F6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 408 132 L 408 348" stroke="#10B981" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Rack Module 01 (Top: Power & Grid Verification) -->
+  <rect x="132" y="108" width="248" height="68" rx="12" fill="url(#bladeGrad)" stroke="#334155" stroke-width="4"/>
+  <line x1="104" y1="142" x2="132" y2="142" stroke="#3B82F6" stroke-width="6"/>
+  <line x1="380" y1="142" x2="408" y2="142" stroke="#10B981" stroke-width="6"/>
+  <circle cx="164" cy="142" r="10" fill="#3B82F6"/>
+  <rect x="192" y="135" width="96" height="14" rx="4" fill="#94A3B8" opacity="0.85"/>
+  <rect x="304" y="135" width="48" height="14" rx="4" fill="#3B82F6" opacity="0.45"/>
+
+  <!-- Rack Module 02 (Middle: Liquid Thermal Loop & Load Bank) -->
+  <rect x="132" y="206" width="248" height="68" rx="12" fill="url(#bladeGrad)" stroke="#3B82F6" stroke-width="4"/>
+  <line x1="104" y1="240" x2="132" y2="240" stroke="#3B82F6" stroke-width="6"/>
+  <line x1="380" y1="240" x2="408" y2="240" stroke="#10B981" stroke-width="6"/>
+  <circle cx="164" cy="240" r="10" fill="#10B981"/>
+  <rect x="192" y="233" width="116" height="14" rx="4" fill="#F8FAFC"/>
+  <rect x="322" y="233" width="30" height="14" rx="4" fill="#10B981" opacity="0.65"/>
+
+  <!-- Rack Module 03 (Bottom: Redundancy & Handover Gate) -->
+  <rect x="132" y="304" width="248" height="68" rx="12" fill="url(#bladeGrad)" stroke="#334155" stroke-width="4"/>
+  <line x1="104" y1="338" x2="132" y2="338" stroke="#3B82F6" stroke-width="6"/>
+  <line x1="380" y1="338" x2="408" y2="338" stroke="#10B981" stroke-width="6"/>
+  <circle cx="164" cy="338" r="10" fill="#F59E0B"/>
+  <rect x="192" y="331" width="80" height="14" rx="4" fill="#94A3B8" opacity="0.85"/>
+  <rect x="288" y="331" width="64" height="14" rx="4" fill="#F59E0B" opacity="0.5"/>
+
+  <!-- Bottom Technical Stencil Pill: DCFG -->
+  <rect x="148" y="400" width="216" height="44" rx="8" fill="#090D16" stroke="#2563EB" stroke-width="3"/>
+  <text x="256" y="430" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="900" letter-spacing="6">DCFG</text>
+</svg>
