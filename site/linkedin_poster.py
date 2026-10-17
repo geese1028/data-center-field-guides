@@ -331,6 +331,18 @@ def main():
 
     if "--publish-next" in sys.argv:
         pub_log = load_pub_log()
+        now_utc = datetime.now(timezone.utc)
+        for entry in pub_log.values():
+            pub_ts = entry.get("published_at")
+            if pub_ts:
+                try:
+                    dt = datetime.fromisoformat(pub_ts.replace("Z", "+00:00"))
+                    hours_since = (now_utc - dt).total_seconds() / 3600.0
+                    if hours_since < 20.0 and "--force" not in sys.argv:
+                        print(f"[i] A post was already published {hours_since:.1f}h ago ({entry.get('post_urn')}). Skipping to protect LinkedIn feed reach.")
+                        return
+                except Exception:
+                    pass
         target = None
         for item in WAVE_1_QUEUE:
             if item["id"] not in pub_log:
