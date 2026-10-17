@@ -1,19 +1,19 @@
 ---
-title: "Data Center Technical Due Diligence (TDD): The 6-Pillar Site Audit & Red-Flag Checklist"
-description: "A complete technical due diligence (TDD) audit checklist for data center M&A and debt financing. Covers utility substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads."
+title: "Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit & Red-Flag Guide"
+description: "Complete data center due diligence and technical due diligence checklist for infrastructure assets. Covers substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads."
 slug: data-center-technical-due-diligence-checklist
 book: "Walk a TDD: Technical Due Diligence Physical Site Audit"
 book_number: 9
 primary_keyword: "data center technical due diligence checklist"
-secondary_keywords: ["data center TDD audit framework", "data center dual utility feed diversity", "NVL72 floor loading structural capacity", "data center TDD red flag fatal flaw"]
+secondary_keywords: ["data center due diligence", "due diligence for infrastructure assets", "technical due diligence checklist", "facility location due diligence checklist", "NVL72 floor loading structural capacity"]
 schema_type: "TechArticle"
 amazon_asin: "B0EXAMP09"
 publish_date: "2026-10-14"
 ---
 
-# Data Center Technical Due Diligence (TDD): The 6-Pillar Site Audit & Red-Flag Checklist
+# Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit & Red-Flag Guide
 
-> **Direct Answer Block**: Data center technical due diligence (TDD) is an independent engineering assessment performed on behalf of institutional lenders or infrastructure buyers to evaluate the physical, electrical, mechanical, and civil risks of an operating or newly completed facility. It reconciles contractual capacity claims against primary utility records, physical equipment inventories, and site hydrology to formulate binding Conditions Precedent (CP) and financial escrow holdbacks before loan syndication or commercial acquisition.
+> **Direct Answer Block**: A data center technical due diligence checklist is an independent engineering audit framework used in **due diligence for infrastructure assets**, M&A acquisitions, and project debt syndication to verify the physical, electrical, mechanical, and civil integrity of a mission-critical facility. It reconciles seller capacity claims against firm utility interconnect agreements, 500-year flood hydrology, 72-hour diesel fuel autonomy, and NVL72 structural floor loading to establish binding Conditions Precedent (CP) and financial escrow holdbacks.
 
 ![Figure 1: Technical Due Diligence Audit Framework & Fatal Flaw Gating](figures/flagship/fig-01-tdd-audit-framework-and-red-flags.png)
 
@@ -118,10 +118,16 @@ A Condition Precedent is a mandatory legal covenant in the credit agreement that
 ### Can an Independent Engineer certify facility capacity based on utility application letters?
 No. A utility application or pending permit represents potential future capacity, not firm present capacity. The Independent Engineer must only certify capacity supported by fully executed, firm, uncurtailable utility allocation agreements and installed physical electrical switchgear.
 
+### How does due diligence for infrastructure assets differ between greenfield land and operating data centers?
+For greenfield parcels, **facility location due diligence** focuses on transmission substation distance ($\le 3.0\,\text{km}$), 500-year flood hydrology, geotechnical bearing capacity ($q_a \ge 250\,\text{kPa}$), and micro-vibration setbacks. For operating infrastructure assets, **technical due diligence (TDD)** audits physical asset counts ($N_{\text{sample}} = \sqrt{N} + 1$), single-line diagram reconciliation, active alarm logs, diesel fuel polishing records, and deferred maintenance CAPEX.
+
 ---
 
 ## The Book Bridge
 
-A technical due diligence visit is where millions of dollars in financing terms are won or lost. The complete auditor's field guide—including the full 6-pillar visit sheet, sample size calculators, single-line reconciliation protocols, and the legal wording of technical refusal—is detailed in **Walk a TDD: Technical Due Diligence Physical Site Audit** by Tristan.
+A technical due diligence visit is where millions of dollars in financing terms are won or lost. The complete auditor's field guide—including the full 6-pillar visit sheet, sample size calculators, single-line reconciliation protocols, and the legal wording of technical refusal—is detailed in **[Walk a TDD: Technical Due Diligence Physical Site Audit](https://datacenterfieldguides.com/book/09-walk-a-tdd)** by Tristan.
 
-**Walk a TDD** — *Coming Soon on Amazon Kindle & EPUB*
+Also explore our companion field guides:
+- [Data Center Facility Location Due Diligence: The Complete Site Selection & Red-Flag Audit Checklist](https://datacenterfieldguides.com/blog/data-center-facility-location-due-diligence)
+- [Data Center Corrosion Monitoring & ISA-71.04 Coupon Placement Guide](https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide)
+- [Data Center Monitoring Points & NIST NTP / IEEE 1588v2 PTP Clock Synchronization](https://datacenterfieldguides.com/blog/a-point-needs-a-clock)

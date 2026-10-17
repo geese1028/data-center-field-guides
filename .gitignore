@@ -23,3 +23,5 @@ scratch/
 # Dependencies
 .opencode/node_modules/
 node_modules/
+.gsc-credentials.json
+

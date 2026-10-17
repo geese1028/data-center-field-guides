@@ -266,16 +266,23 @@ def run_seo_audit():
             except Exception as e:
                 issues.append(f"JSON-LD SYNTAX ERROR: {rel_path}: {e}")
 
-        # Check Internal Links (verify target exists)
+        # Check Internal Links (verify target exists, supporting Clean URLs)
         for link in parser.links:
             if link.startswith("#") or link.startswith("http://") or link.startswith("https://") or link.startswith("mailto:"):
                 continue
-            # Relative link resolution
             clean_link = link.split("#")[0].split("?")[0]
             if not clean_link:
                 continue
-            target_file = (path.parent / clean_link).resolve()
-            if not target_file.exists():
+            if clean_link.startswith("/"):
+                target_file = (SITE_ROOT / clean_link.lstrip("/")).resolve()
+            else:
+                target_file = (path.parent / clean_link).resolve()
+            exists = (
+                target_file.exists()
+                or target_file.with_suffix(".html").exists()
+                or (target_file / "index.html").exists()
+            )
+            if not exists:
                 issues.append(f"BROKEN LINK 404: In {rel_path}, link '{link}' does not exist on disk!")
 
     print("\n" + "=" * 70)

@@ -1,19 +1,19 @@
 ---
-title: "Data Center Facility Location Due Diligence: The Complete Site Selection & Red-Flag Audit Checklist"
-description: "An authoritative engineering checklist for data center facility location and site selection due diligence. Covers substation distance, 500-yr flood plains, geotechnical bearing, micro-vibrations, and fatal flaw refusal gates."
+title: "Facility Location Due Diligence Checklist: Data Center Site Selection & Audit Guide"
+description: "Complete facility location due diligence checklist for data center site selection and infrastructure assets. Audits substation distance, 500-yr flood hydrology, geotechnical bearing, and micro-vibrations."
 slug: data-center-facility-location-due-diligence
 book: "Walk a TDD: Technical Due Diligence Physical Site Audit"
 book_number: 9
 primary_keyword: "facility location due diligence checklist"
-secondary_keywords: ["data center facility location due diligence", "data center site selection due diligence", "data center substation distance and grid interconnect", "data center flood plain hydrology due diligence", "data center seismic micro-vibration soil capacity"]
+secondary_keywords: ["data center facility location due diligence", "due diligence for infrastructure assets", "data center due diligence", "data center site selection due diligence", "data center substation distance and grid interconnect"]
 schema_type: "TechArticle"
 amazon_asin: "B0EXAMP09"
 publish_date: "2026-10-17"
 ---
 
-# Data Center Facility Location Due Diligence: The Complete Site Selection & Red-Flag Audit Checklist
+# Facility Location Due Diligence Checklist: Data Center Site Selection & Audit Guide
 
-> **Direct Answer Block**: A data center facility location due diligence checklist is a rigorous engineering framework used by infrastructure funds, hyperscalers, and lenders to physically verify the viability of a real estate parcel before capital deployment. It audits six non-negotiable physical vectors: transmission grid proximity and dual-feed diversity, 500-year civil hydrology, geotechnical soil bearing capacity for heavy AI racks, environmental ISA-71.04 corrosivity, micro-vibration setbacks, and uncurtailable water rights.
+> **Direct Answer Block**: A **facility location due diligence checklist** is a rigorous engineering framework used in **due diligence for infrastructure assets** by private equity funds, hyperscalers, and project lenders to physically verify the viability of a parcel before capital deployment. It audits six non-negotiable physical vectors: transmission grid proximity and dual-feed diversity, 500-year civil hydrology, geotechnical soil bearing capacity for heavy AI racks, environmental ISA-71.04 corrosivity, micro-vibration setbacks, and uncurtailable water rights.
 
 ![Figure 1: Data Center Facility Location Due Diligence Matrix](figures/flagship/fig-facility-location-due-diligence-matrix.png)
 
@@ -158,9 +158,9 @@ Legacy data centers were designed for uniform floor loads of 8 to 12 kN/m² with
 
 ## The Book Bridge
 
-A technical due diligence site visit is where multi-million-dollar land acquisition terms are made or abandoned. For the complete physical audit protocol—including unannounced utility walk procedures, sample size calculators, single-line reconciliation sheets, and legal refusal templates—consult **[Walk a TDD: Technical Due Diligence Physical Site Audit](https://datacenterfieldguides.com/book/09-walk-a-tdd.html)** by Tristan.
+A technical due diligence site visit is where multi-million-dollar land acquisition terms are made or abandoned. For the complete physical audit protocol—including unannounced utility walk procedures, sample size calculators, single-line reconciliation sheets, and legal refusal templates—consult **[Walk a TDD: Technical Due Diligence Physical Site Audit](https://datacenterfieldguides.com/book/09-walk-a-tdd)** by Tristan.
 
 Also explore our companion field guides:
-- [Data Center Technical Due Diligence (TDD): The 6-Pillar Site Audit & Red-Flag Checklist](https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist.html)
-- [Data Center Corrosion Monitoring & ISA-71.04 Coupon Placement Guide](https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide.html)
-- [NVL72 Liquid Load Bank Testing: P&ID Hydraulics and Quick Disconnects](https://datacenterfieldguides.com/blog/nvl72-liquid-load-bank-testing-guide.html)
+- [Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit & Red-Flag Guide](https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist)
+- [Data Center Corrosion Monitoring & ISA-71.04 Coupon Placement Guide](https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide)
+- [Data Center Monitoring Points & NIST NTP / IEEE 1588v2 PTP Clock Synchronization](https://datacenterfieldguides.com/blog/a-point-needs-a-clock)

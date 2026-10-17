@@ -420,16 +420,16 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "keywords": "preventive maintenance PM record vs defect resolution"
   },
   {
-    "title": "A monitoring point needs a clock: First-Principles Data Center Engineering Protocol",
+    "title": "Data Center Monitoring Points & NIST NTP / IEEE 1588v2 PTP Clock Synchronization",
     "slug": "a-point-needs-a-clock",
     "book_num": 6,
     "book_title": "BMS/EPMS Telemetry & Alarms",
-    "desc": "Why every data center monitoring point requires a source-stamped UTC clock synchronized via IEEE 1588v2 PTP or NTP before it may enter Sequence of Events logs.",
+    "desc": "Field audit guide for data center monitoring points: why every BMS and EPMS sensor requires NIST-traceable NTP or IEEE 1588v2 PTP clock synchronization (≤1 ms skew).",
     "topic": "telemetry_cfd",
     "topic_label": "Telemetry, CFD & Alarms",
     "is_deep_dive": true,
     "read_mins": 11,
-    "keywords": "BMS EPMS PTP IEEE 1588v2 clock synchronization"
+    "keywords": "data center monitoring points NIST NTP PTP synchronization"
   },
   {
     "title": "A health score does not close an incident",
@@ -780,11 +780,11 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "keywords": "data center corrosion coupon ISA 71.04"
   },
   {
-    "title": "Data Center Facility Location Due Diligence: The Complete Site Selection & Red-Flag Audit Checklist",
+    "title": "Facility Location Due Diligence Checklist: Data Center Site Selection & Audit Guide",
     "slug": "data-center-facility-location-due-diligence",
     "book_num": 9,
     "book_title": "Technical Due Diligence",
-    "desc": "An authoritative engineering checklist for data center facility location and site selection due diligence. Covers substation distance, 500-yr flood plains, geotechnical bearing, micro-vibrations, and fatal flaw refusal gates.",
+    "desc": "Complete facility location due diligence checklist for data center site selection and infrastructure assets. Audits substation distance, 500-yr flood hydrology, geotechnical bearing, and micro-vibrations.",
     "topic": "integrity_tdd",
     "topic_label": "Corrosion & Due Diligence",
     "is_deep_dive": true,
@@ -804,15 +804,15 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "keywords": "data center shift handover checklist"
   },
   {
-    "title": "Data Center Technical Due Diligence (TDD): The 6-Pillar Site Audit & Red-Flag Checklist",
+    "title": "Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit & Red-Flag Guide",
     "slug": "data-center-technical-due-diligence-checklist",
     "book_num": 9,
     "book_title": "Technical Due Diligence",
-    "desc": "A complete technical due diligence (TDD) audit checklist for data center M&A and debt financing. Covers utility substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads.",
+    "desc": "Complete data center due diligence and technical due diligence checklist for infrastructure assets. Covers substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads.",
     "topic": "integrity_tdd",
     "topic_label": "Corrosion & Due Diligence",
     "is_deep_dive": true,
-    "read_mins": 8,
+    "read_mins": 9,
     "keywords": "data center technical due diligence checklist"
   },
   {

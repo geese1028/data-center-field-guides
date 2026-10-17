@@ -469,7 +469,7 @@ def render_toc_accordion(num, b, link_prefix):
     if not chapters:
         return ""
     sample_slug = b.get("sample_slug", "")
-    sample_link = f"{link_prefix}{sample_slug}.html" if sample_slug else ""
+    sample_link = f"{link_prefix}{sample_slug}" if sample_slug else ""
     
     items = "".join([f"<li>{html.escape(ch)}</li>" for ch in chapters])
     sample_btn = f"""
@@ -530,7 +530,7 @@ def render_top_book_ribbon(book_num, b):
         cta_target = ' target="_blank" rel="noopener"'
         cta_text = "Order Manual on Amazon &rarr;"
     else:
-        cta_href = "../index.html#books"
+        cta_href = "/#books"
         cta_target = ""
         cta_text = "View Series Roadmap &rarr;"
         
@@ -598,7 +598,7 @@ def inline_format(text, md_to_html_map=None):
         url = match.group(2)
         if md_to_html_map and url.endswith(".md"):
             target_file = Path(url).name
-            resolved = md_to_html_map.get(target_file, md_to_html_map.get(url, url.replace(".md", ".html")))
+            resolved = md_to_html_map.get(target_file, md_to_html_map.get(url, url.replace(".md", "")))
             return f"[{label}]({resolved})"
         return match.group(0)
 
@@ -900,7 +900,7 @@ def generate_json_ld(meta, faqs, canonical_url, book_num):
                 "@type": "Person",
                 "name": "Tristan"
             },
-            "url": f"{BASE_URL}/book/{book_info['slug']}.html",
+            "url": f"{BASE_URL}/book/{book_info['slug']}",
             "bookFormat": "EBook",
             "offers": {
                 "@type": "Offer",
@@ -1002,7 +1002,7 @@ def render_related_section(related_articles):
         badge = "★ DEEP-DIVE" if a['is_deep_dive'] else f"VOL 0{a['book_num']}"
         badge_class = "deep-dive" if a['is_deep_dive'] else ""
         cards.append(f"""
-        <a href="{a['slug']}.html" class="related-card {badge_class}">
+        <a href="/blog/{a['slug']}" class="related-card {badge_class}">
           <div class="related-card-meta">
             <span class="related-badge">{badge}</span>
             <span class="related-time">⏱️ {a['read_mins']}m</span>
@@ -1754,13 +1754,13 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="../index.html" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#books">The 9 Books</a>
-        <a href="index.html">Field Protocols (68)</a>
-        <a href="../about.html">About Tristan</a>
-        <a href="../buy.html" class="nav-buy-btn">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">Field Protocols (69)</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1782,11 +1782,11 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 
   <main class="content-container">
     <nav class="article-breadcrumbs" aria-label="Breadcrumb">
-      <a href="../index.html">Home</a>
+      <a href="/">Home</a>
       <span class="crumb-separator">/</span>
-      <a href="../index.html#books">The 9 Books</a>
+      <a href="/#books">The 9 Books</a>
       <span class="crumb-separator">/</span>
-      <a href="../book/{b_info['slug']}.html">Vol 0{book_num}: {html.escape(b_info['short_title'])}</a>
+      <a href="/book/{b_info['slug']}">Vol 0{book_num}: {html.escape(b_info['short_title'])}</a>
       <span class="crumb-separator">/</span>
       <span class="crumb-current">{html.escape(title)}</span>
     </nav>
@@ -1825,7 +1825,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 def generate_book_volume_page(num, b, volume_articles, all_books):
     """Generate high-converting dedicated pillar hub page for an individual book volume."""
     slug = b["slug"]
-    canonical_url = f"{BASE_URL}/book/{slug}.html"
+    canonical_url = f"{BASE_URL}/book/{slug}"
     is_live = (b.get("status") == "live")
     
     prev_num = 9 if num == 1 else num - 1
@@ -1849,11 +1849,11 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
             <span class="badge-topic">{a['topic_label'].split('&')[0].strip()}</span>
             <span class="card-read-time">⏱️ {a['read_mins']}m read</span>
           </div>
-          <h3><a href="../blog/{a['slug']}.html">{html.escape(a['title'])}</a></h3>
+          <h3><a href="/blog/{a['slug']}">{html.escape(a['title'])}</a></h3>
           <p>{html.escape(a['desc'])}</p>
           <div class="card-footer">
             <span class="footer-vol">Volume 0{num} Protocol</span>
-            <a href="../blog/{a['slug']}.html" class="read-more">Read Protocol &rarr;</a>
+            <a href="/blog/{a['slug']}" class="read-more">Read Protocol &rarr;</a>
           </div>
         </article>
         """)
@@ -1861,7 +1861,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
     # Compile chapter outline
     chapters = b.get("chapters", [])
     sample_slug = b.get("sample_slug", "")
-    sample_btn = f'<a href="../blog/{sample_slug}.html" class="sample-read-btn" style="margin-top: 1rem; display: inline-flex;">📖 Read Featured Sample Protocol (Free) &rarr;</a>' if sample_slug else ''
+    sample_btn = f'<a href="/blog/{sample_slug}" class="sample-read-btn" style="margin-top: 1rem; display: inline-flex;">📖 Read Featured Sample Protocol (Free) &rarr;</a>' if sample_slug else ''
     
     chapter_items = "".join([f"<li><span class='chapter-num'>Ch 0{i+1}:</span> <span class='chapter-name'>{html.escape(ch.split(':', 1)[-1].strip() if ':' in ch else ch)}</span></li>" for i, ch in enumerate(chapters)])
     
@@ -2587,13 +2587,13 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="../index.html" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#books">The 9 Books</a>
-        <a href="../blog/index.html">Field Protocols (68)</a>
-        <a href="../about.html">About Tristan</a>
-        <a href="../buy.html" class="nav-buy-btn">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">Field Protocols (69)</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -2615,9 +2615,9 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 
   <div class="container">
     <nav class="volume-breadcrumbs" aria-label="Breadcrumb">
-      <a href="../index.html">Home</a>
+      <a href="/">Home</a>
       <span class="crumb-sep">/</span>
-      <a href="../index.html#books">The 9 Books</a>
+      <a href="/#books">The 9 Books</a>
       <span class="crumb-sep">/</span>
       <span class="crumb-current">Volume 0{num}: {html.escape(b['short_title'])}</span>
     </nav>
@@ -2670,13 +2670,13 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 
     <!-- Nav between volumes -->
     <div class="volume-nav-strip">
-      <a href="{prev_b['slug']}.html" class="volume-nav-link">
+      <a href="/book/{prev_b['slug']}" class="volume-nav-link">
         &larr; Previous: Volume 0{prev_num} ({html.escape(prev_b['short_title'])})
       </a>
-      <a href="../index.html#books" class="volume-nav-link" style="color: var(--amber);">
+      <a href="/#books" class="volume-nav-link" style="color: var(--amber);">
         📚 View Complete 9-Volume Library
       </a>
-      <a href="{next_b['slug']}.html" class="volume-nav-link">
+      <a href="/book/{next_b['slug']}" class="volume-nav-link">
         Next: Volume 0{next_num} ({html.escape(next_b['short_title'])}) &rarr;
       </a>
     </div>
@@ -2696,12 +2696,12 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 
 def generate_hub_index(articles, is_subfolder=False):
     """Generate high-converting interactive pillar homepage or dedicated /blog/ archive."""
-    link_prefix = "" if is_subfolder else "blog/"
-    home_link = "../index.html" if is_subfolder else "index.html"
-    about_link = "../about.html" if is_subfolder else "about.html"
-    blog_link = "index.html" if is_subfolder else "blog/index.html"
-    books_link = f"{home_link}#books"
-    buy_link = "../buy.html" if is_subfolder else "buy.html"
+    link_prefix = "/blog/"
+    home_link = "/"
+    about_link = "/about"
+    blog_link = "/blog/"
+    books_link = "/#books"
+    buy_link = "/buy"
     script_prefix = "" if not is_subfolder else "../"
 
     # Compile article cards HTML
@@ -2726,7 +2726,7 @@ def generate_hub_index(articles, is_subfolder=False):
             {deep_badge}
             <span class="card-read-time">⏱️ {a['read_mins']}m</span>
           </div>
-          <h3><a href="{link_prefix}{a['slug']}.html">{html.escape(a['title'])}</a></h3>
+          <h3><a href="{link_prefix}{a['slug']}">{html.escape(a['title'])}</a></h3>
           <p>{html.escape(a['desc'])}</p>
           <div class="card-footer">
             <span class="footer-vol">Book 0{a['book_num']}</span>
@@ -2736,7 +2736,7 @@ def generate_hub_index(articles, is_subfolder=False):
         """)
 
     vol_counts = {n: len([a for a in articles if a['book_num'] == n]) for n in BOOK_CATALOG}
-    book_hub_prefix = "book/" if not is_subfolder else "../book/"
+    book_hub_prefix = "/book/"
 
     # Compile book catalog cards (for homepage)
     book_cards = []
@@ -2747,7 +2747,7 @@ def generate_hub_index(articles, is_subfolder=False):
         deliverables_html = render_deliverables_pills(b)
         toc_html = render_toc_accordion(num, b, link_prefix)
         order_block = render_order_now_block(num, b, is_cta=False)
-        book_hub_href = f"{book_hub_prefix}{b['slug']}.html"
+        book_hub_href = f"{book_hub_prefix}{b['slug']}"
 
         book_cards.append(f"""
         <div class="{card_class}">
@@ -4345,7 +4345,7 @@ def generate_hub_index(articles, is_subfolder=False):
 
 def generate_about_page():
     """Generate high-authority About Me profile page highlighting certifications and signature projects."""
-    canonical_url = f"{BASE_URL}/about.html"
+    canonical_url = f"{BASE_URL}/about"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -4736,13 +4736,13 @@ def generate_about_page():
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="index.html" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#books">The 9 Books</a>
-        <a href="blog/index.html">Field Protocols (68)</a>
-        <a href="about.html" class="active">About Tristan</a>
-        <a href="buy.html" class="nav-buy-btn">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">Field Protocols (69)</a>
+        <a href="/about" class="active">About Tristan</a>
+        <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -5062,7 +5062,7 @@ def generate_about_page():
       <div class="philosophy-actions">
         <a href="https://www.amazon.com/dp/B0HMWDV6LT" target="_blank" rel="noopener" class="btn-action primary">Get Book 1 on Amazon →</a>
         <a href="https://www.amazon.com/dp/B0HMZTGG81" target="_blank" rel="noopener" class="btn-action primary">Get Book 2 on Amazon →</a>
-        <a href="blog/index.html" class="btn-action secondary">Explore All 68 Field Protocols</a>
+        <a href="/blog/" class="btn-action secondary">Explore All 69 Field Protocols</a>
       </div>
     </div>
   </div>
@@ -5082,7 +5082,7 @@ def generate_about_page():
 
 def generate_buy_page():
     """Generate high-converting official bookstore and digital distribution gateway page."""
-    canonical_url = f"{BASE_URL}/buy.html"
+    canonical_url = f"{BASE_URL}/buy"
     
     # 1. Live Books (Volume 01 & Volume 02)
     live_cards = []
@@ -5093,7 +5093,7 @@ def generate_buy_page():
         order_block = render_order_now_block(num, b, is_cta=False)
         chapters = b.get("chapters", [])
         sample_slug = b.get("sample_slug", "")
-        sample_btn = f'<a href="blog/{sample_slug}.html" class="featured-sample-btn">📖 Read Featured Protocol Excerpt (Free) &rarr;</a>' if sample_slug else ''
+        sample_btn = f'<a href="/blog/{sample_slug}" class="featured-sample-btn">📖 Read Featured Protocol Excerpt (Free) &rarr;</a>' if sample_slug else ''
         chapter_items = "".join([f"<li><span class='ch-num'>Ch 0{i+1}:</span> <span class='ch-name'>{html.escape(ch.split(':', 1)[-1].strip() if ':' in ch else ch)}</span></li>" for i, ch in enumerate(chapters)])
         
         live_cards.append(f"""
@@ -5132,7 +5132,7 @@ def generate_buy_page():
         mockup_html = render_3d_book_mockup(num, b)
         deliverables_html = render_deliverables_pills(b)
         order_block = render_order_now_block(num, b, is_cta=False)
-        book_hub_href = f"book/{b['slug']}.html"
+        book_hub_href = f"/book/{b['slug']}"
         
         roadmap_cards.append(f"""
         <div class="buy-roadmap-card">
@@ -5985,13 +5985,13 @@ def generate_buy_page():
 <body>
   <header class="site-header">
     <div class="nav-container">
-      <a href="index.html" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
+      <a href="/" class="brand"><span class="brand-mark"></span>DATA CENTER <span>FIELD GUIDES</span></a>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#books">The 9 Books</a>
-        <a href="blog/index.html">Field Protocols (68)</a>
-        <a href="about.html">About Tristan</a>
-        <a href="buy.html" class="nav-buy-btn active">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">Field Protocols (69)</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-buy-btn active">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -6013,7 +6013,7 @@ def generate_buy_page():
 
   <div class="container">
     <nav class="buy-breadcrumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <span class="crumb-sep">/</span>
       <span class="crumb-current">Buy Field Guides</span>
     </nav>
@@ -6089,7 +6089,7 @@ def generate_buy_page():
         </p>
       </div>
       <div class="licensing-action">
-        <a href="about.html" class="btn-inquire">Contact Tristan &amp; Credentials &rarr;</a>
+        <a href="/about" class="btn-inquire">Contact Tristan &amp; Credentials &rarr;</a>
       </div>
     </div>
   </div>
@@ -6141,12 +6141,12 @@ def main():
         art_meta["body"] = body
         art_meta["path"] = path
 
-        # Register mapping for markdown links
+        # Register mapping for markdown links (clean URLs without .html)
         slug = art_meta["slug"]
-        md_to_html_map[path.name] = f"{slug}.html"
-        md_to_html_map[path.stem] = f"{slug}.html"
-        md_to_html_map[f"{slug}.md"] = f"{slug}.html"
-        md_to_html_map[slug] = f"{slug}.html"
+        md_to_html_map[path.name] = f"/blog/{slug}"
+        md_to_html_map[path.stem] = f"/blog/{slug}"
+        md_to_html_map[f"{slug}.md"] = f"/blog/{slug}"
+        md_to_html_map[slug] = f"/blog/{slug}"
 
         raw_articles.append(art_meta)
 
@@ -6155,14 +6155,14 @@ def main():
     # Phase 2: HTML Compilation for individual articles
     sitemap_urls = [
         f"{BASE_URL}/",
-        f"{BASE_URL}/about.html",
-        f"{BASE_URL}/buy.html",
+        f"{BASE_URL}/about",
+        f"{BASE_URL}/buy",
         f"{BASE_URL}/blog/"
     ]
 
     for art in raw_articles:
         slug = art["slug"]
-        canonical_url = f"{BASE_URL}/blog/{slug}.html"
+        canonical_url = f"{BASE_URL}/blog/{slug}"
 
         # Find 3 related articles from same book or same topic
         related = [
@@ -6234,7 +6234,7 @@ def main():
         vol_html = generate_book_volume_page(num, b, vol_articles, BOOK_CATALOG)
         out_vol_path = BOOK_DIR / f"{b['slug']}.html"
         out_vol_path.write_text(vol_html, encoding="utf-8")
-        vol_url = f"{BASE_URL}/book/{b['slug']}.html"
+        vol_url = f"{BASE_URL}/book/{b['slug']}"
         sitemap_urls.append(vol_url)
     print(f"Generated 9 Dedicated Book Volume Pillar Pages in {BOOK_DIR}")
 
@@ -6243,7 +6243,7 @@ def main():
     OUT_SITEMAP.write_text(sitemap_content, encoding="utf-8")
     print(f"Generated Sitemap with {len(set(sitemap_urls))} URLs: {OUT_SITEMAP}")
 
-    print("\nSite build complete! All 68 articles, 9 volume hub pages + About Me page are fully online, indexed, and cross-linked.")
+    print("\nSite build complete! All 69 articles, 9 volume hub pages + About Me page are fully online, indexed, and cross-linked.")
 
 
 if __name__ == "__main__":

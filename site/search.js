@@ -484,7 +484,7 @@
       const itemsHtml = filtered.map((item, idx) => {
         const isSel = idx === selectedIndex ? ' is-selected' : '';
         const deepBadge = item.is_deep_dive ? '<span class="result-deep-badge">★ DEEP-DIVE</span>' : '';
-        const href = `${blogPrefix}${item.slug}.html`;
+        const href = `${blogPrefix}${item.slug}`;
 
         return `
         <a href="${href}" class="search-result-item${isSel}" data-idx="${idx}">
