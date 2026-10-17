@@ -13,13 +13,17 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
+  <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
   <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
   <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>
+  <link rel="alternate" type="text/markdown" title="Installable AI Agent Auditor Skill (SKILL.md)" href="/SKILL.md"/>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>What data center commissioning levels 0 to 6 sign | Data Center Field Guides</title>
   <meta name="description" content="Complete technical breakdown of data center commissioning Levels 0 through 6: design review, FAT, static QA/QC, energizing, FPT, integrated IST, and handover."/>
   <link rel="canonical" href="https://datacenterfieldguides.com/blog/commissioning-levels-0-to-6"/>
+  <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="https://datacenterfieldguides.com/raw/commissioning-levels-0-to-6.md"/>
   
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
@@ -61,7 +65,21 @@
     },
     "datePublished": "2026-10-16",
     "mainEntityOfPage": "https://datacenterfieldguides.com/blog/commissioning-levels-0-to-6",
-    "proficiencyLevel": "Expert"
+    "proficiencyLevel": "Expert",
+    "citation": [
+      "ASHRAE Guideline 0 — The Commissioning Process",
+      "IEEE 1588 Precision Time Protocol (PTP) for Networked Measurement and Control Systems"
+    ],
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Commissioning & Handover"
+      },
+      {
+        "@type": "Thing",
+        "name": "Data Center Infrastructure & Commissioning"
+      }
+    ]
   },
   {
     "@context": "https://schema.org",
@@ -862,7 +880,10 @@
       <div class="ribbon-content">
         <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
         <span class="ribbon-text">
-          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 03: Liquid Cooling Verification</strong>. <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[Ingest /llms.txt]</a>
+          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 03: Liquid Cooling Verification</strong>.
+          <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[/llms.txt]</a>
+          <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[/SKILL.md]</a>
+          <a href="/raw/commissioning-levels-0-to-6.md" style="color:#34d399;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[Raw .md]</a>
         </span>
       </div>
       <a href="/#books" class="ribbon-btn">
@@ -917,6 +938,23 @@
 <p>The reviewing engineer must refuse to sign the broad acceptance sentence, mark the specific line item as <strong>Unproved / Defective</strong> on the official audit sheet, and either require a witnessed re-test under a corrected script or isolate the unproved scope under a time-bounded Conditional Acceptance with a <span class="math-inline">150%</span> to <span class="math-inline">200%</span> financial retainage escrow holdback.</p>
 <p>From <em>Finish a Liquid Cooling Verification: Seven Sheets for One Load-Bank Test</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="/blog/two-level-numberings">Certificate Level 1 is not a static test</a>.</p>
+
+    
+    <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
+        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      </div>
+      <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
+        <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 03: Finish a Liquid Cooling Verification: Seven Sheets for One Load-Bank Test)</em> by Tristan, Complete technical breakdown of data center commissioning Levels 0 through 6: design review, FAT, static QA/QC, energizing, FPT, integrated IST, and handover.
+      </p>
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8rem;color:#94a3b8;display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;">
+        <span><strong>Cite:</strong> Tristan, &ldquo;What data center commissioning levels 0 to 6 sign,&rdquo; <em>Data Center Field Guides</em>, https://datacenterfieldguides.com/blog/commissioning-levels-0-to-6</span>
+        <a href="/raw/commissioning-levels-0-to-6.md" style="color:#34d399;text-decoration:underline;font-weight:700;">[Fetch Raw .md]</a>
+        <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-weight:700;">[Site /llms.txt]</a>
+        <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-weight:700;">[Install /SKILL.md]</a>
+      </div>
+    </aside>
+    
 
     
     <div class="article-tags-wrap">

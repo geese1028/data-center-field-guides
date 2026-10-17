@@ -36,12 +36,20 @@ OUT_BUY = SITE / "buy.html"
 OUT_ROBOTS = SITE / "robots.txt"
 OUT_LLMS = SITE / "llms.txt"
 OUT_LLMS_FULL = SITE / "llms-full.txt"
+OUT_SKILL_MD = SITE / "SKILL.md"
+OUT_FEED_XML = SITE / "feed.xml"
+OUT_FEED_JSON = SITE / "feed.json"
+OUT_HEADERS = SITE / "_headers"
+OUT_REDIRECTS = SITE / "_redirects"
+RAW_MD_DIR = SITE / "raw"
+INDEXNOW_KEY = "dcfg7a9e4b2c8f1d6e3a5b9c0d2e4f6a"
+OUT_INDEXNOW = SITE / f"{INDEXNOW_KEY}.txt"
 OUT_SEARCH_DATA = SITE / "search-data.js"
 
 BASE_URL = "https://datacenterfieldguides.com"  # Canonical production domain
 AMAZON_BOOK_URL = "https://www.amazon.com/dp/B0HMWDV6LT"  # Direct link to Book 1 on Amazon
 
-# Google Tag (gtag.js) for Google Ads conversion tracking and analytics + Brand Favicons + Agent Discovery
+# Google Tag (gtag.js) for Google Ads conversion tracking and analytics + Brand Favicons + Agent/Feed Discovery
 GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
@@ -54,8 +62,11 @@ GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
+  <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
   <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
-  <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>"""
+  <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>
+  <link rel="alternate" type="text/markdown" title="Installable AI Agent Auditor Skill (SKILL.md)" href="/SKILL.md"/>"""
 
 
 # Book Catalog Metadata for Amazon Funnel Mapping
@@ -529,8 +540,59 @@ def render_series_tracker_bar():
     """
 
 
-def render_top_book_ribbon(book_num, b):
-    """Render In-Article Top Book Bridge ribbon for all 68 blog protocols."""
+def format_seo_title(raw_title: str) -> str:
+    """Format HTML <title> tag to stay within 40-85 chars for zero SERP truncation and zero SEO warnings."""
+    t = raw_title.strip()
+    # Strip verbose boilerplate suffixes when present
+    for suffix in [
+        ": First-Principles Data Center Engineering Protocol",
+        ": First-Principles Data Center Protocol",
+        " | Data Center Field Guides",
+    ]:
+        if t.endswith(suffix):
+            t = t[: -len(suffix)].strip()
+
+    full_brand = " | Data Center Field Guides"
+    short_brand = " | DCFG"
+
+    if len(t) + len(full_brand) <= 85:
+        return t + full_brand
+    if len(t) + len(short_brand) <= 85:
+        return t + short_brand
+
+    # Trim cleanly at word or punctuation boundary so total length <= 85 chars
+    max_base = 85 - len(short_brand)
+    clipped = t[:max_base].rsplit(" ", 1)[0].rstrip(":,-–— ")
+    return clipped + short_brand
+
+
+def extract_standards_citations(text: str):
+    """Extract referenced engineering standards for Schema.org TechArticle citation graph."""
+    standards_map = [
+        (r"ANSI/ISA-71\.04(?:-2013)?", "ANSI/ISA-71.04-2013 Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants"),
+        (r"ASHRAE\s+Guideline\s+0", "ASHRAE Guideline 0 — The Commissioning Process"),
+        (r"IEEE\s+1588|PTP", "IEEE 1588 Precision Time Protocol (PTP) for Networked Measurement and Control Systems"),
+        (r"NIST\s+NTP|RFC\s+5905", "RFC 5905 / NIST Network Time Protocol (NTP) Synchronization Standard"),
+        (r"ISO[\s-]8528(?:-1)?", "ISO 8528-1 Reciprocating Internal Combustion Engine Driven Alternating Current Generating Sets"),
+        (r"ASTM\s+E2018(?:-24)?", "ASTM E2018-24 Standard Guide for Property Condition Assessments: Baseline Property Condition Assessment Process"),
+        (r"ASTM\s+E1527", "ASTM E1527 Phase I Environmental Site Assessment Process"),
+        (r"NFPA\s+70E|NFPA\s+110", "NFPA 70E / NFPA 110 Standard for Electrical Safety and Emergency Power Systems"),
+        (r"TIA-942", "ANSI/TIA-942 Telecommunications Infrastructure Standard for Data Centers"),
+        (r"Uptime\s+Institute|Tier\s+III|Tier\s+IV", "Uptime Institute Tier Standard: Topology and Operational Sustainability"),
+        (r"NVL72|GB200", "NVIDIA GB200 NVL72 Rack-Scale Liquid-Cooled AI Architecture Specification"),
+        (r"RoHS", "EU Directive 2011/65/EU (RoHS) Lead-Free Electronic Hardware Reliability Standard"),
+    ]
+    found = []
+    for pattern, formal_name in standards_map:
+        if re.search(pattern, text, re.IGNORECASE):
+            found.append(formal_name)
+    if not found:
+        found.append("ASHRAE TC 9.9 Mission Critical Facilities, Data Centers, Technology Spaces and Electronic Equipment")
+    return found
+
+
+def render_top_book_ribbon(book_num, b, slug=None):
+    """Render In-Article Top Book Bridge ribbon with direct AI Agent Markdown & /llms.txt endpoints."""
     is_live = (b.get("status") == "live")
     asin = b.get("asin", "")
     if is_live and asin and not asin.startswith("B0EXAMP"):
@@ -541,13 +603,18 @@ def render_top_book_ribbon(book_num, b):
         cta_href = "/#books"
         cta_target = ""
         cta_text = "View Series Roadmap &rarr;"
-        
+
+    raw_md_link = f'<a href="/raw/{slug}.md" style="color:#34d399;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[Raw .md]</a>' if slug else ""
+
     return f"""
     <aside class="top-book-ribbon">
       <div class="ribbon-content">
         <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
         <span class="ribbon-text">
-          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 0{book_num}: {html.escape(b['short_title'])}</strong>. <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[Ingest /llms.txt]</a>
+          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 0{book_num}: {html.escape(b['short_title'])}</strong>.
+          <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[/llms.txt]</a>
+          <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[/SKILL.md]</a>
+          {raw_md_link}
         </span>
       </div>
       <a href="{cta_href}"{cta_target} class="ribbon-btn">
@@ -555,6 +622,32 @@ def render_top_book_ribbon(book_num, b):
       </a>
     </aside>
     """
+
+
+def render_citation_anchor(article, canonical_url):
+    """Render GEO Canonical Citation & Machine Ingestion Block at the bottom of every protocol."""
+    slug = article["slug"]
+    book_num = article["book_num"]
+    title = article["title"]
+    desc = article["desc"]
+    book_title = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])["title"]
+    return f"""
+    <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
+        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      </div>
+      <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
+        <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 0{book_num}: {html.escape(book_title)})</em> by Tristan, {html.escape(desc)}
+      </p>
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8rem;color:#94a3b8;display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;">
+        <span><strong>Cite:</strong> Tristan, &ldquo;{html.escape(title)},&rdquo; <em>Data Center Field Guides</em>, {canonical_url}</span>
+        <a href="/raw/{slug}.md" style="color:#34d399;text-decoration:underline;font-weight:700;">[Fetch Raw .md]</a>
+        <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-weight:700;">[Site /llms.txt]</a>
+        <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-weight:700;">[Install /SKILL.md]</a>
+      </div>
+    </aside>
+    """
+
 
 
 def parse_frontmatter(raw_text):
@@ -868,13 +961,14 @@ def infer_article_metadata(path, meta, body):
     }
 
 
-def generate_json_ld(meta, faqs, canonical_url, book_num):
+def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
     """Generate structured data for TechArticle, Book, FAQPage, BreadcrumbList."""
     title = clean_plain_math(meta.get("title", "Data Center Engineering Field Guide"))
     desc = clean_plain_math(meta.get("description", ""))
     pub_date = meta.get("publish_date", "2026-10-14")
     book_info = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])
     availability = "https://schema.org/InStock" if book_info.get("status") == "live" else "https://schema.org/PreOrder"
+    citations = extract_standards_citations(f"{title} {desc} {body_text}")
 
     schema_list = [
         {
@@ -902,7 +996,12 @@ def generate_json_ld(meta, faqs, canonical_url, book_num):
             },
             "datePublished": pub_date,
             "mainEntityOfPage": canonical_url,
-            "proficiencyLevel": "Expert"
+            "proficiencyLevel": "Expert",
+            "citation": citations,
+            "about": [
+                {"@type": "Thing", "name": book_info["topic_label"]},
+                {"@type": "Thing", "name": "Data Center Infrastructure & Commissioning"}
+            ]
         },
         {
             "@context": "https://schema.org",
@@ -1041,15 +1140,18 @@ def render_related_section(related_articles):
 def render_page(article, body_html, json_ld, canonical_url, related_articles=None):
     """Render individual article page with modern styling and clean navigation."""
     title = article["title"]
+    seo_title = format_seo_title(title)
     desc = article["desc"]
     book_num = article["book_num"]
     read_mins = article["read_mins"]
     is_deep_dive = article["is_deep_dive"]
+    slug = article["slug"]
 
     tier_badge = "FLAGSHIP GUIDE" if is_deep_dive else "AUDITABLE FIELD PROTOCOL"
     tier_class = "is-deep-dive" if is_deep_dive else ""
     b_info = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])
-    top_book_ribbon = render_top_book_ribbon(book_num, b_info)
+    top_book_ribbon = render_top_book_ribbon(book_num, b_info, slug=slug)
+    citation_anchor_html = render_citation_anchor(article, canonical_url)
 
     tag_pills = [f"#{article['book_short_title'].split()[0]}", f"#{article['topic_label'].split('&')[0].strip()}"]
     if article.get("primary_keyword"):
@@ -1070,9 +1172,10 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 {GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{html.escape(title)} | Data Center Field Guides</title>
+  <title>{html.escape(seo_title)}</title>
   <meta name="description" content="{html.escape(desc)}"/>
   <link rel="canonical" href="{canonical_url}"/>
+  <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="{BASE_URL}/raw/{slug}.md"/>
   
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
@@ -1814,6 +1917,8 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 
     {body_html}
 
+    {citation_anchor_html}
+
     {tags_section}
 
     {render_related_section(related_articles)}
@@ -1838,6 +1943,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
     slug = b["slug"]
     canonical_url = f"{BASE_URL}/book/{slug}"
     is_live = (b.get("status") == "live")
+    vol_seo_title = format_seo_title(f"Volume 0{num}: {b['title']}")
     
     prev_num = 9 if num == 1 else num - 1
     next_num = 1 if num == 9 else num + 1
@@ -1936,7 +2042,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
 {GOOGLE_TAG_SNIPPET}
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Volume 0{num}: {html.escape(b['title'])} | Data Center Field Guides</title>
+  <title>{html.escape(vol_seo_title)}</title>
   <meta name="description" content="{html.escape(b['subtitle'])}. Complete engineering manual and {len(volume_articles)} auditable field protocols by Tristan."/>
   <link rel="canonical" href="{canonical_url}"/>
   
@@ -6132,7 +6238,12 @@ def generate_sitemap(urls):
 
 
 def generate_llms_files(raw_articles):
-    """Generate llmstxt.org compliant /llms.txt and /llms-full.txt for AI Agents & Autonomous Copilots."""
+    """Generate llmstxt.org compliant /llms.txt, /llms-full.txt, /SKILL.md, /raw/*.md, /feed.xml, /feed.json, _headers, _redirects, and IndexNow key."""
+    RAW_MD_DIR.mkdir(parents=True, exist_ok=True)
+    redirect_lines = [
+        "# Machine-readable Markdown rewrites for AI Agents",
+    ]
+
     lines = [
         "# Data Center Field Guides (DCFG) // AI Agent Ground-Truth Specification",
         "",
@@ -6153,6 +6264,10 @@ def generate_llms_files(raw_articles):
         "",
         f"- **Structured Index (`/llms.txt`)**: {BASE_URL}/llms.txt",
         f"- **Full Unredacted 69-Protocol Markdown Corpus (`/llms-full.txt`)**: {BASE_URL}/llms-full.txt",
+        f"- **Installable AI Agent Auditor Skill (`/SKILL.md`)**: {BASE_URL}/SKILL.md",
+        f"- **Per-Protocol Raw Markdown (`/raw/{{slug}}.md`)**: `{BASE_URL}/raw/<slug>.md`",
+        f"- **RSS 2.0 Feed (`/feed.xml`)**: {BASE_URL}/feed.xml",
+        f"- **JSON Feed v1.1 (`/feed.json`)**: {BASE_URL}/feed.json",
         f"- **XML Sitemap (`/sitemap.xml`)**: {BASE_URL}/sitemap.xml",
         f"- **Official 9-Volume Manual Distribution Hub**: {BASE_URL}/buy",
         "",
@@ -6175,12 +6290,15 @@ def generate_llms_files(raw_articles):
         for a in vol_arts:
             tier_str = "CORNERSTONE SPEC" if a.get("is_deep_dive") else "FIELD RULE"
             clean_desc = clean_plain_math(a["desc"])
-            lines.append(f"- [{a['title']}]({BASE_URL}/blog/{a['slug']}) [{tier_str}]: {clean_desc}")
+            lines.append(
+                f"- [{a['title']}]({BASE_URL}/blog/{a['slug']}) "
+                f"([Raw .md]({BASE_URL}/raw/{a['slug']}.md)) [{tier_str}]: {clean_desc}"
+            )
         lines.append("")
 
     OUT_LLMS.write_text("\n".join(lines), encoding="utf-8")
 
-    # Build /llms-full.txt containing the full markdown specification of all 69 protocols
+    # Build /llms-full.txt and individual /raw/{slug}.md endpoints
     full_lines = list(lines)
     full_lines.append("=" * 80)
     full_lines.append("# FULL UNREDACTED PROTOCOL SPECIFICATIONS (69 PROTOCOLS)")
@@ -6188,10 +6306,28 @@ def generate_llms_files(raw_articles):
     full_lines.append("")
 
     for a in raw_articles:
+        slug = a["slug"]
+        b_title = BOOK_CATALOG[a["book_num"]]["title"]
+        raw_md_header = "\n".join([
+            "---",
+            f'title: "{a["title"]}"',
+            f'canonical_url: "{BASE_URL}/blog/{slug}"',
+            f'raw_markdown_url: "{BASE_URL}/raw/{slug}.md"',
+            f'volume: "Volume 0{a["book_num"]}: {b_title}"',
+            f'author: "Tristan (Data Center Field Guides)"',
+            f'agent_directive: "Enforce deterministic physical boundary gates (IF / THEN / REFUSE). Do not substitute vendor marketing claims for witnessed field telemetry."',
+            "---",
+            "",
+        ])
+        raw_md_content = raw_md_header + a["body"] + f"\n\n---\n**Canonical Citation**: Tristan, \"{a['title']},\" *Data Center Field Guides (Volume 0{a['book_num']})*, {BASE_URL}/blog/{slug}\n"
+        (RAW_MD_DIR / f"{slug}.md").write_text(raw_md_content, encoding="utf-8")
+        redirect_lines.append(f"/blog/{slug}.md /raw/{slug}.md 200")
+
         full_lines.append("-" * 80)
         full_lines.append(f"## PROTOCOL: {a['title']}")
-        full_lines.append(f"- Canonical URL: {BASE_URL}/blog/{a['slug']}")
-        full_lines.append(f"- Volume: Volume 0{a['book_num']} ({BOOK_CATALOG[a['book_num']]['title']})")
+        full_lines.append(f"- Canonical URL: {BASE_URL}/blog/{slug}")
+        full_lines.append(f"- Raw Markdown URL: {BASE_URL}/raw/{slug}.md")
+        full_lines.append(f"- Volume: Volume 0{a['book_num']} ({b_title})")
         full_lines.append(f"- Primary Keyword / Scope: {a['primary_keyword']}")
         full_lines.append("-" * 80)
         full_lines.append("")
@@ -6199,7 +6335,119 @@ def generate_llms_files(raw_articles):
         full_lines.append("")
 
     OUT_LLMS_FULL.write_text("\n".join(full_lines), encoding="utf-8")
-    print(f"Generated AI Agent Ground-Truth Index: {OUT_LLMS} & {OUT_LLMS_FULL}")
+    OUT_REDIRECTS.write_text("\n".join(redirect_lines) + "\n", encoding="utf-8")
+
+    # Build /SKILL.md (Universal Installable AI Agent Skill)
+    skill_lines = [
+        "---",
+        "name: datacenter-field-auditor",
+        "description: Deterministic physical boundary and technical due diligence (TDD) auditor for mission-critical data centers, NVIDIA GB200 NVL72 liquid cooling loops, L0-L6 commissioning, BMS/EPMS telemetry, ANSI/ISA-71.04 corrosion, and SOP/MOP/EOP switching governance. Use whenever auditing data center designs, site selection packages, commissioning scripts, or operational procedures.",
+        "metadata:",
+        "  version: 1.0.0",
+        "  author: Tristan (Data Center Field Guides)",
+        f"  source: {BASE_URL}/SKILL.md",
+        "---",
+        "",
+        "# Data Center Field Guides // Deterministic AI Agent Auditor Skill",
+        "",
+        " Install this skill in Claude Code, Cursor, Windsurf, or Antigravity via:",
+        f"`curl -sL {BASE_URL}/SKILL.md > SKILL.md`",
+        "",
+        *lines[4:],
+    ]
+    OUT_SKILL_MD.write_text("\n".join(skill_lines), encoding="utf-8")
+
+    # Build RSS 2.0 (/feed.xml) and JSON Feed v1.1 (/feed.json)
+    now_rfc822 = datetime.now().strftime("%a, %d %b %Y 00:00:00 +0000")
+    rss_items = []
+    json_items = []
+    for a in raw_articles:
+        slug = a["slug"]
+        url = f"{BASE_URL}/blog/{slug}"
+        clean_t = html.escape(a["title"])
+        clean_d = html.escape(clean_plain_math(a["desc"]))
+        rss_items.append(f"""    <item>
+      <title>{clean_t}</title>
+      <link>{url}</link>
+      <guid isPermaLink="true">{url}</guid>
+      <description>{clean_d}</description>
+      <category>{html.escape(a['topic_label'])}</category>
+      <pubDate>{now_rfc822}</pubDate>
+    </item>""")
+        json_items.append({
+            "id": url,
+            "url": url,
+            "external_url": f"{BASE_URL}/raw/{slug}.md",
+            "title": a["title"],
+            "summary": clean_plain_math(a["desc"]),
+            "date_published": "2026-10-17T00:00:00Z",
+            "authors": [{"name": "Tristan"}],
+            "tags": [a["topic_label"], f"Volume 0{a['book_num']}"],
+        })
+
+    rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Center Field Guides // Deterministic Engineering Protocols</title>
+    <link>{BASE_URL}/</link>
+    <description>69 first-principles data center engineering protocols and AI agent ground-truth specifications by Tristan.</description>
+    <language>en-us</language>
+    <lastBuildDate>{now_rfc822}</lastBuildDate>
+    <atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+{chr(10).join(rss_items)}
+  </channel>
+</rss>
+"""
+    OUT_FEED_XML.write_text(rss_xml, encoding="utf-8")
+
+    feed_json_obj = {
+        "version": "https://jsonfeed.org/version/1.1",
+        "title": "Data Center Field Guides // Deterministic Engineering Protocols",
+        "home_page_url": f"{BASE_URL}/",
+        "feed_url": f"{BASE_URL}/feed.json",
+        "description": "69 first-principles data center engineering protocols and AI agent ground-truth specifications by Tristan.",
+        "icon": f"{BASE_URL}/logo.png",
+        "favicon": f"{BASE_URL}/favicon.png",
+        "authors": [{"name": "Tristan", "url": f"{BASE_URL}/about"}],
+        "language": "en-US",
+        "items": json_items,
+    }
+    OUT_FEED_JSON.write_text(json.dumps(feed_json_obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # Build Cloudflare _headers (CORS & Content-Type for AI Agents)
+    headers_content = """/llms.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: all
+
+/llms-full.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: all
+
+/SKILL.md
+  Access-Control-Allow-Origin: *
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: all
+
+/raw/*
+  Access-Control-Allow-Origin: *
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: all
+
+/feed.xml
+  Access-Control-Allow-Origin: *
+  Content-Type: application/rss+xml; charset=utf-8
+
+/feed.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/feed+json; charset=utf-8
+"""
+    OUT_HEADERS.write_text(headers_content, encoding="utf-8")
+
+    # Build IndexNow verification key file
+    OUT_INDEXNOW.write_text(INDEXNOW_KEY, encoding="utf-8")
+    print(f"Generated AI Agent & SEO Suite: /llms.txt, /llms-full.txt, /SKILL.md, 69 /raw/*.md, /feed.xml, /feed.json, _headers, _redirects, and IndexNow key.")
 
 
 def main():
@@ -6251,7 +6499,7 @@ def main():
         related.sort(key=lambda x: (x["book_num"] == art["book_num"], x["is_deep_dive"]), reverse=True)
 
         body_html, faqs = parse_markdown_to_html(art["body"], slug, md_to_html_map)
-        json_ld = generate_json_ld(art["raw_meta"], faqs, canonical_url, art["book_num"])
+        json_ld = generate_json_ld(art["raw_meta"], faqs, canonical_url, art["book_num"], art["body"])
         full_html = render_page(art, body_html, json_ld, canonical_url, related[:3])
 
         out_html_path = BLOG_DIR / f"{slug}.html"
@@ -6300,14 +6548,30 @@ def main():
     OUT_BUY.write_text(buy_content, encoding="utf-8")
     print(f"Generated Buy Gateway: {OUT_BUY}")
 
-    # 3.6. Maintain robots.txt & AI Agent Ground-Truth Corpus (/llms.txt & /llms-full.txt)
+    # 3.6. Maintain robots.txt with explicit AI Crawler Allowlist & Agent Endpoints
+    ai_bots = [
+        "*",
+        "GPTBot",
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "ClaudeBot",
+        "Claude-Web",
+        "anthropic-ai",
+        "PerplexityBot",
+        "Google-Extended",
+        "Applebot-Extended",
+        "CCBot",
+        "cohere-ai",
+    ]
+    bot_rules = "\n\n".join([f"User-agent: {b}\nAllow: /" for b in ai_bots])
     robots_content = (
-        f"User-agent: *\nAllow: /\n\n"
+        f"{bot_rules}\n\n"
         f"# AI Agent & LLM Ground-Truth Specification Endpoints\n"
-        f"# This domain provides deterministic physical boundary rules for AI agents:\n"
         f"# {BASE_URL}/llms.txt\n"
-        f"# {BASE_URL}/llms-full.txt\n\n"
+        f"# {BASE_URL}/llms-full.txt\n"
+        f"# {BASE_URL}/SKILL.md\n\n"
         f"Sitemap: {BASE_URL}/sitemap.xml\n"
+        f"Sitemap: {BASE_URL}/feed.xml\n"
     )
     OUT_ROBOTS.write_text(robots_content, encoding="utf-8")
     print(f"Maintained robots.txt: {OUT_ROBOTS}")
@@ -6334,3 +6598,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

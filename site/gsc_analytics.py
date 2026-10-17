@@ -104,6 +104,43 @@ def submit_sitemap(token, site, feedpath="https://datacenterfieldguides.com/site
     return api_request(token, "PUT", url)
 
 
+def submit_indexnow():
+    import xml.etree.ElementTree as ET
+    sitemap_file = Path("/Users/geese/Downloads/book/site/sitemap.xml")
+    urls = []
+    if sitemap_file.exists():
+        tree = ET.parse(sitemap_file)
+        for loc in tree.getroot().findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc"):
+            if loc.text:
+                urls.append(loc.text.strip())
+    extra_endpoints = [
+        "https://datacenterfieldguides.com/llms.txt",
+        "https://datacenterfieldguides.com/llms-full.txt",
+        "https://datacenterfieldguides.com/SKILL.md",
+        "https://datacenterfieldguides.com/feed.xml",
+        "https://datacenterfieldguides.com/feed.json",
+    ]
+    for ep in extra_endpoints:
+        if ep not in urls:
+            urls.append(ep)
+
+    indexnow_key = "dcfg7a9e4b2c8f1d6e3a5b9c0d2e4f6a"
+    payload = {
+        "host": "datacenterfieldguides.com",
+        "key": indexnow_key,
+        "keyLocation": f"https://datacenterfieldguides.com/{indexnow_key}.txt",
+        "urlList": urls,
+    }
+    req = urllib.request.Request(
+        "https://api.indexnow.org/indexnow",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        return resp.status, len(urls)
+
+
 def main():
     import sys
     token = get_access_token()
@@ -123,10 +160,20 @@ def main():
     active_site = entries[0]["siteUrl"]
 
     if "--submit-sitemap" in sys.argv:
-        feedpath = "https://datacenterfieldguides.com/sitemap.xml"
-        print(f"\n[+] Submitting sitemap via GSC API: {feedpath} ...")
-        submit_sitemap(token, active_site, feedpath)
-        print("[✓] Sitemap successfully submitted to Google Search Console!")
+        for feedpath in [
+            "https://datacenterfieldguides.com/sitemap.xml",
+            "https://datacenterfieldguides.com/feed.xml",
+        ]:
+            print(f"\n[+] Submitting feed via GSC API: {feedpath} ...")
+            submit_sitemap(token, active_site, feedpath)
+            print(f"[✓] Successfully submitted {feedpath} to Google Search Console!")
+
+    if "--submit-sitemap" in sys.argv or "--indexnow" in sys.argv:
+        try:
+            status_code, count = submit_indexnow()
+            print(f"\n[✓] IndexNow API Ping Complete (HTTP {status_code}): Pushed {count} URLs to Bing / ChatGPT Search / Copilot!")
+        except Exception as e:
+            print(f"\n[!] IndexNow API Ping Error: {e}")
 
     # 1. Sitemaps status
     enc = urllib.parse.quote(active_site, safe="")

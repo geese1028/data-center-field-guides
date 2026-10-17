@@ -13,13 +13,17 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
+  <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
   <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
   <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>
+  <link rel="alternate" type="text/markdown" title="Installable AI Agent Auditor Skill (SKILL.md)" href="/SKILL.md"/>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit &amp; Red-Flag Guide | Data Center Field Guides</title>
+  <title>Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit &amp; | DCFG</title>
   <meta name="description" content="Complete data center due diligence and technical due diligence checklist for infrastructure assets. Covers substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads."/>
   <link rel="canonical" href="https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist"/>
+  <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="https://datacenterfieldguides.com/raw/data-center-technical-due-diligence-checklist.md"/>
   
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
@@ -61,7 +65,25 @@
     },
     "datePublished": "2026-10-14",
     "mainEntityOfPage": "https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist",
-    "proficiencyLevel": "Expert"
+    "proficiencyLevel": "Expert",
+    "citation": [
+      "IEEE 1588 Precision Time Protocol (PTP) for Networked Measurement and Control Systems",
+      "RFC 5905 / NIST Network Time Protocol (NTP) Synchronization Standard",
+      "ASTM E2018-24 Standard Guide for Property Condition Assessments: Baseline Property Condition Assessment Process",
+      "ASTM E1527 Phase I Environmental Site Assessment Process",
+      "Uptime Institute Tier Standard: Topology and Operational Sustainability",
+      "NVIDIA GB200 NVL72 Rack-Scale Liquid-Cooled AI Architecture Specification"
+    ],
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Corrosion & Due Diligence"
+      },
+      {
+        "@type": "Thing",
+        "name": "Data Center Infrastructure & Commissioning"
+      }
+    ]
   },
   {
     "@context": "https://schema.org",
@@ -870,7 +892,10 @@
       <div class="ribbon-content">
         <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
         <span class="ribbon-text">
-          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 09: Technical Due Diligence</strong>. <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[Ingest /llms.txt]</a>
+          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 09: Technical Due Diligence</strong>.
+          <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.3rem;">[/llms.txt]</a>
+          <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[/SKILL.md]</a>
+          <a href="/raw/data-center-technical-due-diligence-checklist.md" style="color:#34d399;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[Raw .md]</a>
         </span>
       </div>
       <a href="/#books" class="ribbon-btn">
@@ -932,6 +957,23 @@
 <p>A technical due diligence visit is where millions of dollars in financing terms are won or lost. The complete auditor&#x27;s field guide—including the full 6-pillar visit sheet, sample size calculators, single-line reconciliation protocols, and the legal wording of technical refusal—is detailed in <strong><a href="https://datacenterfieldguides.com/book/09-walk-a-tdd">Walk a TDD: Technical Due Diligence Physical Site Audit</a></strong> by Tristan.</p>
 <p>Also explore our companion field guides:</p>
 <ul><li><a href="https://datacenterfieldguides.com/blog/data-center-facility-location-due-diligence">Data Center Facility Location Due Diligence: The Complete Site Selection &amp; Red-Flag Audit Checklist</a></li><li><a href="https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide">Data Center Corrosion Monitoring &amp; ISA-71.04 Coupon Placement Guide</a></li><li><a href="https://datacenterfieldguides.com/blog/a-point-needs-a-clock">Data Center Monitoring Points &amp; NIST NTP / IEEE 1588v2 PTP Clock Synchronization</a></li></ul>
+
+    
+    <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
+        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      </div>
+      <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
+        <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 09: Walk a TDD: Technical Due Diligence Physical Site Audit)</em> by Tristan, Complete data center due diligence and technical due diligence checklist for infrastructure assets. Covers substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads.
+      </p>
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8rem;color:#94a3b8;display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;">
+        <span><strong>Cite:</strong> Tristan, &ldquo;Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit &amp; Red-Flag Guide,&rdquo; <em>Data Center Field Guides</em>, https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist</span>
+        <a href="/raw/data-center-technical-due-diligence-checklist.md" style="color:#34d399;text-decoration:underline;font-weight:700;">[Fetch Raw .md]</a>
+        <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-weight:700;">[Site /llms.txt]</a>
+        <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-weight:700;">[Install /SKILL.md]</a>
+      </div>
+    </aside>
+    
 
     
     <div class="article-tags-wrap">
