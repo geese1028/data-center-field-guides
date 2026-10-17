@@ -780,6 +780,18 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "keywords": "data center corrosion coupon ISA 71.04"
   },
   {
+    "title": "Data Center Facility Location Due Diligence: The Complete Site Selection & Red-Flag Audit Checklist",
+    "slug": "data-center-facility-location-due-diligence",
+    "book_num": 9,
+    "book_title": "Technical Due Diligence",
+    "desc": "An authoritative engineering checklist for data center facility location and site selection due diligence. Covers substation distance, 500-yr flood plains, geotechnical bearing, micro-vibrations, and fatal flaw refusal gates.",
+    "topic": "integrity_tdd",
+    "topic_label": "Corrosion & Due Diligence",
+    "is_deep_dive": true,
+    "read_mins": 13,
+    "keywords": "facility location due diligence checklist"
+  },
+  {
     "title": "Data Center Shift Handover Checklist: 2N Power Redundancy Math, 6 Stations, and SOP/MOP/EOP",
     "slug": "data-center-shift-handover-sop-mop-checklist",
     "book_num": 5,
