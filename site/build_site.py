@@ -541,9 +541,9 @@ def render_top_book_ribbon(book_num, b):
     return f"""
     <aside class="top-book-ribbon">
       <div class="ribbon-content">
-        <span class="ribbon-badge">OFFICIAL FIELD MANUAL EXCERPT</span>
+        <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
         <span class="ribbon-text">
-          This protocol is from <strong>Volume 0{book_num}: {html.escape(b['short_title'])}</strong> by Tristan.
+          Not for casual reading—structured as zero-fluff boundary rules for your AI agents &amp; CxA teams from <strong>Volume 0{book_num}: {html.escape(b['short_title'])}</strong>.
         </span>
       </div>
       <a href="{cta_href}"{cta_target} class="ribbon-btn">

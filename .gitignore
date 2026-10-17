@@ -25,4 +25,5 @@ scratch/
 node_modules/
 .gsc-credentials.json
 .linkedin-credentials.json
+.linkedin-published.json
 
