@@ -84,6 +84,7 @@ BOOK_CATALOG = {
         "topic_label": "Commissioning & Handover",
         "stores": {
             "amazon": "https://www.amazon.com/dp/B0HMWDV6LT",
+            "leanpub": "https://leanpub.com/liquid-load-bank-nvl72",
             "google": "",
             "apple": ""
         },
@@ -116,6 +117,7 @@ BOOK_CATALOG = {
         "topic_label": "Telemetry, CFD & Alarms",
         "stores": {
             "amazon": "https://www.amazon.com/dp/B0HMZTGG81",
+            "leanpub": "https://leanpub.com/read-load-bank-data",
             "google": "",
             "apple": ""
         },
@@ -138,15 +140,16 @@ BOOK_CATALOG = {
         "title": "Finish a Liquid Cooling Verification: Seven Sheets for One Load-Bank Test",
         "short_title": "Liquid Cooling Verification",
         "subtitle": "ASHRAE Guideline 0 Levels 1-5, Integrated Systems Testing (IST), and Contractor Pass Separation",
-        "asin": "B0EXAMP03",
+        "asin": "B0HNFJXGM7",
         "pages": "126 pages",
         "slug": "03-run-one-test",
         "cover": "figures/flagship/fig-01-cx-gate-ladder.png",
-        "status": "coming_soon",
+        "status": "live",
         "topic": "cx_handover",
         "topic_label": "Commissioning & Handover",
         "stores": {
-            "amazon": "",
+            "amazon": "https://www.amazon.com/dp/B0HNFJXGM7",
+            "leanpub": "https://leanpub.com/finish-a-liquid-cooling-verification",
             "google": "",
             "apple": ""
         },
@@ -169,15 +172,15 @@ BOOK_CATALOG = {
         "title": "Judge a CFD Model for Data Centers",
         "short_title": "Data Hall CFD & Airflow",
         "subtitle": "Whitespace Aerodynamics, Containment Leakage, Tile Velocity, and Field Validation",
-        "asin": "B0EXAMP04",
+        "asin": "B0HNFWP6JY",
         "pages": "98 pages",
         "slug": "04-judge-a-cfd",
         "cover": "figures/flagship/fig-01-cfd-audit-lifecycle.png",
-        "status": "coming_soon",
+        "status": "live",
         "topic": "telemetry_cfd",
         "topic_label": "Telemetry, CFD & Alarms",
         "stores": {
-            "amazon": "",
+            "amazon": "https://www.amazon.com/dp/B0HNFWP6JY",
             "google": "",
             "apple": ""
         },
@@ -354,6 +357,10 @@ STORE_LOGOS = {
   <path d="M19.7 16.2c-.4.4-1.2.7-2 .7-.2 0-.3.2-.2.4.4.7 1.3 1.5 2.1 1.7.3.1.5-.1.5-.3.1-.7.2-1.8-.4-2.5z" fill="#FF9900"/>
   <path d="M12.6 7.2c-2.4 0-4.3 1.1-4.7 3.3l1.8.3c.3-1.2 1.3-1.8 2.8-1.8 1.5 0 2.3.7 2.3 2.1v.5c-3.5.2-5.7 1.3-5.7 3.7 0 2.1 1.6 3.2 3.6 3.2 1.8 0 2.9-.9 3.5-2.1v1.8h2.1v-7c0-2.4-1.8-3.7-4.4-3.7zm1.3 6.9c-.3.8-1.2 1.6-2.4 1.6-1.1 0-1.8-.6-1.8-1.6 0-1.2 1-1.7 2.6-1.8.6 0 1.2.1 1.6.3v1.5z" fill="#ffffff"/>
 </svg>""",
+    "leanpub": """<svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
+  <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z" fill="#0C85EA"/>
+  <path d="M7 7h10M7 11h10M7 15h6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+</svg>""",
     "google": """<svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="Google Books">
   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -370,7 +377,7 @@ STORE_LOGOS = {
 def render_order_now_block(book_num, b, is_cta=False):
     """
     Render 'Order Now:' followed by platform logos:
-    - Amazon, Google Books, Apple Books
+    - Amazon, Leanpub, Google Books, Apple Books
     - Active links with full brand colors if available
     - Grayscale / disabled state if not yet available
     - Completely hides price from the reader
@@ -380,11 +387,13 @@ def render_order_now_block(book_num, b, is_cta=False):
     
     stores = b.get("stores", {})
     amazon_url = stores.get("amazon") or (f"https://www.amazon.com/dp/{asin}" if (is_live and asin and not asin.startswith("B0EXAMP")) else "")
+    leanpub_url = stores.get("leanpub", "")
     google_url = stores.get("google", "")
     apple_url = stores.get("apple", "")
     
     platforms = [
         ("amazon", "Amazon", amazon_url, STORE_LOGOS["amazon"], "Order on Amazon Kindle" if amazon_url else "Coming Soon on Amazon"),
+        ("leanpub", "Leanpub", leanpub_url, STORE_LOGOS["leanpub"], "Read on Leanpub (PDF / EPUB)" if leanpub_url else "Coming Soon on Leanpub"),
         ("google", "Google Books", google_url, STORE_LOGOS["google"], "Order on Google Play Books" if google_url else "Coming Soon on Google Books"),
         ("apple", "Apple Books", apple_url, STORE_LOGOS["apple"], "Order on Apple Books" if apple_url else "Coming Soon on Apple Books"),
     ]
@@ -1692,6 +1701,17 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       box-shadow: 0 4px 18px rgba(255, 153, 0, 0.35);
       transform: translateY(-2px);
     }}
+    .cta-order-block .platform-btn.is-active.leanpub {{
+      background: rgba(12, 133, 234, 0.15);
+      border: 1px solid rgba(12, 133, 234, 0.5);
+      color: #ffffff;
+    }}
+    .cta-order-block .platform-btn.is-active.leanpub:hover {{
+      background: rgba(12, 133, 234, 0.28);
+      border-color: #0c85ea;
+      box-shadow: 0 4px 18px rgba(12, 133, 234, 0.35);
+      transform: translateY(-2px);
+    }}
     .cta-order-block .platform-btn.is-active.google {{
       background: rgba(66, 133, 244, 0.15);
       border: 1px solid rgba(66, 133, 244, 0.5);
@@ -2369,6 +2389,17 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
       box-shadow: 0 4px 18px rgba(255, 153, 0, 0.35);
       transform: translateY(-2px);
     }}
+    .platform-btn.is-active.leanpub {{
+      background: rgba(12, 133, 234, 0.15);
+      border: 1px solid rgba(12, 133, 234, 0.5);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.leanpub:hover {{
+      background: rgba(12, 133, 234, 0.28);
+      border-color: #0c85ea;
+      box-shadow: 0 4px 18px rgba(12, 133, 234, 0.35);
+      transform: translateY(-2px);
+    }}
     .platform-btn.is-disabled {{
       filter: grayscale(100%);
       opacity: 0.35;
@@ -2928,18 +2959,18 @@ def generate_hub_index(articles, is_subfolder=False):
       <div class="stats-ribbon">
         <div class="stat-item"><span class="stat-number">68</span><span class="stat-label">Field Protocols</span></div>
         <div class="stat-item"><span class="stat-number">9</span><span class="stat-label">Engineering Volumes</span></div>
+        <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">Live on Amazon</span></div>
         <div class="stat-item"><span class="stat-number">NVL72</span><span class="stat-label">Liquid Ready</span></div>
-        <div class="stat-item"><span class="stat-number">Zero</span><span class="stat-label">Vendor Fluff</span></div>
       </div>
       <div class="hero-actions">
-        <a href="#books" class="hero-btn primary">
-          <span>The 9 Engineering Volumes &rarr;</span>
+        <a href="{buy_link}" class="hero-btn primary">
+          <span>Order Volumes (01–04 Live) &rarr;</span>
         </a>
-        <a href="{about_link}" class="hero-btn secondary">
+        <a href="#books" class="hero-btn secondary">
+          <span>The 9 Engineering Volumes</span>
+        </a>
+        <a href="{about_link}" class="hero-btn outline">
           <span>About Tristan &amp; Credentials</span>
-        </a>
-        <a href="#protocols" class="hero-btn outline">
-          <span>Field Protocols (68)</span>
         </a>
       </div>
     </div>
@@ -3613,6 +3644,17 @@ def generate_hub_index(articles, is_subfolder=False):
       background: rgba(255, 153, 0, 0.24);
       border-color: #ff9900;
       box-shadow: 0 4px 14px rgba(255, 153, 0, 0.3);
+      transform: translateY(-1px);
+    }}
+    .platform-btn.is-active.leanpub {{
+      background: rgba(12, 133, 234, 0.12);
+      border: 1px solid rgba(12, 133, 234, 0.45);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.leanpub:hover {{
+      background: rgba(12, 133, 234, 0.24);
+      border-color: #0c85ea;
+      box-shadow: 0 4px 14px rgba(12, 133, 234, 0.3);
       transform: translateY(-1px);
     }}
     .platform-btn.is-active.google {{
@@ -5176,7 +5218,9 @@ def generate_about_page():
       <div class="philosophy-actions">
         <a href="https://www.amazon.com/dp/B0HMWDV6LT" target="_blank" rel="noopener" class="btn-action primary">Get Book 1 on Amazon →</a>
         <a href="https://www.amazon.com/dp/B0HMZTGG81" target="_blank" rel="noopener" class="btn-action primary">Get Book 2 on Amazon →</a>
-        <a href="/blog/" class="btn-action secondary">Explore All 69 Field Protocols</a>
+        <a href="https://www.amazon.com/dp/B0HNFJXGM7" target="_blank" rel="noopener" class="btn-action primary">Get Book 3 on Amazon →</a>
+        <a href="https://www.amazon.com/dp/B0HNFWP6JY" target="_blank" rel="noopener" class="btn-action primary">Get Book 4 on Amazon →</a>
+        <a href="/buy" class="btn-action secondary">Browse All Volumes &amp; Formats</a>
       </div>
     </div>
   </div>
@@ -5198,9 +5242,9 @@ def generate_buy_page():
     """Generate high-converting official bookstore and digital distribution gateway page."""
     canonical_url = f"{BASE_URL}/buy"
     
-    # 1. Live Books (Volume 01 & Volume 02)
+    # 1. Live Books (Volume 01 through Volume 04)
     live_cards = []
-    for num in [1, 2]:
+    for num in [1, 2, 3, 4]:
         b = BOOK_CATALOG[num]
         mockup_html = render_3d_book_mockup(num, b)
         deliverables_html = render_deliverables_pills(b)
@@ -5239,9 +5283,9 @@ def generate_buy_page():
         </div>
         """)
         
-    # 2. Upcoming Books (Volumes 03 through 09)
+    # 2. Upcoming Books (Volumes 05 through 09)
     roadmap_cards = []
-    for num in range(3, 10):
+    for num in range(5, 10):
         b = BOOK_CATALOG[num]
         mockup_html = render_3d_book_mockup(num, b)
         deliverables_html = render_deliverables_pills(b)
@@ -5320,6 +5364,34 @@ def generate_buy_page():
         "author": {{"@type": "Person", "name": "Tristan"}},
         "isbn": "{BOOK_CATALOG[2]['asin']}",
         "url": "{BOOK_CATALOG[2]['stores']['amazon']}",
+        "bookFormat": "EBook",
+        "offers": {{
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }}
+      }},
+      {{
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "{html.escape(BOOK_CATALOG[3]['title'])}",
+        "author": {{"@type": "Person", "name": "Tristan"}},
+        "isbn": "{BOOK_CATALOG[3]['asin']}",
+        "url": "{BOOK_CATALOG[3]['stores']['amazon']}",
+        "bookFormat": "EBook",
+        "offers": {{
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }}
+      }},
+      {{
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "{html.escape(BOOK_CATALOG[4]['title'])}",
+        "author": {{"@type": "Person", "name": "Tristan"}},
+        "isbn": "{BOOK_CATALOG[4]['asin']}",
+        "url": "{BOOK_CATALOG[4]['stores']['amazon']}",
         "bookFormat": "EBook",
         "offers": {{
           "@type": "Offer",
@@ -5912,6 +5984,17 @@ def generate_buy_page():
       border-color: #ff9900;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(255, 153, 0, 0.25);
+    }}
+    .platform-btn.is-active.leanpub {{
+      background: rgba(12, 133, 234, 0.12);
+      border: 1px solid rgba(12, 133, 234, 0.4);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.leanpub:hover {{
+      background: rgba(12, 133, 234, 0.22);
+      border-color: #0c85ea;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(12, 133, 234, 0.25);
     }}
     .platform-btn.is-active.google {{
       background: rgba(66, 133, 244, 0.12);
