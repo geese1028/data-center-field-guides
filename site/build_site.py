@@ -51,7 +51,11 @@ BASE_URL = "https://datacenterfieldguides.com"  # Canonical production domain
 AMAZON_BOOK_URL = "https://www.amazon.com/dp/B0HMWDV6LT"  # Direct link to Book 1 on Amazon
 
 # Google Tag (gtag.js) for Google Ads conversion tracking and analytics + Brand Favicons + Agent/Feed Discovery
-GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
+GOOGLE_TAG_SNIPPET = """  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://www.clarity.ms"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin/>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -889,18 +893,27 @@ def parse_markdown_to_html(md_text, slug, md_to_html_map=None):
             flush_list()
             flush_faq()
             h2_text = stripped[3:].strip()
-            html_out.append(f'<h2>{inline_format(h2_text, md_to_html_map)}</h2>')
+            anchor_id = re.sub(r"[^\w\s-]", "", clean_plain_math(h2_text)).strip().lower()
+            anchor_id = re.sub(r"[\s_-]+", "-", anchor_id).strip("-")
+            id_attr = f' id="{anchor_id}"' if anchor_id else ""
+            html_out.append(f'<h2{id_attr}>{inline_format(h2_text, md_to_html_map)}</h2>')
         elif stripped.startswith("### "):
             flush_list()
             h3_text = stripped[4:].strip()
             if "?" in h3_text:
                 flush_faq()
                 current_faq_q = h3_text
-            html_out.append(f'<h3>{inline_format(h3_text, md_to_html_map)}</h3>')
+            anchor_id = re.sub(r"[^\w\s-]", "", clean_plain_math(h3_text)).strip().lower()
+            anchor_id = re.sub(r"[\s_-]+", "-", anchor_id).strip("-")
+            id_attr = f' id="{anchor_id}"' if anchor_id else ""
+            html_out.append(f'<h3{id_attr}>{inline_format(h3_text, md_to_html_map)}</h3>')
         elif stripped.startswith("#### "):
             flush_list()
             h4_text = stripped[5:].strip()
-            html_out.append(f'<h3>{inline_format(h4_text, md_to_html_map)}</h3>')
+            anchor_id = re.sub(r"[^\w\s-]", "", clean_plain_math(h4_text)).strip().lower()
+            anchor_id = re.sub(r"[\s_-]+", "-", anchor_id).strip("-")
+            id_attr = f' id="{anchor_id}"' if anchor_id else ""
+            html_out.append(f'<h3{id_attr}>{inline_format(h4_text, md_to_html_map)}</h3>')
         elif stripped.startswith("> "):
             flush_list()
             bq_text = stripped[2:].strip()
@@ -1054,11 +1067,24 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
             "image": f"{BASE_URL}/blog/{book_info['cover']}",
             "inLanguage": "en-US",
             "isAccessibleForFree": True,
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".direct-answer", "article h1"]
+            },
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "Data Center Field Guides",
+                "url": f"{BASE_URL}/"
+            },
             "author": {
                 "@type": "Person",
                 "name": "Tristan",
                 "url": f"{BASE_URL}/about",
                 "jobTitle": "Data Center Commissioning & Verification Engineer",
+                "sameAs": [
+                    f"{BASE_URL}/about",
+                    "https://www.amazon.com/dp/B0HMWDV6LT"
+                ],
                 "worksFor": {
                     "@type": "Organization",
                     "name": "Data Center Field Guides"
@@ -1253,6 +1279,8 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   <meta property="og:image" content="{BASE_URL}/blog/{b_info['cover']}"/>
+  <meta property="og:image:width" content="1800"/>
+  <meta property="og:image:height" content="1100"/>
   <meta property="article:author" content="Tristan"/>
   <meta property="article:published_time" content="{html.escape(pub_date)}T00:00:00Z"/>
   <meta property="article:section" content="{html.escape(article['topic_label'])}"/>
@@ -4336,6 +4364,35 @@ def generate_hub_index(articles, is_subfolder=False):
       <div>
         <a href="{blog_link}" class="hero-btn secondary" style="font-size: 0.88rem; padding: 0.55rem 1.1rem;">
           Open Dedicated Blog Hub &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- High-Impact Field Specifications (Internal PageRank & Keyword Consolidation) -->
+    <div class="trending-protocols-bar" style="margin: 1.5rem 0 2rem; padding: 1rem 1.25rem; background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.25); border-radius: 8px;">
+      <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.74rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.65rem; display: flex; align-items: center; gap: 0.4rem;">
+        <span>HIGH-IMPACT FIELD SPECIFICATIONS (FREQUENTLY REFERENCED)</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <a href="/blog/sop-mop-eop" style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.75rem; background: #121826; border: 1px solid #1e283d; border-radius: 6px; font-size: 0.85rem; color: #f8fafc; text-decoration: none; font-weight: 600;">
+          <span style="color: #d97706; font-size: 0.72rem; font-family: ui-monospace, monospace;">VOL 05</span>
+          <span>SOP, MOP, and EOP Governance</span>
+        </a>
+        <a href="/blog/data-center-facility-location-due-diligence" style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.75rem; background: #121826; border: 1px solid #1e283d; border-radius: 6px; font-size: 0.85rem; color: #f8fafc; text-decoration: none; font-weight: 600;">
+          <span style="color: #d97706; font-size: 0.72rem; font-family: ui-monospace, monospace;">VOL 09</span>
+          <span>Facility Location Due Diligence</span>
+        </a>
+        <a href="/blog/a-point-needs-a-clock" style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.75rem; background: #121826; border: 1px solid #1e283d; border-radius: 6px; font-size: 0.85rem; color: #f8fafc; text-decoration: none; font-weight: 600;">
+          <span style="color: #d97706; font-size: 0.72rem; font-family: ui-monospace, monospace;">VOL 06</span>
+          <span>NIST NTP &amp; PTP Clock Sync</span>
+        </a>
+        <a href="/blog/data-center-corrosion-coupon-isa-71-04-guide" style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.75rem; background: #121826; border: 1px solid #1e283d; border-radius: 6px; font-size: 0.85rem; color: #f8fafc; text-decoration: none; font-weight: 600;">
+          <span style="color: #d97706; font-size: 0.72rem; font-family: ui-monospace, monospace;">VOL 08</span>
+          <span>ANSI/ISA-71.04 Corrosion Coupons</span>
+        </a>
+        <a href="/blog/nvl72-liquid-load-bank-testing-guide" style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.75rem; background: #121826; border: 1px solid #1e283d; border-radius: 6px; font-size: 0.85rem; color: #f8fafc; text-decoration: none; font-weight: 600;">
+          <span style="color: #d97706; font-size: 0.72rem; font-family: ui-monospace, monospace;">VOL 01</span>
+          <span>NVL72 Liquid Load Bank Testing</span>
         </a>
       </div>
     </div>

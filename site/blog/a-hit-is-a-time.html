@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://www.clarity.ms"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin/>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
@@ -61,6 +65,8 @@
   <meta property="og:url" content="https://datacenterfieldguides.com/blog/a-hit-is-a-time"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   <meta property="og:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-flash-report-structure.png"/>
+  <meta property="og:image:width" content="1800"/>
+  <meta property="og:image:height" content="1100"/>
   <meta property="article:author" content="Tristan"/>
   <meta property="article:published_time" content="2026-10-16T00:00:00Z"/>
   <meta property="article:section" content="Telemetry, CFD &amp; Alarms"/>
@@ -81,11 +87,27 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-flash-report-structure.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        ".direct-answer",
+        "article h1"
+      ]
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Data Center Field Guides",
+      "url": "https://datacenterfieldguides.com/"
+    },
     "author": {
       "@type": "Person",
       "name": "Tristan",
       "url": "https://datacenterfieldguides.com/about",
       "jobTitle": "Data Center Commissioning & Verification Engineer",
+      "sameAs": [
+        "https://datacenterfieldguides.com/about",
+        "https://www.amazon.com/dp/B0HMWDV6LT"
+      ],
       "worksFor": {
         "@type": "Organization",
         "name": "Data Center Field Guides"
@@ -959,55 +981,55 @@
 <p>That distinction is where reports go wrong. The plot looks calm, a cell turns green, and the slide says the test passed. The green cell never said which clock it used, whether a failed poll was held forward, or where the heat went. You can have a hit and still have an invalid file. You can have a valid file and still not have proved the plant. Those are different owners. Mixing them makes a bad clock into a construction defect, or a real leak into a software story.</p>
 <p>Read the file before you read the summary someone already wrote. Summaries are kinder than files. The judgment sheet is the summary you keep. If it is missing, the curve stays a curve.</p>
 <p>The line itself has to exist before the run, in the specification then in force, with a unit. A line added after the plot, to match what happened, is a caption.</p>
-<h2>1. First-Principles Engineering Formulation and Governing Mathematics</h2>
+<h2 id="1-first-principles-engineering-formulation-and-governing-mathematics">1. First-Principles Engineering Formulation and Governing Mathematics</h2>
 <p>In high-density data center environments, verbal summaries and qualitative status tiles routinely obscure incipient physical failures. Whether auditing a <span class="math-inline">120 kW</span> liquid-cooled rack boundary, evaluating a 1-second telemetry time series, or verifying plant redundancy prior to handover, the governing physical relationship for this protocol is expressed as:</p>
 <div class="math-block">S<sub>k</sub> = ∑<sub>i=1</sub><sup>k</sup> (x<sub>i</sub> - μ<sub>0</sub>),  &#160;&#160;&#160;&#160;  Slope<sub>dwell</sub> = |<span class="frac"><span class="num">dT</span><span class="slash">/</span><span class="den">dt</span></span>| ≤ 0.001 K/s</div>
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
-<h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
+<h2 id="2-deep-dive-technical-protocol-and-field-implementation">2. Deep-Dive Technical Protocol and Field Implementation</h2>
 <p>The following field protocol—adapted directly from <strong>Volume 02: <em>Read and Use Load Bank Data: A Field Guide to the Flash Report</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>The five scene passes remain the ultimate human judgment of a load-bank test. An algorithm does not get a pen.</p>
 <p>However, in modern commissioning campaigns involving multiple parallel megawatt-class clusters, algorithmic anomaly detection serves as an invaluable, objective &quot;ruler.&quot; It identifies subtle physical transitions that the human eye might miss—an uncommanded hydraulic valve creeping closed during an ostensibly steady dwell, a single heater element burning out inside an immersion shell, or a secondary coolant flow diversion caused by an unrecorded facility valve maneuver.</p>
 <p>This chapter defines the strict operational boundaries governing two online changepoint detection frameworks (<strong>Focus</strong> and <strong>FLOC</strong>) and one offline piecewise-linear fitting method (<strong>CPOP</strong>).</p>
 <p>(See Figure 05 for the multi-tier load test waveforms, the online trigger timeline, the offline piecewise-linear segmentation, and the algorithmic candidate classification protocol).</p>
-<h2>Online versus offline: The fundamental distinction</h2>
+<h2 id="online-versus-offline-the-fundamental-distinction">Online versus offline: The fundamental distinction</h2>
 <p>The flash report enforces an absolute distinction between online and offline methods:</p>
 <ul><li><strong>Online Methods (Focus, FLOC)</strong>: Run sequentially in real-time as telemetry arrives second-by-second during an active test window. They may emit candidate event flags while the machine is operating. They are designed for live situational awareness.</li><li><strong>Offline Methods (CPOP)</strong>: Run strictly <em>after the export file has been stopped, closed, and cryptographically hashed</em>. They analyze the complete historical time series globally.</li></ul>
-<h3>Two Cardinal Protocol Rules:</h3>
+<h3 id="two-cardinal-protocol-rules">Two Cardinal Protocol Rules:</h3>
 <ul><li><strong>Never run an offline method on a live, growing file and call the result &quot;online.&quot;</strong> An offline algorithm assumes it has access to the full dataset; running it on an unclosed stream produces unstable edge artifacts that generate false alarms.</li><li><strong>Never run an online detector on a file that has already been edited, cleaned, or filtered, and call the result a &quot;discovery.&quot;</strong> An online detector must evaluate the raw stream in real-time. Running it on an edited CSV after the test is simply fitting a curve to a fait accompli.</li></ul>
-<h2>Online detector 1: Focus</h2>
+<h2 id="online-detector-1-focus">Online detector 1: Focus</h2>
 <p><strong>Focus</strong> (Fast Online Changepoint Detection for Poisson and Gaussian streams) monitors a single continuous telemetry channel to detect shifts in mean or variance without requiring the file to end.</p>
 <p>The mathematical method is documented in the peer-reviewed literature by Romano, Ward, Fan, Rigaill, Runge, Eckley, and Fearnhead (<em>arXiv:2607.19961</em>, 2026). If you use Focus in your commissioning pipeline, cite that paper by title; do not reproduce its derivation inside the flash report.</p>
-<h3>Operational Rules for Focus</h3>
+<h3 id="operational-rules-for-focus">Operational Rules for Focus</h3>
 <ul><li><strong>Single Channel Monitoring</strong>: Focus must be applied to <strong>one raw physical channel at a time</strong>—specifically return coolant temperature (T_out), volumetric flow (Q_v), or active power (P_elec). Applying it to a blended composite index (such as an artificial &quot;cooling performance index&quot;) obscures the physical root cause of a detected shift.</li><li><strong>Pre-Declared Threshold</strong>: The anomaly detection threshold (λ) must be calculated and written onto the requirements sheet <em>before the test window opens</em>.</li><li><strong>The Ban on Post-Hoc Retuning</strong>: If Focus triggers an alert during a dwell, you are strictly forbidden from lowering the sensitivity or moving the threshold to silence the alert! Altering a threshold after seeing the data is a confession that the process was unstable. Record the candidate timestamp and proceed.</li></ul>
-<h2>Online detector 2: FLOC</h2>
+<h2 id="online-detector-2-floc">Online detector 2: FLOC</h2>
 <p><strong>FLOC (Fast Localized Online Changepoints)</strong> is a complementary online detector designed to track local variance ratios and short-term trend shifts across adjacent sliding windows (e.g., comparing a 30-second trailing window against a 120-second historical baseline).</p>
-<h3>What an Online Hit Means</h3>
+<h3 id="what-an-online-hit-means">What an Online Hit Means</h3>
 <p>When Focus or FLOC triggers an alert during an active test, that hit is a <strong>candidate timestamp</strong>. It is not an automated verdict.</p>
 <p>The Operator and Recorder must handle the candidate timestamp through a strict comparison protocol:</p>
 <ul><li><strong>Compare the Hit Against the Operator&#x27;s Command Log</strong>:</li><li>If the candidate hit occurs at <code>14:30:02 UTC</code>, and the Operator&#x27;s command log confirms that a load step from 60kW to 90kW was commanded at <code>14:30:00 UTC</code>, the hit is classified as an <strong>EXPECTED STEP</strong>. The detector simply noticed the scene transition you commanded.</li><li>If the candidate hit occurs at <code>14:42:15 UTC</code>—twelve minutes into a 15-minute steady dwell where no command was issued—the hit is classified as an <strong>UNCOMMANDED MID-HOLD BREAK</strong>.</li><li><strong>The Human Action for a Mid-Hold Break</strong>:</li><li>The Recorder marks the plateau for immediate inspection.</li><li>If the pre-declared test protocol mandates that uncommanded breaks require an abort, heat is de-energized.</li><li>If the protocol allows completion, the dwell is completed, but the steady-state hold is <strong>SPLIT</strong> at the hit timestamp. The period prior to the hit may be evaluated for partial compliance; the period after the hit does not inherit the pass.</li></ul>
-<h3>The Ban on Averaging Disagreeing Hits</h3>
+<h3 id="the-ban-on-averaging-disagreeing-hits">The Ban on Averaging Disagreeing Hits</h3>
 <p>If FLOC triggers an alert at <code>14:42:10 UTC</code> and Focus triggers an alert at <code>14:42:25 UTC</code>, <strong>never average the two timestamps</strong> (<code>14:42:17.5 UTC</code>) and call that the changepoint! Averaging two algorithmic outputs creates a synthetic timestamp that corresponds to nothing in physical reality. Log both candidate times side-by-side in the report, and let the human auditor inspect the raw 1-second samples around both points.</p>
-<h2>Offline method: CPOP (Continuous Piecewise-Linear Optimal Partitioning)</h2>
+<h2 id="offline-method-cpop-continuous-piecewise-linear-optimal-partitioning">Offline method: CPOP (Continuous Piecewise-Linear Optimal Partitioning)</h2>
 <p>Once the testing campaign is complete, the export file is stopped, and the SHA-256 hash is sealed, the engineering team may apply <strong>CPOP</strong> to analyze steady-state holds.</p>
 <p>Documented by Fearnhead, Maidstone, and Letchford (<em>Journal of Computational and Graphical Statistics</em>, 2019, DOI: 10.1080/10618600.2018.1512868), CPOP fits a continuous piecewise-linear model to a time series, identifying the exact moments where the physical slope of the data changed while minimizing an L2 fit cost with a penalty β on the number of slope changes:</p>
 <div class="math-block">Cost = min<sub>K, τ</sub> ∑<sub>k=0</sub><sup>K</sup> ∑<sub>i=τ<sub>k</sub>+1</sub><sup>τ<sub>k+1</sub></sup> (y<sub>i</sub> - f<sub>k</sub>(i))<sup>2</sup> + β · K</div>
 <p>where K is the number of changepoints, f_k is a linear segment, and β is the pre-declared penalty parameter.</p>
-<h3>What CPOP Evaluates</h3>
+<h3 id="what-cpop-evaluates">What CPOP Evaluates</h3>
 <p>CPOP is applied exclusively to the steady-state hold portion of a dwell, deliberately excluding the known thermal warm-up transient (t ≥ 4τ).</p>
 <ul><li><strong>A Single Clean Slope (K = 0)</strong>: If CPOP fits the hold as a single horizontal line with near-zero slope (|m| ≤ 0.001 K/s), it provides mathematical confirmation that the plateau achieved true thermal equilibrium.</li><li><strong>A Mid-Hold Slope Break (K ≥ 1)</strong>: If CPOP detects a changepoint in the middle of a steady hold, it indicates that a physical shift occurred:</li><li>If electrical power is flat, but fluid temperature slope suddenly turns upward, CPOP has detected a hydraulic flow restriction (such as an un-commanded valve drift or strainer fouling).</li><li>If fluid temperature slope suddenly turns downward, it reveals a bypass valve leak mixing cold fluid into the return stream.</li></ul>
-<h3>What CPOP Cannot Say</h3>
+<h3 id="what-cpop-cannot-say">What CPOP Cannot Say</h3>
 <ul><li>CPOP cannot say that the plateau passed.</li><li>CPOP cannot verify that the temperature rise agrees with electrical power.</li><li>CPOP cannot confirm that the temperature differential has the correct sign (T_out &gt; T_in). A beautifully fitted single slope that represents cold liquid entering hot and leaving colder is still a failed sign check!</li></ul>
 <p>CPOP is a ruler that measures geometric slopes. The requirements sheet and the human engineer provide the judgment.</p>
-<h2>3. Field Verification Checklist and Instrumentation Hygiene</h2>
+<h2 id="3-field-verification-checklist-and-instrumentation-hygiene">3. Field Verification Checklist and Instrumentation Hygiene</h2>
 <p>To execute this protocol without introducing measurement bias or scope ambiguity, the responsible engineer enforces four mandatory field rules:</p>
 <ul><li><strong>Instrument Traceability Before Observation</strong>: Verify that every thermometer (4-wire Pt100 RTD Class A), pressure transducer (<span class="math-inline">≤ ± 0.1%</span> span), flowmeter, balometer, or power analyzer carries a current calibration certificate and passes a pre-test zero/span check on the day of the walk.</li><li><strong>Synchronized Time-Series Capture</strong>: Align all digital loggers and gateway pollers to a single UTC reference clock (via IEEE 1588v2 PTP at <span class="math-inline">± 1 ms</span> for electrical Sequence of Events, or NTP at <span class="math-inline">± 10 ms</span> for thermal/hydraulic dwells). Never merge unsynchronized CSV files by row index.</li><li><strong>Explicit Isolation of Disturbances vs. Control Handles</strong>: Hold upstream supply temperatures, parallel cabinet loads, and containment door states constant during the observation dwell so that transient plant drift is never mistaken for steady-state equipment performance.</li><li><strong>Written Record Prior to Signature</strong>: Record every boundary tag, measured value, uncertainty tolerance, and open limitation in ink on the controlled project sheet before leaving the equipment line-up.</li></ul>
-<h2>Frequently Asked Questions (FAQ)</h2>
-<h3>Why does &quot;A hit is a time, not a pass&quot; matter during high-density data center commissioning and operations?</h3>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<h3 id="why-does-a-hit-is-a-time-not-a-pass-matter-during-high-density-data-center-commissioning-and-operations">Why does &quot;A hit is a time, not a pass&quot; matter during high-density data center commissioning and operations?</h3>
 <p>How algorithmic change-point detection (Focus, FLOC, CPOP) identifies candidate slope breaks in 1-second load bank time series without replacing human judgment. When project teams bypass this rule to meet a commercial schedule milestone, unverified physical assumptions—such as hidden hydraulic pressure drops, unlogged polling gaps, unblanked bypass leakage, or uncalibrated sensor offsets—transfer directly into live 24/7 production as latent single points of failure.</p>
-<h3>How do you quantitatively verify compliance with &quot;CUSUM CPOP change point detection telemetry&quot; on the physical floor?</h3>
+<h3 id="how-do-you-quantitatively-verify-compliance-with-cusum-cpop-change-point-detection-telemetry-on-the-physical-floor">How do you quantitatively verify compliance with &quot;CUSUM CPOP change point detection telemetry&quot; on the physical floor?</h3>
 <p>Compliance is verified by executing the governing mathematical balance (<span class="math-inline">S<sub>k</sub> = ∑<sub>i=1</sub><sup>k</sup> (x<sub>i</sub> - μ<sub>0</sub>),  &#160;&#160;&#160;&#160;  Slope<sub>dwell</sub> = |dT / dt| ≤ 0.001 K/s</span>) using independent, calibrated field instruments across a stabilized steady-state dwell window (minimum 15 to 30 minutes for thermal and hydraulic systems), and confirming that the discrepancy between primary and secondary measurements remains strictly within the pre-declared acceptance band.</p>
-<h3>What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
+<h3 id="what-should-an-engineer-do-if-a-contractor-or-vendor-submits-a-report-that-violates-this-protocol">What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
 <p>The reviewing engineer must refuse to sign the broad acceptance sentence, mark the specific line item as <strong>Unproved / Defective</strong> on the official audit sheet, and either require a witnessed re-test under a corrected script or isolate the unproved scope under a time-bounded Conditional Acceptance with a <span class="math-inline">150%</span> to <span class="math-inline">200%</span> financial retainage escrow holdback.</p>
 <p>From <em>Read and Use Load Bank Data: A Field Guide to the Flash Report</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="/blog/a-failed-poll-is-a-gap">A failed poll is a gap</a>.</p>

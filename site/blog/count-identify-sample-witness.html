@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://www.clarity.ms"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin/>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
@@ -61,6 +65,8 @@
   <meta property="og:url" content="https://datacenterfieldguides.com/blog/count-identify-sample-witness"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   <meta property="og:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-tdd-audit-framework-and-red-flags.png"/>
+  <meta property="og:image:width" content="1800"/>
+  <meta property="og:image:height" content="1100"/>
   <meta property="article:author" content="Tristan"/>
   <meta property="article:published_time" content="2026-10-16T00:00:00Z"/>
   <meta property="article:section" content="Corrosion &amp; Due Diligence"/>
@@ -81,11 +87,27 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-tdd-audit-framework-and-red-flags.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        ".direct-answer",
+        "article h1"
+      ]
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Data Center Field Guides",
+      "url": "https://datacenterfieldguides.com/"
+    },
     "author": {
       "@type": "Person",
       "name": "Tristan",
       "url": "https://datacenterfieldguides.com/about",
       "jobTitle": "Data Center Commissioning & Verification Engineer",
+      "sameAs": [
+        "https://datacenterfieldguides.com/about",
+        "https://www.amazon.com/dp/B0HMWDV6LT"
+      ],
       "worksFor": {
         "@type": "Organization",
         "name": "Data Center Field Guides"
@@ -951,12 +973,12 @@
 <p>Identify on a sample rule written before you arrive. Present, matching the record, or not. A rule invented in the aisle to match the time you had is not a rule. If you check fewer than you wrote, the sentence narrows. It does not stay &quot;identity verified.&quot; A newer substitute is not what was bought, unless the contract allows it and a document names it.</p>
 <p>Sample the running state the same way. A dark machine is not a pass because the row looked full. Write dark. Do not infer health from a front panel. A dashboard of jobs is not a count of what was bought, and it is not an audit of the tenant&#x27;s system.</p>
 <p>Witness means you saw their test, or you saw the document that says it passed, and you say which. Their pass document is not your test. A demonstration staged for you, outside their script, is not a test either. If the document&#x27;s scope is narrower than its title, use the scope. Titles lose.</p>
-<h2>1. First-Principles Engineering Formulation and Governing Mathematics</h2>
+<h2 id="1-first-principles-engineering-formulation-and-governing-mathematics">1. First-Principles Engineering Formulation and Governing Mathematics</h2>
 <p>In high-density data center environments, verbal summaries and qualitative status tiles routinely obscure incipient physical failures. Whether auditing a <span class="math-inline">120 kW</span> liquid-cooled rack boundary, evaluating a 1-second telemetry time series, or verifying plant redundancy prior to handover, the governing physical relationship for this protocol is expressed as:</p>
 <div class="math-block">n<sub>sample</sub> = \lceil √(N<sub>population</sub>) \rceil + 1,  &#160;&#160;&#160;&#160;  \varepsilon<sub>mismatch</sub> = 0%</div>
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
-<h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
+<h2 id="2-deep-dive-technical-protocol-and-field-implementation">2. Deep-Dive Technical Protocol and Field Implementation</h2>
 <p>The following field protocol—adapted directly from <strong>Volume 09: <em>Walk a TDD: Technical Due Diligence Physical Site Audit</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>On a short delivery you will not retest the hall. You can still do four things that are not a tour. Count. Identify. Sample. Witness.</p>
 <p>Count is everything in scope, against their list, or a statement that the list was not there and you counted what you could see. A count without their list is an inventory, not a reconciliation. Say which. Do not publish the list. Their identifiers stay in their file. Your note says the totals agreed, or where they did not, by function.</p>
@@ -964,24 +986,24 @@
 <p>Sample the running state the same way. One or two machines in a row, configuration against the record, and whether it was actually running. A dark machine is not a pass because the row looked full. Write dark. Do not infer health from a front panel.</p>
 <p>Witness means you saw their test, or you saw the document that says it passed, and you say which. Their pass document is not your test. The verification book already split those verbs. Use them. If you did not see the test, you do not write that you verified performance. You write that a document exists, who signed it, and that you did not rerun it.</p>
 <p>Photographs are evidence in their file if the engagement allows them. They are not the finding. A photo of a nameplate is not a load. A photo of a screen is not a quality mark.</p>
-<h2>What you write the same day</h2>
+<h2 id="what-you-write-the-same-day">What you write the same day</h2>
 <p>Write the four acts before you sleep, in the sheet, not in a chat. Count result. Sample as written or narrowed. What was dark. Which verb for their test. Rooms not entered. A note written the next afternoon from memory will promote the rooms you understood and drop the door that stayed shut. The shut door is the point of writing it the same day.</p>
 <p>Do not add serials to that note if the note will be pasted into the opinion. Function and result are enough. Their asset file already has the identities. A working note that only makes sense beside a photograph is a caption. Rewrite it in sentences before you leave the building, while you can still check a door.</p>
 <p>If they ask for a verbal result at the door, give the limits, not a preview of the yes. &quot;Count done, one identity gap, performance not witnessed, second feed spoken only.&quot; That is a complete door sentence. &quot;Looks fine&quot; is the sentence you will spend the next week taking back.</p>
-<h2>Statistical Field Sampling Mathematics: Count, Identify, Sample, Witness</h2>
+<h2 id="statistical-field-sampling-mathematics-count-identify-sample-witness">Statistical Field Sampling Mathematics: Count, Identify, Sample, Witness</h2>
 <p>In institutional M&amp;A acquisitions and project finance underwriting for mission-critical data centers, every qualitative observation recorded during the site walk must be translated into a deterministic commercial or contractual parameter for the investment committee and lending syndicate:</p>
 <div class="math-block">n<sub>sample</sub> = \lceil √(N<sub>population</sub>) \rceil + 1</div>
 <p>An observation that merely remarks on plant appearance without quantifying its impact on <strong>Firm Deliverable IT Capacity (<span class="math-inline">MW</span>)</strong>, <strong>Single-Point-of-Failure (<span class="math-inline">SPOF</span>) Availability</strong>, <strong>Immediate Catch-Up Capital Expenditure (<span class="math-inline">CapEx</span>)</strong>, or <strong>Conditions Precedent (<span class="math-inline">CP</span>) / Conditions Subsequent (<span class="math-inline">CS</span>)</strong> fails to protect the relying party.</p>
 <div class="table-container"><table><thead><tr><th>TDD Audit Evaluation Axis</th><th>Seller / Data Room Presentation</th><th>Independent Engineer Verification Protocol</th><th>Financing / Acquisition Covenant Impact</th></tr></thead><tbody><tr><td><strong>Primary Audit Objective</strong></td><td>Statistical Field Sampling Mathematics: Count, Identify, Sample, Witness</td><td>Cross-check VDR contracts against physical nameplates &amp; test logs</td><td>Convert unverified claims into explicit CP/CS or valuation haircuts</td></tr><tr><td><strong>Sampling &amp; Evidence Rule</strong></td><td>Curated tour of flagship hall or summary slide</td><td>Statistical random sample (<span class="math-inline">n = \lceil√(N)\rceil + 1</span>) chosen by auditor</td><td>Any sample mismatch triggers expanded <span class="math-inline">100%</span> population audit</td></tr><tr><td><strong>Redundancy &amp; Capacity Gate</strong></td><td>Nameplate sum of generators, chillers, or transformers</td><td>Derate for <span class="math-inline">99.6%</span> ASHRAE extreme wet-bulb and N+1/2N fault paths</td><td>Lock underwritten revenue model to firm derated MW ceiling</td></tr><tr><td><strong>Financial Protection Mechanism</strong></td><td>Seller warranty representation in purchase agreement</td><td>Quantify remediation cost <span class="math-inline">C<sub>fix</sub></span> + schedule delay risk</td><td>Require <span class="math-inline">150%--200%</span> cash escrow holdback at financial close</td></tr></tbody></table></div>
-<h2>3. Field Verification Checklist and Instrumentation Hygiene</h2>
+<h2 id="3-field-verification-checklist-and-instrumentation-hygiene">3. Field Verification Checklist and Instrumentation Hygiene</h2>
 <p>To execute this protocol without introducing measurement bias or scope ambiguity, the responsible engineer enforces four mandatory field rules:</p>
 <ul><li><strong>Instrument Traceability Before Observation</strong>: Verify that every thermometer (4-wire Pt100 RTD Class A), pressure transducer (<span class="math-inline">≤ ± 0.1%</span> span), flowmeter, balometer, or power analyzer carries a current calibration certificate and passes a pre-test zero/span check on the day of the walk.</li><li><strong>Synchronized Time-Series Capture</strong>: Align all digital loggers and gateway pollers to a single UTC reference clock (via IEEE 1588v2 PTP at <span class="math-inline">± 1 ms</span> for electrical Sequence of Events, or NTP at <span class="math-inline">± 10 ms</span> for thermal/hydraulic dwells). Never merge unsynchronized CSV files by row index.</li><li><strong>Explicit Isolation of Disturbances vs. Control Handles</strong>: Hold upstream supply temperatures, parallel cabinet loads, and containment door states constant during the observation dwell so that transient plant drift is never mistaken for steady-state equipment performance.</li><li><strong>Written Record Prior to Signature</strong>: Record every boundary tag, measured value, uncertainty tolerance, and open limitation in ink on the controlled project sheet before leaving the equipment line-up.</li></ul>
-<h2>Frequently Asked Questions (FAQ)</h2>
-<h3>Why does &quot;Count, identify, sample, witness&quot; matter during high-density data center commissioning and operations?</h3>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<h3 id="why-does-count-identify-sample-witness-matter-during-high-density-data-center-commissioning-and-operations">Why does &quot;Count, identify, sample, witness&quot; matter during high-density data center commissioning and operations?</h3>
 <p>The four physical acts of a data center Technical Due Diligence (TDD) site walk—Count, Identify, Sample, and Witness—governed by square-root statistical sampling. When project teams bypass this rule to meet a commercial schedule milestone, unverified physical assumptions—such as hidden hydraulic pressure drops, unlogged polling gaps, unblanked bypass leakage, or uncalibrated sensor offsets—transfer directly into live 24/7 production as latent single points of failure.</p>
-<h3>How do you quantitatively verify compliance with &quot;data center technical due diligence site walk sampling&quot; on the physical floor?</h3>
+<h3 id="how-do-you-quantitatively-verify-compliance-with-data-center-technical-due-diligence-site-walk-sampling-on-the-physical-floor">How do you quantitatively verify compliance with &quot;data center technical due diligence site walk sampling&quot; on the physical floor?</h3>
 <p>Compliance is verified by executing the governing mathematical balance (<span class="math-inline">n<sub>sample</sub> = \lceil √(N<sub>population</sub>) \rceil + 1,  &#160;&#160;&#160;&#160;  \varepsilon<sub>mismatch</sub> = 0%</span>) using independent, calibrated field instruments across a stabilized steady-state dwell window (minimum 15 to 30 minutes for thermal and hydraulic systems), and confirming that the discrepancy between primary and secondary measurements remains strictly within the pre-declared acceptance band.</p>
-<h3>What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
+<h3 id="what-should-an-engineer-do-if-a-contractor-or-vendor-submits-a-report-that-violates-this-protocol">What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
 <p>The reviewing engineer must refuse to sign the broad acceptance sentence, mark the specific line item as <strong>Unproved / Defective</strong> on the official audit sheet, and either require a witnessed re-test under a corrected script or isolate the unproved scope under a time-bounded Conditional Acceptance with a <span class="math-inline">150%</span> to <span class="math-inline">200%</span> financial retainage escrow holdback.</p>
 <p>From <em>Walk a TDD: Technical Due Diligence Physical Site Audit</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="/blog/witnessed-or-a-document">Witnessed is not the same as accepted a document</a>.</p>

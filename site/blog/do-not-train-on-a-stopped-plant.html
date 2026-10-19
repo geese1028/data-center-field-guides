@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://www.clarity.ms"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin/>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
   <script>
@@ -61,6 +65,8 @@
   <meta property="og:url" content="https://datacenterfieldguides.com/blog/do-not-train-on-a-stopped-plant"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   <meta property="og:image" content="https://datacenterfieldguides.com/blog/figures/flagship/fig-01-point-anatomy-and-quality-flag.png"/>
+  <meta property="og:image:width" content="1800"/>
+  <meta property="og:image:height" content="1100"/>
   <meta property="article:author" content="Tristan"/>
   <meta property="article:published_time" content="2026-10-16T00:00:00Z"/>
   <meta property="article:section" content="Telemetry, CFD &amp; Alarms"/>
@@ -81,11 +87,27 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-point-anatomy-and-quality-flag.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        ".direct-answer",
+        "article h1"
+      ]
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Data Center Field Guides",
+      "url": "https://datacenterfieldguides.com/"
+    },
     "author": {
       "@type": "Person",
       "name": "Tristan",
       "url": "https://datacenterfieldguides.com/about",
       "jobTitle": "Data Center Commissioning & Verification Engineer",
+      "sameAs": [
+        "https://datacenterfieldguides.com/about",
+        "https://www.amazon.com/dp/B0HMWDV6LT"
+      ],
       "worksFor": {
         "@type": "Organization",
         "name": "Data Center Field Guides"
@@ -950,12 +972,12 @@
 <p>Mark shutdown before you fit. The mark is a rule you can read: total pump power at zero, or total tower power at zero, or a plant-off state you already write on the day sheet. Do not invent the mark after the curve looks strange. Do not delete the hours from the archive. Delete them from the training set, and keep the count. A fit that cannot say how many hours it refused has hidden its sample.</p>
 <p>A short stop inside a longer run is the same defect, smaller. A fan that coasts for ten minutes is not a speed you may recommend. If the interval is shorter than the poll you trust, it is a gap, not a sample. Chapter of the file book already said a failed poll is a gap. A zero that means &quot;off&quot; is a different gap. Label which zero you mean. Off is not a measurement of a running tower.</p>
 <p>After the cut, look at what remains. If the remaining hours are one season, one tower count, and one fan speed, you still do not have a search space. You have a description of how the plant was left. Say that. Do not proceed to an optimizer because the notebook ran.</p>
-<h2>1. First-Principles Engineering Formulation and Governing Mathematics</h2>
+<h2 id="1-first-principles-engineering-formulation-and-governing-mathematics">1. First-Principles Engineering Formulation and Governing Mathematics</h2>
 <p>In high-density data center environments, verbal summaries and qualitative status tiles routinely obscure incipient physical failures. Whether auditing a <span class="math-inline">120 kW</span> liquid-cooled rack boundary, evaluating a 1-second telemetry time series, or verifying plant redundancy prior to handover, the governing physical relationship for this protocol is expressed as:</p>
 <div class="math-block">Training Set \mathcalD<sub>valid</sub> = ( t  \middle|  Q<sub>water</sub>(t) ≥ 0.25 Q<sub>rated</sub>  \land  Q<sub>mask</sub>(t) = \texttt0x00  \land  |<span class="frac"><span class="num">dT</span><span class="slash">/</span><span class="den">dt</span></span>| ≤ \epsilon )</div>
 <p>When any term on the left-hand or right-hand side of this relationship is left unmeasured, inferred from an uncalibrated nameplate, or averaged across an unverified time window, the resulting engineering record cannot support a valid operational signature. Field engineers must verify each physical variable independently using NIST/ISO 17025 traceable instruments before proceeding to the next gate in the sequence.</p>
 <div class="table-container"><table><thead><tr><th>Audit Verification Parameter</th><th>Unacceptable / Defective Field Practice</th><th>Auditable First-Principles Requirement</th><th>Mandatory Action on Failure</th></tr></thead><tbody><tr><td><strong>Primary Boundary Definition</strong></td><td>Implied by vendor brochure or slide deck</td><td>Explicitly bounded on stamped P&amp;ID / SLD with tag IDs</td><td>Halt acceptance; issue formal boundary clarification</td></tr><tr><td><strong>Measurement &amp; Telemetry Proof</strong></td><td>Single uncalibrated display reading or 60-sec average</td><td>Calibrated Class A/0.5S sensor with 1-sec UTC timestamp</td><td>Reject dataset; classify point as <code>0x40</code> Stale or <code>0x80</code> Bad</td></tr><tr><td><strong>Pass / Fail Acceptance Gate</strong></td><td>Qualitative &quot;Looks OK&quot; or &quot;Within Normal Range&quot;</td><td>Quantitative numerical corridor cited from revision in force</td><td>Log Category A/B defect; withhold retainage or permit</td></tr><tr><td><strong>Custody &amp; Sign-Off Record</strong></td><td>Single bundled &quot;Accepted&quot; signature at end of meeting</td><td>Scoped, dated sentence naming exact proved &amp; unproved lines</td><td>Strike unsupported claims; issue Conditional Refusal</td></tr></tbody></table></div>
-<h2>2. Deep-Dive Technical Protocol and Field Implementation</h2>
+<h2 id="2-deep-dive-technical-protocol-and-field-implementation">2. Deep-Dive Technical Protocol and Field Implementation</h2>
 <p>The following field protocol—adapted directly from <strong>Volume 06: <em>When a Monitor May Speak</em></strong>—establishes the step-by-step verification mechanics required on the data hall floor:</p>
 <p>A telemetry engineer who believes that software monitoring rules apply only to cloud servers and database clusters while mechanical chillers and electrical switchgear operate under &quot;facilities folklore&quot; does not understand critical infrastructure.</p>
 <p>The physical plant—the medium-voltage transformers, centrifugal chillers, secondary cooling distribution units (CDUs), and air handling units—is governed by identical telemetry laws:</p>
@@ -963,40 +985,40 @@
 <p><strong>FACILITY TELEMETRY GOVERNANCE MATRIX</strong></p>
 <div class="table-container"><table><thead><tr><th>Subsystem / Instrument S</th><th>tandard Telemetry Parameter G</th><th>overning Code</th></tr></thead><tbody><tr><td>MV Switchgear (35kV) Bus</td><td>Voltage, Current, THD, PF GB</td><td>/T 51409-2020</td></tr><tr><td>Dry-Type Transformers Wi</td><td>nding Temperature (&lt; 90°C) IE</td><td>EE C57.12 / NFPA</td></tr><tr><td>UPS Battery Rooms DC Flo</td><td>at Voltage, Ambient T IEEE 11</td><td>88 / 1491</td></tr><tr><td>Centrifugal Chillers Con</td><td>denser Approach (&lt;= 1.5K) ASH</td><td>RAE Standard 90.4</td></tr><tr><td>Secondary CDU Loops Pres</td><td>sure (0.15 - 0.90 MPa) OpenVi</td><td>king 2.6XZ10</td></tr><tr><td>Secondary Coolant Chem 2</td><td>5.0% Propylene Glycol wt ASTM</td><td>D3306 / D1384</td></tr><tr><td>IT Whitespace Aisles Con</td><td>tainment DP (&gt;= 5.0 Pa) ASHRA</td><td>E TC 9.9</td></tr></tbody></table></div>
 <p>Following the authoritative engineering standards outlined in <strong>GB/T 51409-2020</strong> (<em>Technical Standard for Integrated Monitoring System of Data Centers</em>) and OpenViking operational guidelines (<code>ALZJ-YW-2.6XZ02</code> and <code>ALZJ-YW-2.6XZ10</code>), every physical facility point must be operated under rigorous engineering constraints.</p>
-<h2>The Walked Reading Wins</h2>
+<h2 id="the-walked-reading-wins">The Walked Reading Wins</h2>
 <p>The physical measurement taken by a qualified technician using a calibrated, certified hand-held instrument <strong>always supersedes the digital telemetry tile on the SCADA screen</strong>.</p>
 <p>If the central BMS workstation reports that the secondary cooling loop supply temperature is operating comfortably at 28.0°C (<code>GREEN</code>), but the shift technician walks the room with a calibrated PT100 immersion probe or calibrated infrared camera and measures 34.2°C:</p>
 <ul><li><strong>The physical reading wins instantly</strong>. The facility is operating in a high-temperature excursion state.</li><li>The technician does not average the two numbers and assume the temperature is 31.1°C.</li><li>The technician logs both readings into the shift register with exact timestamps:</li></ul>
 <p><code>08:15 UTC: SCADA reports 28.0°C | Fluke Calibrated Probe reads 34.2°C</code>.</p>
 <ul><li>The digital telemetry point is immediately quarantined: its quality flag is set to <code>UNCERTAIN (0x02)</code> or <code>BAD (0x04)</code>.</li><li>The digital sensor is subjected to an immediate physical loop calibration and forced-failure test.</li></ul>
 <p>Never permit a software engineer or remote monitoring specialist to argue that <em>&quot;the digital sensor must be right because it was installed by the factory.&quot;</em> Sensors drift, thermal wells accumulate air gaps, RTD lead resistance degrades, and analog-to-digital converters lose calibration. The verified tool in the technician&#x27;s hand is the ultimate anchor of truth.</p>
-<h2>Critical Facility Telemetry Parameters</h2>
+<h2 id="critical-facility-telemetry-parameters">Critical Facility Telemetry Parameters</h2>
 <p>Per OpenViking <code>ALZJ-YW-2.6XZ10</code> for high-density liquid cooling infrastructure:</p>
-<h3>1. The CDU Pressure Envelope</h3>
+<h3 id="1-the-cdu-pressure-envelope">1. The CDU Pressure Envelope</h3>
 <ul><li>Primary Facility Water System (FWS) supply pressure: 0.15 MPa to 0.90 MPa.</li><li>Secondary Technology Cooling System (TCS) supply pressure: 0.15 MPa to 0.90 MPa.</li><li>Secondary loop pump differential pressure (ΔP_pump): Strictly &lt; 1.0 bar. A differential pressure &gt; 1.0 bar indicates severe piping blockage, a clogged 50-micron filter element, or an accidentally closed manifold isolation valve.</li><li>Any drop in secondary static pressure below 0.12 MPa triggers an immediate <strong>Low Pressure Alarm</strong>, indicating coolant leakage or thermal expansion tank bladder failure.</li></ul>
-<h3>2. Plate Heat Exchanger Thermal Approach</h3>
+<h3 id="2-plate-heat-exchanger-thermal-approach">2. Plate Heat Exchanger Thermal Approach</h3>
 <p>The approach temperature across the CDU plate heat exchanger:</p>
 <div class="math-block">Δ T<sub>approach</sub> = T<sub>TCS, supply</sub> - T<sub>FWS, supply</sub> ≤ 8.0 K</div>
 <p>During steady-state operation, ΔT_approach must remain strictly ≤ 8.0 K (typically 3.0 K to 5.0 K). If the approach temperature creeps above 8.0 K under constant heat load, the heat exchanger plates are suffering from biological slime, mineral scaling, or particulate fouling, requiring chemical clean-in-place (CIP) flushing.</p>
-<h3>3. Propylene Glycol Concentration &amp; Refractometer Testing</h3>
+<h3 id="3-propylene-glycol-concentration-refractometer-testing">3. Propylene Glycol Concentration &amp; Refractometer Testing</h3>
 <p>Per ASTM D3306 and OpenViking standards, secondary coolant must be maintained at <strong>25.0% propylene glycol by weight</strong> (± 1.0%):</p>
 <ul><li>Freeze protection: -11.5°C.</li><li>Burst protection: -22.0°C.</li><li>Specific gravity: 1.026 ± 0.003 at 20°C.</li><li>Coolant conductivity: &lt; 10 μS/cm.</li><li>Coolant pH: 7.5 to 9.0.</li></ul>
 <p>If a refractometer test reveals PG concentration &lt; 23.0%, the fluid loses biostatic efficacy, permitting bacterial colonies to form biofilms on micro-channel cold plates. If PG concentration exceeds 27.0%, dynamic fluid viscosity increases drastically (<span class="math-inline">ν &gt; 2.8 mm<sup>2</sup>/s</span>), spiking pumping power and reducing turbulent heat transfer.</p>
-<h2>Electrical Power Quality Telemetry</h2>
+<h2 id="electrical-power-quality-telemetry">Electrical Power Quality Telemetry</h2>
 <p>Per GB/T 51409-2020 and IEEE 1159:</p>
 <ul><li><strong>Voltage Tolerance</strong>: ± 5.0% of nominal rated voltage at utilization panels.</li><li><strong>Frequency Stability</strong>: 50 ± 0.2 Hz (or 60 ± 0.2 Hz). A frequency excursion &gt; 0.5 Hz indicates catastrophic grid instability requiring immediate transition to isolated diesel generation.</li><li><strong>Power Factor</strong>: Maintained ≥ 0.95 lagging across all active operating loads.</li><li><strong>Total Harmonic Distortion (THD)</strong>: Voltage THD ≤ 5.0%; individual harmonic voltage distortion ≤ 3.0%.</li></ul>
 <p>If electrical power monitoring telemetry detects current harmonic resonance, switchgear busbars will experience severe inductive heating, leading to catastrophic bus duct insulation breakdown even when overall kilowatt load is well below nameplate rating.</p>
-<h2>Decisions to Record</h2>
+<h2 id="decisions-to-record">Decisions to Record</h2>
 <ul><li>The physical calibration registry of all hand-held test instruments used during shift rounds.</li><li>The exact CDU operating pressures, pump differential pressures, and thermal approach temperatures logged per shift.</li><li>The weekly optical refractometer, conductivity, and pH measurements logged for secondary cooling loops.</li><li>The protocol establishing that walked physical measurements unconditionally override digital SCADA screens.</li></ul>
-<h2>3. Field Verification Checklist and Instrumentation Hygiene</h2>
+<h2 id="3-field-verification-checklist-and-instrumentation-hygiene">3. Field Verification Checklist and Instrumentation Hygiene</h2>
 <p>To execute this protocol without introducing measurement bias or scope ambiguity, the responsible engineer enforces four mandatory field rules:</p>
 <ul><li><strong>Instrument Traceability Before Observation</strong>: Verify that every thermometer (4-wire Pt100 RTD Class A), pressure transducer (<span class="math-inline">≤ ± 0.1%</span> span), flowmeter, balometer, or power analyzer carries a current calibration certificate and passes a pre-test zero/span check on the day of the walk.</li><li><strong>Synchronized Time-Series Capture</strong>: Align all digital loggers and gateway pollers to a single UTC reference clock (via IEEE 1588v2 PTP at <span class="math-inline">± 1 ms</span> for electrical Sequence of Events, or NTP at <span class="math-inline">± 10 ms</span> for thermal/hydraulic dwells). Never merge unsynchronized CSV files by row index.</li><li><strong>Explicit Isolation of Disturbances vs. Control Handles</strong>: Hold upstream supply temperatures, parallel cabinet loads, and containment door states constant during the observation dwell so that transient plant drift is never mistaken for steady-state equipment performance.</li><li><strong>Written Record Prior to Signature</strong>: Record every boundary tag, measured value, uncertainty tolerance, and open limitation in ink on the controlled project sheet before leaving the equipment line-up.</li></ul>
-<h2>Frequently Asked Questions (FAQ)</h2>
-<h3>Why does &quot;Do not train a tower model on a stopped plant&quot; matter during high-density data center commissioning and operations?</h3>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<h3 id="why-does-do-not-train-a-tower-model-on-a-stopped-plant-matter-during-high-density-data-center-commissioning-and-operations">Why does &quot;Do not train a tower model on a stopped plant&quot; matter during high-density data center commissioning and operations?</h3>
 <p>Why training a cooling plant machine-learning model on raw historian exports containing stopped cells, closed isolation valves, and stale sensors corrupts optimization. When project teams bypass this rule to meet a commercial schedule milestone, unverified physical assumptions—such as hidden hydraulic pressure drops, unlogged polling gaps, unblanked bypass leakage, or uncalibrated sensor offsets—transfer directly into live 24/7 production as latent single points of failure.</p>
-<h3>How do you quantitatively verify compliance with &quot;cooling tower ML model training data filtering&quot; on the physical floor?</h3>
+<h3 id="how-do-you-quantitatively-verify-compliance-with-cooling-tower-ml-model-training-data-filtering-on-the-physical-floor">How do you quantitatively verify compliance with &quot;cooling tower ML model training data filtering&quot; on the physical floor?</h3>
 <p>Compliance is verified by executing the governing mathematical balance (<span class="math-inline">Training Set \mathcalD<sub>valid</sub> = ( t  \middle|  Q<sub>water</sub>(t) ≥ 0.25 Q<sub>rated</sub>  \land  Q<sub>mask</sub>(t) = \texttt0x00  \land  |dT / dt| ≤ \epsilon )</span>) using independent, calibrated field instruments across a stabilized steady-state dwell window (minimum 15 to 30 minutes for thermal and hydraulic systems), and confirming that the discrepancy between primary and secondary measurements remains strictly within the pre-declared acceptance band.</p>
-<h3>What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
+<h3 id="what-should-an-engineer-do-if-a-contractor-or-vendor-submits-a-report-that-violates-this-protocol">What should an engineer do if a contractor or vendor submits a report that violates this protocol?</h3>
 <p>The reviewing engineer must refuse to sign the broad acceptance sentence, mark the specific line item as <strong>Unproved / Defective</strong> on the official audit sheet, and either require a witnessed re-test under a corrected script or isolate the unproved scope under a time-bounded Conditional Acceptance with a <span class="math-inline">150%</span> to <span class="math-inline">200%</span> financial retainage escrow holdback.</p>
 <p>From <em>When a Monitor May Speak</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="/blog/model-cannot-learn-a-speed-it-never-saw">A model cannot learn a fan speed it never saw</a>.</p>
