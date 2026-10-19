@@ -74,7 +74,9 @@ def api_request(token, method, url, body=None):
         return json.loads(raw) if raw else {}
 
 
-def query_analytics(token, site, dimensions, start_date="2026-10-01", end_date="2026-10-17", row_limit=100, data_state="all"):
+def query_analytics(token, site, dimensions, start_date="2026-10-01", end_date=None, row_limit=100, data_state="all"):
+    if end_date is None:
+        end_date = datetime.now().strftime("%Y-%m-%d")
     enc = urllib.parse.quote(site, safe="")
     url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{enc}/searchAnalytics/query"
     body = {
@@ -120,6 +122,10 @@ def submit_indexnow():
         "https://datacenterfieldguides.com/feed.xml",
         "https://datacenterfieldguides.com/feed.json",
     ]
+    raw_dir = Path("/Users/geese/Downloads/book/site/raw")
+    if raw_dir.exists():
+        for md_file in sorted(raw_dir.glob("*.md")):
+            extra_endpoints.append(f"https://datacenterfieldguides.com/raw/{md_file.name}")
     for ep in extra_endpoints:
         if ep not in urls:
             urls.append(ep)
@@ -131,14 +137,18 @@ def submit_indexnow():
         "keyLocation": f"https://datacenterfieldguides.com/{indexnow_key}.txt",
         "urlList": urls,
     }
-    req = urllib.request.Request(
-        "https://api.indexnow.org/indexnow",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json; charset=utf-8"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.status, len(urls)
+    encoded_payload = json.dumps(payload).encode("utf-8")
+    last_status = 200
+    for endpoint in ["https://api.indexnow.org/indexnow", "https://www.bing.com/indexnow"]:
+        req = urllib.request.Request(
+            endpoint,
+            data=encoded_payload,
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            last_status = resp.status
+    return last_status, len(urls)
 
 
 def main():

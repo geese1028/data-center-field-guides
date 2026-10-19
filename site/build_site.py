@@ -59,6 +59,10 @@ GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
 
     gtag('config', 'AW-16517762043');
   </script>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="author" content="Tristan"/>
+  <meta property="og:locale" content="en_US"/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
@@ -975,9 +979,41 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
     title = clean_plain_math(meta.get("title", "Data Center Engineering Field Guide"))
     desc = clean_plain_math(meta.get("description", ""))
     pub_date = meta.get("publish_date", "2026-10-14")
+    mod_date = datetime.now().strftime("%Y-%m-%d")
     book_info = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])
     availability = "https://schema.org/InStock" if book_info.get("status") == "live" else "https://schema.org/PreOrder"
     citations = extract_standards_citations(f"{title} {desc} {body_text}")
+    stores = book_info.get("stores", {})
+    same_as = [u for u in [stores.get("amazon"), stores.get("leanpub")] if u]
+    asin = book_info.get("asin", "")
+
+    book_schema = {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": book_info["title"],
+        "author": {
+            "@type": "Person",
+            "name": "Tristan",
+            "url": f"{BASE_URL}/about"
+        },
+        "url": f"{BASE_URL}/book/{book_info['slug']}",
+        "bookFormat": "EBook",
+        "inLanguage": "en-US",
+        "offers": {
+            "@type": "Offer",
+            "url": stores.get("amazon") or f"{BASE_URL}/book/{book_info['slug']}",
+            "priceCurrency": "USD",
+            "availability": availability
+        }
+    }
+    if same_as:
+        book_schema["sameAs"] = same_as
+    if asin and not asin.startswith("B0EXAMP"):
+        book_schema["identifier"] = {
+            "@type": "PropertyValue",
+            "propertyID": "ASIN",
+            "value": asin
+        }
 
     schema_list = [
         {
@@ -985,9 +1021,14 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
             "@type": "TechArticle",
             "headline": title,
             "description": desc,
+            "url": canonical_url,
+            "image": f"{BASE_URL}/blog/{book_info['cover']}",
+            "inLanguage": "en-US",
+            "isAccessibleForFree": True,
             "author": {
                 "@type": "Person",
                 "name": "Tristan",
+                "url": f"{BASE_URL}/about",
                 "jobTitle": "Data Center Commissioning & Verification Engineer",
                 "worksFor": {
                     "@type": "Organization",
@@ -1004,6 +1045,7 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
                 }
             },
             "datePublished": pub_date,
+            "dateModified": mod_date,
             "mainEntityOfPage": canonical_url,
             "proficiencyLevel": "Expert",
             "citation": citations,
@@ -1012,22 +1054,7 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
                 {"@type": "Thing", "name": "Data Center Infrastructure & Commissioning"}
             ]
         },
-        {
-            "@context": "https://schema.org",
-            "@type": "Book",
-            "name": book_info["title"],
-            "author": {
-                "@type": "Person",
-                "name": "Tristan"
-            },
-            "url": f"{BASE_URL}/book/{book_info['slug']}",
-            "bookFormat": "EBook",
-            "offers": {
-                "@type": "Offer",
-                "priceCurrency": "USD",
-                "availability": availability
-            }
-        },
+        book_schema,
         {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
@@ -1175,6 +1202,9 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
     </div>
     """
 
+    pub_date = article.get("raw_meta", {}).get("publish_date", "2026-10-14")
+    kw_meta = ", ".join(filter(None, [article.get("primary_keyword", ""), b_info["short_title"], article["topic_label"], "data center engineering", "commissioning protocol"]))
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1183,6 +1213,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{html.escape(seo_title)}</title>
   <meta name="description" content="{html.escape(desc)}"/>
+  <meta name="keywords" content="{html.escape(kw_meta)}"/>
   <link rel="canonical" href="{canonical_url}"/>
   <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="{BASE_URL}/raw/{slug}.md"/>
   
@@ -1193,6 +1224,9 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   <meta property="og:image" content="{BASE_URL}/blog/{b_info['cover']}"/>
+  <meta property="article:author" content="Tristan"/>
+  <meta property="article:published_time" content="{html.escape(pub_date)}T00:00:00Z"/>
+  <meta property="article:section" content="{html.escape(article['topic_label'])}"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image" content="{BASE_URL}/blog/{b_info['cover']}"/>
   <meta name="twitter:title" content="{html.escape(title)} | Data Center Field Guides"/>
@@ -1949,6 +1983,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
   </footer>
 
   <script src="../search-data.js" defer></script>
@@ -2003,58 +2038,73 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
     chapter_items = "".join([f"<li><span class='chapter-num'>Ch 0{i+1}:</span> <span class='chapter-name'>{html.escape(ch.split(':', 1)[-1].strip() if ':' in ch else ch)}</span></li>" for i, ch in enumerate(chapters)])
     
     # JSON-LD Schema
-    json_ld = f"""
-    <script type="application/ld+json">
-    {{
-      "@context": "https://schema.org",
-      "@graph": [
-        {{
-          "@type": "Book",
-          "@id": "{canonical_url}#book",
-          "name": "{html.escape(b['title'])}",
-          "description": "{html.escape(b['subtitle'])}",
-          "author": {{
+    stores = b.get("stores", {})
+    same_as = [u for u in [stores.get("amazon"), stores.get("leanpub")] if u]
+    asin = b.get("asin", "")
+    pages_num = int(re.sub(r"[^0-9]", "", b.get("pages", "120")) or 120)
+    book_node = {
+        "@type": "Book",
+        "@id": f"{canonical_url}#book",
+        "name": b["title"],
+        "description": b["subtitle"],
+        "url": canonical_url,
+        "inLanguage": "en-US",
+        "bookFormat": "https://schema.org/EBook",
+        "numberOfPages": pages_num,
+        "author": {
             "@type": "Person",
             "name": "Tristan",
+            "url": f"{BASE_URL}/about",
             "jobTitle": "Lead Data Center Commissioning Authority & CDFOS Instructor"
-          }},
-          "numberOfPages": "{b.get('pages')}",
-          "isbn": "{b.get('asin')}"
-        }},
-        {{
-          "@type": "CollectionPage",
-          "@id": "{canonical_url}",
-          "url": "{canonical_url}",
-          "name": "Volume 0{num}: {html.escape(b['title'])}",
-          "description": "{html.escape(b['subtitle'])}",
-          "breadcrumb": {{
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "{BASE_URL}/"
-              }},
-              {{
-                "@type": "ListItem",
-                "position": 2,
-                "name": "The 9 Books",
-                "item": "{BASE_URL}/#books"
-              }},
-              {{
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Volume 0{num}: {html.escape(b['short_title'])}",
-                "item": "{canonical_url}"
-              }}
-            ]
-          }}
-        }}
-      ]
-    }}
-    </script>
-    """
+        }
+    }
+    if same_as:
+        book_node["sameAs"] = same_as
+    if asin and not asin.startswith("B0EXAMP"):
+        book_node["identifier"] = {
+            "@type": "PropertyValue",
+            "propertyID": "ASIN",
+            "value": asin
+        }
+
+    vol_schema_obj = {
+        "@context": "https://schema.org",
+        "@graph": [
+            book_node,
+            {
+                "@type": "CollectionPage",
+                "@id": canonical_url,
+                "url": canonical_url,
+                "name": f"Volume 0{num}: {b['title']}",
+                "description": b["subtitle"],
+                "inLanguage": "en-US",
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": f"{BASE_URL}/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "The 9 Books",
+                            "item": f"{BASE_URL}/#books"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": f"Volume 0{num}: {b['short_title']}",
+                            "item": canonical_url
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+    json_ld = f'  <script type="application/ld+json">\n{json.dumps(vol_schema_obj, ensure_ascii=False, indent=2)}\n  </script>'
     
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -2832,6 +2882,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
   </footer>
 
   <script src="../search-data.js" defer></script>
@@ -4291,6 +4342,7 @@ def generate_hub_index(articles, is_subfolder=False):
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
   </footer>
 
   <!-- Instant Search & Filter Logic with Compact/Expand support -->
@@ -5223,11 +5275,19 @@ def generate_about_page():
         <a href="/buy" class="btn-action secondary">Browse All Volumes &amp; Formats</a>
       </div>
     </div>
+
+    <!-- Official Publisher & Store Distribution Verification -->
+    <div class="trademark-notice" style="margin-top: 2rem; margin-bottom: 1rem; border-left: 3px solid #38bdf8; color: #cbd5e1; font-size: 0.88rem;">
+      <strong style="color: #fff;">Official Publisher Imprint &amp; Store Distribution Verification:</strong><br/>
+      All volumes in the <em>Data Center Field Guides</em> series and all companion engineering protocols published on <code>datacenterfieldguides.com</code> (including <code>/blog/*</code>, <code>/raw/*</code>, and <code>/llms.txt</code>) are 100% original works authored and owned by <strong>Tristan</strong> under the official publishing imprint <strong>Data Center Field Guides</strong> (Official Publisher &amp; Rights Verification Account: <a href="mailto:geese1028@gmail.com" style="color: #38bdf8;">geese1028@gmail.com</a> / <code>geese1028 [at] gmail.com</code>).<br/>
+      <strong style="color: #fff;">Verified Volume 01 Store Identifiers:</strong> Google Play Books Partner Center: <code>GGKEY:2JGFCF3TJ83</code> (<em>Design and Build a Liquid Load Bank: A field guide to the liquid path, the heat...</em> / <em>Design and Build a Liquid Load Bank for NVL72 Racks</em>) &bull; Amazon Kindle Store (KDP): <code>ASIN B0HMWDV6LT</code> &bull; Leanpub: <code>liquid-load-bank-nvl72</code>.
+    </div>
   </div>
 
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
   </footer>
 
   <script src="search-data.js" defer></script>
@@ -6283,6 +6343,9 @@ def generate_buy_page():
         <p>
           Deploying across an entire commissioning authority team, hyperscale operator campus, or critical facilities engineering firm? We provide team-wide multi-seat licensing, printed field binders, and technical acceptance templates for corporate procurement.
         </p>
+        <p style="margin-top: 0.75rem; font-size: 0.85rem; opacity: 0.9;">
+          <strong>Official Publisher &amp; Store Distribution Verification:</strong> Published by <strong>Data Center Field Guides</strong> (Author &amp; Copyright Holder: <strong>Tristan</strong> &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: var(--cyan);">geese1028@gmail.com</a>). Volume 01 Official Store Identifiers: Google Play Books Partner Center <code>GGKEY:2JGFCF3TJ83</code> (<em>Design and Build a Liquid Load Bank: A field guide to the liquid path, the heat...</em> / <em>Design and Build a Liquid Load Bank for NVL72 Racks</em>) &bull; Amazon Kindle Store (KDP) <code>ASIN: B0HMWDV6LT</code> &bull; Leanpub <code>liquid-load-bank-nvl72</code>.
+        </p>
       </div>
       <div class="licensing-action">
         <a href="/about" class="btn-inquire">Contact Tristan &amp; Credentials &rarr;</a>
@@ -6293,6 +6356,7 @@ def generate_buy_page():
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
   </footer>
 
   <script src="search-data.js" defer></script>
@@ -6634,6 +6698,8 @@ def main():
     # 3.6. Maintain robots.txt with explicit AI Crawler Allowlist & Agent Endpoints
     ai_bots = [
         "*",
+        "bingbot",
+        "msnbot",
         "GPTBot",
         "OAI-SearchBot",
         "ChatGPT-User",
