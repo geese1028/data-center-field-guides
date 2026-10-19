@@ -58,6 +58,15 @@
   <link rel="canonical" href="https://datacenterfieldguides.com/blog/marketing-multiples-are-not-flow"/>
   <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="https://datacenterfieldguides.com/raw/marketing-multiples-are-not-flow.md"/>
   
+  <!-- Highwire Press & Google Scholar Indexing Meta Tags -->
+  <meta name="citation_title" content="A marketing multiple is not coolant flow"/>
+  <meta name="citation_author" content="Tristan"/>
+  <meta name="citation_publication_date" content="2026/10/16"/>
+  <meta name="citation_online_date" content="2026/10/16"/>
+  <meta name="citation_publisher" content="Data Center Field Guides"/>
+  <meta name="citation_fulltext_html_url" content="https://datacenterfieldguides.com/blog/marketing-multiples-are-not-flow"/>
+  <meta name="citation_language" content="en"/>
+
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="A marketing multiple is not coolant flow"/>
@@ -87,6 +96,9 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-boundary-architecture.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
+    "wordCount": 4810,
+    "articleSection": "Commissioning & Handover",
+    "keywords": "liquid cooling coolant flow calculation, data center commissioning, mission critical infrastructure",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -901,6 +913,95 @@
       border-radius: 4px;
     }
 
+    /* In-Article Table of Contents */
+    .protocol-toc {
+      margin: 2rem 0;
+      background: #0c101a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .toc-details {
+      padding: 0;
+    }
+    .toc-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      background: rgba(15, 23, 42, 0.7);
+      cursor: pointer;
+      user-select: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #60a5fa;
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s ease;
+    }
+    .toc-details[open] .toc-summary {
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-summary:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+    .toc-count {
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .toc-list {
+      padding: 1rem 1.25rem 1.15rem 2.25rem;
+      margin: 0;
+      columns: 1;
+    }
+    @media (min-width: 768px) {
+      .toc-list {
+        columns: 2;
+        column-gap: 2rem;
+      }
+    }
+    .toc-list li {
+      margin-bottom: 0.45rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #94a3b8;
+      break-inside: avoid;
+    }
+    .toc-list li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .toc-list li a:hover {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    /* Code Copy Button */
+    .code-copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(23, 32, 51, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.15s ease;
+    }
+    .code-copy-btn:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #3b82f6;
+    }
+
     footer.site-footer {
       border-top: 1px solid var(--border);
       padding: 3rem 1.5rem;
@@ -950,15 +1051,16 @@
       <span class="crumb-current">A marketing multiple is not coolant flow</span>
     </nav>
 
-    <div class="article-header-meta">
-      <span class="kicker-tag is-deep-dive">FLAGSHIP GUIDE</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-vol">VOL 01: Liquid Load Bank (NVL72)</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 27 MIN READ</span>
-    </div>
+    <article class="protocol-content" itemscope itemtype="https://schema.org/TechArticle">
+      <div class="article-header-meta">
+        <span class="kicker-tag is-deep-dive">FLAGSHIP GUIDE</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-vol">VOL 01: Liquid Load Bank (NVL72)</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 27 MIN READ</span>
+      </div>
 
-    
+      
     <aside class="top-book-ribbon">
       <div class="ribbon-content">
         <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
@@ -975,8 +1077,22 @@
     </aside>
     
 
-    <h1>A marketing multiple is not coolant flow</h1>
+      <h1>A marketing multiple is not coolant flow</h1>
 <blockquote class="direct-answer"><p><strong>Direct Answer Block</strong>: Why marketing claims like &#x27;30x better than air&#x27; cannot size a liquid load bank or pipe manifold without explicit mass flow, PG25 specific heat, and Delta-T. In mission-critical data center commissioning and operations, engineers enforce this boundary using deterministic physical equations, calibrated field instrumentation, and auditable sign-off gates rather than relying on vendor brochure summaries, uncalibrated software plots, or verbal assurances. Every measurement and state transition must be recorded with synchronized UTC timestamps and explicit pass/fail thresholds before a signature is granted.</p></blockquote>
+
+    <nav class="protocol-toc" aria-label="Table of Contents">
+      <details class="toc-details" open>
+        <summary class="toc-summary">
+          <span class="toc-kicker">PROTOCOL SECTIONS OUTLINE</span>
+          <span class="toc-count">(19 Sections)</span>
+        </summary>
+        <ol class="toc-list">
+          <li><a href="#1-first-principles-engineering-formulation-and-governing-mathematics">1. First-Principles Engineering Formulation and Governing Mathematics</a></li><li><a href="#2-deep-dive-technical-protocol-and-field-implementation">2. Deep-Dive Technical Protocol and Field Implementation</a></li><li><a href="#heat-is-not-a-nameplate">Heat is not a nameplate</a></li><li><a href="#the-educational-baseline-sandbox-120-kw-virtual-rack-derivation">The educational baseline sandbox: 120 kW virtual rack derivation</a></li><li><a href="#the-set-not-the-list">The set, not the list</a></li><li><a href="#what-an-operating-point-contains">What an operating point contains</a></li><li><a href="#nominal-steps-and-overload">Nominal, steps, and overload</a></li><li><a href="#high-flow-as-a-design-driver">High flow as a design driver</a></li><li><a href="#the-window-and-the-point">The window and the point</a></li><li><a href="#what-changes-when-the-revision-changes">What changes when the revision changes</a></li><li><a href="#the-loop-you-connect-to-on-the-day">The loop you connect to on the day</a></li><li><a href="#composite-the-impressive-nameplate">Composite: the impressive nameplate</a></li><li><a href="#composite-the-borrowed-window">Composite: the borrowed window</a></li><li><a href="#electrical-duty-briefly">Electrical duty, briefly</a></li><li><a href="#steady-state-step-and-trip">Steady state, step, and trip</a></li><li><a href="#what-nvidia-publishes-on-the-data-center-site">What NVIDIA publishes on the data-center site</a></li><li><a href="#public-sources-for-this-chapter">Public sources for this chapter</a></li><li><a href="#3-field-verification-checklist-and-instrumentation-hygiene">3. Field Verification Checklist and Instrumentation Hygiene</a></li><li><a href="#frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</a></li>
+        </ol>
+      </details>
+    </nav>
+    
+
 <figure class="diagram-figure"><img src="figures/flagship/fig-02-loadbank-pid.png" alt="A slide multiple is the wrong unit." loading="lazy" class="responsive-img"/><figcaption>A slide multiple is the wrong unit.</figcaption></figure>
 <p>Public briefs for high-density racks quote multiples: performance against an older platform, memory bandwidth, link bandwidth. Those numbers are not coolant flow, not heat rejection, and not a setpoint. They describe a different product claim. Putting one on a load bank sheet feels precise. It is the wrong unit.</p>
 <p>The duty comes from the specification then in force for the test you are running. Cite that document by title and the date you read it. If you cannot cite it, the cell stays blank. A blank cell stops a fabricator. A borrowed multiple starts a fabricator on a fiction.</p>
@@ -1082,10 +1198,13 @@
 <p>From <em>Design and Build a Liquid Load Bank for NVL72 Racks</em>, Tristan, Data Center Field Guides.</p>
 <p>Related: <a href="/blog/two-documents-before-metal">Two documents before you cut metal</a>.</p>
 
-    
+      
     <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
-      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
-        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;flex-wrap:wrap;gap:0.5rem;">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;">
+          CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+        </span>
+        <button type="button" class="copy-cite-btn" onclick="navigator.clipboard.writeText('Tristan (2026). &quot;A marketing multiple is not coolant flow.&quot; Data Center Field Guides, Vol. 01. https://datacenterfieldguides.com/blog/marketing-multiples-are-not-flow');this.innerText='✓ Copied!';setTimeout(()=>this.innerText='📋 Copy Citation',2000);" style="background:#172033;border:1px solid #283954;color:#cbd5e1;padding:0.25rem 0.65rem;border-radius:4px;font-family:ui-monospace,monospace;font-size:0.72rem;font-weight:700;cursor:pointer;transition:all 0.15s ease;">📋 Copy Citation</button>
       </div>
       <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
         <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 01: Design and Build a Liquid Load Bank for NVL72 Racks)</em> by Tristan, Why marketing claims like &#x27;30x better than air&#x27; cannot size a liquid load bank or pipe manifold without explicit mass flow, PG25 specific heat, and Delta-T.
@@ -1099,12 +1218,13 @@
     </aside>
     
 
-    
+      
     <div class="article-tags-wrap">
       <span class="tags-header">FIELD PROTOCOL TAGS:</span>
       <div class="tags-cloud"><span class="article-tag-item">#Liquid</span><span class="article-tag-item">#Commissioning</span><span class="article-tag-item">#LiquidCoolingCoola</span></div>
     </div>
     
+    </article>
 
     
     <section class="related-protocols-section">
@@ -1199,5 +1319,25 @@
 
   <script src="../search-data.js" defer></script>
   <script src="../search.js" defer></script>
+  <script>
+    // Copy code button for pre elements
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre').forEach(function(pre) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy-btn';
+        btn.innerText = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.onclick = function() {
+          var textToCopy = pre.innerText.replace(/Copy\s*$/, '');
+          navigator.clipboard.writeText(textToCopy);
+          btn.innerText = 'Copied!';
+          setTimeout(function() { btn.innerText = 'Copy'; }, 2000);
+        };
+        pre.style.position = 'relative';
+        pre.appendChild(btn);
+      });
+    });
+  </script>
 </body>
 </html>

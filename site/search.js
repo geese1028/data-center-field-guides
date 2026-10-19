@@ -36,7 +36,7 @@
       <div class="search-modal-filter-row">
         <span class="filter-row-label">Volume:</span>
         <div class="filter-pill-group">
-          <button type="button" class="search-pill active" data-volume="all">All (68)</button>
+          <button type="button" class="search-pill active" data-volume="all">All (69)</button>
           <button type="button" class="search-pill" data-volume="1">Vol 01</button>
           <button type="button" class="search-pill" data-volume="2">Vol 02</button>
           <button type="button" class="search-pill" data-volume="3">Vol 03</button>
@@ -59,7 +59,7 @@
           <span><kbd class="key-hint">↵</kbd> select</span>
           <span><kbd class="key-hint">esc</kbd> close</span>
         </div>
-        <div class="search-stat" id="search-stat-count">68 protocols indexed</div>
+        <div class="search-stat" id="search-stat-count">69 protocols indexed</div>
       </div>
     </div>
   </div>
@@ -361,6 +361,9 @@
     function openModal() {
       backdrop.style.display = 'flex';
       backdrop.setAttribute('aria-hidden', 'false');
+      if (statCount && typeof SEARCH_DATA !== 'undefined' && Array.isArray(SEARCH_DATA)) {
+        statCount.textContent = `${SEARCH_DATA.length} protocols indexed`;
+      }
       input.value = '';
       input.focus();
       renderResults();

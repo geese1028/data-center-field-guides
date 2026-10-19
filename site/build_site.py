@@ -674,13 +674,18 @@ def render_citation_anchor(article, canonical_url):
     """Render GEO Canonical Citation & Machine Ingestion Block at the bottom of every protocol."""
     slug = article["slug"]
     book_num = article["book_num"]
-    title = article["title"]
+    title = clean_plain_math(article["title"])
     desc = article["desc"]
     book_title = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])["title"]
+    cite_plain = f'Tristan (2026). "{title}." Data Center Field Guides, Vol. 0{book_num}. {canonical_url}'
+    cite_esc = html.escape(cite_plain).replace("'", "&#39;")
     return f"""
     <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
-      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
-        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;flex-wrap:wrap;gap:0.5rem;">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;">
+          CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+        </span>
+        <button type="button" class="copy-cite-btn" onclick="navigator.clipboard.writeText('{cite_esc}');this.innerText='✓ Copied!';setTimeout(()=>this.innerText='📋 Copy Citation',2000);" style="background:#172033;border:1px solid #283954;color:#cbd5e1;padding:0.25rem 0.65rem;border-radius:4px;font-family:ui-monospace,monospace;font-size:0.72rem;font-weight:700;cursor:pointer;transition:all 0.15s ease;">📋 Copy Citation</button>
       </div>
       <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
         <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 0{book_num}: {html.escape(book_title)})</em> by Tristan, {html.escape(desc)}
@@ -1067,6 +1072,9 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
             "image": f"{BASE_URL}/blog/{book_info['cover']}",
             "inLanguage": "en-US",
             "isAccessibleForFree": True,
+            "wordCount": len(body_text.split()) if body_text else 2500,
+            "articleSection": book_info["topic_label"],
+            "keywords": f"{meta.get('primary_keyword', '')}, data center commissioning, mission critical infrastructure".strip(", "),
             "speakable": {
                 "@type": "SpeakableSpecification",
                 "cssSelector": [".direct-answer", "article h1"]
@@ -1228,6 +1236,37 @@ def render_related_section(related_articles):
     """
 
 
+def render_article_toc(body_html):
+    """Generate compact, accessible in-article Table of Contents jump navigation."""
+    h2_matches = re.findall(r'<h2\s+id="([^"]+)">([\s\S]*?)</h2>', body_html)
+    if len(h2_matches) < 3:
+        return ""
+    
+    links = []
+    for anchor_id, raw_title in h2_matches:
+        clean_title = re.sub(r'<[^>]+>', '', raw_title).strip()
+        if not clean_title:
+            continue
+        links.append(f'<li><a href="#{anchor_id}">{html.escape(clean_title)}</a></li>')
+    
+    if len(links) < 3:
+        return ""
+        
+    return f"""
+    <nav class="protocol-toc" aria-label="Table of Contents">
+      <details class="toc-details" open>
+        <summary class="toc-summary">
+          <span class="toc-kicker">PROTOCOL SECTIONS OUTLINE</span>
+          <span class="toc-count">({len(links)} Sections)</span>
+        </summary>
+        <ol class="toc-list">
+          {''.join(links)}
+        </ol>
+      </details>
+    </nav>
+    """
+
+
 def render_page(article, body_html, json_ld, canonical_url, related_articles=None):
     """Render individual article page with modern styling and clean navigation."""
     title = article["title"]
@@ -1243,6 +1282,19 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
     b_info = BOOK_CATALOG.get(book_num, BOOK_CATALOG[1])
     top_book_ribbon = render_top_book_ribbon(book_num, b_info, slug=slug)
     citation_anchor_html = render_citation_anchor(article, canonical_url)
+
+    toc_html = render_article_toc(body_html)
+    if toc_html:
+        if '<blockquote class="direct-answer">' in body_html:
+            parts = body_html.split('</blockquote>', 1)
+            body_html_with_toc = parts[0] + '</blockquote>\n' + toc_html + '\n' + parts[1]
+        elif '</h1>' in body_html:
+            parts = body_html.split('</h1>', 1)
+            body_html_with_toc = parts[0] + '</h1>\n' + toc_html + '\n' + parts[1]
+        else:
+            body_html_with_toc = toc_html + '\n' + body_html
+    else:
+        body_html_with_toc = body_html
 
     tag_pills = [f"#{article['book_short_title'].split()[0]}", f"#{article['topic_label'].split('&')[0].strip()}"]
     if article.get("primary_keyword"):
@@ -1272,6 +1324,15 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <link rel="canonical" href="{canonical_url}"/>
   <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="{BASE_URL}/raw/{slug}.md"/>
   
+  <!-- Highwire Press & Google Scholar Indexing Meta Tags -->
+  <meta name="citation_title" content="{html.escape(title)}"/>
+  <meta name="citation_author" content="Tristan"/>
+  <meta name="citation_publication_date" content="{html.escape(pub_date).replace('-', '/')}"/>
+  <meta name="citation_online_date" content="{html.escape(pub_date).replace('-', '/')}"/>
+  <meta name="citation_publisher" content="Data Center Field Guides"/>
+  <meta name="citation_fulltext_html_url" content="{canonical_url}"/>
+  <meta name="citation_language" content="en"/>
+
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="{html.escape(title)}"/>
@@ -1967,6 +2028,95 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       border-radius: 4px;
     }}
 
+    /* In-Article Table of Contents */
+    .protocol-toc {{
+      margin: 2rem 0;
+      background: #0c101a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }}
+    .toc-details {{
+      padding: 0;
+    }}
+    .toc-summary {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      background: rgba(15, 23, 42, 0.7);
+      cursor: pointer;
+      user-select: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #60a5fa;
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s ease;
+    }}
+    .toc-details[open] .toc-summary {{
+      border-bottom: 1px solid var(--border);
+    }}
+    .toc-summary:hover {{
+      background: rgba(37, 99, 235, 0.12);
+    }}
+    .toc-count {{
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }}
+    .toc-list {{
+      padding: 1rem 1.25rem 1.15rem 2.25rem;
+      margin: 0;
+      columns: 1;
+    }}
+    @media (min-width: 768px) {{
+      .toc-list {{
+        columns: 2;
+        column-gap: 2rem;
+      }}
+    }}
+    .toc-list li {{
+      margin-bottom: 0.45rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #94a3b8;
+      break-inside: avoid;
+    }}
+    .toc-list li a {{
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.15s;
+    }}
+    .toc-list li a:hover {{
+      color: #38bdf8;
+      text-decoration: underline;
+    }}
+
+    /* Code Copy Button */
+    .code-copy-btn {{
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(23, 32, 51, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.15s ease;
+    }}
+    .code-copy-btn:hover {{
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #3b82f6;
+    }}
+
     footer.site-footer {{
       border-top: 1px solid var(--border);
       padding: 3rem 1.5rem;
@@ -2016,21 +2166,23 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       <span class="crumb-current">{html.escape(title)}</span>
     </nav>
 
-    <div class="article-header-meta">
-      <span class="kicker-tag {tier_class}">{tier_badge}</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-vol">VOL 0{book_num}: {html.escape(article['book_short_title'])}</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> {read_mins} MIN READ</span>
-    </div>
+    <article class="protocol-content" itemscope itemtype="https://schema.org/TechArticle">
+      <div class="article-header-meta">
+        <span class="kicker-tag {tier_class}">{tier_badge}</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-vol">VOL 0{book_num}: {html.escape(article['book_short_title'])}</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> {read_mins} MIN READ</span>
+      </div>
 
-    {top_book_ribbon}
+      {top_book_ribbon}
 
-    {body_html}
+      {body_html_with_toc}
 
-    {citation_anchor_html}
+      {citation_anchor_html}
 
-    {tags_section}
+      {tags_section}
+    </article>
 
     {render_related_section(related_articles)}
 
@@ -2045,6 +2197,26 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
 
   <script src="../search-data.js" defer></script>
   <script src="../search.js" defer></script>
+  <script>
+    // Copy code button for pre elements
+    document.addEventListener('DOMContentLoaded', function() {{
+      document.querySelectorAll('pre').forEach(function(pre) {{
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy-btn';
+        btn.innerText = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.onclick = function() {{
+          var textToCopy = pre.innerText.replace(/Copy\\s*$/, '');
+          navigator.clipboard.writeText(textToCopy);
+          btn.innerText = 'Copied!';
+          setTimeout(function() {{ btn.innerText = 'Copy'; }}, 2000);
+        }};
+        pre.style.position = 'relative';
+        pre.appendChild(btn);
+      }});
+    }});
+  </script>
 </body>
 </html>
 """
@@ -4585,7 +4757,7 @@ def generate_hub_index(articles, is_subfolder=False):
             if (toggleCountBadge) toggleCountBadge.style.display = 'none';
           }} else {{
             grid.classList.add('is-collapsed');
-            toggleBtnText.textContent = '▼ Expand All 68 Field Protocols';
+            toggleBtnText.textContent = '▼ Expand All {len(articles)} Field Protocols';
             if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
             document.getElementById('protocols').scrollIntoView({{ behavior: 'smooth' }});
           }}
@@ -4669,7 +4841,7 @@ def generate_hub_index(articles, is_subfolder=False):
         }});
         if (grid && toggleBtn) {{
           grid.classList.add('is-collapsed');
-          if (toggleBtnText) toggleBtnText.textContent = '▼ Expand All 68 Field Protocols';
+          if (toggleBtnText) toggleBtnText.textContent = '▼ Expand All {len(articles)} Field Protocols';
           if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
         }}
         filterProtocols();
@@ -4677,6 +4849,18 @@ def generate_hub_index(articles, is_subfolder=False):
 
       if (resetBtn) resetBtn.addEventListener('click', resetAll);
       if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
+
+      // Google Sitelinks Searchbox URL parameter support (?q=...)
+      try {{
+        const urlParams = new URLSearchParams(window.location.search);
+        const qParam = urlParams.get('q');
+        if (qParam && searchInput) {{
+          searchInput.value = qParam;
+          currentQuery = qParam;
+          if (searchClear) searchClear.style.display = 'flex';
+          if (searchKbd) searchKbd.style.display = 'none';
+        }}
+      }} catch (e) {{}}
 
       // Initial filter execution
       filterProtocols();

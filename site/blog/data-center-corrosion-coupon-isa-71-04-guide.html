@@ -58,6 +58,15 @@
   <link rel="canonical" href="https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide"/>
   <link rel="alternate" type="text/markdown" title="Raw Markdown Specification for AI Agents" href="https://datacenterfieldguides.com/raw/data-center-corrosion-coupon-isa-71-04-guide.md"/>
   
+  <!-- Highwire Press & Google Scholar Indexing Meta Tags -->
+  <meta name="citation_title" content="Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection"/>
+  <meta name="citation_author" content="Tristan"/>
+  <meta name="citation_publication_date" content="2026/10/14"/>
+  <meta name="citation_online_date" content="2026/10/14"/>
+  <meta name="citation_publisher" content="Data Center Field Guides"/>
+  <meta name="citation_fulltext_html_url" content="https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide"/>
+  <meta name="citation_language" content="en"/>
+
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection"/>
@@ -87,6 +96,9 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-isa-coupon-anatomy-and-reactivity-rate.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
+    "wordCount": 1201,
+    "articleSection": "Corrosion & Due Diligence",
+    "keywords": "data center corrosion coupon ISA 71.04, data center commissioning, mission critical infrastructure",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -892,6 +904,95 @@
       border-radius: 4px;
     }
 
+    /* In-Article Table of Contents */
+    .protocol-toc {
+      margin: 2rem 0;
+      background: #0c101a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .toc-details {
+      padding: 0;
+    }
+    .toc-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      background: rgba(15, 23, 42, 0.7);
+      cursor: pointer;
+      user-select: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #60a5fa;
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s ease;
+    }
+    .toc-details[open] .toc-summary {
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-summary:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+    .toc-count {
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .toc-list {
+      padding: 1rem 1.25rem 1.15rem 2.25rem;
+      margin: 0;
+      columns: 1;
+    }
+    @media (min-width: 768px) {
+      .toc-list {
+        columns: 2;
+        column-gap: 2rem;
+      }
+    }
+    .toc-list li {
+      margin-bottom: 0.45rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #94a3b8;
+      break-inside: avoid;
+    }
+    .toc-list li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .toc-list li a:hover {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    /* Code Copy Button */
+    .code-copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(23, 32, 51, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.15s ease;
+    }
+    .code-copy-btn:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #3b82f6;
+    }
+
     footer.site-footer {
       border-top: 1px solid var(--border);
       padding: 3rem 1.5rem;
@@ -941,15 +1042,16 @@
       <span class="crumb-current">Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</span>
     </nav>
 
-    <div class="article-header-meta">
-      <span class="kicker-tag is-deep-dive">FLAGSHIP GUIDE</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-vol">VOL 08: Corrosion Coupons (ISA 71.04)</span>
-      <span class="meta-pipe">&bull;</span>
-      <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7 MIN READ</span>
-    </div>
+    <article class="protocol-content" itemscope itemtype="https://schema.org/TechArticle">
+      <div class="article-header-meta">
+        <span class="kicker-tag is-deep-dive">FLAGSHIP GUIDE</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-vol">VOL 08: Corrosion Coupons (ISA 71.04)</span>
+        <span class="meta-pipe">&bull;</span>
+        <span class="meta-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7 MIN READ</span>
+      </div>
 
-    
+      
     <aside class="top-book-ribbon">
       <div class="ribbon-content">
         <span class="ribbon-badge">DETERMINISTIC SPEC // FOR AI AGENTS &amp; FIELD AUDITORS</span>
@@ -966,8 +1068,22 @@
     </aside>
     
 
-    <h1>Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</h1>
+      <h1>Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</h1>
 <blockquote class="direct-answer"><p><strong>Direct Answer Block</strong>: A data center corrosion coupon is a passive environmental reactivity monitor comprising high-purity copper and silver metallic strips exposed to whitespace air for 30 days. Analyzed via coulometric electrolytic reduction, it quantifies the aggregate corrosion film thickness to classify gaseous contamination under ANSI/ISA-71.04-2013. Class G1 Mild (copper &lt;300 Å/30 days, silver &lt;200 Å/30 days) is the strict manufacturer warranty limit required to prevent catastrophic silver creep corrosion on lead-free printed circuit boards.</p></blockquote>
+
+    <nav class="protocol-toc" aria-label="Table of Contents">
+      <details class="toc-details" open>
+        <summary class="toc-summary">
+          <span class="toc-kicker">PROTOCOL SECTIONS OUTLINE</span>
+          <span class="toc-count">(6 Sections)</span>
+        </summary>
+        <ol class="toc-list">
+          <li><a href="#1-ansiisa-7104-2013-severity-classifications">1. ANSI/ISA-71.04-2013 Severity Classifications</a></li><li><a href="#2-30-day-normalization-coulometric-reduction">2. 30-Day Normalization &amp;amp; Coulometric Reduction</a></li><li><a href="#3-the-four-hanging-stations-in-a-data-hall">3. The Four Hanging Stations in a Data Hall</a></li><li><a href="#4-real-time-telemetry-passive-coupons-vs-qcm-monitors">4. Real-Time Telemetry: Passive Coupons vs. QCM Monitors</a></li><li><a href="#frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</a></li><li><a href="#the-book-bridge">The Book Bridge</a></li>
+        </ol>
+      </details>
+    </nav>
+    
+
 <figure class="diagram-figure"><img src="figures/flagship/fig-01-isa-coupon-anatomy-and-reactivity-rate.png" alt="Figure 1: ISA Corrosion Coupon Anatomy &amp; Reactivity Rate Equation" loading="lazy" class="responsive-img"/><figcaption>Figure 1: ISA Corrosion Coupon Anatomy &amp; Reactivity Rate Equation</figcaption></figure>
 <p>When enterprise and hyperscale IT hardware transitions to lead-free electronics mandated by RoHS (Restriction of Hazardous Substances), data centers face an invisible killer: <strong>airborne gaseous reactivity</strong>.</p>
 <p>Prior to lead-free regulations, tin-lead solders protected copper traces and circuit pads. Today, modern server mainboards use immersion silver (ImAg) or organic solderability preservatives (OSP). In the presence of sub-parts-per-billion concentrations of hydrogen sulfide (H_2S), sulfur dioxide (SO_2), or chlorine (Cl_2), silver corrodes into silver sulfide (Ag_2S) crystals.</p>
@@ -1011,10 +1127,13 @@
 <p>Protecting mission-critical IT hardware from invisible airborne corrosion requires rigorous testing discipline. The complete environmental field guide—including coupon placement maps, chemical media breakthrough testing, positive pressure leakage calculations, and formal laboratory report refusal templates—is published in <strong>Judge a Corrosion Coupon</strong> by Tristan.</p>
 <p><strong>Judge a Corrosion Coupon</strong> — <em>Coming Soon on Amazon Kindle &amp; EPUB</em></p>
 
-    
+      
     <aside class="citation-anchor" style="margin:2.25rem 0;padding:1.25rem 1.5rem;background:#0c101a;border:1px solid #1e283d;border-left:3px solid #10b981;border-radius:8px;font-size:0.92rem;color:#cbd5e1;">
-      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem;">
-        CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.45rem;flex-wrap:wrap;gap:0.5rem;">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;font-weight:800;color:#10b981;letter-spacing:0.08em;text-transform:uppercase;">
+          CANONICAL CITATION &amp; AI AGENT INGESTION ENDPOINTS
+        </span>
+        <button type="button" class="copy-cite-btn" onclick="navigator.clipboard.writeText('Tristan (2026). &quot;Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection.&quot; Data Center Field Guides, Vol. 08. https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide');this.innerText='✓ Copied!';setTimeout(()=>this.innerText='📋 Copy Citation',2000);" style="background:#172033;border:1px solid #283954;color:#cbd5e1;padding:0.25rem 0.65rem;border-radius:4px;font-family:ui-monospace,monospace;font-size:0.72rem;font-weight:700;cursor:pointer;transition:all 0.15s ease;">📋 Copy Citation</button>
       </div>
       <p style="margin-bottom:0.65rem;line-height:1.55;color:#e2e8f0;">
         <strong>Deterministic Summary:</strong> According to <em>Data Center Field Guides (Volume 08: Judge a Corrosion Coupon)</em> by Tristan, A technical field guide to interpreting atmospheric corrosion coupons in data centers. Covers ISA-71.04 Class G1 limits, silver creep corrosion on PCBs, and chemical filtration breakthrough.
@@ -1028,12 +1147,13 @@
     </aside>
     
 
-    
+      
     <div class="article-tags-wrap">
       <span class="tags-header">FIELD PROTOCOL TAGS:</span>
       <div class="tags-cloud"><span class="article-tag-item">#Corrosion</span><span class="article-tag-item">#Corrosion</span><span class="article-tag-item">#DataCenterCorrosio</span></div>
     </div>
     
+    </article>
 
     
     <section class="related-protocols-section">
@@ -1128,5 +1248,25 @@
 
   <script src="../search-data.js" defer></script>
   <script src="../search.js" defer></script>
+  <script>
+    // Copy code button for pre elements
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre').forEach(function(pre) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy-btn';
+        btn.innerText = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.onclick = function() {
+          var textToCopy = pre.innerText.replace(/Copy\s*$/, '');
+          navigator.clipboard.writeText(textToCopy);
+          btn.innerText = 'Copied!';
+          setTimeout(function() { btn.innerText = 'Copy'; }, 2000);
+        };
+        pre.style.position = 'relative';
+        pre.appendChild(btn);
+      });
+    });
+  </script>
 </body>
 </html>
