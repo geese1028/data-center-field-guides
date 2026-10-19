@@ -5,7 +5,7 @@
     <link>https://datacenterfieldguides.com/</link>
     <description>69 first-principles data center engineering protocols and AI agent ground-truth specifications by Tristan.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://datacenterfieldguides.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>A liquid load bank is not a CDU: First-Principles Data Center Engineering Protocol</title>
@@ -13,7 +13,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/liquid-load-bank-is-not-a-cdu</guid>
       <description>Why a rack-side liquid load bank is a thermal and hydraulic stand-in for an NVL72 rack—never a substitute for the facility Coolant Distribution Unit (CDU).</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A marketing multiple is not coolant flow</title>
@@ -21,7 +21,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/marketing-multiples-are-not-flow</guid>
       <description>Why marketing claims like &#x27;30x better than air&#x27; cannot size a liquid load bank or pipe manifold without explicit mass flow, PG25 specific heat, and Delta-T.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Two documents before you cut metal: First-Principles Data Center Engineering Protocol</title>
@@ -29,7 +29,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/two-documents-before-metal</guid>
       <description>The two mandatory engineering documents—the Requirements List and the Prototype Acceptance Sheet—required before fabricating a high-density liquid load bank.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What a load bank prototype must not prove</title>
@@ -37,7 +37,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/what-the-prototype-must-not-prove</guid>
       <description>How to separate rack-side load bank prototype acceptance gates (Gate 1–4) from facility hall integrated systems testing and GPU software validation.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A failed poll is a gap: First-Principles Data Center Engineering Protocol</title>
@@ -45,7 +45,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-failed-poll-is-a-gap</guid>
       <description>Why liquid load bank commissioning data pipelines must record failed Modbus/OPC-UA polls as explicit NaN gaps rather than repeating stale cached values.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A hit is a time, not a pass: First-Principles Data Center Engineering Protocol</title>
@@ -53,7 +53,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-hit-is-a-time</guid>
       <description>How algorithmic change-point detection (Focus, FLOC, CPOP) identifies candidate slope breaks in 1-second load bank time series without replacing human judgment.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>One clock in the load bank file: First-Principles Data Center Engineering Protocol</title>
@@ -61,7 +61,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/one-clock-in-the-file</guid>
       <description>Why merging electrical power meters, liquid flow meters, and RTDs into a commissioning flash report requires a single UTC clock synchronized via PTP or NTP.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>The sentence a load bank file may support</title>
@@ -69,7 +69,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/the-sentence-the-file-may-support</guid>
       <description>The exact bounded engineering sentence a 5-pass liquid load bank flash report can legally support—and why a rack test never certifies whole-hall seasonal redundancy.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Approve the test script before the day</title>
@@ -77,7 +77,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/approve-the-script-before-the-day</guid>
       <description>Why every liquid cooling commissioning script must be frozen, version-controlled, and signed with explicit pass/fail bounds before test day begins.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Close-out is not a heat-test report: First-Principles Data Center Engineering Protocol</title>
@@ -85,7 +85,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/close-out-is-not-a-heat-report</guid>
       <description>The seven mandatory deliverables required in a liquid cooling verification closeout binder—beyond a single thermal load bank chart.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>One liquid system at a time: First-Principles Data Center Engineering Protocol</title>
@@ -93,7 +93,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/one-system-at-a-time</guid>
       <description>Why liquid cooling verification must execute static cleanliness flushes and zero-heat cold pump curves across every CDU and manifold before energizing load bank heaters.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Certificate Level 1 is not a static test</title>
@@ -101,7 +101,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/two-level-numberings</guid>
       <description>How to prevent numbering collisions between site test stages and ASHRAE Guideline 0 / Guideline 202 Commissioning Levels 1 through 5.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What data center commissioning levels 0 to 6 sign</title>
@@ -109,7 +109,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/commissioning-levels-0-to-6</guid>
       <description>Complete technical breakdown of data center commissioning Levels 0 through 6: design review, FAT, static QA/QC, energizing, FPT, integrated IST, and handover.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Witnessed is not the same as accepted a document</title>
@@ -117,7 +117,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/witnessed-or-a-document</guid>
       <description>Why commissioning certificates must explicitly distinguish between physical tests witnessed live on the data hall floor and vendor documents accepted at a desk.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A CFD picture is not a measurement: First-Principles Data Center Engineering Protocol</title>
@@ -125,7 +125,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-cfd-picture-is-not-a-measurement</guid>
       <description>Why an unbenchmarked data center CFD color contour is an unverified design hypothesis until calibrated against walked 3-tier rack RTDs and balometers.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A room average is not a cabinet inlet: First-Principles Data Center Engineering Protocol</title>
@@ -133,7 +133,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/room-average-is-not-an-inlet</guid>
       <description>Why averaging room or cabinet temperatures hides top-of-rack thermal throttling—and how to audit 0.3m, 1.2m, and 1.8m vertical intake profiles.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>The walked reading wins: First-Principles Data Center Engineering Protocol</title>
@@ -141,7 +141,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/walked-reading-wins</guid>
       <description>When a walked calibrated thermometer disagrees with a CFD simulation, the physical instrument governs—and only physical boundary inputs may be adjusted.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What a CFD report may decide: First-Principles Data Center Engineering Protocol</title>
@@ -149,7 +149,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/what-a-cfd-report-may-decide</guid>
       <description>Why a calibrated data hall CFD model is contractually permitted to rank candidate physical airflow remedies, never to certify operational SLA compliance.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Do not call the airflow optimized: First-Principles Data Center Engineering Protocol</title>
@@ -157,7 +157,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/do-not-call-it-optimized</guid>
       <description>How to audit data center CFD reports for cherry-picked waist-height slices, truncated color legends, and unverified N-1 backdraft damper assumptions.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>An empty U without a blank is a bypass</title>
@@ -165,7 +165,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/empty-u-is-a-bypass</guid>
       <description>The orifice aerodynamics of unblanked 1U server slots: how missing blanking panels create internal rack recirculation loops and inflate Supply Heat Index (SHI).</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A missing floor tile is a supply leak: First-Principles Data Center Engineering Protocol</title>
@@ -173,7 +173,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/raised-floor-cuts</guid>
       <description>Quantifying subfloor static pressure loss and CFM bypass through unsealed raised-floor cable cutouts and missing perforated tiles in data halls.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A row has three edges, not a product name</title>
@@ -181,7 +181,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/row-has-three-edges</guid>
       <description>How hot exhaust air bypasses server rows across three physical boundaries—over the top, around the ends, and through the rack face—and how to seal each edge.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A Data Center Change Needs a Back-Out: MOP Point of No Return, LOTO Isolation, and Rollback Timing</title>
@@ -189,7 +189,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-change-needs-a-back-out</guid>
       <description>Why every critical facility Method of Procedure (MOP) requires a timed Point of No Return (PONR), deterministic state-restoration steps, and explicit back-out triggers before opening switchgear or changing setpoints.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>An Alarm Is Not an Incident: Data Center Escalation Gates, First-Hour Logging, and Root Cause Discipline</title>
@@ -197,7 +197,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/alarm-is-not-an-incident</guid>
       <description>How critical facility operations teams distinguish between noisy BMS alarms and true SLA-impacting incidents using physical boundary tests, first-hour sequence logging, and hypothesis separation.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Do Not Start the Shift on a Dashboard: Paper-First Handover, Physical Rounds, and Why PUE Ratios Lie</title>
@@ -205,7 +205,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/do-not-start-on-a-dashboard</guid>
       <description>Why critical facility managers never begin a shift by reading PUE ratios or green BMS summary tiles. Learn the paper-first shift startup sequence, permit audits, and physical inspection hierarchy.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A Nameplate Is Not Used Capacity: Data Center 2N Power Derating, Live Metering, and Redundancy Math</title>
@@ -213,7 +213,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/nameplate-is-not-capacity</guid>
       <description>Why critical facility managers must never enter equipment nameplate kVA or design kilowatts into the daily capacity log. Covers live metering rules, 2N redundancy ceilings, and derating math.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Do not add nameplate and measured load</title>
@@ -221,7 +221,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/do-not-add-the-kilowatts</guid>
       <description>Why adding server PSU nameplate watts to active metered PDU kilowatts corrupts 2N electrical capacity planning and chilled-water thermal load budgets.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>An EOP stops at the first safe state: First-Principles Data Center Engineering Protocol</title>
@@ -229,7 +229,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/eop-stops</guid>
       <description>Why a data center Emergency Operating Procedure (EOP) must halt at the First Safe State rather than improvising live troubleshooting or repairs during an incident.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What an MOP must say before the tools come out</title>
@@ -237,7 +237,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/mop-before-tools</guid>
       <description>The mandatory elements every data center Method of Procedure (MOP) must specify before tools touch switchgear: baseline state, PONR, abort trigger, and LOTO.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>SOP, MOP, and EOP are three papers: First-Principles Data Center Engineering Protocol</title>
@@ -245,7 +245,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/sop-mop-eop</guid>
       <description>Structural and legal differences between Standard Operating Procedures (SOP), Methods of Procedure (MOP), and Emergency Operating Procedures (EOP) in critical facilities.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What an SOP is allowed to contain: First-Principles Data Center Engineering Protocol</title>
@@ -253,7 +253,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/sop-standing-job</guid>
       <description>What a data center Standard Operating Procedure (SOP) is permitted to contain—and why invasive breaker switching or setpoint changes must never hide inside an SOP.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A drill record is not an incident review</title>
@@ -261,7 +261,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-drill-is-not-an-incident</guid>
       <description>Why emergency EOP drill records and post-incident Root Cause Analysis (RCA) reports must be filed in separate ledgers with distinct verification metrics.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A commercial pack is not a technical pass</title>
@@ -269,7 +269,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/commercial-is-not-a-pass</guid>
       <description>Why a vendor&#x27;s signed commercial service ticket or invoice never closes a technical data center defect without independent witnessed verification.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>An operations system is four piles, not one binder</title>
@@ -277,7 +277,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/four-piles</guid>
       <description>Organizing a mission-critical facility around four non-overlapping operational ledgers: Standing SOPs, Timed MOPs, Emergency EOPs, and the Daily Shift Record.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A maintenance record does not close a defect</title>
@@ -285,7 +285,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/pm-record-does-not-close</guid>
       <description>Why completing a calendar Preventive Maintenance (PM) checklist does not close an open equipment defect or clear an abnormal alarm boundary.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Data Center Monitoring Points &amp; NIST NTP / IEEE 1588v2 PTP Clock Synchronization</title>
@@ -293,7 +293,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-point-needs-a-clock</guid>
       <description>Field audit guide for data center monitoring points: why every BMS and EPMS sensor requires NIST-traceable NTP or IEEE 1588v2 PTP clock synchronization (≤1 ms skew).</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A health score does not close an incident</title>
@@ -301,7 +301,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-score-does-not-close-an-incident</guid>
       <description>The mathematical flaw of weighted-average dashboard health scores (S = ∑ wi si) and why incidents close only on physical restoration of the faulted point.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Grouping alarms is not a cause: First-Principles Data Center Engineering Protocol</title>
@@ -309,7 +309,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/grouping-is-not-a-cause</guid>
       <description>Why algorithmic alarm grouping by time window does not prove physical root cause—and how to build directed parent-child topological suppression trees.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A green tile can be stale: First-Principles Data Center Engineering Protocol</title>
@@ -317,7 +317,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/stale-is-not-green</guid>
       <description>How frozen protocol gateways produce &#x27;Silent Green Lies&#x27; on BMS dashboards, and how to enforce explicit Good (0x00), Uncertain (0x40), and Bad (0x80) quality states.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Six things to ask before you trust a monitoring demo</title>
@@ -325,7 +325,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/six-things-to-ask-in-a-demo</guid>
       <description>Six live hardware fault-injection stress tests every BMS, EPMS, or DCIM vendor must pass on a staging bus before software acceptance.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What a maintenance window is allowed to suppress</title>
@@ -333,7 +333,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/what-a-maintenance-window-suppresses</guid>
       <description>Why a data center maintenance window may suppress outgoing pager notifications for named points under LOTO, but must never halt raw historian logging or hide screen state.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A baseline is not a fault: First-Principles Data Center Engineering Protocol</title>
@@ -341,7 +341,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-baseline-is-not-a-fault</guid>
       <description>Separating thermodynamic plant performance drift from sensor faults using ASHRAE Guideline 14 baseline regression models and cooling tower approach metrics.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A suggested tower setpoint is not a saved kilowatt</title>
@@ -349,7 +349,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-suggestion-is-not-a-saved-kilowatt</guid>
       <description>Why an AI/ML optimizer&#x27;s suggested cooling-tower setpoint is not a verified energy saving until chiller compressor lift and pump affinity laws are metered together.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Do not train a tower model on a stopped plant</title>
@@ -357,7 +357,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/do-not-train-on-a-stopped-plant</guid>
       <description>Why training a cooling plant machine-learning model on raw historian exports containing stopped cells, closed isolation valves, and stale sensors corrupts optimization.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Fixed inputs are not fan handles: First-Principles Data Center Engineering Protocol</title>
@@ -365,7 +365,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/fixed-and-adjustable</guid>
       <description>Separating non-manipulable disturbance variables (outdoor wet-bulb temperature, IT heat load) from adjustable control handles (VFD fan speed, valve staging).</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Leaving water should fall as the fan speeds up</title>
@@ -373,7 +373,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/leaving-temperature-must-fall</guid>
       <description>Enforcing physical monotonicity constraints (∂ Tleave / ∂ Nfan ≤ 0) on data center cooling tower models so collinear data cannot invert fan control.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A model cannot learn a fan speed it never saw</title>
@@ -381,7 +381,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/model-cannot-learn-a-speed-it-never-saw</guid>
       <description>Why data center optimization models trained on constant-speed historical operation fail when extrapolating across variable-frequency fan curves.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A cooling-tower model does not get a pen</title>
@@ -389,7 +389,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/tower-model-no-pen</guid>
       <description>Why statistical and machine-learning cooling models must operate inside hardwired PLC safety clamps (minimum condenser enter temperature, surge, basin level).</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Cooling towers are not interchangeable</title>
@@ -397,7 +397,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/towers-are-not-interchangeable</guid>
       <description>Why individual cooling tower cells sharing a common basin cannot be modeled as identical interchangeable units due to nozzle scaling, fill fouling, and plume recirculation.</description>
       <category>Telemetry, CFD &amp; Alarms</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A handover signature is a sentence: First-Principles Data Center Engineering Protocol</title>
@@ -405,7 +405,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/a-signature-is-a-sentence</guid>
       <description>Why signing a data center handover certificate is a binding legal and operational sentence—and how to strike unsupported scope claims before signing.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Conditional acceptance refuses the rest</title>
@@ -413,7 +413,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/conditional-is-a-refusal</guid>
       <description>How to structure Conditional Acceptance at data center handover as an explicit refusal of unproved capacity, backed by 200% retainage escrow and hard expiry dates.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Do not test during the handover meeting</title>
@@ -421,7 +421,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/do-not-test-in-the-handover-meeting</guid>
       <description>Why running ad-hoc live equipment demonstrations during a handover meeting never substitutes for an approved, witnessed Level 4/5 commissioning test script.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A green tile is not acceptance: First-Principles Data Center Engineering Protocol</title>
@@ -429,7 +429,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/green-tile-is-not-acceptance</guid>
       <description>Why a calm green BMS dashboard screen in the handover conference room does not prove alarm readiness without forced-failure wire-pull and clock-sync certificates.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Pages a data center handover must show</title>
@@ -437,7 +437,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/pages-before-you-sign</guid>
       <description>The seven non-negotiable closeout binder pages required at least 72 hours before signing operational handover of a mission-critical data hall.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A chemical filter line is not a gas family</title>
@@ -445,7 +445,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/chemical-filter-is-not-a-family</guid>
       <description>Why specifying a generic &#x27;carbon filter&#x27; fails to protect data center silver and copper—and how to match chemisorption media and EBCT to specific corrosive gas families.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A calm copper coupon does not clear silver</title>
@@ -453,7 +453,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/copper-does-not-clear-silver</guid>
       <description>Why a passing G1 copper corrosion coupon (&lt;300 A/30d) never clears a data hall for RoHS lead-free servers without a paired silver coupon (&lt;200 A/30d).</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Where you hang the coupon is the sentence</title>
@@ -461,7 +461,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/coupon-place-is-the-sentence</guid>
       <description>Where to hang copper and silver corrosion coupons in a data center—outdoor makeup, post-filter plenum, cold aisle intake, and hot return—and what each location proves.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Seal the room before you buy the cleaner</title>
@@ -469,7 +469,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/seal-before-you-buy</guid>
       <description>Why sealing data hall cable penetrations, airlocks, and vapor barriers to maintain &gt;= +12.5 Pa positive pressurization must precede purchasing recirculation scrubbers.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>What a corrosion coupon report must show</title>
@@ -477,7 +477,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/what-the-coupon-report-must-show</guid>
       <description>Forensic checklist for auditing laboratory corrosion coupon reports: coulometric stripping plateaus, Cu2S/Ag2S speciation, actual hang intervals, and travel blanks.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Why a corrosion test needs a blank coupon</title>
@@ -485,7 +485,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/why-you-send-a-blank-coupon</guid>
       <description>Why every batch of exposed data center corrosion coupons must travel with an unopened, lot-matched Field Travel Blank (FTB) to isolate transit and lab background noise.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Count, identify, sample, witness: First-Principles Data Center Engineering Protocol</title>
@@ -493,7 +493,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/count-identify-sample-witness</guid>
       <description>The four physical acts of a data center Technical Due Diligence (TDD) site walk—Count, Identify, Sample, and Witness—governed by square-root statistical sampling.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A spare is evidence. A failure probability is not.</title>
@@ -501,7 +501,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/spare-not-a-probability</guid>
       <description>Why theoretical vendor MTBF probabilities cannot substitute for physical on-shelf critical spares (breaker coils, VFD igbts, CDU seals) during a Technical Due Diligence audit.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>A data center TDD is not a commissioning</title>
@@ -509,7 +509,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/tdd-is-not-a-commissioning</guid>
       <description>Understanding the structural difference between a buyer/lender Technical Due Diligence (TDD) risk audit and an ASHRAE Level 1–5 commissioning execution.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Data Center Alarm Suppression &amp; Handover Refusal: BMS Telemetry, SOE Timing, and 200% Escrow Clauses</title>
@@ -517,7 +517,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-alarm-suppression-and-handover-refusal</guid>
       <description>How to stop data center BMS alarm storms with hysteresis deadbands and refuse premature commissioning handovers using 200% punchlist escrow retainage clauses.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</title>
@@ -525,7 +525,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide</guid>
       <description>A technical field guide to interpreting atmospheric corrosion coupons in data centers. Covers ISA-71.04 Class G1 limits, silver creep corrosion on PCBs, and chemical filtration breakthrough.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Facility Location Due Diligence Checklist: Data Center Site Selection &amp; Audit Guide</title>
@@ -533,7 +533,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-facility-location-due-diligence</guid>
       <description>Complete facility location due diligence checklist for data center site selection and infrastructure assets. Audits substation distance, 500-yr flood hydrology, geotechnical bearing, and micro-vibrations.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Data Center Shift Handover Checklist: 2N Power Redundancy Math, 6 Stations, and SOP/MOP/EOP</title>
@@ -541,7 +541,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-shift-handover-sop-mop-checklist</guid>
       <description>A comprehensive shift handover protocol for critical facilities managers. Covers the 2N power redundancy cascade equation, 6 mandatory physical inspection stations, and MOP back-out plans.</description>
       <category>Operations &amp; Protocols</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Data Center Technical Due Diligence Checklist: Infrastructure Asset Audit &amp; Red-Flag Guide</title>
@@ -549,7 +549,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-technical-due-diligence-checklist</guid>
       <description>Complete data center due diligence and technical due diligence checklist for infrastructure assets. Covers substation diversity, 500-yr flood levels, 72h fuel autonomy, and NVL72 floor loads.</description>
       <category>Corrosion &amp; Due Diligence</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>NVL72 Liquid Load Bank Testing: P&amp;ID Hydraulics, Quick Disconnects, and Boundary Acceptance</title>
@@ -557,7 +557,7 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/nvl72-liquid-load-bank-testing-guide</guid>
       <description>A field guide to specifying and accepting a liquid load bank for NVL72 AI racks. Includes Danfoss FD83 pressure drop equations, thermal dissipation limits, and acceptance sheets.</description>
       <category>Commissioning &amp; Handover</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

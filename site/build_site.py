@@ -692,6 +692,7 @@ def render_citation_anchor(article, canonical_url):
       </p>
       <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8rem;color:#94a3b8;display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;">
         <span><strong>Cite:</strong> Tristan, &ldquo;{html.escape(title)},&rdquo; <em>Data Center Field Guides</em>, {canonical_url}</span>
+        <a href="https://www.amazon.com/author/tristanhoward" target="_blank" rel="noopener noreferrer" style="color:#f59e0b;text-decoration:underline;font-weight:700;">[Amazon Author]</a>
         <a href="/raw/{slug}.md" style="color:#34d399;text-decoration:underline;font-weight:700;">[Fetch Raw .md]</a>
         <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-weight:700;">[Site /llms.txt]</a>
         <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-weight:700;">[Install /SKILL.md]</a>
@@ -1041,7 +1042,11 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
         "author": {
             "@type": "Person",
             "name": "Tristan",
-            "url": f"{BASE_URL}/about"
+            "url": f"{BASE_URL}/about",
+            "sameAs": [
+                "https://www.amazon.com/author/tristanhoward",
+                "https://www.amazon.com/dp/B0HMWDV6LT"
+            ]
         },
         "url": f"{BASE_URL}/book/{book_info['slug']}",
         "bookFormat": "EBook",
@@ -1090,8 +1095,9 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
                 "url": f"{BASE_URL}/about",
                 "jobTitle": "Data Center Commissioning & Verification Engineer",
                 "sameAs": [
-                    f"{BASE_URL}/about",
-                    "https://www.amazon.com/dp/B0HMWDV6LT"
+                    "https://www.amazon.com/author/tristanhoward",
+                    "https://www.amazon.com/dp/B0HMWDV6LT",
+                    f"{BASE_URL}/about"
                 ],
                 "worksFor": {
                     "@type": "Organization",
@@ -2284,7 +2290,11 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
             "@type": "Person",
             "name": "Tristan",
             "url": f"{BASE_URL}/about",
-            "jobTitle": "Lead Data Center Commissioning Authority & CDFOS Instructor"
+            "jobTitle": "Lead Data Center Commissioning Authority & CDFOS Instructor",
+            "sameAs": [
+                "https://www.amazon.com/author/tristanhoward",
+                "https://www.amazon.com/dp/B0HMWDV6LT"
+            ]
         }
     }
     if same_as:
@@ -3283,7 +3293,11 @@ def generate_hub_index(articles, is_subfolder=False):
                 "@type": "Person",
                 "name": "Tristan",
                 "url": f"{BASE_URL}/about",
-                "jobTitle": "Lead Commissioning Authority & Author"
+                "jobTitle": "Lead Commissioning Authority & Author",
+                "sameAs": [
+                    "https://www.amazon.com/author/tristanhoward",
+                    "https://www.amazon.com/dp/B0HMWDV6LT"
+                ]
             },
             "potentialAction": {
                 "@type": "SearchAction",
@@ -4915,6 +4929,11 @@ def generate_about_page():
                     "@type": "EducationalOccupationalCredential",
                     "name": "EPI Certified Data Centre Facilities Operations Specialist (CDFOS) Instructor"
                 }
+            ],
+            "sameAs": [
+                "https://www.amazon.com/author/tristanhoward",
+                "https://www.amazon.com/dp/B0HMWDV6LT",
+                f"{BASE_URL}/"
             ]
         }
     }
@@ -5350,6 +5369,12 @@ def generate_about_page():
       <span class="cred-tag">⚙️ EPI CDFOS® Specialist</span>
       <span class="cred-tag">💼 ITIL® Expert</span>
       <span class="cred-tag">📊 ISACA COBIT®</span>
+    </div>
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <a href="https://www.amazon.com/author/tristanhoward" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.55rem; background: rgba(255, 153, 0, 0.12); border: 1px solid rgba(255, 153, 0, 0.45); color: #ff9900; padding: 0.5rem 1.15rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 14.8c-.2 0-.4-.1-.5-.2-.8-.9-1.3-2.1-1.3-3.4 0-2.8 2.2-5.1 5-5.1s5 2.3 5 5.1c0 1.3-.5 2.5-1.3 3.4-.1.1-.3.2-.5.2-.2 0-.4-.1-.5-.2l-.6-.7c-.3-.3-.2-.7.1-1 .5-.6.8-1.4.8-2.2 0-1.9-1.5-3.5-3.5-3.5s-3.5 1.6-3.5 3.5c0 .8.3 1.6.8 2.2.3.3.3.7.1 1l-.6.7c-.1.2-.3.3-.6.3zM2.8 19.4c5.7 3.3 12.8 3.3 18.4 0 .4-.2.9.2.6.6-6 4.3-13.6 4.3-19.6 0-.4-.3 0-.8.6-.6z"/></svg>
+        <span>Amazon Verified Author: amazon.com/author/tristanhoward &rarr;</span>
+      </a>
     </div>
   </div>
 
@@ -6648,6 +6673,13 @@ def generate_buy_page():
       <p class="buy-sub">
         Independent engineering field manuals, P&amp;ID hydraulic schematics, and auditable refusal binders across Amazon Kindle, Google Play Books, and Apple Books.
       </p>
+
+      <div style="margin: -0.75rem 0 2rem; display: flex; justify-content: center;">
+        <a href="https://www.amazon.com/author/tristanhoward" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255, 153, 0, 0.12); border: 1px solid rgba(255, 153, 0, 0.4); color: #ff9900; padding: 0.45rem 1rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 14.8c-.2 0-.4-.1-.5-.2-.8-.9-1.3-2.1-1.3-3.4 0-2.8 2.2-5.1 5-5.1s5 2.3 5 5.1c0 1.3-.5 2.5-1.3 3.4-.1.1-.3.2-.5.2-.2 0-.4-.1-.5-.2l-.6-.7c-.3-.3-.2-.7.1-1 .5-.6.8-1.4.8-2.2 0-1.9-1.5-3.5-3.5-3.5s-3.5 1.6-3.5 3.5c0 .8.3 1.6.8 2.2.3.3.3.7.1 1l-.6.7c-.1.2-.3.3-.6.3zM2.8 19.4c5.7 3.3 12.8 3.3 18.4 0 .4-.2.9.2.6.6-6 4.3-13.6 4.3-19.6 0-.4-.3 0-.8.6-.6z"/></svg>
+          <span>Visit Tristan's Official Amazon Author Page &rarr;</span>
+        </a>
+      </div>
 
       <div class="guarantee-strip">
         <div class="guarantee-item">
