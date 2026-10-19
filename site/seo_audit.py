@@ -226,7 +226,7 @@ def run_seo_audit():
         else:
             if not parser.canonical.startswith(BASE_URL):
                 issues.append(f"SEO ERROR: {rel_path} canonical does not start with {BASE_URL}: {parser.canonical}")
-            if parser.canonical not in sitemap_urls and sitemap_urls:
+            if parser.canonical not in sitemap_urls and sitemap_urls and path.name != "404.html":
                 warnings.append(f"SEO SITEMAP GAP: {rel_path} canonical {parser.canonical} not in sitemap.xml")
 
         # Check OpenGraph

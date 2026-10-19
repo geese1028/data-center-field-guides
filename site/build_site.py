@@ -89,6 +89,8 @@ GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#090d16"/>
   <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
   <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
   <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
@@ -3054,6 +3056,56 @@ def generate_hub_index(articles, is_subfolder=False):
     </div>
     """
 
+    items_list_elements = []
+    for num, b in BOOK_CATALOG.items():
+        escaped_title = html.escape(b["title"]).replace('"', '\\"')
+        items_list_elements.append({
+            "@type": "ListItem",
+            "position": num,
+            "name": f"Volume 0{num}: {escaped_title}",
+            "url": f"{BASE_URL}/book/{b['slug']}"
+        })
+
+    hub_schema_obj = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Data Center Field Guides",
+            "url": f"{BASE_URL}/",
+            "description": "Deterministic First-Principles Data Center Engineering Protocols and AI Agent Ground-Truth Specifications by Tristan.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Data Center Field Guides",
+                "url": f"{BASE_URL}/",
+                "logo": f"{BASE_URL}/logo.png"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Tristan",
+                "url": f"{BASE_URL}/about",
+                "jobTitle": "Lead Commissioning Authority & Author"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": f"{BASE_URL}/?q={{search_term_string}}#protocols"
+                },
+                "query-input": "required name=search_term_string"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Data Center Field Guides - 9 Volume Engineering Series",
+            "description": "Comprehensive 9-volume mission-critical data center engineering series covering liquid load banks, telemetry, IST, CFD validation, operations, alarm suppression, handover refusal, corrosion coupon monitoring, and technical due diligence.",
+            "itemListOrder": "https://schema.org/ItemListOrderAscending",
+            "numberOfItems": 9,
+            "itemListElement": items_list_elements
+        }
+    ]
+    hub_json_ld = f'  <script type="application/ld+json">\n{json.dumps(hub_schema_obj, ensure_ascii=False, indent=2)}\n  </script>'
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3075,6 +3127,8 @@ def generate_hub_index(articles, is_subfolder=False):
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{page_title}"/>
   <meta name="twitter:description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
+
+{hub_json_ld}
   <style>
     :root {{
       color-scheme: dark;
@@ -4582,6 +4636,49 @@ def generate_hub_index(articles, is_subfolder=False):
 def generate_about_page():
     """Generate high-authority About Me profile page highlighting certifications and signature projects."""
     canonical_url = f"{BASE_URL}/about"
+    about_schema_obj = {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": "About Tristan | Data Center Commissioning Authority & Author",
+        "url": canonical_url,
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Tristan",
+            "jobTitle": "Principal Data Center Commissioning Authority & Engineering Author",
+            "url": canonical_url,
+            "image": f"{BASE_URL}/logo.png",
+            "description": "15+ years lead data center commissioning authority, Uptime Institute ATS, EPI CDFOM, CDFOS, and CDFOS Instructor. Author of the 9-volume Data Center Field Guides series.",
+            "knowsAbout": [
+                "Mission Critical Facilities",
+                "Direct-to-Chip Liquid Cooling",
+                "NVL72 Whitespace Commissioning",
+                "Data Center Telemetry & Modbus Analysis",
+                "ANSI/ISA-71.04 Gaseous Reactivity Monitoring",
+                "Computational Fluid Dynamics (CFD)",
+                "Technical Due Diligence (TDD)"
+            ],
+            "hasCredential": [
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "Uptime Institute Accredited Tier Specialist (ATS)"
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "EPI Certified Data Centre Facilities Operations Manager (CDFOM)"
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "EPI Certified Data Centre Facilities Operations Specialist (CDFOS)"
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "EPI Certified Data Centre Facilities Operations Specialist (CDFOS) Instructor"
+                }
+            ]
+        }
+    }
+    about_json_ld = f'  <script type="application/ld+json">\n{json.dumps(about_schema_obj, ensure_ascii=False, indent=2)}\n  </script>'
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -4603,6 +4700,8 @@ def generate_about_page():
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:title" content="About Tristan | Data Center Commissioning Authority &amp; Author"/>
   <meta name="twitter:description" content="Professional background of Tristan, 15+ years lead data center commissioning authority, Uptime Institute ATS, EPI CDFOM, CDFOS, and CDFOS Instructor."/>
+
+{about_json_ld}
   <style>
     :root {{
       color-scheme: dark;
@@ -6393,6 +6492,306 @@ def generate_buy_page():
 """
 
 
+def generate_404_page():
+    """Generate high-authority cyber-engineering 404 Error Page to prevent Soft 404s and guide users."""
+    canonical_url = f"{BASE_URL}/404.html"
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+{GOOGLE_TAG_SNIPPET}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404: Signal Lost // Data Center Field Guides</title>
+  <meta name="description" content="The requested data center engineering protocol or telemetry file does not exist on this server. Search all 68 field protocols or explore the 9-volume book catalog."/>
+  <meta name="robots" content="noindex, follow"/>
+  <link rel="canonical" href="{canonical_url}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="404: Signal Lost // Data Center Field Guides"/>
+  <meta property="og:description" content="The requested data center engineering protocol or telemetry file does not exist on this server."/>
+  <meta property="og:url" content="{canonical_url}"/>
+  <meta property="og:site_name" content="Data Center Field Guides"/>
+  <style>
+    :root {{
+      color-scheme: dark;
+      --bg: #090d16;
+      --surface: #121826;
+      --surface-elevated: #172033;
+      --surface-inset: #0c101a;
+      --border: #1e283d;
+      --text: #cbd5e1;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #3b82f6;
+      --amber: #d97706;
+      --green: #10b981;
+      --red: #ef4444;
+    }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }}
+    header.site-header {{
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(10, 15, 29, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }}
+    .nav-container {{
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }}
+    .brand {{
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }}
+    .brand-mark {{
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: inline-block;
+      flex-shrink: 0;
+    }}
+    .brand span {{ color: #94a3b8; font-weight: 600; font-size: 0.92rem; }}
+    .nav-links {{ display: flex; align-items: center; gap: 1.5rem; }}
+    .nav-links a {{ color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.15s; }}
+    .nav-links a:hover {{ color: #fff; }}
+    .nav-cta {{
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.15s !important;
+    }}
+    .nav-cta:hover {{ background: var(--accent-hover) !important; }}
+
+    main.error-wrapper {{
+      flex: 1;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }}
+    .error-terminal {{
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      border-radius: 8px;
+      padding: 2rem;
+      width: 100%;
+      text-align: left;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }}
+    .terminal-meta {{
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.78rem;
+      border-bottom: 1px solid #1e283d;
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }}
+    .terminal-code {{
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }}
+    .terminal-msg {{
+      color: #f8fafc;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }}
+    .terminal-log {{
+      color: #94a3b8;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }}
+    .terminal-cursor {{
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--red);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }}
+    @keyframes blink {{ 50% {{ opacity: 0; }} }}
+
+    .error-actions {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }}
+    .btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }}
+    .btn-primary {{ background: var(--accent); color: #fff; border: none; }}
+    .btn-primary:hover {{ background: var(--accent-hover); }}
+    .btn-secondary {{ background: var(--surface); color: #f8fafc; border: 1px solid var(--border); }}
+    .btn-secondary:hover {{ background: var(--surface-elevated); border-color: var(--accent); }}
+
+    .flagship-recs {{
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+    }}
+    .recs-title {{
+      font-size: 0.82rem;
+      font-family: ui-monospace, monospace;
+      color: var(--amber);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }}
+    .recs-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }}
+    .rec-item {{
+      padding: 0.85rem;
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }}
+    .rec-item:hover {{
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }}
+    .rec-vol {{ font-size: 0.72rem; font-weight: 800; color: var(--accent); font-family: ui-monospace, monospace; }}
+    .rec-name {{ font-size: 0.92rem; font-weight: 700; color: #f8fafc; margin-top: 0.25rem; }}
+
+    footer.site-footer {{
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">68 Protocols</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-cta">Buy Field Guides &rarr;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="error-wrapper">
+    <div class="error-terminal">
+      <div class="terminal-meta">
+        <span>STATUS: 404_NOT_FOUND</span>
+        <span>PROTOCOL_AUDIT // SIGNAL_LOST</span>
+      </div>
+      <div class="terminal-code">404</div>
+      <h1 class="terminal-msg">Signal Lost: No Protocol Found at This Address</h1>
+      <div class="terminal-log">
+        &gt; GET telemetry stream: [FAILED]<br/>
+        &gt; Unresolved pointer or malformed relative path.<br/>
+        &gt; In mission-critical data center commissioning, an unresolved sensor reading is a refusal to proceed. Verify the URI or execute an indexed search below.<span class="terminal-cursor"></span>
+      </div>
+    </div>
+
+    <div class="error-actions">
+      <button type="button" class="btn btn-primary" data-open-search="true">
+        🔍 Search All 68 Field Protocols (Cmd+K)
+      </button>
+      <a href="/" class="btn btn-secondary">
+        Return to Home &amp; Roadmap
+      </a>
+      <a href="/buy" class="btn btn-secondary">
+        Browse The 9 Volumes
+      </a>
+    </div>
+
+    <div class="flagship-recs">
+      <div class="recs-title">RECOMMENDED FIRST-PRINCIPLES SPECIFICATIONS</div>
+      <div class="recs-grid">
+        <a href="/blog/nvl72-liquid-load-bank-testing-guide" class="rec-item">
+          <div class="rec-vol">VOLUME 01 // SPEC</div>
+          <div class="rec-name">NVL72 Liquid Load Bank Testing</div>
+        </a>
+        <a href="/blog/sop-mop-eop" class="rec-item">
+          <div class="rec-vol">VOLUME 05 // SPEC</div>
+          <div class="rec-name">SOP, MOP, and EOP Protocols</div>
+        </a>
+        <a href="/blog/data-center-facility-location-due-diligence" class="rec-item">
+          <div class="rec-vol">VOLUME 09 // SPEC</div>
+          <div class="rec-name">Facility Location Due Diligence</div>
+        </a>
+        <a href="/blog/data-center-corrosion-coupon-isa-71-04-guide" class="rec-item">
+          <div class="rec-vol">VOLUME 08 // SPEC</div>
+          <div class="rec-name">Corrosion Coupon ISA-71.04</div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+  </footer>
+
+  <script src="/search-data.js" defer></script>
+  <script src="/search.js" defer></script>
+</body>
+</html>
+"""
+
+
 def generate_sitemap(urls):
     """Generate XML sitemap."""
     today = datetime.now().strftime("%Y-%m-%d")
@@ -6588,8 +6987,14 @@ def generate_llms_files(raw_articles):
     }
     OUT_FEED_JSON.write_text(json.dumps(feed_json_obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    # Build Cloudflare _headers (CORS & Content-Type for AI Agents)
-    headers_content = """/llms.txt
+    # Build Cloudflare _headers (CORS, Security, & High-Performance Caching)
+    headers_content = """/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/llms.txt
   Access-Control-Allow-Origin: *
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: all
@@ -6616,6 +7021,22 @@ def generate_llms_files(raw_articles):
 /feed.json
   Access-Control-Allow-Origin: *
   Content-Type: application/feed+json; charset=utf-8
+
+/site.webmanifest
+  Access-Control-Allow-Origin: *
+  Content-Type: application/manifest+json; charset=utf-8
+
+/blog/figures/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/search-data.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 """
     OUT_HEADERS.write_text(headers_content, encoding="utf-8")
 
@@ -6738,6 +7159,8 @@ def main():
         "Applebot-Extended",
         "CCBot",
         "cohere-ai",
+        "Amazonbot",
+        "meta-externalagent",
     ]
     bot_rules = "\n\n".join([f"User-agent: {b}\nAllow: /" for b in ai_bots])
     robots_content = (
@@ -6763,6 +7186,11 @@ def main():
         vol_url = f"{BASE_URL}/book/{b['slug']}"
         sitemap_urls.append(vol_url)
     print(f"Generated 9 Dedicated Book Volume Pillar Pages in {BOOK_DIR}")
+
+    # 5. Dedicated 404 Error Page (`site/404.html`)
+    out_404_path = SITE / "404.html"
+    out_404_path.write_text(generate_404_page(), encoding="utf-8")
+    print(f"Generated 404 Error Page: {out_404_path}")
 
     # Phase 4: Sitemap Generation
     sitemap_content = generate_sitemap(sitemap_urls)

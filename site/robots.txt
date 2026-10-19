@@ -40,6 +40,12 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
 # AI Agent & LLM Ground-Truth Specification Endpoints
 # https://datacenterfieldguides.com/llms.txt
 # https://datacenterfieldguides.com/llms-full.txt

@@ -39,6 +39,8 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
   <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#090d16"/>
   <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
   <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
   <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
@@ -61,6 +63,102 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Data Center Field Guides | Mission-Critical Engineering Manuals by Tristan"/>
   <meta name="twitter:description" content="Searchable engineering library of 68 data center field protocols covering NVL72 liquid load banks, BMS telemetry, handover refusal, CFD validation, and technical due diligence."/>
+
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Data Center Field Guides",
+    "url": "https://datacenterfieldguides.com/",
+    "description": "Deterministic First-Principles Data Center Engineering Protocols and AI Agent Ground-Truth Specifications by Tristan.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Data Center Field Guides",
+      "url": "https://datacenterfieldguides.com/",
+      "logo": "https://datacenterfieldguides.com/logo.png"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Tristan",
+      "url": "https://datacenterfieldguides.com/about",
+      "jobTitle": "Lead Commissioning Authority & Author"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://datacenterfieldguides.com/?q={search_term_string}#protocols"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Data Center Field Guides - 9 Volume Engineering Series",
+    "description": "Comprehensive 9-volume mission-critical data center engineering series covering liquid load banks, telemetry, IST, CFD validation, operations, alarm suppression, handover refusal, corrosion coupon monitoring, and technical due diligence.",
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "numberOfItems": 9,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Volume 01: Design and Build a Liquid Load Bank for NVL72 Racks",
+        "url": "https://datacenterfieldguides.com/book/01-liquid-load-bank"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Volume 02: Read and Use Load Bank Data: A Field Guide to the Flash Report",
+        "url": "https://datacenterfieldguides.com/book/02-read-load-bank-data"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Volume 03: Finish a Liquid Cooling Verification: Seven Sheets for One Load-Bank Test",
+        "url": "https://datacenterfieldguides.com/book/03-run-one-test"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Volume 04: Judge a CFD Model for Data Centers",
+        "url": "https://datacenterfieldguides.com/book/04-judge-a-cfd"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Volume 05: Run the Data Center Day: What the Manager Must Sign Before the Shift Ends",
+        "url": "https://datacenterfieldguides.com/book/05-run-the-day"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Volume 06: When a Monitor May Speak",
+        "url": "https://datacenterfieldguides.com/book/06-when-a-monitor-may-speak"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Volume 07: Refuse the Handover",
+        "url": "https://datacenterfieldguides.com/book/07-refuse-the-handover"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Volume 08: Judge a Corrosion Coupon",
+        "url": "https://datacenterfieldguides.com/book/08-judge-a-corrosion-coupon"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "Volume 09: Walk a TDD: Technical Due Diligence Physical Site Audit",
+        "url": "https://datacenterfieldguides.com/book/09-walk-a-tdd"
+      }
+    ]
+  }
+]
+  </script>
   <style>
     :root {
       color-scheme: dark;

@@ -1,3 +1,9 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
 /llms.txt
   Access-Control-Allow-Origin: *
   Content-Type: text/plain; charset=utf-8
@@ -25,3 +31,19 @@
 /feed.json
   Access-Control-Allow-Origin: *
   Content-Type: application/feed+json; charset=utf-8
+
+/site.webmanifest
+  Access-Control-Allow-Origin: *
+  Content-Type: application/manifest+json; charset=utf-8
+
+/blog/figures/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/search-data.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

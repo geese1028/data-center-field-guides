@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16517762043');
+    function trackBuyClick(store, bookTitle) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'begin_checkout', {
+            'event_category': 'ecommerce',
+            'event_label': bookTitle,
+            'store': store
+          });
+        }
+        if (typeof clarity === 'function') {
+          clarity('event', 'click_buy_' + store);
+        }
+      } catch(e) {}
+    }
+  </script>
+  <!-- Microsoft Clarity (z07e7qd6mb) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z07e7qd6mb");
+  </script>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="author" content="Tristan"/>
+  <meta property="og:locale" content="en_US"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#090d16"/>
+  <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
+  <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
+  <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
+  <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>
+  <link rel="alternate" type="text/markdown" title="Installable AI Agent Auditor Skill (SKILL.md)" href="/SKILL.md"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404: Signal Lost // Data Center Field Guides</title>
+  <meta name="description" content="The requested data center engineering protocol or telemetry file does not exist on this server. Search all 68 field protocols or explore the 9-volume book catalog."/>
+  <meta name="robots" content="noindex, follow"/>
+  <link rel="canonical" href="https://datacenterfieldguides.com/404.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="404: Signal Lost // Data Center Field Guides"/>
+  <meta property="og:description" content="The requested data center engineering protocol or telemetry file does not exist on this server."/>
+  <meta property="og:url" content="https://datacenterfieldguides.com/404.html"/>
+  <meta property="og:site_name" content="Data Center Field Guides"/>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090d16;
+      --surface: #121826;
+      --surface-elevated: #172033;
+      --surface-inset: #0c101a;
+      --border: #1e283d;
+      --text: #cbd5e1;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #3b82f6;
+      --amber: #d97706;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header.site-header {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(10, 15, 29, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .nav-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .brand span { color: #94a3b8; font-weight: 600; font-size: 0.92rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--accent-hover) !important; }
+
+    main.error-wrapper {
+      flex: 1;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .error-terminal {
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      border-radius: 8px;
+      padding: 2rem;
+      width: 100%;
+      text-align: left;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .terminal-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.78rem;
+      border-bottom: 1px solid #1e283d;
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .terminal-code {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .terminal-msg {
+      color: #f8fafc;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .terminal-log {
+      color: #94a3b8;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--red);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border: none; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: var(--surface); color: #f8fafc; border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--surface-elevated); border-color: var(--accent); }
+
+    .flagship-recs {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+    }
+    .recs-title {
+      font-size: 0.82rem;
+      font-family: ui-monospace, monospace;
+      color: var(--amber);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .recs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+    .rec-item {
+      padding: 0.85rem;
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .rec-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .rec-vol { font-size: 0.72rem; font-weight: 800; color: var(--accent); font-family: ui-monospace, monospace; }
+    .rec-name { font-size: 0.92rem; font-weight: 700; color: #f8fafc; margin-top: 0.25rem; }
+
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">68 Protocols</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-cta">Buy Field Guides &rarr;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="error-wrapper">
+    <div class="error-terminal">
+      <div class="terminal-meta">
+        <span>STATUS: 404_NOT_FOUND</span>
+        <span>PROTOCOL_AUDIT // SIGNAL_LOST</span>
+      </div>
+      <div class="terminal-code">404</div>
+      <h1 class="terminal-msg">Signal Lost: No Protocol Found at This Address</h1>
+      <div class="terminal-log">
+        &gt; GET telemetry stream: [FAILED]<br/>
+        &gt; Unresolved pointer or malformed relative path.<br/>
+        &gt; In mission-critical data center commissioning, an unresolved sensor reading is a refusal to proceed. Verify the URI or execute an indexed search below.<span class="terminal-cursor"></span>
+      </div>
+    </div>
+
+    <div class="error-actions">
+      <button type="button" class="btn btn-primary" data-open-search="true">
+        🔍 Search All 68 Field Protocols (Cmd+K)
+      </button>
+      <a href="/" class="btn btn-secondary">
+        Return to Home &amp; Roadmap
+      </a>
+      <a href="/buy" class="btn btn-secondary">
+        Browse The 9 Volumes
+      </a>
+    </div>
+
+    <div class="flagship-recs">
+      <div class="recs-title">RECOMMENDED FIRST-PRINCIPLES SPECIFICATIONS</div>
+      <div class="recs-grid">
+        <a href="/blog/nvl72-liquid-load-bank-testing-guide" class="rec-item">
+          <div class="rec-vol">VOLUME 01 // SPEC</div>
+          <div class="rec-name">NVL72 Liquid Load Bank Testing</div>
+        </a>
+        <a href="/blog/sop-mop-eop" class="rec-item">
+          <div class="rec-vol">VOLUME 05 // SPEC</div>
+          <div class="rec-name">SOP, MOP, and EOP Protocols</div>
+        </a>
+        <a href="/blog/data-center-facility-location-due-diligence" class="rec-item">
+          <div class="rec-vol">VOLUME 09 // SPEC</div>
+          <div class="rec-name">Facility Location Due Diligence</div>
+        </a>
+        <a href="/blog/data-center-corrosion-coupon-isa-71-04-guide" class="rec-item">
+          <div class="rec-vol">VOLUME 08 // SPEC</div>
+          <div class="rec-name">Corrosion Coupon ISA-71.04</div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+  </footer>
+
+  <script src="/search-data.js" defer></script>
+  <script src="/search.js" defer></script>
+</body>
+</html>

@@ -366,6 +366,7 @@
       renderResults();
       document.body.style.overflow = 'hidden';
     }
+    window.openSearchModal = openModal;
 
     function closeModal() {
       backdrop.style.display = 'none';
@@ -375,7 +376,7 @@
 
     // Trigger buttons
     document.addEventListener('click', function (e) {
-      if (e.target.closest('#open-search-btn') || e.target.closest('.nav-search-trigger')) {
+      if (e.target.closest('#open-search-btn') || e.target.closest('.nav-search-trigger') || e.target.closest('[data-open-search]')) {
         e.preventDefault();
         openModal();
       }
@@ -503,6 +504,18 @@
 
       resultsContainer.innerHTML = itemsHtml;
     }
+
+    // Auto-open and filter on ?q= or ?s= URL parameter (Sitelinks Searchbox integration)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get('q') || urlParams.get('s');
+      if (queryParam) {
+        openModal();
+        input.value = queryParam;
+        selectedIndex = 0;
+        renderResults();
+      }
+    } catch (err) {}
   }
 
   // Run on DOM ready
