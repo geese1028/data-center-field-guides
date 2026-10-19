@@ -31,4 +31,5 @@ node_modules/
 .reddit-published.json
 .reddit-cron.log
 .reddit-launchpad.html
+.cf-credentials.json
 

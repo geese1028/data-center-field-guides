@@ -9,6 +9,28 @@
     gtag('js', new Date());
 
     gtag('config', 'AW-16517762043');
+    function trackBuyClick(store, bookTitle) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'begin_checkout', {
+            'event_category': 'ecommerce',
+            'event_label': bookTitle,
+            'store': store
+          });
+        }
+        if (typeof clarity === 'function') {
+          clarity('event', 'click_buy_' + store);
+        }
+      } catch(e) {}
+    }
+  </script>
+  <!-- Microsoft Clarity (z07e7qd6mb) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z07e7qd6mb");
   </script>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
@@ -922,7 +944,7 @@
           <a href="/raw/close-out-is-not-a-heat-report.md" style="color:#34d399;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[Raw .md]</a>
         </span>
       </div>
-      <a href="https://www.amazon.com/dp/B0HNFJXGM7" target="_blank" rel="noopener" class="ribbon-btn">
+      <a href="https://www.amazon.com/dp/B0HNFJXGM7" target="_blank" rel="noopener" onclick="trackBuyClick('amazon', 'Volume 03: Liquid Cooling Verification')" class="ribbon-btn">
         Order Manual on Amazon &rarr;
       </a>
     </aside>
@@ -1065,11 +1087,11 @@
         <div class="order-channel-group cta-order-block">
           <span class="order-label">Order Now:</span>
           <div class="platform-badges">
-            <a href="https://www.amazon.com/dp/B0HNFJXGM7" target="_blank" rel="noopener" class="platform-btn is-active amazon" title="Order on Amazon Kindle"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amazon">
+            <a href="https://www.amazon.com/dp/B0HNFJXGM7" target="_blank" rel="noopener" class="platform-btn is-active amazon" title="Order on Amazon Kindle" onclick="trackBuyClick('amazon', 'Volume 03: Liquid Cooling Verification')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amazon">
   <path d="M3.5 18.5c4.8 2.6 11 2.2 15.5-.8.5-.3.2-.9-.3-.8-4.2 1.2-9.7.7-14.5-1.5-.7-.3-1.1.8-.7 1.1z" fill="#FF9900"/>
   <path d="M19.7 16.2c-.4.4-1.2.7-2 .7-.2 0-.3.2-.2.4.4.7 1.3 1.5 2.1 1.7.3.1.5-.1.5-.3.1-.7.2-1.8-.4-2.5z" fill="#FF9900"/>
   <path d="M12.6 7.2c-2.4 0-4.3 1.1-4.7 3.3l1.8.3c.3-1.2 1.3-1.8 2.8-1.8 1.5 0 2.3.7 2.3 2.1v.5c-3.5.2-5.7 1.3-5.7 3.7 0 2.1 1.6 3.2 3.6 3.2 1.8 0 2.9-.9 3.5-2.1v1.8h2.1v-7c0-2.4-1.8-3.7-4.4-3.7zm1.3 6.9c-.3.8-1.2 1.6-2.4 1.6-1.1 0-1.8-.6-1.8-1.6 0-1.2 1-1.7 2.6-1.8.6 0 1.2.1 1.6.3v1.5z" fill="#ffffff"/>
-</svg><span>Amazon</span></a><a href="https://leanpub.com/finish-a-liquid-cooling-verification" target="_blank" rel="noopener" class="platform-btn is-active leanpub" title="Read on Leanpub (PDF / EPUB)"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
+</svg><span>Amazon</span></a><a href="https://leanpub.com/finish-a-liquid-cooling-verification" target="_blank" rel="noopener" class="platform-btn is-active leanpub" title="Read on Leanpub (PDF / EPUB)" onclick="trackBuyClick('leanpub', 'Volume 03: Liquid Cooling Verification')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
   <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z" fill="#0C85EA"/>
   <path d="M7 7h10M7 11h10M7 15h6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
 </svg><span>Leanpub</span></a><span class="platform-btn is-disabled google" title="Coming Soon on Google Books"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="Google Books">

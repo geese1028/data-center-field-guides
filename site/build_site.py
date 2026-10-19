@@ -19,6 +19,7 @@ Features:
 import html
 import json
 import re
+import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
@@ -58,6 +59,28 @@ GOOGLE_TAG_SNIPPET = """  <!-- Google tag (gtag.js) -->
     gtag('js', new Date());
 
     gtag('config', 'AW-16517762043');
+    function trackBuyClick(store, bookTitle) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'begin_checkout', {
+            'event_category': 'ecommerce',
+            'event_label': bookTitle,
+            'store': store
+          });
+        }
+        if (typeof clarity === 'function') {
+          clarity('event', 'click_buy_' + store);
+        }
+      } catch(e) {}
+    }
+  </script>
+  <!-- Microsoft Clarity (z07e7qd6mb) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z07e7qd6mb");
   </script>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
@@ -403,9 +426,10 @@ def render_order_now_block(book_num, b, is_cta=False):
     ]
     
     badges_html = []
+    short_t = html.escape(b.get("short_title", f"Volume 0{book_num}")).replace("'", "\\'")
     for key, name, url, svg_icon, title_text in platforms:
         if url:
-            badges_html.append(f'<a href="{url}" target="_blank" rel="noopener" class="platform-btn is-active {key}" title="{title_text}">{svg_icon}<span>{name}</span></a>')
+            badges_html.append(f'<a href="{url}" target="_blank" rel="noopener" class="platform-btn is-active {key}" title="{title_text}" onclick="trackBuyClick(\'{key}\', \'Volume 0{book_num}: {short_t}\')">{svg_icon}<span>{name}</span></a>')
         else:
             badges_html.append(f'<span class="platform-btn is-disabled {key}" title="{title_text}">{svg_icon}<span>{name}</span></span>')
             
@@ -608,13 +632,16 @@ def render_top_book_ribbon(book_num, b, slug=None):
     """Render In-Article Top Book Bridge ribbon with direct AI Agent Markdown & /llms.txt endpoints."""
     is_live = (b.get("status") == "live")
     asin = b.get("asin", "")
+    short_t = html.escape(b.get("short_title", f"Volume 0{book_num}")).replace("'", "\\'")
     if is_live and asin and not asin.startswith("B0EXAMP"):
         cta_href = f"https://www.amazon.com/dp/{asin}"
         cta_target = ' target="_blank" rel="noopener"'
+        cta_onclick = f' onclick="trackBuyClick(\'amazon\', \'Volume 0{book_num}: {short_t}\')"'
         cta_text = "Order Manual on Amazon &rarr;"
     else:
         cta_href = "/#books"
         cta_target = ""
+        cta_onclick = ""
         cta_text = "View Series Roadmap &rarr;"
 
     raw_md_link = f'<a href="/raw/{slug}.md" style="color:#34d399;text-decoration:underline;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;font-weight:700;margin-left:0.35rem;">[Raw .md]</a>' if slug else ""
@@ -630,7 +657,7 @@ def render_top_book_ribbon(book_num, b, slug=None):
           {raw_md_link}
         </span>
       </div>
-      <a href="{cta_href}"{cta_target} class="ribbon-btn">
+      <a href="{cta_href}"{cta_target}{cta_onclick} class="ribbon-btn">
         {cta_text}
       </a>
     </aside>
@@ -6743,6 +6770,17 @@ def main():
     print(f"Generated Sitemap with {len(set(sitemap_urls))} URLs: {OUT_SITEMAP}")
 
     print("\nSite build complete! All 69 articles, 9 volume hub pages + About Me page are fully online, indexed, and cross-linked.")
+
+    if "--indexnow" in sys.argv:
+        print("\n[Auto-IndexNow] Submitting endpoints to IndexNow...")
+        try:
+            if str(SITE) not in sys.path:
+                sys.path.insert(0, str(SITE))
+            from gsc_analytics import submit_indexnow
+            status, count = submit_indexnow()
+            print(f"[Auto-IndexNow] Successfully submitted {count} URLs to IndexNow (Status: {status})")
+        except Exception as e:
+            print(f"[Auto-IndexNow] Error submitting to IndexNow: {e}")
 
 
 if __name__ == "__main__":
