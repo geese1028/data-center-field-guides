@@ -32,4 +32,5 @@ node_modules/
 .reddit-cron.log
 .reddit-launchpad.html
 .cf-credentials.json
+.bing-credentials.json
 
