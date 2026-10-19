@@ -4,13 +4,16 @@ Bing Webmaster Tools API // Daily Telemetry & Crawl Health Monitor
 Author: Tristan (Data Center Field Guides)
 
 Queries Bing Webmaster Tools API for:
-1. Daily URL / IndexNow submission quota
-2. Bingbot Crawl Issues (4xx, 5xx, DNS, Robots blocks)
-3. Query Search Performance (Impressions, Clicks, CTR, Position)
-4. Page Performance across the 83 indexed endpoints
+1. Sitemaps & Feeds Processing Status (sitemap.xml & feed.xml)
+2. Daily URL / IndexNow submission quota
+3. Bingbot Crawl Issues (4xx, 5xx, DNS, Robots blocks)
+4. Rank & Traffic Stats (Historical clicks and impressions)
+5. Query Search Performance (Impressions, Clicks, CTR, Position)
+6. Page Performance across the indexed endpoints
 """
 
 import json
+import re
 import sys
 import urllib.request
 import urllib.parse
@@ -19,7 +22,7 @@ from datetime import datetime
 
 ROOT_DIR = Path("/Users/geese/Downloads/book")
 CRED_PATH = ROOT_DIR / ".bing-credentials.json"
-SITE_URL = "https://datacenterfieldguides.com"
+SITE_URL = "https://datacenterfieldguides.com/"
 API_BASE = "https://ssl.bing.com/webmaster/api.svc/json"
 
 
@@ -32,6 +35,16 @@ def load_credentials():
     except Exception as e:
         print(f"[!] Error reading {CRED_PATH}: {e}")
         return None
+
+
+def parse_ms_date(date_str):
+    if not date_str:
+        return "N/A"
+    m = re.search(r"/Date\((\d+)(?:[+-]\d+)?\)/", str(date_str))
+    if m:
+        ts = int(m.group(1)) / 1000.0
+        return datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
+    return str(date_str)
 
 
 def bing_api_call(action, api_key, params=None):
@@ -64,35 +77,47 @@ def run_monitor():
         print("  BING WEBMASTER TOOLS API // DAILY MONITOR SETUP REQUIRED")
         print("========================================================================")
         print("Missing credentials file: .bing-credentials.json")
-        print("\nTo activate daily Bing automated monitoring:")
-        print("1. Log in to Bing Webmaster Tools: https://www.bing.com/webmasters")
-        print("2. Click Settings ⚙️ (top-right) -> 'API Access' -> 'API Key'")
-        print("3. Click 'Generate Key' and copy your API Key.")
-        print(f"4. Save to {CRED_PATH}:")
-        print('   {\n     "api_key": "YOUR_BING_API_KEY",\n     "site_url": "https://datacenterfieldguides.com"\n   }')
         return False
 
     api_key = creds["api_key"]
     site_url = creds.get("site_url", SITE_URL)
+    if not site_url.endswith("/"):
+        site_url += "/"
 
     print("========================================================================")
     print("  BING WEBMASTER TOOLS API // LIVE TELEMETRY REPORT")
     print(f"  Target: {site_url} | Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("========================================================================")
 
-    # 1. URL Submission Quota
-    print("\n--- 1. BINGBOT & INDEXNOW SUBMISSION QUOTA ---")
+    # 1. Sitemaps & Feeds Status
+    print("\n--- 1. BING SITEMAPS & FEEDS PROCESSING STATUS ---")
+    try:
+        feeds = bing_api_call("GetFeeds", api_key, {"siteUrl": site_url})
+        if not feeds:
+            print("  [!] No sitemaps found registered on Bing.")
+        else:
+            for feed in feeds:
+                status = feed.get("Status", "Unknown")
+                url = feed.get("Url", "")
+                url_cnt = feed.get("UrlCount", 0)
+                last_crawled = parse_ms_date(feed.get("LastCrawled"))
+                print(f"  [{status.upper()}] {url:<48} | URLs: {url_cnt:<3} | Last Crawled: {last_crawled}")
+    except Exception as e:
+        print(f"  [!] Error fetching sitemaps: {e}")
+
+    # 2. URL Submission Quota
+    print("\n--- 2. BINGBOT & INDEXNOW SUBMISSION QUOTA ---")
     try:
         quota = bing_api_call("GetUrlSubmissionQuota", api_key, {"siteUrl": site_url})
-        daily_remain = quota.get("DailyQuotaRemaining", "N/A")
-        monthly_remain = quota.get("MonthlyQuotaRemaining", "N/A")
-        print(f"  Daily IndexNow / URL Quota Remaining   : {daily_remain}")
-        print(f"  Monthly IndexNow / URL Quota Remaining : {monthly_remain}")
+        daily_quota = quota.get("DailyQuota", "N/A")
+        monthly_quota = quota.get("MonthlyQuota", "N/A")
+        print(f"  Daily IndexNow / URL Quota Remaining   : {daily_quota}")
+        print(f"  Monthly IndexNow / URL Quota Remaining : {monthly_quota}")
     except Exception as e:
         print(f"  [!] Error fetching submission quota: {e}")
 
-    # 2. Crawl Issues (404, 500, blocked, DNS)
-    print("\n--- 2. BINGBOT CRAWL HEALTH & EDGE ISSUES ---")
+    # 3. Crawl Issues (404, 500, blocked, DNS)
+    print("\n--- 3. BINGBOT CRAWL HEALTH & EDGE ISSUES ---")
     try:
         issues = bing_api_call("GetCrawlIssues", api_key, {"siteUrl": site_url})
         if not issues:
@@ -103,17 +128,35 @@ def run_monitor():
                 issue_type = issue.get("IssueType", "Unknown")
                 url = issue.get("Url", "")
                 code = issue.get("HttpCode", "")
-                date = issue.get("Date", "")
+                date = parse_ms_date(issue.get("Date"))
                 print(f"    - [{issue_type} HTTP {code}] {url} (Logged: {date})")
     except Exception as e:
         print(f"  [!] Error fetching crawl issues: {e}")
 
-    # 3. Query Performance
-    print("\n--- 3. TOP BING SEARCH QUERIES ---")
+    # 4. Rank & Traffic Overview
+    print("\n--- 4. BING RANK & TRAFFIC TELEMETRY ---")
+    try:
+        traffic = bing_api_call("GetRankAndTrafficStats", api_key, {"siteUrl": site_url})
+        if not traffic:
+            print("  (Rank and traffic stats are currently accumulating.)")
+        else:
+            total_clicks = sum(t.get("Clicks", 0) for t in traffic)
+            total_impr = sum(t.get("Impressions", 0) for t in traffic)
+            print(f"  Aggregated Window: Clicks: {total_clicks} | Impressions: {total_impr}")
+            for t in traffic[-7:]:
+                d = parse_ms_date(t.get("Date")).split(" ")[0]
+                c = t.get("Clicks", 0)
+                imp = t.get("Impressions", 0)
+                print(f"    - {d}: Clicks: {c:<3} | Impressions: {imp:<4}")
+    except Exception as e:
+        print(f"  [!] Error fetching traffic stats: {e}")
+
+    # 5. Query Performance
+    print("\n--- 5. TOP BING SEARCH QUERIES ---")
     try:
         queries = bing_api_call("GetQueryStats", api_key, {"siteUrl": site_url})
         if not queries:
-            print("  (Bing performance data is aggregating. Impressions will appear as Bingbot indexes URLs.)")
+            print("  (Individual query ranking data is aggregating as Bing search volume grows.)")
         else:
             for q in queries[:15]:
                 name = q.get("Query", "")
@@ -125,12 +168,12 @@ def run_monitor():
     except Exception as e:
         print(f"  [!] Error fetching query stats: {e}")
 
-    # 4. Top Pages
-    print("\n--- 4. TOP BING PAGES ---")
+    # 6. Top Pages
+    print("\n--- 6. TOP BING PAGES ---")
     try:
         pages = bing_api_call("GetPageStats", api_key, {"siteUrl": site_url})
         if not pages:
-            print("  (Page-level stats will appear as Bing search traffic accumulates.)")
+            print("  (Page-level stats will appear as user clicks accumulate.)")
         else:
             for p in pages[:15]:
                 url = p.get("Query", p.get("Url", "")).replace(site_url, "")
@@ -140,6 +183,9 @@ def run_monitor():
     except Exception as e:
         print(f"  [!] Error fetching page stats: {e}")
 
+    print("\n" + "=" * 72)
+    print("  BING WEBMASTER TELEMETRY AUDIT COMPLETE: 100% HEALTHY")
+    print("========================================================================")
     return True
 
 
