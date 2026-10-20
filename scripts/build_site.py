@@ -24,7 +24,9 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path("/Users/geese/Downloads/book")
+ROOT = Path(__file__).resolve().parent.parent
+if not (ROOT / "site").exists():
+    ROOT = Path("/Users/geese/Downloads/book")
 SITE = ROOT / "site"
 BLOG_DIR = SITE / "blog"
 BOOK_DIR = SITE / "book"
@@ -7701,6 +7703,11 @@ def generate_llms_files(raw_articles):
     """Generate llmstxt.org compliant /llms.txt, /llms-full.txt, /SKILL.md, /raw/*.md, /feed.xml, /feed.json, _headers, _redirects, and IndexNow key."""
     RAW_MD_DIR.mkdir(parents=True, exist_ok=True)
     redirect_lines = [
+        "# Security Guard: Block unauthorized requests to backend scripts and credentials",
+        "/*.py /404 404",
+        "/*.log /404 404",
+        "/*credentials* /404 404",
+        "",
         "# Machine-readable Markdown rewrites for AI Agents",
     ]
 
@@ -7879,7 +7886,9 @@ def generate_llms_files(raw_articles):
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://api.indexnow.org; frame-ancestors 'self'; base-uri 'self'; form-action 'self';
 
 /llms.txt
   Access-Control-Allow-Origin: *

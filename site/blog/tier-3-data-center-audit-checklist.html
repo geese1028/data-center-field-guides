@@ -96,7 +96,7 @@
     "image": "https://datacenterfieldguides.com/blog/figures/flagship/fig-01-shift-lifecycle-and-handover.png",
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
-    "wordCount": 2505,
+    "wordCount": 2510,
     "articleSection": "Operations & Protocols",
     "keywords": "tier 3 data center audit checklist, data center commissioning, mission critical infrastructure",
     "speakable": {
@@ -1110,7 +1110,7 @@
 <figure class="diagram-figure"><img src="figures/flagship/fig-04-electrical-interlock-2n.png" alt="Figure 2: Electrical Interlock and 2N Isolation Verification" loading="lazy" class="responsive-img"/><figcaption>Figure 2: Electrical Interlock and 2N Isolation Verification</figcaption></figure>
 <h3 id="1-automatic-transfer-switch-ats-vs-bus-tie-timing-cascade-race-conditions">1. Automatic Transfer Switch (ATS) vs. Bus-Tie Timing Cascade &amp; Race Conditions</h3>
 <p>In a Tier 3 topology deploying low-voltage automatic bus-tie breakers alongside downstream Automatic Transfer Switches (ATS) feeding mechanical plant or single-corded loads, timing coordination is the single most critical failure point.</p>
-<ul><li><strong>The Race Condition Trap</strong>: If utility main feeder A trips, the low-voltage bus-tie auto-transfer system (备自投) requires a deliberate sensing and dead-time interval before closing onto bus B. If downstream ATS units are misconfigured with an instantaneous or short transfer delay, all ATS units simultaneously transfer to emergency generator feeds while the bus-tie is mid-cycle. This creates a severe out-of-phase hunting condition and trips upstream generator protective relays on step-load overload.</li><li><strong>The Institutional Time-Grading Protocol</strong>:</li></ul>
+<ul><li><strong>The Race Condition Trap</strong>: If utility main feeder A trips, the low-voltage bus-tie auto-transfer system (automatic bus-tie transfer / BZT scheme) requires a deliberate sensing and dead-time interval before closing onto bus B. If downstream ATS units are misconfigured with an instantaneous or short transfer delay, all ATS units simultaneously transfer to emergency generator feeds while the bus-tie is mid-cycle. This creates a severe out-of-phase hunting condition and trips upstream generator protective relays on step-load overload.</li><li><strong>The Institutional Time-Grading Protocol</strong>:</li></ul>
 <div class="math-block">t<sub>bus-tie, close</sub> = 17 s  &#160;&#160; &lt; &#160;&#160;  t<sub>ATS, auto-transfer</sub> = 22 s  &#160;&#160; &lt; &#160;&#160;  t<sub>ATS, return-to-normal</sub> = 25 s</div>
 <ul><li><strong>Primary Bus-Tie Priority (<span class="math-inline">t = 17 s</span>)</strong>: The low-voltage bus-tie must always be given first right-of-way to restore power from the surviving transformer before any downstream ATS acts.</li><li><strong>Downstream ATS Transfer Delay (<span class="math-inline">t = 22 s</span>)</strong>: ATS units initiate transfer only if the bus-tie fails to close after a 5-second buffer (<span class="math-inline">17 s + 5 s = 22 s</span>).</li><li><strong>Return-to-Normal Dwell Time (<span class="math-inline">t = 25 s</span>)</strong>: When utility power returns, the ATS must observe healthy, stable grid sine-wave parameters for at least 25 continuous seconds before initiating re-transfer, preventing oscillatory cycling under utility recloser transients.</li></ul>
 <h3 id="2-3-pole-vs-4-pole-ats-the-switched-neutral-false-ground-fault-trip">2. 3-Pole vs. 4-Pole ATS: The Switched Neutral &amp; False Ground Fault Trip</h3>

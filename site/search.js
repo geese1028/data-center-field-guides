@@ -337,12 +337,34 @@
     document.body.appendChild(div.firstElementChild);
   }
 
-  // Highlight matched substrings
+  // HTML entity escaper to eliminate DOM XSS / HTML injection risks
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // Highlight matched substrings safely:
+  // 1. Escapes the base text to HTML entities first
+  // 2. Escapes regex special characters AND HTML entities of the query
+  // 3. Wraps matches in safe <mark> tags
   function highlight(text, query) {
-    if (!query) return text;
-    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${escaped})`, 'gi');
-    return text.replace(regex, '<mark class="search-result-match-highlight">$1</mark>');
+    const safeText = escapeHtml(text);
+    if (!query) return safeText;
+    const trimmed = query.trim();
+    if (!trimmed) return safeText;
+    const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const safePattern = escapeHtml(escaped);
+    try {
+      const regex = new RegExp(`(${safePattern})`, 'gi');
+      return safeText.replace(regex, '<mark class="search-result-match-highlight">$1</mark>');
+    } catch (e) {
+      return safeText;
+    }
   }
 
   // Setup Event Listeners
@@ -480,7 +502,8 @@
       statCount.textContent = `${filtered.length} protocols found`;
 
       if (filtered.length === 0) {
-        resultsContainer.innerHTML = `<div class="search-empty-state">No protocols matching "<strong>${query}</strong>" found. Try searching for NVL72, CFD, SOP, ISA, or retainage.</div>`;
+        const safeQuery = escapeHtml(query);
+        resultsContainer.innerHTML = `<div class="search-empty-state">No protocols matching "<strong>${safeQuery}</strong>" found. Try searching for NVL72, CFD, SOP, ISA, or retainage.</div>`;
         return;
       }
 
@@ -488,16 +511,19 @@
       const itemsHtml = filtered.map((item, idx) => {
         const isSel = idx === selectedIndex ? ' is-selected' : '';
         const deepBadge = item.is_deep_dive ? '<span class="result-deep-badge">★ DEEP-DIVE</span>' : '';
-        const href = `${blogPrefix}${item.slug}`;
+        const safeSlug = encodeURI(String(item.slug || ''));
+        const href = `${blogPrefix}${safeSlug}`;
+        const safeVol = escapeHtml(String(item.book_num || ''));
+        const safeMins = escapeHtml(String(item.read_mins || ''));
 
         return `
         <a href="${href}" class="search-result-item${isSel}" data-idx="${idx}">
           <div class="search-result-header">
             <div class="search-result-badges">
-              <span class="result-vol-badge">VOL 0${item.book_num}</span>
+              <span class="result-vol-badge">VOL 0${safeVol}</span>
               ${deepBadge}
             </div>
-            <span class="result-time">⏱️ ${item.read_mins}m</span>
+            <span class="result-time">⏱️ ${safeMins}m</span>
           </div>
           <div class="search-result-title">${highlight(item.title, query)}</div>
           <div class="search-result-desc">${highlight(item.desc, query)}</div>

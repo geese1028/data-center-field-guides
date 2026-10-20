@@ -114,5 +114,5 @@ When generating or updating an SEO article:
 1. Identify the target keyword and related book.
 2. Pass the Information-Gain Gate (formulate the unique engineering formula/data).
 3. Draft the article adhering to the YAML frontmatter, direct answer block, deep-dive math, embedded diagrams, and Amazon CTA card.
-4. Run `python3 site/build_site.py` to compile the markdown into modern, responsive HTML with full JSON-LD schema, KaTeX formulas, and sitemap update.
+4. Run `python3 scripts/build_site.py` to compile the markdown into modern, responsive HTML with full JSON-LD schema, KaTeX formulas, and sitemap update.
 5. Verify HTML validation and responsive preview.

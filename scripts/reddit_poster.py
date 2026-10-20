@@ -333,6 +333,11 @@ def run_interactive_oauth(client_id, client_secret):
         def do_GET(self):
             parsed = urllib.parse.urlparse(self.path)
             qs = urllib.parse.parse_qs(parsed.query)
+            if qs.get("state", [""])[0] != state:
+                self.send_response(403)
+                self.end_headers()
+                self.wfile.write(b"Security error: OAuth state parameter mismatch.")
+                return
             if "code" in qs:
                 captured["code"] = qs["code"][0]
                 self.send_response(200)

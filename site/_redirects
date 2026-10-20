@@ -1,3 +1,8 @@
+# Security Guard: Block unauthorized requests to backend scripts and credentials
+/*.py /404 404
+/*.log /404 404
+/*credentials* /404 404
+
 # Machine-readable Markdown rewrites for AI Agents
 /blog/liquid-load-bank-is-not-a-cdu.md /raw/liquid-load-bank-is-not-a-cdu.md 200
 /blog/marketing-multiples-are-not-flow.md /raw/marketing-multiples-are-not-flow.md 200
