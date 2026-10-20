@@ -62,15 +62,6 @@ def get_access_token(scope="https://www.googleapis.com/auth/webmasters"):
     return resp["access_token"]
 
 
-def publish_google_indexing(token, target_url, action_type="URL_UPDATED"):
-    url = "https://indexing.googleapis.com/v3/urlNotifications:publish"
-    body = {
-        "url": target_url,
-        "type": action_type,
-    }
-    return api_request(token, "POST", url, body)
-
-
 def api_request(token, method, url, body=None):
     headers = {"Authorization": f"Bearer {token}"}
     data = None
@@ -219,25 +210,7 @@ def main():
             except Exception as e:
                 print(f"  [!] Inspection Error ({u}): {e}")
 
-        # 4. Google Indexing API Push (Direct push to Google Search Indexer)
-        try:
-            idx_token = get_access_token(scope="https://www.googleapis.com/auth/indexing")
-            print("\n--- GOOGLE SEARCH INDEXING API PUSH ---")
-            for u in priority_urls:
-                try:
-                    iresp = publish_google_indexing(idx_token, u)
-                    notify_time = iresp.get("urlNotificationMetadata", {}).get("latestUpdate", {}).get("notifyTime", "OK")
-                    slug = u.split("/")[-1]
-                    print(f"  [✓] Pushed to Google Indexer: {slug:<45} (Time: {notify_time})")
-                except urllib.error.HTTPError as he:
-                    slug = u.split("/")[-1]
-                    if he.code == 403:
-                        print(f"  [!] Note: Google Indexing API requires the service account (gsc-bot) to be an 'Owner' (所有者) in GSC (currently Full User).")
-                        break
-                    else:
-                        print(f"  [!] Google Indexing API Error ({slug}): {he}")
-        except Exception as ex:
-            print(f"[!] Google Indexing Token Error: {ex}")
+
 
     # 1. Sitemaps status
     enc = urllib.parse.quote(active_site, safe="")
