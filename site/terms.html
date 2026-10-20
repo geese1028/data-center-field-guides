@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://www.clarity.ms"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16517762043"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16517762043');
+    function trackBuyClick(store, bookTitle) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'begin_checkout', {
+            'event_category': 'ecommerce',
+            'event_label': bookTitle,
+            'store': store
+          });
+        }
+        if (typeof clarity === 'function') {
+          clarity('event', 'click_buy_' + store);
+        }
+      } catch(e) {}
+    }
+  </script>
+  <!-- Microsoft Clarity (z07e7qd6mb) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z07e7qd6mb");
+  </script>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="author" content="Tristan"/>
+  <meta property="og:locale" content="en_US"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/logo.png"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#090d16"/>
+  <link rel="alternate" type="application/rss+xml" title="Data Center Field Guides RSS Feed" href="/feed.xml"/>
+  <link rel="alternate" type="application/feed+json" title="Data Center Field Guides JSON Feed" href="/feed.json"/>
+  <link rel="alternate" type="text/plain" title="AI Agent Ground-Truth Specification (llms.txt)" href="/llms.txt"/>
+  <link rel="alternate" type="text/plain" title="Full Machine-Readable Protocol Corpus (llms-full.txt)" href="/llms-full.txt"/>
+  <link rel="alternate" type="text/markdown" title="Installable AI Agent Auditor Skill (SKILL.md)" href="/SKILL.md"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service | Data Center Field Guides</title>
+  <meta name="description" content="Terms of Service, engineering disclaimers, and intellectual property terms for Data Center Field Guides."/>
+  <link rel="canonical" href="https://datacenterfieldguides.com/terms"/>
+  
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Terms of Service | Data Center Field Guides"/>
+  <meta property="og:description" content="Terms of Service, engineering disclaimers, and intellectual property terms for Data Center Field Guides."/>
+  <meta property="og:url" content="https://datacenterfieldguides.com/terms"/>
+  <meta property="og:site_name" content="Data Center Field Guides"/>
+  
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Terms of Service | Data Center Field Guides"/>
+  <meta name="twitter:description" content="Terms of Service, engineering disclaimers, and intellectual property terms for Data Center Field Guides."/>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms of Service | Data Center Field Guides",
+  "description": "Terms of Service, engineering disclaimers, and intellectual property terms for Data Center Field Guides.",
+  "url": "https://datacenterfieldguides.com/terms",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Data Center Field Guides",
+    "url": "https://datacenterfieldguides.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data Center Field Guides",
+    "url": "https://datacenterfieldguides.com/",
+    "logo": "https://datacenterfieldguides.com/logo.png"
+  }
+}
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090d16;
+      --surface: #121826;
+      --border: #1e283d;
+      --text: #cbd5e1;
+      --text-primary: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header.site-header {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(10, 15, 29, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .nav-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-mark { width: 26px; height: 26px; border-radius: 6px; }
+    .brand span { color: #94a3b8; font-weight: 600; font-size: 0.92rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-buy-btn {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 0.95rem;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .legal-hero {
+      padding: 4rem 1.5rem 2.5rem;
+      max-width: 54rem;
+      margin: 0 auto;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .kicker-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.35);
+      border-radius: 9999px;
+      color: #60a5fa;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .last-updated {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .legal-container {
+      max-width: 54rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .legal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.75rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .legal-card h2 {
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.25rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .legal-card h2:first-of-type { margin-top: 0; }
+    .legal-card p {
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+    .legal-card ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .legal-card li {
+      margin-bottom: 0.45rem;
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    .legal-card a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+    .warning-box {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 4px solid #f59e0b;
+      padding: 1.15rem 1.35rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .warning-box p { margin-bottom: 0; font-size: 0.95rem; color: #fef3c7; }
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: #070b14;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand"><img src="/favicon.svg" alt="DCFG" class="brand-mark" width="26" height="26"/>DATA CENTER <span>FIELD GUIDES</span></a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#books">The 9 Books</a>
+        <a href="/blog/">Field Protocols (69)</a>
+        <a href="/about">About Tristan</a>
+        <a href="/buy" class="nav-buy-btn">
+          <span>Buy</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="legal-hero">
+    <span class="kicker-tag">Terms of Service</span>
+    <h1>Terms of Service</h1>
+    <p class="last-updated">Last Updated: October 20, 2026 &bull; Effective Date: October 20, 2026</p>
+  </div>
+
+  <main class="legal-container">
+    <article class="legal-card">
+      <div class="warning-box">
+        <p><strong>Professional Engineering Notice:</strong> The specifications, hydraulic models, and switching protocols published on this website are designed for educational reference and commissioning methodology framework analysis. Physical execution in mission-critical facilities must always be directed by licensed engineers under site-specific safety sign-offs.</p>
+      </div>
+
+      <h2>1. Agreement to Terms</h2>
+      <p>By accessing or browsing <a href="https://datacenterfieldguides.com">https://datacenterfieldguides.com</a> (the &ldquo;Site&rdquo;), downloading machine-readable companion specifications (including <code>/llms.txt</code>, <code>/llms-full.txt</code>, and <code>/SKILL.md</code>), or referencing our published engineering field protocols, you agree to be bound by these Terms of Service (&ldquo;Terms&rdquo;) and our Privacy Policy. If you do not agree to all terms, you are prohibited from using the Site.</p>
+
+      <h2>2. Engineering Reference &amp; Hold-Harmless Disclaimer</h2>
+      <p>Data Center Field Guides publishes rigorous first-principles engineering protocols for high-density compute, direct-to-chip liquid cooling (NVIDIA GB200 NVL72), 2N electrical distribution, and commissioning governance. However:</p>
+      <ul>
+        <li><strong>No Professional Engineering Engagement:</strong> Browsing this website or reading our publications does not create a professional engineer-client relationship, commissioning authority contract, or consulting engagement between you and Tristan Howard.</li>
+        <li><strong>Mandatory Site-Specific Verification:</strong> Data center architectures vary widely by geography, utility substation topology, water quality, and local regulatory jurisdiction. All P&amp;ID hydraulics, flow calculations, breaker settings, and MOP/SOP procedures must be audited and stamped by licensed Professional Engineers (PE) and certified Commissioning Authorities (CxA) having jurisdiction over the specific physical installation.</li>
+        <li><strong>Limitation of Liability:</strong> Under no circumstances shall Tristan Howard or Data Center Field Guides be liable for any direct, indirect, incidental, consequential, special, or exemplary damages—including but not limited to facility downtime, equipment burnout, data loss, or business interruption—resulting from the implementation or interpretation of any protocol or equation published herein.</li>
+      </ul>
+
+      <h2>3. Intellectual Property Rights &amp; Open Access Specifications</h2>
+      <p>We believe in balancing open-access machine intelligence specifications with protected literary copyright:</p>
+      <ul>
+        <li><strong>Proprietary Book Manuscripts:</strong> All textual book volumes (Volumes 01 through 09), cover art, structural diagrams, and proprietary manuscript chapters are Copyright &copy; 2026 Tristan Howard. All rights are reserved. Unauthorized reproduction, commercial redistribution, or public distribution of full book texts without express written permission is strictly prohibited.</li>
+        <li><strong>Open Companion Specifications:</strong> The curated index (<code>/llms.txt</code>), full protocol markdown corpus (<code>/llms-full.txt</code>), AI auditor skill (<code>/SKILL.md</code>), and companion public GitHub repository (<a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer">geese1028/data-center-field-guides &rarr;</a>) are licensed under the permissive <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>. You are granted permission to ingest, index, and query these specifications within autonomous AI agents, enterprise LLMs, and RAG architectures.</li>
+      </ul>
+
+      <h2>4. Book Sales &amp; Third-Party Retail Fulfillment</h2>
+      <p>Purchases of physical paperback manuals and Kindle eBooks are conducted exclusively through authorized global retail partners:</p>
+      <ul>
+        <li><strong>Amazon.com:</strong> All commercial transactions for Amazon ASIN: <code>B0HMWDV6LT</code> and related volumes are processed and fulfilled by Amazon. Order fulfillment, shipping, digital file delivery, and return/refund eligibility are governed by Amazon's Terms of Sale and customer service policies.</li>
+        <li><strong>Refund Policies:</strong> If you are dissatisfied with an eBook or paperback purchased through Amazon, refund and return requests must be directed to Amazon Customer Service in accordance with their standard return policies. Data Center Field Guides does not collect payments or process customer returns directly on this website.</li>
+      </ul>
+
+      <h2>5. Permitted &amp; Prohibited Conduct</h2>
+      <p>When using this Site, you agree not to:</p>
+      <ul>
+        <li>Engage in any automated scraping or harvesting of proprietary book content designed to create unauthorized commercial copies;</li>
+        <li>Attempt to interfere with the proper functioning, security, or network availability of the Site;</li>
+        <li>Impersonate author Tristan Howard or falsely claim official affiliation with Data Center Field Guides;</li>
+        <li>Use the Site in violation of any applicable local, state, national, or international law.</li>
+      </ul>
+
+      <h2>6. Governing Law &amp; Severability</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction of the publisher, without regard to conflict of law principles. If any provision of these Terms is determined by a court of competent jurisdiction to be invalid or unenforceable, that provision shall be severed to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+
+      <h2>7. Modifications to Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. When revisions occur, the &ldquo;Last Updated&rdquo; date at the top of this page will be revised. Your continued use of the Site following the posting of updated Terms constitutes your binding acceptance of such changes.</p>
+
+      <h2>8. Publisher Contact</h2>
+      <p>For inquiries regarding licensing, media review copies, or these Terms of Service:</p>
+      <p>
+        <strong>Data Center Field Guides</strong><br/>
+        Author &amp; Publisher: Tristan Howard<br/>
+        Official Domain: <a href="https://datacenterfieldguides.com">https://datacenterfieldguides.com</a><br/>
+        Official Contact: <a href="mailto:author@datacenterfieldguides.com">author@datacenterfieldguides.com</a><br/>
+        Publisher Verification Email: <a href="mailto:geese1028@gmail.com">geese1028@gmail.com</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a> &bull; <a href="/privacy" style="color: inherit; text-decoration: underline;">Privacy Policy</a> &bull; <a href="/terms" style="color: inherit; text-decoration: underline;">Terms of Service</a></p>
+  </footer>
+</body>
+</html>
