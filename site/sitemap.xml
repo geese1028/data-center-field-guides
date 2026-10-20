@@ -145,6 +145,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -362,6 +368,12 @@
   </url>
   <url>
     <loc>https://datacenterfieldguides.com/blog/the-sentence-the-file-may-support</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

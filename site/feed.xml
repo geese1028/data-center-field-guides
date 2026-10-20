@@ -520,6 +520,14 @@
       <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>Data Center CFD Verification Guide: Airflow Modeling vs Physical Whitespace Measurements</title>
+      <link>https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide</link>
+      <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide</guid>
+      <description>Data center CFD verification guide. How to audit computational fluid dynamics airflow models against physical anemometer readings and thermal measurements.</description>
+      <category>Telemetry, CFD &amp; Alarms</category>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection</title>
       <link>https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide</link>
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide</guid>
@@ -557,6 +565,14 @@
       <guid isPermaLink="true">https://datacenterfieldguides.com/blog/nvl72-liquid-load-bank-testing-guide</guid>
       <description>A field guide to specifying and accepting a liquid load bank for NVL72 AI racks. Includes Danfoss FD83 pressure drop equations, thermal dissipation limits, and acceptance sheets.</description>
       <category>Commissioning &amp; Handover</category>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Tier 3 Data Center Audit Checklist: Concurrently Maintainable Verification &amp; Physical Walkthrough Protocol</title>
+      <link>https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist</link>
+      <guid isPermaLink="true">https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist</guid>
+      <description>Comprehensive Tier 3 data center audit checklist. Verify concurrently maintainable power paths, dual chilled water loops, 72h fuel autonomy, and maintenance isolation.</description>
+      <category>Operations &amp; Protocols</category>
       <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>

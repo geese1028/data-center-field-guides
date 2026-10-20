@@ -1432,12 +1432,12 @@
           <span class="filter-tier-label">1. Browse by Book Volume:</span>
         </div>
         <div class="filter-tabs volume-tabs">
-          <button type="button" class="filter-tab volume-tab active" data-volume="all">All Volumes (69)</button>
+          <button type="button" class="filter-tab volume-tab active" data-volume="all">All Volumes (71)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="1">Vol 01 (5)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="2">Vol 02 (4)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="3">Vol 03 (6)</button>
-          <button type="button" class="filter-tab volume-tab" data-volume="4">Vol 04 (8)</button>
-          <button type="button" class="filter-tab volume-tab" data-volume="5">Vol 05 (14)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="4">Vol 04 (9)</button>
+          <button type="button" class="filter-tab volume-tab" data-volume="5">Vol 05 (15)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="6">Vol 06 (14)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="7">Vol 07 (6)</button>
           <button type="button" class="filter-tab volume-tab" data-volume="8">Vol 08 (7)</button>
@@ -1450,7 +1450,7 @@
           <span class="filter-tier-label">2. Browse by Engineering Domain &amp; Format:</span>
         </div>
         <div class="filter-tabs topic-tabs">
-          <button type="button" class="filter-tab topic-tab active" data-filter="all">All Domains (69)</button>
+          <button type="button" class="filter-tab topic-tab active" data-filter="all">All Domains (71)</button>
           <button type="button" class="filter-tab topic-tab" data-filter="deep_dive">★ Flagship Deep-Dives (5)</button>
           <button type="button" class="filter-tab topic-tab" data-filter="cx_handover">🚀 Commissioning &amp; Handover (17)</button>
           <button type="button" class="filter-tab topic-tab" data-filter="telemetry_cfd">📊 Telemetry &amp; CFD (26)</button>
@@ -1460,7 +1460,7 @@
       </div>
 
       <div class="results-status-bar">
-        <span id="results-count">Showing all 69 field protocols</span>
+        <span id="results-count">Showing all 71 field protocols</span>
         <button type="button" id="reset-filters" class="reset-filters-btn" style="display: none;">Reset all filters</button>
       </div>
     </div>
@@ -2813,6 +2813,27 @@
         </article>
         
         <article class="article-card is-deep-dive"
+                 data-title="data center cfd verification guide: airflow modeling vs physical whitespace measurements"
+                 data-desc="data center cfd verification guide. how to audit computational fluid dynamics airflow models against physical anemometer readings and thermal measurements."
+                 data-keywords="data center cfd verification"
+                 data-book="4"
+                 data-topic="telemetry_cfd"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 04</span>
+            <span class="badge-topic">Telemetry, CFD</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 8m</span>
+          </div>
+          <h3><a href="/blog/data-center-cfd-verification-guide">Data Center CFD Verification Guide: Airflow Modeling vs Physical Whitespace Measurements</a></h3>
+          <p>Data center CFD verification guide. How to audit computational fluid dynamics airflow models against physical anemometer readings and thermal measurements.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 04</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
                  data-title="data center corrosion coupon testing: ansi/isa-71.04-2013 severity rates and lead-free rohs protection"
                  data-desc="a technical field guide to interpreting atmospheric corrosion coupons in data centers. covers isa-71.04 class g1 limits, silver creep corrosion on pcbs, and chemical filtration breakthrough."
                  data-keywords="data center corrosion coupon isa 71.04"
@@ -2913,6 +2934,27 @@
           <p>A field guide to specifying and accepting a liquid load bank for NVL72 AI racks. Includes Danfoss FD83 pressure drop equations, thermal dissipation limits, and acceptance sheets.</p>
           <div class="card-footer">
             <span class="footer-vol">Book 01</span>
+            <span class="read-more">Read Protocol →</span>
+          </div>
+        </article>
+        
+        <article class="article-card is-deep-dive"
+                 data-title="tier 3 data center audit checklist: concurrently maintainable verification &amp; physical walkthrough protocol"
+                 data-desc="comprehensive tier 3 data center audit checklist. verify concurrently maintainable power paths, dual chilled water loops, 72h fuel autonomy, and maintenance isolation."
+                 data-keywords="tier 3 data center audit checklist"
+                 data-book="5"
+                 data-topic="operations"
+                 data-deep-dive="true">
+          <div class="card-meta">
+            <span class="badge-vol">VOL 05</span>
+            <span class="badge-topic">Operations</span>
+            <span class="badge-deep-dive">★ DEEP-DIVE</span>
+            <span class="card-read-time">⏱️ 14m</span>
+          </div>
+          <h3><a href="/blog/tier-3-data-center-audit-checklist">Tier 3 Data Center Audit Checklist: Concurrently Maintainable Verification &amp; Physical Walkthrough Protocol</a></h3>
+          <p>Comprehensive Tier 3 data center audit checklist. Verify concurrently maintainable power paths, dual chilled water loops, 72h fuel autonomy, and maintenance isolation.</p>
+          <div class="card-footer">
+            <span class="footer-vol">Book 05</span>
             <span class="read-more">Read Protocol →</span>
           </div>
         </article>
@@ -3037,7 +3079,7 @@
             if (toggleCountBadge) toggleCountBadge.style.display = 'none';
           } else {
             grid.classList.add('is-collapsed');
-            toggleBtnText.textContent = '▼ Expand All 69 Field Protocols';
+            toggleBtnText.textContent = '▼ Expand All 71 Field Protocols';
             if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
             document.getElementById('protocols').scrollIntoView({ behavior: 'smooth' });
           }
@@ -3121,7 +3163,7 @@
         });
         if (grid && toggleBtn) {
           grid.classList.add('is-collapsed');
-          if (toggleBtnText) toggleBtnText.textContent = '▼ Expand All 69 Field Protocols';
+          if (toggleBtnText) toggleBtnText.textContent = '▼ Expand All 71 Field Protocols';
           if (toggleCountBadge) toggleCountBadge.style.display = 'inline-block';
         }
         filterProtocols();

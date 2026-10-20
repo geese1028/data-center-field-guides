@@ -1103,6 +1103,23 @@
       ]
     },
     {
+      "id": "https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide",
+      "url": "https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide",
+      "external_url": "https://datacenterfieldguides.com/raw/data-center-cfd-verification-guide.md",
+      "title": "Data Center CFD Verification Guide: Airflow Modeling vs Physical Whitespace Measurements",
+      "summary": "Data center CFD verification guide. How to audit computational fluid dynamics airflow models against physical anemometer readings and thermal measurements.",
+      "date_published": "2026-10-17T00:00:00Z",
+      "authors": [
+        {
+          "name": "Tristan"
+        }
+      ],
+      "tags": [
+        "Telemetry, CFD & Alarms",
+        "Volume 04"
+      ]
+    },
+    {
       "id": "https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide",
       "url": "https://datacenterfieldguides.com/blog/data-center-corrosion-coupon-isa-71-04-guide",
       "external_url": "https://datacenterfieldguides.com/raw/data-center-corrosion-coupon-isa-71-04-guide.md",
@@ -1185,6 +1202,23 @@
       "tags": [
         "Commissioning & Handover",
         "Volume 01"
+      ]
+    },
+    {
+      "id": "https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist",
+      "url": "https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist",
+      "external_url": "https://datacenterfieldguides.com/raw/tier-3-data-center-audit-checklist.md",
+      "title": "Tier 3 Data Center Audit Checklist: Concurrently Maintainable Verification & Physical Walkthrough Protocol",
+      "summary": "Comprehensive Tier 3 data center audit checklist. Verify concurrently maintainable power paths, dual chilled water loops, 72h fuel autonomy, and maintenance isolation.",
+      "date_published": "2026-10-17T00:00:00Z",
+      "authors": [
+        {
+          "name": "Tristan"
+        }
+      ],
+      "tags": [
+        "Operations & Protocols",
+        "Volume 05"
       ]
     }
   ]

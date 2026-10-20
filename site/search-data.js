@@ -768,6 +768,18 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "keywords": "data center alarm suppression"
   },
   {
+    "title": "Data Center CFD Verification Guide: Airflow Modeling vs Physical Whitespace Measurements",
+    "slug": "data-center-cfd-verification-guide",
+    "book_num": 4,
+    "book_title": "Data Hall CFD & Airflow",
+    "desc": "Data center CFD verification guide. How to audit computational fluid dynamics airflow models against physical anemometer readings and thermal measurements.",
+    "topic": "telemetry_cfd",
+    "topic_label": "Telemetry, CFD & Alarms",
+    "is_deep_dive": true,
+    "read_mins": 8,
+    "keywords": "data center cfd verification"
+  },
+  {
     "title": "Data Center Corrosion Coupon Testing: ANSI/ISA-71.04-2013 Severity Rates and Lead-Free RoHS Protection",
     "slug": "data-center-corrosion-coupon-isa-71-04-guide",
     "book_num": 8,
@@ -826,5 +838,17 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "is_deep_dive": true,
     "read_mins": 7,
     "keywords": "liquid load bank NVL72"
+  },
+  {
+    "title": "Tier 3 Data Center Audit Checklist: Concurrently Maintainable Verification & Physical Walkthrough Protocol",
+    "slug": "tier-3-data-center-audit-checklist",
+    "book_num": 5,
+    "book_title": "Daily Operations & SOP/MOP/EOP",
+    "desc": "Comprehensive Tier 3 data center audit checklist. Verify concurrently maintainable power paths, dual chilled water loops, 72h fuel autonomy, and maintenance isolation.",
+    "topic": "operations",
+    "topic_label": "Operations & Protocols",
+    "is_deep_dive": true,
+    "read_mins": 14,
+    "keywords": "tier 3 data center audit checklist"
   }
 ];
