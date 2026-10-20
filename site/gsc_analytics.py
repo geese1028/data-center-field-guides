@@ -169,21 +169,46 @@ def main():
 
     active_site = entries[0]["siteUrl"]
 
-    if "--submit-sitemap" in sys.argv:
+    # --- ACCELERATED INDEXING ENGINE (DAILY EXECUTION) ---
+    skip_push = "--no-push" in sys.argv
+    if not skip_push:
+        print("\n[+] Triggering Accelerated Indexing Protocol...")
+        # 1. Resubmit Sitemaps to Google
         for feedpath in [
             "https://datacenterfieldguides.com/sitemap.xml",
             "https://datacenterfieldguides.com/feed.xml",
         ]:
-            print(f"\n[+] Submitting feed via GSC API: {feedpath} ...")
-            submit_sitemap(token, active_site, feedpath)
-            print(f"[✓] Successfully submitted {feedpath} to Google Search Console!")
+            try:
+                submit_sitemap(token, active_site, feedpath)
+                print(f"[✓] GSC Ping: Resubmitted {feedpath}")
+            except Exception as e:
+                print(f"[!] GSC Sitemap Ping Error ({feedpath}): {e}")
 
-    if "--submit-sitemap" in sys.argv or "--indexnow" in sys.argv:
+        # 2. Push full catalog + LLM endpoints to IndexNow (Bing / Copilot / ChatGPT)
         try:
             status_code, count = submit_indexnow()
-            print(f"\n[✓] IndexNow API Ping Complete (HTTP {status_code}): Pushed {count} URLs to Bing / ChatGPT Search / Copilot!")
+            print(f"[✓] IndexNow Push: {count} URLs actively pinged to Bing/Copilot/ChatGPT Search (HTTP {status_code})")
         except Exception as e:
-            print(f"\n[!] IndexNow API Ping Error: {e}")
+            print(f"[!] IndexNow Error: {e}")
+
+        # 3. Google URL Inspection for priority newly deployed/trending articles
+        priority_urls = [
+            "https://datacenterfieldguides.com/blog/tier-3-data-center-audit-checklist",
+            "https://datacenterfieldguides.com/blog/data-center-cfd-verification-guide",
+            "https://datacenterfieldguides.com/blog/eop-stops",
+            "https://datacenterfieldguides.com/blog/data-center-facility-location-due-diligence",
+            "https://datacenterfieldguides.com/blog/nvl72-liquid-load-bank-testing-guide",
+        ]
+        print("\n--- GOOGLE URL INSPECTION (REAL-TIME CRAWL & INDEX CHECK) ---")
+        for u in priority_urls:
+            try:
+                res = inspect_url(token, active_site, u)
+                cov = res.get("inspectionResult", {}).get("indexStatusResult", {}).get("coverageState", "Unknown")
+                verdict = res.get("inspectionResult", {}).get("indexStatusResult", {}).get("verdict", "Unknown")
+                slug = u.split("/")[-1]
+                print(f"  [{verdict}] {slug:<45} -> {cov}")
+            except Exception as e:
+                print(f"  [!] Inspection Error ({u}): {e}")
 
     # 1. Sitemaps status
     enc = urllib.parse.quote(active_site, safe="")
