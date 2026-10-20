@@ -693,6 +693,7 @@ def render_citation_anchor(article, canonical_url):
       <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8rem;color:#94a3b8;display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;">
         <span><strong>Cite:</strong> Tristan, &ldquo;{html.escape(title)},&rdquo; <em>Data Center Field Guides</em>, {canonical_url}</span>
         <a href="https://www.amazon.com/author/tristanhoward" target="_blank" rel="noopener noreferrer" style="color:#f59e0b;text-decoration:underline;font-weight:700;">[Amazon Author]</a>
+        <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color:#a78bfa;text-decoration:underline;font-weight:700;">[GitHub Specs]</a>
         <a href="/raw/{slug}.md" style="color:#34d399;text-decoration:underline;font-weight:700;">[Fetch Raw .md]</a>
         <a href="/llms.txt" style="color:#60a5fa;text-decoration:underline;font-weight:700;">[Site /llms.txt]</a>
         <a href="/SKILL.md" style="color:#fbbf24;text-decoration:underline;font-weight:700;">[Install /SKILL.md]</a>
@@ -1045,7 +1046,8 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
             "url": f"{BASE_URL}/about",
             "sameAs": [
                 "https://www.amazon.com/author/tristanhoward",
-                "https://www.amazon.com/dp/B0HMWDV6LT"
+                "https://www.amazon.com/dp/B0HMWDV6LT",
+                "https://github.com/geese1028/data-center-field-guides"
             ]
         },
         "url": f"{BASE_URL}/book/{book_info['slug']}",
@@ -1097,6 +1099,7 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
                 "sameAs": [
                     "https://www.amazon.com/author/tristanhoward",
                     "https://www.amazon.com/dp/B0HMWDV6LT",
+                    "https://github.com/geese1028/data-center-field-guides",
                     f"{BASE_URL}/about"
                 ],
                 "worksFor": {
@@ -2198,7 +2201,7 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
-    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a></p>
   </footer>
 
   <script src="../search-data.js" defer></script>
@@ -2293,7 +2296,8 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
             "jobTitle": "Lead Data Center Commissioning Authority & CDFOS Instructor",
             "sameAs": [
                 "https://www.amazon.com/author/tristanhoward",
-                "https://www.amazon.com/dp/B0HMWDV6LT"
+                "https://www.amazon.com/dp/B0HMWDV6LT",
+                "https://github.com/geese1028/data-center-field-guides"
             ]
         }
     }
@@ -3121,7 +3125,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
-    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a></p>
   </footer>
 
   <script src="../search-data.js" defer></script>
@@ -4666,7 +4670,7 @@ def generate_hub_index(articles, is_subfolder=False):
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
-    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a></p>
   </footer>
 
   <!-- Instant Search & Filter Logic with Compact/Expand support -->
@@ -4933,6 +4937,7 @@ def generate_about_page():
             "sameAs": [
                 "https://www.amazon.com/author/tristanhoward",
                 "https://www.amazon.com/dp/B0HMWDV6LT",
+                "https://github.com/geese1028/data-center-field-guides",
                 f"{BASE_URL}/"
             ]
         }
@@ -5375,6 +5380,10 @@ def generate_about_page():
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 14.8c-.2 0-.4-.1-.5-.2-.8-.9-1.3-2.1-1.3-3.4 0-2.8 2.2-5.1 5-5.1s5 2.3 5 5.1c0 1.3-.5 2.5-1.3 3.4-.1.1-.3.2-.5.2-.2 0-.4-.1-.5-.2l-.6-.7c-.3-.3-.2-.7.1-1 .5-.6.8-1.4.8-2.2 0-1.9-1.5-3.5-3.5-3.5s-3.5 1.6-3.5 3.5c0 .8.3 1.6.8 2.2.3.3.3.7.1 1l-.6.7c-.1.2-.3.3-.6.3zM2.8 19.4c5.7 3.3 12.8 3.3 18.4 0 .4-.2.9.2.6.6-6 4.3-13.6 4.3-19.6 0-.4-.3 0-.8.6-.6z"/></svg>
         <span>Amazon Verified Author: amazon.com/author/tristanhoward &rarr;</span>
       </a>
+      <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.55rem; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.22); color: #f1f5f9; padding: 0.5rem 1.15rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub Public Specifications &amp; AI Skills &rarr;</span>
+      </a>
     </div>
   </div>
 
@@ -5679,7 +5688,7 @@ def generate_about_page():
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
-    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a></p>
   </footer>
 
   <script src="search-data.js" defer></script>
@@ -6679,6 +6688,10 @@ def generate_buy_page():
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 14.8c-.2 0-.4-.1-.5-.2-.8-.9-1.3-2.1-1.3-3.4 0-2.8 2.2-5.1 5-5.1s5 2.3 5 5.1c0 1.3-.5 2.5-1.3 3.4-.1.1-.3.2-.5.2-.2 0-.4-.1-.5-.2l-.6-.7c-.3-.3-.2-.7.1-1 .5-.6.8-1.4.8-2.2 0-1.9-1.5-3.5-3.5-3.5s-3.5 1.6-3.5 3.5c0 .8.3 1.6.8 2.2.3.3.3.7.1 1l-.6.7c-.1.2-.3.3-.6.3zM2.8 19.4c5.7 3.3 12.8 3.3 18.4 0 .4-.2.9.2.6.6-6 4.3-13.6 4.3-19.6 0-.4-.3 0-.8.6-.6z"/></svg>
           <span>Visit Tristan's Official Amazon Author Page &rarr;</span>
         </a>
+        <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.2); color: #f1f5f9; padding: 0.45rem 1rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub Companion Repository &rarr;</span>
+        </a>
       </div>
 
       <div class="guarantee-strip">
@@ -6755,7 +6768,7 @@ def generate_buy_page():
   <footer class="site-footer">
     <p>Data Center Field Guides &bull; Written by Tristan &bull; Industrial Engineering Series</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">Independent engineering protocols for hyperscale AI whitespaces and mission-critical facilities.</p>
-    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code></p>
+    <p style="margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.85;">Official Publisher Imprint: <strong>Data Center Field Guides</strong> (Author: Tristan &bull; Contact: <a href="mailto:geese1028@gmail.com" style="color: inherit; text-decoration: underline;">geese1028@gmail.com</a>) &bull; Google Play Books ID: <code>GGKEY:2JGFCF3TJ83</code> &bull; Amazon ASIN: <code>B0HMWDV6LT</code> &bull; GitHub: <a href="https://github.com/geese1028/data-center-field-guides" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Open Specs &amp; AI Skills</a></p>
   </footer>
 
   <script src="search-data.js" defer></script>
