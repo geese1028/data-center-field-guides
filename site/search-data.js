@@ -356,7 +356,7 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "topic": "operations",
     "topic_label": "Operations & Protocols",
     "is_deep_dive": true,
-    "read_mins": 15,
+    "read_mins": 16,
     "keywords": "SOP vs MOP vs EOP data center operations"
   },
   {
