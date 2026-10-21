@@ -69,3 +69,31 @@ The reader leaves with one project sheet. Two numberings must not be mixed: the 
 - A number that is not cited
 - A pasted table, code article, or vendor paragraph
 - A plot that is a real customer's record
+
+---
+
+## Thanksgiving / Black Friday 2026 Parking Lot (Owner Order: 2026-10-21)
+
+Do not pay full-price setup, activation, or membership fees right now. Revisit during Thanksgiving / Black Friday discount week (late November 2026):
+
+1. **Leanpub**:
+   - Status: Parked.
+   - Action on Black Friday: Buy author membership/package during Thanksgiving / Black Friday sale discount.
+   - Objective: Bulk upload Book 1, Book 2, Book 3, and translated editions.
+
+2. **Draft2Digital (D2D)**:
+   - Status: Parked ($20 USD activation fee gatekept).
+   - Action on Black Friday: Check for Black Friday activation promo codes or fee waivers. Activate account and push multi-retailer distribution (Apple Books, Barnes & Noble, OverDrive/Libby).
+
+---
+
+## Rakuten Kobo Publishing Policy & Cadence (Owner Order: 2026-10-21)
+
+1. **Phase 1: English Editions Only (Vol 1–9)**
+   - Priority: 1 book / day release cadence.
+   - Book 1 (English) submitted 2026-10-21 (`abe1c1fa-14ef-4fcf-a1da-d1c23004386b`, ISBN `1990000032332`).
+   - Books 2 through 9 to be published sequentially, one volume per day, 100% autonomous without user manual interaction.
+2. **Phase 2: Japanese Editions Parked**
+   - All 9 Japanese editions are **FROZEN** (`parked_audit_pending`).
+   - Do NOT submit Japanese editions until the owner's Gemini 4 quota resets and a full technical review/audit is conducted.
+

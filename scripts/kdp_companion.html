@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DCFG KDP 1-Click Launchpad & Operations Hub</title>
+    <style>
+        body {
+            background: #090d16;
+            color: #cbd5e1;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 58rem;
+            margin: 2rem auto;
+            padding: 0 1.5rem 5rem;
+        }
+        h1 { color: #fff; margin-bottom: 0.25rem; font-size: 1.8rem; }
+        .btn {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.15s;
+        }
+        .btn:hover { background: #334155; color: #fff; }
+        .btn-blue { background: #1d4ed8; border-color: #2563eb; color: #fff; }
+        .btn-blue:hover { background: #2563eb; }
+        .btn-green { background: #059669; border-color: #10b981; color: #fff; }
+        .btn-green:hover { background: #10b981; }
+        .card.done { opacity: 0.45; border-color: #059669; }
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #10b981;
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.5rem; border-bottom:1px solid #1e293b; padding-bottom:1rem;">
+        <div>
+            <h1>DCFG KDP 1-Click Launchpad</h1>
+            <p style="color:#94a3b8; margin:0.25rem 0 0; font-size:0.95rem;">
+                All 22 editions indexed with 1-click clipboard payloads & file paths.
+            </p>
+        </div>
+        <div style="text-align:right;">
+            <div style="font-size:0.85rem; color:#94a3b8;">Completed: <span id="done-count" style="color:#10b981; font-weight:700;">0</span> / 22</div>
+            <a href="file:///Users/geese/Downloads/book/scripts/kdp_autofill.user.js" target="_blank" style="color:#38bdf8; font-size:0.8rem; text-decoration:none; display:inline-block; margin-top:4px;">⬇️ Install Tampermonkey Script</a>
+        </div>
+    </div>
+
+    <!-- Quick instructions -->
+    <div style="background:#0f172a; border:1px solid #2563eb; border-radius:8px; padding:1rem; margin-bottom:1.5rem; font-size:0.85rem; line-height:1.5;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="color:#60a5fa; font-size:1rem;">⚡ Kobo Writing Life 1-Click AutoFiller (0 手工填表)</strong>
+            <a href="https://writinglife.kobo.com/ebook/create" target="_blank" class="btn btn-green">🚀 Open Kobo Create Page &rarr;</a>
+        </div>
+        <p style="color:#cbd5e1; margin:0 0 10px;">
+            在 Kobo 页面按快捷键 <kbd style="background:#1e293b;padding:2px 5px;border-radius:4px;border:1px solid #475569;">Cmd + Option + J</kbd> 打开控制台，粘贴下方脚本回车，<strong>整页瞬间全自动填好</strong>！
+        </p>
+        <div style="display:flex; gap:8px;">
+            <button onclick="copyKoboEn()" class="btn btn-blue">⚡ 复制 Kobo 第 1 本 (英文版) 填表脚本</button>
+            <button onclick="copyKoboJa()" class="btn btn-blue">⚡ 复制 Kobo 第 1 本 (日语版) 填表脚本</button>
+        </div>
+    </div>
+
+    <div id="cards-container">
+        
+        <div class="card" id="card-0" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 1 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">日语 (Japanese)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(0)" id="done-0"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">NVL72級ラック向け液冷負荷装置を設計し、作る</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">要求シートと試作の合格判定</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">液冷負荷装置</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">データセンター液冷試験</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">試作の受入シート</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ラック側の熱負荷</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">CDUとの境界</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">要求シートの書き方</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">負荷試験の合格条件</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`NVL72級ラック向け液冷負荷装置を設計し、作る`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`要求シートと試作の合格判定`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(0)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(0)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ja/design-and-build-a-liquid-load-bank.ja.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ja.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-1" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 1 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">印尼语 (Indonesian)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(1)" id="done-1"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Merancang dan Membangun Bank Beban Cair untuk Rak Kelas NVL72</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">Lembar persyaratan dan penerimaan purwarupa</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">bank beban cair</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">uji pendinginan rak</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">lembar persyaratan</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">penerimaan purwarupa</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">batas CDU</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">panas sisi rak</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">gerbang uji prototipe</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Merancang dan Membangun Bank Beban Cair untuk Rak Kelas NVL72`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`Lembar persyaratan dan penerimaan purwarupa`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(1)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(1)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/id/design-and-build-a-liquid-load-bank.id.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/id.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-2" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 1 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">韩语 (Korean)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(2)" id="done-2"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">NVL72급 랙을 위한 액랭 로드뱅크의 설계와 제작</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">요구 시트와 시제품 인수</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">액랭 로드뱅크</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">데이터센터 냉각 시험</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">요구 시트</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">시제품 인수</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">CDU 경계</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">랙측 열부하</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">시제품 합격 조건</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`NVL72급 랙을 위한 액랭 로드뱅크의 설계와 제작`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`요구 시트와 시제품 인수`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(2)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(2)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ko/design-and-build-a-liquid-load-bank.ko.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ko.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-3" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 1 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">泰语 (Thai)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(3)" id="done-3"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">ออกแบบและสร้างโหลดแบงก์ของเหลวสำหรับแร็คระดับ NVL72</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">แผ่นข้อกำหนดและการตรวจรับต้นแบบ</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">โหลดแบงก์ของเหลว</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ทดสอบระบายความร้อน</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">แผ่นข้อกำหนด</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ตรวจรับต้นแบบ</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ขอบเขต CDU</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ความร้อนฝั่งแร็ค</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">เงื่อนไขผ่านการทดสอบ</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`ออกแบบและสร้างโหลดแบงก์ของเหลวสำหรับแร็คระดับ NVL72`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`แผ่นข้อกำหนดและการตรวจรับต้นแบบ`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(3)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(3)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/th/design-and-build-a-liquid-load-bank.th.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/th.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-4" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 1 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">阿拉伯语 (Arabic)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(4)" id="done-4"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">تصميم وبناء بنك حمل سائل لأرفف من فئة NVL72</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">ورقة المتطلبات وقبول النموذج</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">بنك حمل سائل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">اختبار تبريد الرف</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ورقة المتطلبات</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">قبول النموذج</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">حد وحدة التوزيع</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">حرارة جانب الرف</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">بوابات قبول النموذج</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`تصميم وبناء بنك حمل سائل لأرفف من فئة NVL72`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`ورقة المتطلبات وقبول النموذج`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(4)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(4)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ar/design-and-build-a-liquid-load-bank.ar.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ar.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-5" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 2 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">日语 (Japanese)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(5)" id="done-5"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">ロードバンクのデータを読み、使う</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">速報の現場手引</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">負荷装置のデータ</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">試験速報</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">液冷試験の記録</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">センサの一貫性</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">変化点の見方</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">Modbus採取</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">MQTT搬送</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`ロードバンクのデータを読み、使う`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`速報の現場手引`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(5)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(5)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ja/read-and-use-load-bank-data.ja.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ja.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-6" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 2 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">印尼语 (Indonesian)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(6)" id="done-6"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Membaca dan Menggunakan Data Bank Beban</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">Panduan laporan kilat</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">data bank beban</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">laporan kilat</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">catatan uji cair</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">konsistensi sensor</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">deteksi titik ubah</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">akuisisi Modbus</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">pembawa MQTT</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Membaca dan Menggunakan Data Bank Beban`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`Panduan laporan kilat`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(6)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(6)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/id/read-and-use-load-bank-data.id.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/id.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-7" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 2 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">韩语 (Korean)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(7)" id="done-7"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">로드뱅크 데이터를 읽고 쓰기</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">속보를 위한 현장 안내</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">로드뱅크 데이터</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">시험 속보</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">액랭 시험 기록</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">센서 일관성</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">변화점 판독</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">Modbus 수집</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">MQTT 전달</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`로드뱅크 데이터를 읽고 쓰기`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`속보를 위한 현장 안내`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(7)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(7)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ko/read-and-use-load-bank-data.ko.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ko.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-8" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 2 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">泰语 (Thai)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(8)" id="done-8"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">อ่านและใช้ข้อมูลโหลดแบงก์</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">คู่มือรายงานฉับพลัน</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ข้อมูลโหลดแบงก์</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">รายงานฉับพลัน</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">บันทึกทดสอบของเหลว</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ความสอดคล้องเซนเซอร์</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">จุดเปลี่ยนในข้อมูล</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">เก็บข้อมูล Modbus</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ส่งต่อ MQTT</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`อ่านและใช้ข้อมูลโหลดแบงก์`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`คู่มือรายงานฉับพลัน`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(8)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(8)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/th/read-and-use-load-bank-data.th.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/th.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-9" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 2 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">阿拉伯语 (Arabic)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(9)" id="done-9"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">قراءة بيانات بنك الحمل واستخدامها</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">دليل التقرير العاجل</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">بيانات بنك الحمل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">تقرير عاجل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">سجل اختبار سائل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">اتساق الحساسات</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">كشف نقطة التغير</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">التقاط Modbus</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">نقل MQTT</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`قراءة بيانات بنك الحمل واستخدامها`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`دليل التقرير العاجل`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(9)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(9)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ar/read-and-use-load-bank-data.ar.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ar.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-10" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">英语 (English)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(10)" id="done-10"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Finish a Liquid Cooling Verification</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">Seven sheets for one load-bank test</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">load bank test</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">liquid cooling verification</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">CDU test sheets</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">data center commissioning</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">heat load steps</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">commissioning punch list</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">rack liquid test</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Finish a Liquid Cooling Verification`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`Seven sheets for one load-bank test`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(10)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(10)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/finish-a-liquid-cooling-verification.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/cover.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-11" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">日语 (Japanese)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(11)" id="done-11"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">液冷の検証を終える</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">負荷装置試験のための七枚のシート</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">負荷装置試験</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">液冷の検証</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">CDU試験シート</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">データセンター試運転</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">熱負荷の段階</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">是正リスト</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ラック液冷試験</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`液冷の検証を終える`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`負荷装置試験のための七枚のシート`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(11)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(11)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/ja/finish-a-liquid-cooling-verification.ja.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ja.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-12" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">印尼语 (Indonesian)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(12)" id="done-12"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Menyelesaikan Verifikasi Pendinginan Cair</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">Tujuh lembar untuk satu uji bank beban</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">uji bank beban</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">verifikasi pendingin cair</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">lembar uji CDU</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">commissioning pusat data</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">langkah beban panas</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">daftar cacat</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">uji cair rak</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Menyelesaikan Verifikasi Pendinginan Cair`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`Tujuh lembar untuk satu uji bank beban`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(12)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(12)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/id/finish-a-liquid-cooling-verification.id.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/id.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-13" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">韩语 (Korean)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(13)" id="done-13"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">액랭 검증을 마치다</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">로드뱅크 시험 한 번을 위한 일곱 장</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">로드뱅크 시험</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">액랭 검증</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">CDU 시험 시트</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">데이터센터 커미셔닝</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">열부하 단계</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">시정 목록</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">랙 액랭 시험</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`액랭 검증을 마치다`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`로드뱅크 시험 한 번을 위한 일곱 장`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(13)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(13)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/ko/finish-a-liquid-cooling-verification.ko.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ko.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-14" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">泰语 (Thai)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(14)" id="done-14"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">จบการทวนสอบการหล่อเย็นด้วยของเหลว</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">เจ็ดแผ่นสำหรับการทดสอบโหลดแบงก์หนึ่งครั้ง</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ทดสอบโหลดแบงก์</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ทวนสอบหล่อเย็นของเหลว</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">แผ่นทดสอบ CDU</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">คอมมิชชันนิงศูนย์ข้อมูล</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ขั้นภาระความร้อน</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">รายการแก้ไข</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ทดสอบของเหลวแร็ค</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`จบการทวนสอบการหล่อเย็นด้วยของเหลว`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`เจ็ดแผ่นสำหรับการทดสอบโหลดแบงก์หนึ่งครั้ง`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(14)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(14)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/th/finish-a-liquid-cooling-verification.th.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/th.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-15" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 3 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">阿拉伯语 (Arabic)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(15)" id="done-15"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">إنهاء التحقق من التبريد السائل</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">سبع أوراق لاختبار بنك حمل واحد</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">اختبار بنك الحمل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">التحقق من التبريد السائل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">أوراق اختبار CDU</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">تشغيل مركز البيانات</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">خطوات الحمل الحراري</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">قائمة العيوب</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">اختبار سائل للرف</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`إنهاء التحقق من التبريد السائل`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`سبع أوراق لاختبار بنك حمل واحد`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(15)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(15)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/epub/ar/finish-a-liquid-cooling-verification.ar.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ar.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-16" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">英语 (English)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(16)" id="done-16"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Run the Data Center Day</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">What the manager must sign before the shift ends</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">data center operations</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">shift handover protocol</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">MOP and SOP governance</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">2N power capacity limits</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">mission critical facilities</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">liquid cooling shift rounds</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">manager closeout sheet</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Run the Data Center Day`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`What the manager must sign before the shift ends`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(16)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(16)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/run-the-data-center-day.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/cover.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-17" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">日语 (Japanese)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(17)" id="done-17"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">データセンターの1日を回す</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">シフトが終わる前に管理者が署名すべきこと</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">データセンター運用</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">シフト引継ぎ手順</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">MOP SOP 運用統治</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">2N電源容量上限</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">液冷巡回点検</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">障害エスカレーション</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">管理受入シート</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`データセンターの1日を回す`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`シフトが終わる前に管理者が署名すべきこと`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(17)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(17)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/ja/run-the-data-center-day.ja.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ja.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-18" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">印尼语 (Indonesian)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(18)" id="done-18"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">Menjalankan Hari Operasional Pusat Data</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">Apa yang harus ditandatangani manajer sebelum shift berakhir</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">operasi pusat data</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">serah terima shift</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">tata kelola SOP MOP</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">kapasitas daya 2N</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">inspeksi pendinginan cair</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">eskalasi insiden</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">lembar penutupan manajer</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`Menjalankan Hari Operasional Pusat Data`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`Apa yang harus ditandatangani manajer sebelum shift berakhir`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(18)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(18)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/id/run-the-data-center-day.id.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/id.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-19" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">韩语 (Korean)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(19)" id="done-19"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">데이터센터의 하루를 운영하다</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">교대 근무가 끝나기 전 관리자가 반드시 서명해야 하는 것들</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">데이터센터 운영</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">교대 인수인계 프로토콜</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">MOP SOP 운영 지침</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">2N 전력 부하 한도</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">액랭 순회 점검</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">장애 대응 에스컬레이션</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">관리자 마감 시트</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`데이터센터의 하루를 운영하다`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`교대 근무가 끝나기 전 관리자가 반드시 서명해야 하는 것들`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(19)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(19)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/ko/run-the-data-center-day.ko.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ko.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-20" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">泰语 (Thai)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(20)" id="done-20"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">บริหารจัดการวันปฏิบัติงานของดาต้าเซ็นเตอร์</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">สิ่งที่ผู้จัดการต้องลงนามก่อนสิ้นสุดกะการทำงาน</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">การปฏิบัติการศูนย์ข้อมูล</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">การส่งมอบกะ</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ระเบียบ SOP MOP</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ขีดจำกัดกำลังไฟฟ้า 2N</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">การตรวจระบบระบายความร้อนด้วยของเหลว</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">การรายงานอุบัติการณ์</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">แผ่นปิดกะผู้จัดการ</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`บริหารจัดการวันปฏิบัติงานของดาต้าเซ็นเตอร์`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`สิ่งที่ผู้จัดการต้องลงนามก่อนสิ้นสุดกะการทำงาน`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(20)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(20)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/th/run-the-data-center-day.th.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/th.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="card" id="card-21" style="background:#111827; border:1px solid #1f2937; border-radius:10px; padding:1.25rem; margin-bottom:1rem; transition:border 0.2s;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div>
+                    <span style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">第 5 本</span>
+                    <span style="color:#60a5fa; font-size:12px; font-weight:600; margin-left:0.5rem;">阿拉伯语 (Arabic)</span>
+                </div>
+                <label style="color:#94a3b8; font-size:12px; cursor:pointer;">
+                    <input type="checkbox" onchange="toggleDone(21)" id="done-21"> Submitted to KDP
+                </label>
+            </div>
+            
+            <div style="color:#f9fafb; font-size:1.15rem; font-weight:700; margin-bottom:0.25rem;">إدارة يوم مركز البيانات</div>
+            <div style="color:#9ca3af; font-size:0.9rem; margin-bottom:0.75rem;">ما يجب أن يوقعه المدير قبل انتهاء الوردية</div>
+            
+            <div style="margin-bottom:0.75rem;"><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">تشغيل مراكز البيانات</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">تسليم الوردية</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">حوكمة إجراءات MOP SOP</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">سعة طاقة 2N</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">فحص التبريد السائل</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">إدارة الحوادث</span><span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;margin-bottom:4px;display:inline-block;">ورقة إغلاق الوردية</span></div>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+                <button onclick="copyText(`إدارة يوم مركز البيانات`, 'Title Copied!')" class="btn">📋 Copy Title</button>
+                <button onclick="copyText(`ما يجب أن يوقعه المدير قبل انتهاء الوردية`, 'Subtitle Copied!')" class="btn">📋 Copy Subtitle</button>
+                <button onclick="copyDesc(21)" class="btn">📋 Copy Description</button>
+                <button onclick="copyKeywords(21)" class="btn">📋 Copy 7 Keywords</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/epub/ar/run-the-data-center-day.ar.epub`, 'EPUB Path Copied!')" class="btn btn-blue">📁 Copy EPUB Path</button>
+                <button onclick="copyText(`/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ar.jpg`, 'Cover Path Copied!')" class="btn btn-blue">🖼️ Copy Cover Path</button>
+                <a href="https://kdp.amazon.com/en_US/title-setup/kdp/details?titleType=ebook" target="_blank" class="btn btn-green">🚀 Open KDP New eBook &rarr;</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <textarea id="kobo-en-code" style="display:none;">// == Kobo Writing Life 1-Click AutoFiller ==
+// Usage: Open Chrome DevTools Console (Cmd+Option+J) on writinglife.kobo.com, paste this and press Enter!
+(function() {
+    const b = {"title": "Design and Build a Liquid Load Bank for NVL72 Racks", "subtitle": "A Field Guide to Interface Boundaries, P&ID Hydraulics, Thermal Envelopes, and Prototype Acceptance", "series": "Data Center Field Guides", "series_number": "1", "author": "Tristan", "publisher": "Data Center Field Guides", "imprint": "Data Center Field Guides", "language": "English", "price": "12.99", "epub": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/design-and-build-a-liquid-load-bank.epub", "cover": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/cover.jpg", "synopsis": "A liquid load bank replaces the rack-side thermal load and liquid conditions of NVL72-class AI hardware. It is not a CDU, and not a fabrication drawing.\n\nThis field guide states what to write before metal is cut, and which engineering gates must pass before a prototype can be called complete. The reader leaves with two clean handover documents: the liquid load bank requirement sheet and the prototype acceptance sheet. Flow, temperature, pressure, and coupling numbers remain blank until cited against the vendor specification then in force.\n\nKey engineering coverage:\n- Manifold and quick-disconnect (QDC) interface boundaries\n- Flow rate vs. differential pressure (ΔP) hydraulic curves\n- Step-load thermal rejection and CDU hunting prevention\n- Non-negotiable field verification and refuse-to-sign gates"};
+    console.log('[+] Starting Kobo 1-Click AutoFill for:', b.title);
+
+    function trigger(el) {
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+        el.dispatchEvent(new Event('blur', { bubbles: true }));
+    }
+
+    function setVal(selectors, val) {
+        for (let sel of selectors) {
+            const el = document.querySelector(sel);
+            if (el) {
+                el.focus();
+                el.value = val;
+                trigger(el);
+                console.log('  [✓] Set', sel);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 1. Title & Subtitle
+    setVal(['input[name*="Title"]', 'input[id*="title"]', '#eBookTitle', '#Title', 'input[placeholder*="Title"]'], b.title);
+    setVal(['input[name*="Subtitle"]', 'input[id*="subtitle"]', '#eBookSubtitle', '#Subtitle', 'input[placeholder*="Subtitle"]'], b.subtitle);
+
+    // 2. Series
+    setVal(['input[name*="Series"]', 'input[id*="series"]', '#SeriesName', 'input[placeholder*="Series"]'], b.series);
+    setVal(['input[name*="SeriesNumber"]', 'input[id*="seriesNumber"]', '#SeriesNumber', 'input[placeholder*="Number"]'], b.series_number);
+
+    // 3. Author / Contributor
+    setVal(['input[name*="Contributor"]', 'input[name*="Author"]', 'input[id*="contributor"]', 'input[id*="author"]', 'input[placeholder*="Author"]'], b.author);
+
+    // 4. Publisher & Imprint
+    setVal(['input[name*="Publisher"]', 'input[id*="publisher"]', '#PublisherName', 'input[placeholder*="Publisher"]'], b.publisher);
+    setVal(['input[name*="Imprint"]', 'input[id*="imprint"]', '#ImprintName', 'input[placeholder*="Imprint"]'], b.imprint);
+
+    // 5. Language
+    const langSelect = document.querySelector('select[name*="Language"], select[id*="language"], #Language');
+    if (langSelect) {
+        for (let opt of langSelect.options) {
+            if (opt.text.toLowerCase().includes(b.language.toLowerCase()) || opt.value.toLowerCase().includes(b.language.toLowerCase())) {
+                langSelect.value = opt.value;
+                trigger(langSelect);
+                console.log('  [✓] Set Language to', opt.text);
+                break;
+            }
+        }
+    }
+
+    // 6. Synopsis (Textarea or Rich Editor)
+    const synTextarea = document.querySelector('textarea[name*="Synopsis"], textarea[id*="synopsis"], textarea[name*="description"], #Synopsis');
+    if (synTextarea) {
+        synTextarea.value = b.synopsis;
+        trigger(synTextarea);
+        console.log('  [✓] Set Synopsis textarea');
+    }
+    const richEditor = document.querySelector('.ck-editor__editable, [contenteditable="true"]');
+    if (richEditor) {
+        richEditor.innerText = b.synopsis;
+        trigger(richEditor);
+        console.log('  [✓] Set Synopsis rich editor');
+    }
+
+    // 7. Pricing & DRM (If on Pricing step)
+    setVal(['input[name*="Price"]', 'input[id*="price"]', '#Price', 'input[placeholder*="0.00"]'], b.price);
+    
+    // Checkboxes / Radios
+    const drmRadio = document.querySelector('input[name*="drm"][value*="true"], input[id*="drm-yes"]');
+    if (drmRadio) { drmRadio.click(); trigger(drmRadio); }
+    
+    const koboPlus = document.querySelector('input[name*="koboPlus"], input[id*="koboPlus"]');
+    if (koboPlus && !koboPlus.checked) { koboPlus.click(); trigger(koboPlus); }
+
+    // Notification toast
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:#fff;padding:12px 20px;border-radius:8px;font-weight:bold;z-index:999999;box-shadow:0 10px 25px rgba(0,0,0,0.4);font-family:sans-serif;';
+    toast.innerHTML = '⚡ Kobo AutoFill Complete!<br><span style="font-size:12px;font-weight:normal;">EPUB: ' + b.epub.split('/').pop() + '</span>';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+})();
+</textarea>
+    <textarea id="kobo-ja-code" style="display:none;">// == Kobo Writing Life 1-Click AutoFiller ==
+// Usage: Open Chrome DevTools Console (Cmd+Option+J) on writinglife.kobo.com, paste this and press Enter!
+(function() {
+    const b = {"title": "NVL72級ラック向け液冷負荷装置を設計し、作る", "subtitle": "要求シートと試作の合格判定", "series": "Data Center Field Guides", "series_number": "1", "author": "Tristan", "publisher": "Data Center Field Guides", "imprint": "Data Center Field Guides", "language": "Japanese", "price": "12.99", "epub": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ja/design-and-build-a-liquid-load-bank.ja.epub", "cover": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ja.jpg", "synopsis": "液冷負荷装置は、NVL72級ラックの代わりになる試験器である。冷却器でも図面でもない。この現場手引は、金属を切る前に何を書き、試作を完成と呼ぶ前にどの門を通すかを示す。残るのは、見知らぬ人に渡せる二つの文書である。要求シートと、試作の受入シート。流量、温度、圧力、継手の数値は、その時点で有効な仕様を引用するまで空欄のままである。"};
+    console.log('[+] Starting Kobo 1-Click AutoFill for:', b.title);
+
+    function trigger(el) {
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+        el.dispatchEvent(new Event('blur', { bubbles: true }));
+    }
+
+    function setVal(selectors, val) {
+        for (let sel of selectors) {
+            const el = document.querySelector(sel);
+            if (el) {
+                el.focus();
+                el.value = val;
+                trigger(el);
+                console.log('  [✓] Set', sel);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 1. Title & Subtitle
+    setVal(['input[name*="Title"]', 'input[id*="title"]', '#eBookTitle', '#Title', 'input[placeholder*="Title"]'], b.title);
+    setVal(['input[name*="Subtitle"]', 'input[id*="subtitle"]', '#eBookSubtitle', '#Subtitle', 'input[placeholder*="Subtitle"]'], b.subtitle);
+
+    // 2. Series
+    setVal(['input[name*="Series"]', 'input[id*="series"]', '#SeriesName', 'input[placeholder*="Series"]'], b.series);
+    setVal(['input[name*="SeriesNumber"]', 'input[id*="seriesNumber"]', '#SeriesNumber', 'input[placeholder*="Number"]'], b.series_number);
+
+    // 3. Author / Contributor
+    setVal(['input[name*="Contributor"]', 'input[name*="Author"]', 'input[id*="contributor"]', 'input[id*="author"]', 'input[placeholder*="Author"]'], b.author);
+
+    // 4. Publisher & Imprint
+    setVal(['input[name*="Publisher"]', 'input[id*="publisher"]', '#PublisherName', 'input[placeholder*="Publisher"]'], b.publisher);
+    setVal(['input[name*="Imprint"]', 'input[id*="imprint"]', '#ImprintName', 'input[placeholder*="Imprint"]'], b.imprint);
+
+    // 5. Language
+    const langSelect = document.querySelector('select[name*="Language"], select[id*="language"], #Language');
+    if (langSelect) {
+        for (let opt of langSelect.options) {
+            if (opt.text.toLowerCase().includes(b.language.toLowerCase()) || opt.value.toLowerCase().includes(b.language.toLowerCase())) {
+                langSelect.value = opt.value;
+                trigger(langSelect);
+                console.log('  [✓] Set Language to', opt.text);
+                break;
+            }
+        }
+    }
+
+    // 6. Synopsis (Textarea or Rich Editor)
+    const synTextarea = document.querySelector('textarea[name*="Synopsis"], textarea[id*="synopsis"], textarea[name*="description"], #Synopsis');
+    if (synTextarea) {
+        synTextarea.value = b.synopsis;
+        trigger(synTextarea);
+        console.log('  [✓] Set Synopsis textarea');
+    }
+    const richEditor = document.querySelector('.ck-editor__editable, [contenteditable="true"]');
+    if (richEditor) {
+        richEditor.innerText = b.synopsis;
+        trigger(richEditor);
+        console.log('  [✓] Set Synopsis rich editor');
+    }
+
+    // 7. Pricing & DRM (If on Pricing step)
+    setVal(['input[name*="Price"]', 'input[id*="price"]', '#Price', 'input[placeholder*="0.00"]'], b.price);
+    
+    // Checkboxes / Radios
+    const drmRadio = document.querySelector('input[name*="drm"][value*="true"], input[id*="drm-yes"]');
+    if (drmRadio) { drmRadio.click(); trigger(drmRadio); }
+    
+    const koboPlus = document.querySelector('input[name*="koboPlus"], input[id*="koboPlus"]');
+    if (koboPlus && !koboPlus.checked) { koboPlus.click(); trigger(koboPlus); }
+
+    // Notification toast
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:#fff;padding:12px 20px;border-radius:8px;font-weight:bold;z-index:999999;box-shadow:0 10px 25px rgba(0,0,0,0.4);font-family:sans-serif;';
+    toast.innerHTML = '⚡ Kobo AutoFill Complete!<br><span style="font-size:12px;font-weight:normal;">EPUB: ' + b.epub.split('/').pop() + '</span>';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+})();
+</textarea>
+
+    <div id="toast"></div>
+
+    <script>
+        const CATALOG = [{"key": "第1本_日语", "book_label": "第 1 本", "lang_label": "日语", "language_dropdown": "Japanese", "title": "NVL72級ラック向け液冷負荷装置を設計し、作る", "subtitle": "要求シートと試作の合格判定", "description": "液冷負荷装置は、NVL72級ラックの代わりになる試験器である。冷却器でも図面でもない。この現場手引は、金属を切る前に何を書き、試作を完成と呼ぶ前にどの門を通すかを示す。残るのは、見知らぬ人に渡せる二つの文書である。要求シートと、試作の受入シート。流量、温度、圧力、継手の数値は、その時点で有効な仕様を引用するまで空欄のままである。", "keywords": ["液冷負荷装置", "データセンター液冷試験", "試作の受入シート", "ラック側の熱負荷", "CDUとの境界", "要求シートの書き方", "負荷試験の合格条件"], "manuscript_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ja/design-and-build-a-liquid-load-bank.ja.epub", "cover_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ja.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第1本_印尼语", "book_label": "第 1 本", "lang_label": "印尼语", "language_dropdown": "Indonesian", "title": "Merancang dan Membangun Bank Beban Cair untuk Rak Kelas NVL72", "subtitle": "Lembar persyaratan dan penerimaan purwarupa", "description": "Bank beban cair adalah alat uji yang menggantikan rak kelas NVL72. Bukan pendingin, dan bukan gambar fabrikasi. Panduan ini menyatakan apa yang harus ditulis sebelum logam dipotong, dan gerbang mana yang harus lulus sebelum purwarupa disebut selesai. Yang tersisa adalah dua dokumen yang dapat diserahkan kepada orang asing: lembar persyaratan dan lembar penerimaan. Angka aliran, suhu, tekanan, dan fitting tetap kosong sampai Anda mengutip spesifikasi yang berlaku.", "keywords": ["bank beban cair", "uji pendinginan rak", "lembar persyaratan", "penerimaan purwarupa", "batas CDU", "panas sisi rak", "gerbang uji prototipe"], "manuscript_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/id/design-and-build-a-liquid-load-bank.id.epub", "cover_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/id.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第1本_韩语", "book_label": "第 1 本", "lang_label": "韩语", "language_dropdown": "Korean", "title": "NVL72급 랙을 위한 액랭 로드뱅크의 설계와 제작", "subtitle": "요구 시트와 시제품 인수", "description": "액랭 로드뱅크는 NVL72급 랙을 대신하는 시험 장치이다. 냉각기도 아니고 제작 도면도 아니다. 이 현장 안내는 금속을 자르기 전에 무엇을 적는지, 시제품을 끝났다고 부르기 전에 어느 문을 통과하는지를 말한다. 남는 것은 낯선 사람에게 건넬 수 있는 두 문서이다. 요구 시트와 인수 시트. 유량, 온도, 압력, 피팅의 숫자는 그때 유효한 규격을 인용하기 전까지 비워 둔다.", "keywords": ["액랭 로드뱅크", "데이터센터 냉각 시험", "요구 시트", "시제품 인수", "CDU 경계", "랙측 열부하", "시제품 합격 조건"], "manuscript_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ko/design-and-build-a-liquid-load-bank.ko.epub", "cover_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ko.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第1本_泰语", "book_label": "第 1 本", "lang_label": "泰语", "language_dropdown": "Thai", "title": "ออกแบบและสร้างโหลดแบงก์ของเหลวสำหรับแร็คระดับ NVL72", "subtitle": "แผ่นข้อกำหนดและการตรวจรับต้นแบบ", "description": "โหลดแบงก์ของเหลวเป็นเครื่องมือทดสอบที่แทนแร็คระดับ NVL72 ไม่ใช่เครื่องทำความเย็น และไม่ใช่แบบสำหรับการผลิต คู่มือนี้บอกว่าต้องเขียนอะไรก่อนตัดโลหะ และต้องผ่านประตูใดก่อนจะเรียกต้นแบบว่าเสร็จ สิ่งที่เหลือคือเอกสารสองฉบับที่มอบให้คนแปลกหน้าได้ แผ่นข้อกำหนด และแผ่นตรวจรับ ตัวเลขอัตราไหล อุณหภูมิ ความดัน และข้อต่อเว้นว่างจนกว่าจะอ้างข้อกำหนดที่มีผลในขณะนั้น", "keywords": ["โหลดแบงก์ของเหลว", "ทดสอบระบายความร้อน", "แผ่นข้อกำหนด", "ตรวจรับต้นแบบ", "ขอบเขต CDU", "ความร้อนฝั่งแร็ค", "เงื่อนไขผ่านการทดสอบ"], "manuscript_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/th/design-and-build-a-liquid-load-bank.th.epub", "cover_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/th.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第1本_阿拉伯语", "book_label": "第 1 本", "lang_label": "阿拉伯语", "language_dropdown": "Arabic", "title": "تصميم وبناء بنك حمل سائل لأرفف من فئة NVL72", "subtitle": "ورقة المتطلبات وقبول النموذج", "description": "بنك الحمل السائل أداة اختبار تقوم مقام رف من فئة NVL72. ليس مبردًا، وليس رسم تصنيع. يبيّن هذا الدليل ما يُكتب قبل قطع المعدن، وأي بوابات يجب أن تجتاز قبل أن يُسمى النموذج منتهيًا. ما يبقى وثيقتان يمكن تسليمهما لغريب: ورقة المتطلبات وورقة القبول. تبقى أرقام التدفق والحرارة والضغط والوصلات فارغة حتى تستشهد بالمواصفة النافذة.", "keywords": ["بنك حمل سائل", "اختبار تبريد الرف", "ورقة المتطلبات", "قبول النموذج", "حد وحدة التوزيع", "حرارة جانب الرف", "بوابات قبول النموذج"], "manuscript_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/epub/ar/design-and-build-a-liquid-load-bank.ar.epub", "cover_path": "/Users/geese/Downloads/book/books/01-liquid-load-bank/figures/covers/ar.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第2本_日语", "book_label": "第 2 本", "lang_label": "日语", "language_dropdown": "Japanese", "title": "ロードバンクのデータを読み、使う", "subtitle": "速報の現場手引", "description": "曲線が穏やかだからといって、負荷装置の試験が有効なのではない。この現場手引は、運転を見知らぬ人が監査できる速報にする方法を示す。速報は五行で開く。事前試験、勾配、過負荷、ステップ変化、単路故障。試みた行がすべて合格でなければ、総括は合格ではない。ヒットは時刻である。合格ではない。", "keywords": ["負荷装置のデータ", "試験速報", "液冷試験の記録", "センサの一貫性", "変化点の見方", "Modbus採取", "MQTT搬送"], "manuscript_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ja/read-and-use-load-bank-data.ja.epub", "cover_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ja.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第2本_印尼语", "book_label": "第 2 本", "lang_label": "印尼语", "language_dropdown": "Indonesian", "title": "Membaca dan Menggunakan Data Bank Beban", "subtitle": "Panduan laporan kilat", "description": "Uji bank beban tidak sah hanya karena kurvanya tenang. Panduan ini menunjukkan cara mengubah satu jalan menjadi laporan kilat yang dapat diaudit orang asing. Laporan dibuka dengan lima baris: uji awal, gradien, beban lebih, perubahan langkah, dan gangguan satu jalur. Lulus keseluruhan hanya jika setiap baris yang dicoba lulus. Satu hit adalah waktu, bukan lulus.", "keywords": ["data bank beban", "laporan kilat", "catatan uji cair", "konsistensi sensor", "deteksi titik ubah", "akuisisi Modbus", "pembawa MQTT"], "manuscript_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/id/read-and-use-load-bank-data.id.epub", "cover_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/id.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第2本_韩语", "book_label": "第 2 本", "lang_label": "韩语", "language_dropdown": "Korean", "title": "로드뱅크 데이터를 읽고 쓰기", "subtitle": "속보를 위한 현장 안내", "description": "곡선이 잔잔하다고 해서 로드뱅크 시험이 유효한 것은 아니다. 이 안내는 한 번의 운전을 낯선 사람이 감사할 수 있는 속보로 만드는 방법을 말한다. 속보는 다섯 줄로 시작한다. 사전 시험, 구배, 과부하, 스텝 변화, 단로 고장. 시도한 줄이 모두 합격이 아니면 총괄은 합격이 아니다. 적중은 시각이지 합격이 아니다.", "keywords": ["로드뱅크 데이터", "시험 속보", "액랭 시험 기록", "센서 일관성", "변화점 판독", "Modbus 수집", "MQTT 전달"], "manuscript_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ko/read-and-use-load-bank-data.ko.epub", "cover_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ko.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第2本_泰语", "book_label": "第 2 本", "lang_label": "泰语", "language_dropdown": "Thai", "title": "อ่านและใช้ข้อมูลโหลดแบงก์", "subtitle": "คู่มือรายงานฉับพลัน", "description": "การทดสอบโหลดแบงก์ไม่ถูกต้องเพียงเพราะเส้นโค้งดูสงบ คู่มือนี้บอกวิธีเปลี่ยนการเดินเครื่องหนึ่งครั้งให้เป็นรายงานฉับพลันที่คนแปลกหน้าตรวจสอบได้ รายงานเปิดด้วยห้าบรรทัด การทดสอบก่อน การไต่โหลด โอเวอร์โหลด การเปลี่ยนขั้น และความผิดพลาดของแหล่งจ่ายเดียว ผ่านโดยรวมได้ก็ต่อเมื่อทุกบรรทัดที่ลองผ่าน การชนคือเวลา ไม่ใช่การผ่าน", "keywords": ["ข้อมูลโหลดแบงก์", "รายงานฉับพลัน", "บันทึกทดสอบของเหลว", "ความสอดคล้องเซนเซอร์", "จุดเปลี่ยนในข้อมูล", "เก็บข้อมูล Modbus", "ส่งต่อ MQTT"], "manuscript_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/th/read-and-use-load-bank-data.th.epub", "cover_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/th.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第2本_阿拉伯语", "book_label": "第 2 本", "lang_label": "阿拉伯语", "language_dropdown": "Arabic", "title": "قراءة بيانات بنك الحمل واستخدامها", "subtitle": "دليل التقرير العاجل", "description": "اختبار بنك الحمل ليس صالحًا لأن المنحنى يبدو هادئًا. يبيّن هذا الدليل كيف تحوّل تشغيلًا واحدًا إلى تقرير عاجل يستطيع غريب أن يدققه. يفتح التقرير بخمسة أسطر: الاختبار المسبق، والتدرج، والحمل الزائد، وتغير الخطوة، وعطل مسار واحد. لا يكون الخط الإجمالي ناجحًا إلا إذا نجح كل سطر جُرّب. الإصابة وقت، وليست نجاحًا.", "keywords": ["بيانات بنك الحمل", "تقرير عاجل", "سجل اختبار سائل", "اتساق الحساسات", "كشف نقطة التغير", "التقاط Modbus", "نقل MQTT"], "manuscript_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/ar/read-and-use-load-bank-data.ar.epub", "cover_path": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/covers/ar.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_英语", "book_label": "第 3 本", "lang_label": "英语", "language_dropdown": "English", "title": "Finish a Liquid Cooling Verification", "subtitle": "Seven sheets for one load-bank test", "description": "A load-bank test is not finished because the afternoon was hot. This field guide tells you how to connect an accepted load bank in place of the rack, run the approved scripts, and leave with sheets a stranger can audit. Seven sheets: before connect, alarms, one heat step, failures, shutdown, the no-heat pump curve if the script asks for it, and CDU logic. A blank cell is a stop. A number copied from the last hall is not a citation. Certificate Level 1 is factory testing. A static walk-through does not belong in that slot.", "keywords": ["load bank test", "liquid cooling verification", "CDU test sheets", "data center commissioning", "heat load steps", "commissioning punch list", "rack liquid test"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/finish-a-liquid-cooling-verification.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/cover.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_日语", "book_label": "第 3 本", "lang_label": "日语", "language_dropdown": "Japanese", "title": "液冷の検証を終える", "subtitle": "負荷装置試験のための七枚のシート", "description": "午後が熱かったからといって、負荷装置試験が終わったわけではない。この現場手引は、受け渡し済みの負荷装置をラックの代わりに接続し、承認されたスクリプトを実行し、見知らぬ人が監査できるシートを残す方法を示す。空欄は停止である。前の現場の数字は引用ではない。証明書の Level 1 は工場試験である。静的な目視をその枠へ綴じてはならない。", "keywords": ["負荷装置試験", "液冷の検証", "CDU試験シート", "データセンター試運転", "熱負荷の段階", "是正リスト", "ラック液冷試験"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/ja/finish-a-liquid-cooling-verification.ja.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ja.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_印尼语", "book_label": "第 3 本", "lang_label": "印尼语", "language_dropdown": "Indonesian", "title": "Menyelesaikan Verifikasi Pendinginan Cair", "subtitle": "Tujuh lembar untuk satu uji bank beban", "description": "Uji bank beban tidak selesai hanya karena sore itu panas. Panduan ini menunjukkan cara menyambungkan bank beban yang sudah diterima sebagai pengganti rak, menjalankan skrip yang disetujui, dan meninggalkan lembar yang dapat diaudit orang asing. Sel kosong adalah berhenti. Angka dari aula sebelumnya bukan kutipan. Level 1 pada sertifikat adalah uji pabrik. Pemeriksaan statis tidak masuk ke slot itu.", "keywords": ["uji bank beban", "verifikasi pendingin cair", "lembar uji CDU", "commissioning pusat data", "langkah beban panas", "daftar cacat", "uji cair rak"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/id/finish-a-liquid-cooling-verification.id.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/id.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_韩语", "book_label": "第 3 本", "lang_label": "韩语", "language_dropdown": "Korean", "title": "액랭 검증을 마치다", "subtitle": "로드뱅크 시험 한 번을 위한 일곱 장", "description": "오후가 뜨거웠다고 로드뱅크 시험이 끝난 것은 아니다. 이 안내는 이미 인수된 로드뱅크를 랙 대신 연결하고, 승인된 스크립트를 실행하고, 낯선 사람이 감사할 수 있는 시트를 남기는 방법을 말한다. 빈 칸은 정지이다. 이전 현장의 숫자는 인용이 아니다. 증명서의 Level 1은 공장 시험이다. 정적 점검을 그 칸에 넣지 않는다.", "keywords": ["로드뱅크 시험", "액랭 검증", "CDU 시험 시트", "데이터센터 커미셔닝", "열부하 단계", "시정 목록", "랙 액랭 시험"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/ko/finish-a-liquid-cooling-verification.ko.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ko.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_泰语", "book_label": "第 3 本", "lang_label": "泰语", "language_dropdown": "Thai", "title": "จบการทวนสอบการหล่อเย็นด้วยของเหลว", "subtitle": "เจ็ดแผ่นสำหรับการทดสอบโหลดแบงก์หนึ่งครั้ง", "description": "การทดสอบโหลดแบงก์ไม่จบเพียงเพราะช่วงบ่ายร้อน คู่มือนี้บอกวิธีต่อโหลดแบงก์ที่รับแล้วแทนแร็ค เดินสคริปต์ที่อนุมัติ และทิ้งแผ่นที่คนแปลกหน้าตรวจสอบได้ ช่องว่างคือการหยุด ตัวเลขจากไซต์ก่อนไม่ใช่การอ้างอิง Level 1 ของใบรับรองคือการทดสอบโรงงาน การตรวจแบบไม่จ่ายไฟไม่ใช่ช่องนั้น", "keywords": ["ทดสอบโหลดแบงก์", "ทวนสอบหล่อเย็นของเหลว", "แผ่นทดสอบ CDU", "คอมมิชชันนิงศูนย์ข้อมูล", "ขั้นภาระความร้อน", "รายการแก้ไข", "ทดสอบของเหลวแร็ค"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/th/finish-a-liquid-cooling-verification.th.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/th.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第3本_阿拉伯语", "book_label": "第 3 本", "lang_label": "阿拉伯语", "language_dropdown": "Arabic", "title": "إنهاء التحقق من التبريد السائل", "subtitle": "سبع أوراق لاختبار بنك حمل واحد", "description": "اختبار بنك الحمل لا ينتهي لأن العصر كان حارًا. يبيّن هذا الدليل كيف توصل بنك حمل مقبولًا بدل الرف، وتدير النصوص المعتمدة، وتترك أوراقًا يستطيع غريب أن يدققها. الخانة الفارغة توقف. رقم من قاعة سابقة ليس استشهادًا. المستوى 1 في الشهادة هو اختبار المصنع. الفحص الساكن لا يُودع في ذلك الموضع.", "keywords": ["اختبار بنك الحمل", "التحقق من التبريد السائل", "أوراق اختبار CDU", "تشغيل مركز البيانات", "خطوات الحمل الحراري", "قائمة العيوب", "اختبار سائل للرف"], "manuscript_path": "/Users/geese/Downloads/book/books/03-run-one-test/epub/ar/finish-a-liquid-cooling-verification.ar.epub", "cover_path": "/Users/geese/Downloads/book/books/03-run-one-test/figures/covers/ar.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_英语", "book_label": "第 5 本", "lang_label": "英语", "language_dropdown": "English", "title": "Run the Data Center Day", "subtitle": "What the manager must sign before the shift ends", "description": "A manager who tries to own the design, the customer's application software, and the vendor's factory warranty at once owns none of them. Today you own the operating state of the facility, the people who may touch it, and the immutable record of what was done. This field guide provides the rigorous protocols required to govern a mission-critical AI data hall across a 24-hour cycle: the 30-minute face-to-face shift handover, the SOP/MOP/EOP governance hierarchy with mandatory back-out plans, the 2N power steady-state loading limits (P_load <= 0.45 P_rated), 500-year flood level mitigations, and the 6 physical shift round inspection stations. The shift ends with a signed closeout sheet that an auditor can defend from first principles.", "keywords": ["data center operations", "shift handover protocol", "MOP and SOP governance", "2N power capacity limits", "mission critical facilities", "liquid cooling shift rounds", "manager closeout sheet"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/run-the-data-center-day.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/cover.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_日语", "book_label": "第 5 本", "lang_label": "日语", "language_dropdown": "Japanese", "title": "データセンターの1日を回す", "subtitle": "シフトが終わる前に管理者が署名すべきこと", "description": "管理者が今日持つのは、設備の運転状態、それに触れてよい人、そしてなされたことの改ざん不能な記録である。この現場手引は、30分の対面引継ぎ、SOP/MOP/EOP手順の統治、2N電源の定常負荷上限（0.45 P_rated）、500年確率洪水の防護、そして6箇所の現場巡回点検を定義する。シフトの終わりに残るのは、署名された日次完了シートである。", "keywords": ["データセンター運用", "シフト引継ぎ手順", "MOP SOP 運用統治", "2N電源容量上限", "液冷巡回点検", "障害エスカレーション", "管理受入シート"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/ja/run-the-data-center-day.ja.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ja.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_印尼语", "book_label": "第 5 本", "lang_label": "印尼语", "language_dropdown": "Indonesian", "title": "Menjalankan Hari Operasional Pusat Data", "subtitle": "Apa yang harus ditandatangani manajer sebelum shift berakhir", "description": "Hari ini manajer menguasai kondisi operasional fasilitas, siapa yang boleh menyentuhnya, dan catatan yang tidak dapat diubah dari apa yang telah dikerjakan. Panduan lapangan ini menetapkan serah terima shift 30 menit, tata kelola prosedur SOP/MOP/EOP, batas beban tunak daya 2N (0.45 P_rated), mitigasi banjir 500 tahun, dan 6 stasiun inspeksi fisik. Shift berakhir dengan lembar penutupan manajer yang ditandatangani.", "keywords": ["operasi pusat data", "serah terima shift", "tata kelola SOP MOP", "kapasitas daya 2N", "inspeksi pendinginan cair", "eskalasi insiden", "lembar penutupan manajer"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/id/run-the-data-center-day.id.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/id.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_韩语", "book_label": "第 5 本", "lang_label": "韩语", "language_dropdown": "Korean", "title": "데이터센터의 하루를 운영하다", "subtitle": "교대 근무가 끝나기 전 관리자가 반드시 서명해야 하는 것들", "description": "오늘 관리자가 통제하는 것은 플랜트의 운전 상태, 플랜트를 건드릴 수 있는 사람, 그리고 수행된 작업에 대한 변경 불가능한 기록이다. 이 현장 지침은 30분 대면 교대 인수인계, SOP/MOP/EOP 절차 피라미드, 2N 전력 정상상태 부하 한도(0.45 P_rated), 500년 빈도 홍수 방호, 그리고 6대 순회 점검 구역을 규정한다. 교대 근무의 끝에는 서명된 일일 마감 시트가 남는다.", "keywords": ["데이터센터 운영", "교대 인수인계 프로토콜", "MOP SOP 운영 지침", "2N 전력 부하 한도", "액랭 순회 점검", "장애 대응 에스컬레이션", "관리자 마감 시트"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/ko/run-the-data-center-day.ko.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ko.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_泰语", "book_label": "第 5 本", "lang_label": "泰语", "language_dropdown": "Thai", "title": "บริหารจัดการวันปฏิบัติงานของดาต้าเซ็นเตอร์", "subtitle": "สิ่งที่ผู้จัดการต้องลงนามก่อนสิ้นสุดกะการทำงาน", "description": "วันนี้ผู้จัดการเป็นเจ้าของสถานะการทำงานของโรงงาน คนที่ได้รับอนุญาตให้สัมผัสอุปกรณ์ และบันทึกสิ่งที่ทำไปแล้ว คู่มือภาคสนามนี้กำหนดกระบวนการส่งมอบกะ 30 นาที, ลำดับขั้นขั้นตอน SOP/MOP/EOP, ขีดจำกัดโหลดคงที่ระบบไฟ 2N (0.45 P_rated), การป้องกันน้ำท่วมรอบ 500 ปี และ 6 สถานีตรวจการณ์ประจำกะ จบกะด้วยแผ่นงานปิดกะที่มีลายมือชื่อ", "keywords": ["การปฏิบัติการศูนย์ข้อมูล", "การส่งมอบกะ", "ระเบียบ SOP MOP", "ขีดจำกัดกำลังไฟฟ้า 2N", "การตรวจระบบระบายความร้อนด้วยของเหลว", "การรายงานอุบัติการณ์", "แผ่นปิดกะผู้จัดการ"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/th/run-the-data-center-day.th.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/th.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}, {"key": "第5本_阿拉伯语", "book_label": "第 5 本", "lang_label": "阿拉伯语", "language_dropdown": "Arabic", "title": "إدارة يوم مركز البيانات", "subtitle": "ما يجب أن يوقعه المدير قبل انتهاء الوردية", "description": "ما يمتلكه المدير اليوم هو الحالة التشغيلية للمنشأة، ومن يُسمح له بلمسها، والسجل غير القابل للتغيير لما تم إنجازه. يحدد هذا الدليل الميداني تسليم الوردية وجهًا لوجه لمدة 30 دقيقة، وهرم إجراءات SOP/MOP/EOP، وسقف الحمل المستقر لمنظومة 2N الكهربائية (0.45 P_rated)، والحماية من فيضان 500 عام، و6 محطات للجولة التفتيشية. تنتهي الوردية بورقة إغلاق موقعة.", "keywords": ["تشغيل مراكز البيانات", "تسليم الوردية", "حوكمة إجراءات MOP SOP", "سعة طاقة 2N", "فحص التبريد السائل", "إدارة الحوادث", "ورقة إغلاق الوردية"], "manuscript_path": "/Users/geese/Downloads/book/books/05-run-the-day/epub/ar/run-the-data-center-day.ar.epub", "cover_path": "/Users/geese/Downloads/book/books/05-run-the-day/figures/covers/ar.jpg", "global_defaults": {"edition_number": "1", "author_first_name": "Tristan", "author_last_name": "", "publishing_rights": "owned", "adult_content": false, "primary_marketplace": "Amazon.com", "categories": ["Engineering > Industrial, Manufacturing & Operational Systems", "Computers & Technology > Hardware > General"], "drm": true, "publisher": "Data Center Field Guides", "kdp_select": false, "territories": "worldwide", "royalty_rate": "70", "price_usd": "12.99", "ai_disclosure": {"has_ai": true, "text": "Entire work, with extensive editing", "text_tool": "Grok", "images": "Many AI-generated images, with minimal editing", "images_tool": "Grok", "translations": "Entire work generated by AI", "translations_tool": "Grok"}}}];
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2500);
+        }
+
+        function copyText(txt, alertMsg) {
+            navigator.clipboard.writeText(txt).then(() => showToast(alertMsg || 'Copied!'));
+        }
+
+        function copyDesc(idx) {
+            copyText(CATALOG[idx].description, 'Description Copied!');
+        }
+
+        function copyKeywords(idx) {
+            copyText(CATALOG[idx].keywords.join('\n'), 'All 7 Keywords Copied (1 per line)!');
+        }
+
+        function copyKoboEn() {
+            const enCode = document.getElementById('kobo-en-code').value;
+            copyText(enCode, 'Kobo 英文自动填表脚本已复制！在 Kobo 控制台粘贴回车即可！');
+        }
+
+        function copyKoboJa() {
+            const jaCode = document.getElementById('kobo-ja-code').value;
+            copyText(jaCode, 'Kobo 日语自动填表脚本已复制！在 Kobo 控制台粘贴回车即可！');
+        }
+
+        function toggleDone(idx) {
+            const cb = document.getElementById(`done-${idx}`);
+            const card = document.getElementById(`card-${idx}`);
+            if (cb.checked) {
+                card.classList.add('done');
+                localStorage.setItem(`kdp_done_${idx}`, '1');
+            } else {
+                card.classList.remove('done');
+                localStorage.removeItem(`kdp_done_${idx}`);
+            }
+            updateDoneCount();
+        }
+
+        function updateDoneCount() {
+            let count = 0;
+            for (let i = 0; i < CATALOG.length; i++) {
+                if (localStorage.getItem(`kdp_done_${i}`) === '1') {
+                    count++;
+                    const cb = document.getElementById(`done-${i}`);
+                    const card = document.getElementById(`card-${i}`);
+                    if (cb) cb.checked = true;
+                    if (card) card.classList.add('done');
+                }
+            }
+            document.getElementById('done-count').textContent = count;
+        }
+
+        updateDoneCount();
+    </script>
+</body>
+</html>

@@ -387,12 +387,34 @@ BOOK_CATALOG = {
     }
 }
 
-# Vector Logos for Cross-Platform Store Badges (Amazon, Google Books, Apple Books)
+# Overlay dynamically synced publisher links if catalog/publisher_links.json exists
+_pub_links_path = ROOT / "catalog" / "publisher_links.json"
+if _pub_links_path.exists():
+    try:
+        with open(_pub_links_path, "r", encoding="utf-8") as _f:
+            _pub_data = json.load(_f)
+            for _num_str, _st in _pub_data.get("books", {}).items():
+                _num = int(_num_str)
+                if _num in BOOK_CATALOG:
+                    BOOK_CATALOG[_num].setdefault("stores", {}).update(_st)
+    except Exception as _e:
+        print(f"Warning: could not overlay publisher links: {_e}")
+
+# Vector Logos for Cross-Platform Store Badges (Amazon, Kobo, Leanpub, Google Books, Apple Books)
 STORE_LOGOS = {
     "amazon": """<svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amazon">
   <path d="M3.5 18.5c4.8 2.6 11 2.2 15.5-.8.5-.3.2-.9-.3-.8-4.2 1.2-9.7.7-14.5-1.5-.7-.3-1.1.8-.7 1.1z" fill="#FF9900"/>
   <path d="M19.7 16.2c-.4.4-1.2.7-2 .7-.2 0-.3.2-.2.4.4.7 1.3 1.5 2.1 1.7.3.1.5-.1.5-.3.1-.7.2-1.8-.4-2.5z" fill="#FF9900"/>
   <path d="M12.6 7.2c-2.4 0-4.3 1.1-4.7 3.3l1.8.3c.3-1.2 1.3-1.8 2.8-1.8 1.5 0 2.3.7 2.3 2.1v.5c-3.5.2-5.7 1.3-5.7 3.7 0 2.1 1.6 3.2 3.6 3.2 1.8 0 2.9-.9 3.5-2.1v1.8h2.1v-7c0-2.4-1.8-3.7-4.4-3.7zm1.3 6.9c-.3.8-1.2 1.6-2.4 1.6-1.1 0-1.8-.6-1.8-1.6 0-1.2 1-1.7 2.6-1.8.6 0 1.2.1 1.6.3v1.5z" fill="#ffffff"/>
+</svg>""",
+    "kobo": """<svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rakuten Kobo">
+  <rect width="24" height="24" rx="5" fill="#BF0000"/>
+  <g transform="translate(2, 8) scale(0.079) translate(0, -50)" fill="#ffffff">
+    <path d="M0.124146 50.9481H16.0741V108.318L38.1741 81.9681H57.2941L32.0241 111.818L59.5441 150.948H40.4841L16.3741 116.118H16.0741V150.948H0.124146V50.9481Z"/>
+    <path d="M58.1442 116.418C58.1442 93.8182 68.6142 80.3682 88.2842 80.3682C107.954 80.3682 118.424 93.8782 118.424 116.418C118.424 138.958 107.954 152.468 88.2842 152.468C68.6142 152.468 58.1442 139.018 58.1442 116.418ZM88.2842 141.168C99.7942 141.168 101.494 129.318 101.494 116.418C101.494 103.518 99.7842 91.6682 88.2842 91.6682C76.7842 91.6682 75.0742 103.518 75.0742 116.418C75.0742 129.318 76.7742 141.168 88.2842 141.168Z"/>
+    <path d="M143.074 90.1881H143.374C145.504 86.6881 150.554 80.3581 161.034 80.3581C177.414 80.3581 184.594 94.4281 184.594 116.408C184.594 135.698 178.014 152.458 155.734 152.458C137.774 152.458 127.184 142.198 127.184 121.628V50.9481H143.134V90.1981H143.074V90.1881ZM155.734 141.168C165.964 141.168 167.664 127.718 167.664 116.418C167.664 103.948 166.384 90.6181 155.734 90.6181C146.114 90.6181 143.074 104.808 143.074 116.418C143.074 133.678 145.694 141.168 155.734 141.168Z"/>
+    <path d="M192.624 116.418C192.624 93.8182 203.094 80.3682 222.764 80.3682C242.434 80.3682 252.904 93.8782 252.904 116.418C252.904 138.958 242.434 152.468 222.764 152.468C203.094 152.468 192.624 139.018 192.624 116.418ZM222.824 141.168C234.334 141.168 236.034 129.318 236.034 116.418C236.034 103.518 234.274 91.6682 222.824 91.6682C211.374 91.6682 209.614 103.518 209.614 116.418C209.554 129.318 211.324 141.168 222.824 141.168Z"/>
+  </g>
 </svg>""",
     "leanpub": """<svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
   <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z" fill="#0C85EA"/>
@@ -424,12 +446,14 @@ def render_order_now_block(book_num, b, is_cta=False):
     
     stores = b.get("stores", {})
     amazon_url = stores.get("amazon") or (f"https://www.amazon.com/dp/{asin}" if (is_live and asin and not asin.startswith("B0EXAMP")) else "")
+    kobo_url = stores.get("kobo", "")
     leanpub_url = stores.get("leanpub", "")
     google_url = stores.get("google", "")
     apple_url = stores.get("apple", "")
     
     platforms = [
         ("amazon", "Amazon", amazon_url, STORE_LOGOS["amazon"], "Order on Amazon Kindle" if amazon_url else "Coming Soon on Amazon"),
+        ("kobo", "Kobo", kobo_url, STORE_LOGOS["kobo"], "Order on Rakuten Kobo" if kobo_url else "Coming Soon on Kobo"),
         ("leanpub", "Leanpub", leanpub_url, STORE_LOGOS["leanpub"], "Read on Leanpub (PDF / EPUB)" if leanpub_url else "Coming Soon on Leanpub"),
         ("google", "Google Books", google_url, STORE_LOGOS["google"], "Order on Google Play Books" if google_url else "Coming Soon on Google Books"),
         ("apple", "Apple Books", apple_url, STORE_LOGOS["apple"], "Order on Apple Books" if apple_url else "Coming Soon on Apple Books"),
@@ -570,17 +594,17 @@ def render_series_tracker_bar():
           <span class="tracker-heading">Data Center Engineering Field Guides (9 Volumes)</span>
         </div>
         <div class="tracker-stat">
-          <span class="stat-highlight">2 of 9</span> Volumes Released on Amazon Kindle
+          <span class="stat-highlight">4 of 9</span> Volumes Released on Amazon Kindle &amp; Rakuten Kobo
         </div>
       </div>
       <div class="tracker-progress-track">
-        <div class="tracker-progress-fill" style="width: 22.2%;"></div>
+        <div class="tracker-progress-fill" style="width: 44.4%;"></div>
       </div>
       <div class="tracker-steps">
-        <span class="tracker-step is-complete">Vol 01: Liquid Load Banks ✓</span>
-        <span class="tracker-step is-complete">Vol 02: Telemetry &amp; Flash Reports ✓</span>
-        <span class="tracker-step is-pending">Vol 03: Cx Verification</span>
-        <span class="tracker-step is-pending">Vol 04: CFD Aerodynamics</span>
+        <span class="tracker-step is-complete">Vol 01: Liquid Load Banks ✓ (Amazon &amp; Kobo)</span>
+        <span class="tracker-step is-complete">Vol 02: Telemetry &amp; Flash Reports ✓ (Amazon)</span>
+        <span class="tracker-step is-complete">Vol 03: Cx Verification ✓ (Amazon)</span>
+        <span class="tracker-step is-complete">Vol 04: CFD Aerodynamics ✓ (Amazon)</span>
         <span class="tracker-step is-pending">Vols 05–09: Ops, Alarms, TDD (In Publishing)</span>
       </div>
     </div>
@@ -1037,7 +1061,7 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
     availability = "https://schema.org/InStock" if book_info.get("status") == "live" else "https://schema.org/PreOrder"
     citations = extract_standards_citations(f"{title} {desc} {body_text}")
     stores = book_info.get("stores", {})
-    same_as = [u for u in [stores.get("amazon"), stores.get("leanpub")] if u]
+    same_as = [u for u in [stores.get("amazon"), stores.get("kobo"), stores.get("leanpub"), stores.get("google"), stores.get("apple")] if u]
     asin = book_info.get("asin", "")
 
     book_schema = {
@@ -1866,6 +1890,17 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       box-shadow: 0 4px 18px rgba(255, 153, 0, 0.35);
       transform: translateY(-2px);
     }}
+    .cta-order-block .platform-btn.is-active.kobo {{
+      background: rgba(191, 0, 0, 0.15);
+      border: 1px solid rgba(191, 0, 0, 0.5);
+      color: #ffffff;
+    }}
+    .cta-order-block .platform-btn.is-active.kobo:hover {{
+      background: rgba(191, 0, 0, 0.28);
+      border-color: #bf0000;
+      box-shadow: 0 4px 18px rgba(191, 0, 0, 0.35);
+      transform: translateY(-2px);
+    }}
     .cta-order-block .platform-btn.is-active.leanpub {{
       background: rgba(12, 133, 234, 0.15);
       border: 1px solid rgba(12, 133, 234, 0.5);
@@ -2281,7 +2316,7 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
     
     # JSON-LD Schema
     stores = b.get("stores", {})
-    same_as = [u for u in [stores.get("amazon"), stores.get("leanpub")] if u]
+    same_as = [u for u in [stores.get("amazon"), stores.get("kobo"), stores.get("leanpub"), stores.get("google"), stores.get("apple")] if u]
     asin = b.get("asin", "")
     pages_num = int(re.sub(r"[^0-9]", "", b.get("pages", "120")) or 120)
     book_node = {
@@ -2684,6 +2719,17 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
       background: rgba(255, 153, 0, 0.28);
       border-color: #ff9900;
       box-shadow: 0 4px 18px rgba(255, 153, 0, 0.35);
+      transform: translateY(-2px);
+    }}
+    .platform-btn.is-active.kobo {{
+      background: rgba(191, 0, 0, 0.15);
+      border: 1px solid rgba(191, 0, 0, 0.5);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.kobo:hover {{
+      background: rgba(191, 0, 0, 0.28);
+      border-color: #bf0000;
+      box-shadow: 0 4px 18px rgba(191, 0, 0, 0.35);
       transform: translateY(-2px);
     }}
     .platform-btn.is-active.leanpub {{
@@ -3998,6 +4044,17 @@ def generate_hub_index(articles, is_subfolder=False):
       background: rgba(255, 153, 0, 0.24);
       border-color: #ff9900;
       box-shadow: 0 4px 14px rgba(255, 153, 0, 0.3);
+      transform: translateY(-1px);
+    }}
+    .platform-btn.is-active.kobo {{
+      background: rgba(191, 0, 0, 0.12);
+      border: 1px solid rgba(191, 0, 0, 0.45);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.kobo:hover {{
+      background: rgba(191, 0, 0, 0.24);
+      border-color: #bf0000;
+      box-shadow: 0 4px 14px rgba(191, 0, 0, 0.3);
       transform: translateY(-1px);
     }}
     .platform-btn.is-active.leanpub {{
@@ -5788,7 +5845,7 @@ def generate_buy_page():
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Buy Data Center Field Guides | Official Bookseller & Distribution Hub",
-        "description": "Order official Data Center Field Guides by Tristan across Amazon Kindle, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets.",
+        "description": "Order official Data Center Field Guides by Tristan across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets.",
         "url": "{canonical_url}",
         "breadcrumb": {{
           "@type": "BreadcrumbList",
@@ -5875,20 +5932,20 @@ def generate_buy_page():
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buy Field Guides | Official Bookseller &amp; Distribution Hub</title>
-  <meta name="description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
+  <meta name="description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
   <link rel="canonical" href="{canonical_url}"/>
   
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Buy Field Guides | Official Bookseller &amp; Distribution Hub"/>
   <meta property="og:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
   <meta name="twitter:image" content="{BASE_URL}/blog/figures/flagship/fig-01-boundary-architecture.png"/>
-  <meta property="og:description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
+  <meta property="og:description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
   <meta property="og:url" content="{canonical_url}"/>
   <meta property="og:site_name" content="Data Center Field Guides"/>
   
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Buy Field Guides | Official Bookseller &amp; Distribution Hub"/>
-  <meta name="twitter:description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
+  <meta name="twitter:description" content="Order official Data Center Field Guides by Tristan across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books. DRM-free field downloads, schematics, and refusal sheets."/>
 
   {json_ld}
 
@@ -6450,6 +6507,17 @@ def generate_buy_page():
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(255, 153, 0, 0.25);
     }}
+    .platform-btn.is-active.kobo {{
+      background: rgba(191, 0, 0, 0.12);
+      border: 1px solid rgba(191, 0, 0, 0.4);
+      color: #ffffff;
+    }}
+    .platform-btn.is-active.kobo:hover {{
+      background: rgba(191, 0, 0, 0.22);
+      border-color: #bf0000;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(191, 0, 0, 0.25);
+    }}
     .platform-btn.is-active.leanpub {{
       background: rgba(12, 133, 234, 0.12);
       border: 1px solid rgba(12, 133, 234, 0.4);
@@ -6684,7 +6752,7 @@ def generate_buy_page():
       <div class="buy-kicker">OFFICIAL BOOKSTORE // MULTI-PLATFORM DISTRIBUTION</div>
       <h1>Get the Data Center Field Guides</h1>
       <p class="buy-sub">
-        Independent engineering field manuals, P&amp;ID hydraulic schematics, and auditable refusal binders across Amazon Kindle, Google Play Books, and Apple Books.
+        Independent engineering field manuals, P&amp;ID hydraulic schematics, and auditable refusal binders across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books.
       </p>
 
       <div style="margin: -0.75rem 0 2rem; display: flex; justify-content: center;">

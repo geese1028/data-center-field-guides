@@ -1,0 +1,99 @@
+{
+  "publishers": {
+    "amazon": {
+      "name": "Amazon",
+      "label": "Order on Amazon Kindle",
+      "color": "#ff9900",
+      "domain": "amazon.com"
+    },
+    "kobo": {
+      "name": "Kobo",
+      "label": "Order on Rakuten Kobo",
+      "color": "#bf0000",
+      "domain": "kobo.com"
+    },
+    "leanpub": {
+      "name": "Leanpub",
+      "label": "Read on Leanpub (PDF / EPUB)",
+      "color": "#0c85ea",
+      "domain": "leanpub.com"
+    },
+    "google": {
+      "name": "Google Books",
+      "label": "Order on Google Play Books",
+      "color": "#4285f4",
+      "domain": "books.google.com"
+    },
+    "apple": {
+      "name": "Apple Books",
+      "label": "Order on Apple Books",
+      "color": "#ff5a00",
+      "domain": "books.apple.com"
+    }
+  },
+  "books": {
+    "1": {
+      "amazon": "https://www.amazon.com/dp/B0HMWDV6LT",
+      "kobo": "https://www.kobo.com/search?query=1990000032332",
+      "leanpub": "https://leanpub.com/liquid-load-bank-nvl72",
+      "google": "",
+      "apple": "http://books.apple.com/us/book/id6825184697"
+    },
+    "2": {
+      "amazon": "https://www.amazon.com/dp/B0HMZTGG81",
+      "kobo": "",
+      "leanpub": "https://leanpub.com/read-load-bank-data",
+      "google": "",
+      "apple": ""
+    },
+    "3": {
+      "amazon": "https://www.amazon.com/dp/B0HNFJXGM7",
+      "kobo": "",
+      "leanpub": "https://leanpub.com/finish-a-liquid-cooling-verification",
+      "google": "",
+      "apple": ""
+    },
+    "4": {
+      "amazon": "https://www.amazon.com/dp/B0HNFWP6JY",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    },
+    "5": {
+      "amazon": "",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    },
+    "6": {
+      "amazon": "",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    },
+    "7": {
+      "amazon": "",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    },
+    "8": {
+      "amazon": "",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    },
+    "9": {
+      "amazon": "",
+      "kobo": "",
+      "leanpub": "",
+      "google": "",
+      "apple": ""
+    }
+  }
+}
