@@ -108,4 +108,41 @@ Website and architectural milestone frozen at release `v2.0.0`:
   1. Routine book publishing updates (adding new ASINs/IDs, lighting up store buttons via `scripts/sync_publishers.py`).
   2. Blog updates (publishing new engineering protocol articles, figures, and technical field checklists).
 
+---
+
+## Future Writing Pipeline: Gemini 4 / Argon Recovery (ETA: ~3d 7h / ~2026-10-24)
+
+When Gemini 4 / Argon quota resets, execute the final verification, review, diagram generation, and publication packaging for the two flagship magnum opus projects:
+
+### 1. 《物理智能体现场圣经》（The Physical AI Field Manual, Book 10）
+- **Location**: `books/10-physical-ai-manual/`
+- **Status**: **Complete 7-Chapter First Draft Written & Assembled (`manuscript.md`, 72 KB)**.
+- **Chapters**:
+  1. `01-agent-ground-truth-tri-layer.md`: Agent Ground Truth Tri-Layer vs LLM Hallucinations.
+  2. `02-cdu-hydraulics-bypass-cheating.md`: SMCI 1.8MW CDU Hydraulics & Bypass Fraud Detection.
+  3. `03-ten-refusal-redlines.md`: Levels 1-5 Commissioning & The Chief Engineer's 10 Veto Red Lines.
+  4. `04-bsria-bg29-pipe-cleaning.md`: BSRIA BG 29 Pipe Cleaning & Zero SRB Tolerance.
+  5. `05-alibaba-goc-alarm-suppression.md`: Alibaba GOC Alarm Suppression (`NA61-2`) & Multi-Dimensional Latency Matrix.
+  6. `06-cfd-boundary-condition-audit.md`: Auditing CFD Boundary Conditions & Asymmetric Heat Loads (0.36kW vs 11.35kW).
+  7. `07-ieee-grounding-srp.md`: IEEE Emerald Book Signal Reference Plane (SRP $\le 1\ \Omega$ at 10 MHz) & Grounding Impedance Audit.
+- **Gemini 4 Next Actions**: Deep technical cross-verification, mathematical proof audit, SVG/PNG diagram generation via `generate_engineering_diagrams.py`, EPUB/HTML build.
+
+### 2. 《跨界握手：数据中心物理与算力的双向穿透指南》（The Handshake: Vol 1 & Vol 2, Book 11）
+- **Location**: `books/11-it-idc-handshake/`
+- **Status**: **Complete 12-Chapter First Draft Written & Assembled (`manuscript.md`, 142 KB)**.
+- **Chapters**:
+  1. `01-reverse-airflow-tor.md`: ToR switch reverse airflow, AFI/AFO models, 58°C artificial lava fountain.
+  2. `02-cable-snake-choke.md`: Cable bundles choking exhausts, 15-25 Pa backpressure, 5kW wasted fan power.
+  3. `03-color-poka-yoke.md`: Visual poka-yoke, Yellow `#FFFF00` (A) vs Blue `#0C00CC` (B), Red `#DB0015` core, Green `#00FF41` temporary.
+  4. `04-sla-paradox-four-nines.md`: The 99.99% fallacy, 5-minute outage vs 3-week storage split-brain/Raft recovery, inrush storm.
+  5. `05-neutral-to-ground-standoff.md`: Neutral-to-ground voltage ($V_{\text{ng}} = 3.8\text{V}$) standoff, differential signaling logic ground shift.
+  6. `06-ibm-silver-corrosion.md`: IBM System Center silver corrosion (Cu 38.2 Å vs Ag 621.5 Å), economizer dew point inversion, SAC305 creep corrosion.
+  7. `07-tape-library-stray-field.md`: TS4500/LTO cold vault 24h acclimatization vs liquid bridge stiction; 2500A busway 120 Oe stray magnetic soft erasure.
+  8. `08-floor-cutout-brush-grommet.md`: Underfloor cutout cold bypass vs missing 1U blanking panel negative pressure recirculation; GPU thermal throttling.
+  9. `09-rail-depth-post-spacing.md`: 850mm chassis depth vs 650mm post spacing, uncloseable rear doors, HAC breach, 750mm EIA-310 post spacing.
+  10. `10-transport-dock-floor-loading.md`: Gravity failures: 15cm dock drops, 2.1m elevator choke, 1.6-ton NVL72 rack floor punch-through & AIS standards.
+  11. `11-power-sag-and-step-load.md`: 15ms PSU hold-up time vs ATS switching; AI distributed training MW-level step load pulse & generator governor oscillation.
+  12. `12-contractor-50-redlines-and-agent.md`: Contractor 50 Red Lines & Cross-Boundary Interface Auditor Agent.
+- **Gemini 4 Next Actions**: Peer review against vendor manuals, terminal layout styling, generation of cross-boundary architecture diagrams, EPUB/KDP compilation.
+
 

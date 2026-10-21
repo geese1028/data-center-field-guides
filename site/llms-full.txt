@@ -2302,12 +2302,12 @@ Related: [Certificate Level 1 is not a static test](03-two-level-numberings.md).
 - Canonical URL: https://datacenterfieldguides.com/blog/witnessed-or-a-document
 - Raw Markdown URL: https://datacenterfieldguides.com/raw/witnessed-or-a-document.md
 - Volume: Volume 03 (Finish a Liquid Cooling Verification: Seven Sheets for One Load-Bank Test)
-- Primary Keyword / Scope: witnessed commissioning test vs document review
+- Primary Keyword / Scope: witnessed test
 --------------------------------------------------------------------------------
 
 # Witnessed is not the same as accepted a document
 
-> **Direct Answer Block**: Why commissioning certificates must explicitly distinguish between physical tests witnessed live on the data hall floor and vendor documents accepted at a desk. In mission-critical data center commissioning and operations, engineers enforce this boundary using deterministic physical equations, calibrated field instrumentation, and auditable sign-off gates rather than relying on vendor brochure summaries, uncalibrated software plots, or verbal assurances. Every measurement and state transition must be recorded with synchronized UTC timestamps and explicit pass/fail thresholds before a signature is granted.
+> **Direct Answer Block**: A **witnessed test** in data center commissioning is a physical, real-time verification where an authorized, independent witness (such as the Commissioning Authority or Owner's Representative) physically observes the execution of an approved test script on the data hall floor, validates instrument calibration certificates, and co-signs recorded numerical data against explicit pass/fail thresholds. A witnessed test legally and operationally differs from a contractor certification or document review ("accepted as a document"): vendor-supplied factory acceptance test (FAT) reports, submittals, and uncalibrated BMS trends cannot be certified as witnessed unless observed in person by an unconflicted engineer during live execution. In mission-critical facilities, Level 4 (Integrated System Testing) and Level 5 (Integrated Commissioning) require 100% witnessed execution before sign-off.
 
 ![Witnessed, accepted as a document, or not done.](figures/flagship/fig-06-transient-failure-scenarios.png)
 
@@ -2320,6 +2320,22 @@ A letter that says a setting was adjusted is not a witnessed changeover. A photo
 Sampling belongs in the same place. If every line was not witnessed, the pack says what was sampled and what rule picked the sample. "We saw enough" is not a rule. A sample can support a sentence about the sample. It cannot support a sentence about the hall. Strike the hall-wide claim.
 
 A path a second person cannot open is not a document. You are relying on a name. Names are not records.
+
+---
+
+## What is a Witnessed Test vs. Contractor Certification?
+
+In mission-critical facility engineering and data center commissioning (Cx), conflating a **witnessed test** with a **contractor certification** or a **document review** is one of the primary drivers of latent handover failures. 
+
+A witnessed test requires physical presence, real-time observational validation, and immediate ink or cryptographic signature sign-off at the equipment line-up. Below is the operational distinction across commissioning verification tiers:
+
+| Verification Parameter | Witnessed Test (Floor Verification) | Document Review ("Accepted as Document") | Contractor Self-Certification |
+| :--- | :--- | :--- | :--- |
+| **Physical Presence** | **Mandatory**: Independent CxA or Owner's PE on-site at equipment line-up | None: Performed at office desk, job trailer, or remote viewer | Contractor internal installation crew only |
+| **Data Authenticity** | Direct observation of NIST-traceable calibrated meters & gauges | Transferred vendor PDF, factory bench test sheet, or submittal | Internal QA/QC sign-off stamp; uncalibrated tool readings |
+| **Transient Detection** | Real-time capture of pressure surges, busbar drops, and hunting | Limited to filtered summary charts or steady-state numbers | Rarely captures transient anomalies or nuisance trips |
+| **Applicable Cx Level** | **Level 4 (Functional Testing)** & **Level 5 (Integrated Systems Test)** | **Level 1 (Submittals)** & **Level 2 (Receipt/Inspection)** | **Level 3 (Pre-Functional Startup & Component Checkout)** |
+| **Legal Status** | Defensible engineering proof of operational readiness | Record of paper custody; **zero proof of field physics** | Vendor warranty claim; requires independent field audit |
 
 ---
 
@@ -2430,6 +2446,12 @@ To execute this protocol without introducing measurement bias or scope ambiguity
 ---
 
 ## Frequently Asked Questions (FAQ)
+
+### What is a witnessed test in data center commissioning?
+A **witnessed test** is a mandatory verification procedure where an independent Commissioning Authority (CxA) or Owner's Designated Representative physically attends the test on the data hall floor, validates that calibrated instrumentation is installed according to an approved script, observes the live dynamic test sequence (such as emergency power transfers, load-bank steps, or CDU valve trips), and signs off on the raw observed data in real time. It cannot be performed post-hoc or remotely via desktop review.
+
+### What is the difference between a witnessed test and a contractor certification?
+A contractor certification is an internal document produced by the equipment installer or manufacturer asserting that equipment meets specifications. It relies entirely on vendor self-auditing and desktop documentation. A witnessed test requires third-party physical verification by an unconflicted engineer who directly measures electrical, thermal, and hydraulic parameters, confirming that performance matches the contract drawings and sequence of operations before acceptance.
 
 ### Why does "Witnessed is not the same as accepted a document" matter during high-density data center commissioning and operations?
 Why commissioning certificates must explicitly distinguish between physical tests witnessed live on the data hall floor and vendor documents accepted at a desk. When project teams bypass this rule to meet a commercial schedule milestone, unverified physical assumptions—such as hidden hydraulic pressure drops, unlogged polling gaps, unblanked bypass leakage, or uncalibrated sensor offsets—transfer directly into live 24/7 production as latent single points of failure.

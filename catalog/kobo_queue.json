@@ -24,8 +24,11 @@
     "subtitle": "A Field Guide to Hydraulic Telemetry, Thermal Transients, and Refusal Signatures",
     "epub": "/Users/geese/Downloads/book/books/02-read-load-bank-data/epub/read-and-use-load-bank-data.epub",
     "cover": "/Users/geese/Downloads/book/books/02-read-load-bank-data/figures/cover.jpg",
-    "status": "queued",
-    "cadence": "1 book / day"
+    "status": "published",
+    "published_at": "2026-10-22",
+    "product_id": "58f916bb-b942-4a1f-a88c-fc8e4141c75a",
+    "kobo_url": "https://writinglife.kobo.com/v2/ebooks/ebook/58f916bb-b942-4a1f-a88c-fc8e4141c75a",
+    "partner_url": "https://writinglife.kobo.com/v2/ebooks/ebook/58f916bb-b942-4a1f-a88c-fc8e4141c75a"
   },
   {
     "id": "vol03-en",

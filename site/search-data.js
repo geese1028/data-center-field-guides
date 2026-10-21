@@ -164,8 +164,8 @@ window.FIELD_GUIDE_SEARCH_INDEX = [
     "topic": "cx_handover",
     "topic_label": "Commissioning & Handover",
     "is_deep_dive": true,
-    "read_mins": 13,
-    "keywords": "witnessed commissioning test vs document review"
+    "read_mins": 15,
+    "keywords": "witnessed test"
   },
   {
     "title": "A CFD picture is not a measurement: First-Principles Data Center Engineering Protocol",
