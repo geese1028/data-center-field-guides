@@ -97,3 +97,15 @@ Do not pay full-price setup, activation, or membership fees right now. Revisit d
    - All 9 Japanese editions are **FROZEN** (`parked_audit_pending`).
    - Do NOT submit Japanese editions until the owner's Gemini 4 quota resets and a full technical review/audit is conducted.
 
+---
+
+## Production Release & Architecture Freeze: v2.0.0 (Owner Order: 2026-10-21)
+
+Website and architectural milestone frozen at release `v2.0.0`:
+- **Core Principle**: The web architecture, design layout, styling, and navigation are mature and frozen. Future development builds strictly upon `v2.0.0`.
+- **Constraint**: No large architectural modifications to pages (`index.html`, `buy.html`, `about.html`, volume pillar pages, etc.) will occur without explicit owner direction.
+- **Permitted Routine Changes**:
+  1. Routine book publishing updates (adding new ASINs/IDs, lighting up store buttons via `scripts/sync_publishers.py`).
+  2. Blog updates (publishing new engineering protocol articles, figures, and technical field checklists).
+
+
