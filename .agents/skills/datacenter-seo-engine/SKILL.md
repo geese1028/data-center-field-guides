@@ -116,3 +116,13 @@ When generating or updating an SEO article:
 3. Draft the article adhering to the YAML frontmatter, direct answer block, deep-dive math, embedded diagrams, and Amazon CTA card.
 4. Run `python3 scripts/build_site.py` to compile the markdown into modern, responsive HTML with full JSON-LD schema, KaTeX formulas, and sitemap update.
 5. Verify HTML validation and responsive preview.
+
+---
+
+## 6. Page Modification Freeze Window & Contractual Guardrails (CONTRACT Clause 11)
+
+To protect pages from search engine ranking volatility and prevent algorithm reset loops:
+1. **14-Day Mandatory Freeze Window**: Any article that has undergone keyword optimization or Direct Answer enhancement is strictly frozen for at least 14 days. Zero modifications to slug, title, keywords, or text during this time.
+2. **Net-New Standalone Articles Over Modification**: Trending queries in GSC must be addressed by authoring **new, standalone articles or checklists**, never by repeatedly modifying established pages.
+3. **Internal Linking Only**: High-ranking pages (Top 10) may only receive incoming/outgoing natural anchor text links to propagate domain authority to new content.
+4. **14-Day Data Assessment**: Never make tactical copy edits based on single-day GSC fluctuations. Always evaluate performance across a rolling 14-day data window.

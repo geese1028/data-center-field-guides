@@ -99,6 +99,15 @@ Do not pay full-price setup, activation, or membership fees right now. Revisit d
 
 ---
 
+## SEO & Content Modification Freeze Policy (Owner Order: 2026-10-22)
+
+To prevent search algorithm reset loops, avoid Google Dance volatility, and adhere to contract clause 11:
+1. **14-Day Page Freeze Window**: Once an existing article is optimized for a target query/snippet (e.g. `05b-sop-mop-eop.md`, `03b-witnessed-or-a-document.md`), it is **strictly frozen for at least 14 days**. No changes to URL slug, title, keywords, direct answer blocks, or main text during this observation window.
+2. **Net-New Articles Over Modification**: When GSC identifies trending search queries or high-intent topics, create **new standalone articles/checklists**, rather than repeatedly editing existing articles to shoehorn new keywords.
+3. **Internal Linking Only**: High-ranking articles (e.g. Top 10 in GSC) remain text-frozen and are used solely as authority launchpads to naturally link to new articles and book purchase links.
+
+---
+
 ## Production Release & Architecture Freeze: v2.0.0 (Owner Order: 2026-10-21)
 
 Website and architectural milestone frozen at release `v2.0.0`:
