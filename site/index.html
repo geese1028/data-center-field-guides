@@ -520,6 +520,168 @@
       padding: 0.1rem 0.3rem;
       border-radius: 3px;
     }
+
+    .ai-ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .ai-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .ai-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
+    .claude-card {
+      border-color: rgba(217, 119, 6, 0.35);
+    }
+    .claude-card:hover {
+      border-color: #f59e0b;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.2);
+    }
+    .gemini-card {
+      border-color: rgba(59, 130, 246, 0.35);
+    }
+    .gemini-card:hover {
+      border-color: #60a5fa;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+    .gpt-card {
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    .gpt-card:hover {
+      border-color: #34d399;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+    }
+    .ai-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+    .ai-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .claude-tag {
+      background: rgba(217, 119, 6, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+    }
+    .gemini-tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+    .gpt-tag {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .ai-subtag {
+      font-size: 0.68rem;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .ai-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+    }
+    .ai-card p {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .mcp-install-box {
+      background: rgba(2, 6, 23, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+    .mcp-install-box code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+    }
+    .ai-card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-card-action {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .claude-btn {
+      background: rgba(217, 119, 6, 0.2);
+      border: 1px solid #f59e0b;
+      color: #fbbf24 !important;
+    }
+    .claude-btn:hover {
+      background: #f59e0b;
+      color: #000 !important;
+    }
+    .gemini-btn {
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid #3b82f6;
+      color: #93c5fd !important;
+    }
+    .gemini-btn:hover {
+      background: #3b82f6;
+      color: #fff !important;
+    }
+    .gpt-btn {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid #10b981;
+      color: #34d399 !important;
+    }
+    .gpt-btn:hover {
+      background: #10b981;
+      color: #042f2e !important;
+    }
+    .btn-card-action.secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1 !important;
+    }
+    .btn-card-action.secondary:hover {
+      border-color: #94a3b8;
+      color: #fff !important;
+    }
+    .ai-status-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .ai-status-pill.online {
+      color: #34d399;
+    }
     .kicker-sub {
       color: var(--accent);
       font-size: 0.8rem;
@@ -1663,8 +1825,8 @@
         <a href="/buy" class="hero-btn primary">
           <span>Order Volumes (01–04 Live) &rarr;</span>
         </a>
-        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="hero-btn ai-agent" style="background: rgba(16, 185, 129, 0.16); border: 1px solid #10b981; color: #34d399;">
-          <span>🤖 Launch @Data Center Auditor ↗</span>
+        <a href="#ai-ecosystem" class="hero-btn ai-agent" style="background: rgba(16, 185, 129, 0.16); border: 1px solid #10b981; color: #34d399;">
+          <span>🤖 AI Copilot (Claude MCP &bull; Gemini Gem &bull; GPT) &rarr;</span>
         </a>
         <a href="#books" class="hero-btn secondary">
           <span>The 9 Engineering Volumes</span>
@@ -1675,29 +1837,75 @@
       </div>
     </div>
 
-    <!-- Official OpenAI Plugin Showcase Banner -->
-    <section class="ai-auditor-showcase" aria-label="Official ChatGPT Plugin">
+    <!-- Autonomous AI Agent & Model Context Protocol (MCP) Ecosystem Showcase -->
+    <section class="ai-auditor-showcase" id="ai-ecosystem" aria-label="AI Auditor Ecosystem">
       <div class="ai-showcase-inner">
         <div class="ai-showcase-badge">
-          <span class="pulsing-dot"></span> OFFICIAL OPENAI PLUGIN // DIRECT CHATGPT INTEGRATION
+          <span class="pulsing-dot"></span> MULTI-ECOSYSTEM AI AGENT &amp; MCP PROTOCOL // PUBLICLY ACCESSIBLE
         </div>
-        <h2>Audit NVL72 MOPs &amp; Commissioning Plans with <span>@Data Center Auditor</span></h2>
+        <h2>Deterministic Engineering Copilots: <span>Claude MCP &bull; Google Gemini &bull; ChatGPT</span></h2>
         <p class="ai-showcase-sub">
-          Pre-loaded with all 69 field protocols from Tristan's <em>Data Center Field Guides</em>. Enforces NIST-traceable 1-second telemetry, Category A/B/C defect refusal gates, parallel manifold flow balance, and pump cavitation margins directly inside ChatGPT.
+          Connect your engineering workflows directly to Tristan's 69-protocol unredacted field corpus. Enforces zero-hallucination physical boundary laws, hydraulic mass balance (&Delta;T &bull; Q / C<sub>p</sub>), Category A defect gates, and NIST-traceable 1-second telemetry across your AI environment of choice.
         </p>
-        <div class="ai-showcase-actions">
-          <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
-            <span>🚀 Launch Plugin in ChatGPT</span>
-          </a>
-          <a href="https://chatgpt.com/share/6ad964d0-2010-83ee-a64c-f5a80c9c6c3b" target="_blank" rel="noopener noreferrer" class="btn-ai-proof">
-            <span>📋 View 120kW NVL72 Live Audit Case Study &rarr;</span>
-          </a>
+
+        <div class="ai-ecosystem-grid">
+          <!-- CARD 1: Claude Desktop (MCP) -->
+          <div class="ai-card claude-card">
+            <div class="ai-card-header">
+              <span class="ai-tag claude-tag">ANTHROPIC CLAUDE</span>
+              <span class="ai-subtag">MCP SERVER</span>
+            </div>
+            <h3>Claude Desktop &amp; Cursor (MCP)</h3>
+            <p>Connect Claude Desktop, Cursor, or Zed via the official Model Context Protocol (MCP) server. Run automated MOP/SOP audits, NVL72 hydraulic verifications, and ANSI/ISA-71.04 corrosion checks natively.</p>
+            <div class="mcp-install-box">
+              <code>npx -y @dcfg/datacenter-auditor</code>
+            </div>
+            <div class="ai-card-actions">
+              <a href="/SKILL.md" class="btn-card-action claude-btn">View MCP Tools &rarr;</a>
+              <span class="ai-status-pill online">● Active in Claude</span>
+            </div>
+          </div>
+
+          <!-- CARD 2: Google Gemini (Gem) -->
+          <div class="ai-card gemini-card">
+            <div class="ai-card-header">
+              <span class="ai-tag gemini-tag">GOOGLE GEMINI</span>
+              <span class="ai-subtag">CUSTOM GEM</span>
+            </div>
+            <h3>Gemini @Data Center Auditor</h3>
+            <p>Deploy directly inside Google Gemini. Enforces deterministic physical boundary rules, derating cascades, and 2N state-machine governance for Google Cloud &amp; enterprise hyperscale architects.</p>
+            <div class="mcp-install-box">
+              <code>gemini.google.com/gems &rarr; @Data Center Auditor</code>
+            </div>
+            <div class="ai-card-actions">
+              <a href="https://gemini.google.com/gems" target="_blank" rel="noopener noreferrer" class="btn-card-action gemini-btn">Launch in Gemini ↗</a>
+              <span class="ai-status-pill online">● Publicly Deployable</span>
+            </div>
+          </div>
+
+          <!-- CARD 3: ChatGPT Plugin & Skill -->
+          <div class="ai-card gpt-card">
+            <div class="ai-card-header">
+              <span class="ai-tag gpt-tag">OPENAI &amp; CURSOR</span>
+              <span class="ai-subtag">PLUGIN &amp; SKILL.MD</span>
+            </div>
+            <h3>ChatGPT Plugin &amp; SKILL.md</h3>
+            <p>Instant ChatGPT plugin access or universal installation across Windsurf, Antigravity, and autonomous agent loops using our open machine-readable skill standard.</p>
+            <div class="mcp-install-box">
+              <code>curl -sL datacenterfieldguides.com/SKILL.md</code>
+            </div>
+            <div class="ai-card-actions">
+              <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="btn-card-action gpt-btn">Launch Plugin ↗</a>
+              <a href="https://chatgpt.com/share/6ad964d0-2010-83ee-a64c-f5a80c9c6c3b" target="_blank" rel="noopener noreferrer" class="btn-card-action secondary">Case Study &rarr;</a>
+            </div>
+          </div>
         </div>
+
         <div class="ai-showcase-features">
-          <div class="ai-feat-item">✓ Zero Manual Setup</div>
-          <div class="ai-feat-item">✓ Direct <code>@Data Center Auditor</code> Mention</div>
-          <div class="ai-feat-item">✓ Strict A-00 ~ A-07 Refusal Codes</div>
-          <div class="ai-feat-item">✓ Bound to Field Inspection Binders</div>
+          <div class="ai-feat-item">✓ Zero Hallucination Physical Boundary Laws</div>
+          <div class="ai-feat-item">✓ Category A Fatal Flaw Refusal Gates (A-00 ~ A-07)</div>
+          <div class="ai-feat-item">✓ Machine-Readable <code>/llms.txt</code> &amp; <code>/llms-full.txt</code></div>
+          <div class="ai-feat-item">✓ NIST NTP &amp; IEEE 1588 PTP Time Verification</div>
         </div>
       </div>
     </section>
