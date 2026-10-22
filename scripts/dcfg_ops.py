@@ -100,6 +100,7 @@ def show_status():
 
     print("\n" + "=" * 76)
     print("  QUICK COMMANDS:")
+    print("    python3 scripts/dcfg_ops.py deploy-cf        -> Build & Deploy directly to Cloudflare Pages")
     print("    python3 scripts/dcfg_ops.py check-links      -> Verify all 9 volume store links")
     print("    python3 scripts/dcfg_ops.py launchpad        -> Open KDP Launchpad in browser")
     print("    python3 scripts/dcfg_ops.py sync-publishers  -> Sync multi-publisher links & illuminate site")
@@ -131,9 +132,16 @@ def check_links():
     print("[+] Auditing all storefront & purchase links...")
     subprocess.run([sys.executable, str(SCRIPTS / "verify_purchase_links.py")])
 
+def deploy_cf():
+    build_site()
+    print("[+] Deploying site directly to Cloudflare Pages edge...")
+    subprocess.run(["npx", "wrangler", "pages", "deploy", "site"])
+
 def main():
     if len(sys.argv) <= 1 or sys.argv[1] in ["status", "--status"]:
         show_status()
+    elif sys.argv[1] in ["deploy-cf", "deploy", "--deploy"]:
+        deploy_cf()
     elif sys.argv[1] in ["check-links", "links", "--check-links"]:
         check_links()
     elif sys.argv[1] in ["launchpad", "launchpads", "--launchpad"]:
