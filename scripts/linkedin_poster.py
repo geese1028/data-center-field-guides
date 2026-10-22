@@ -22,6 +22,33 @@ FIGURES_DIR = ROOT_DIR / "site" / "blog" / "figures" / "flagship"
 # Wave 1 Flagship Campaign Queue (7 Cornerstone Articles + Native Diagrams)
 WAVE_1_QUEUE = [
     {
+        "id": "launch-chatgpt-ai-auditor",
+        "slug": "launch-chatgpt-ai-auditor",
+        "title": "I spent 2 years writing a 9-volume engineering manual. Please don't read it. Give it to your AI agent.",
+        "image": str(FIGURES_DIR / "fig-01-boundary-architecture.png"),
+        "post_text": (
+            "I spent the last two years writing a 9-volume field engineering collection on hyperscale data centers.\n\n"
+            "Please don't read it.\n\n"
+            "Seriously. Give it to your AI agent instead.\n\n"
+            "Here is the unfiltered engineering truth:\n"
+            "When an NVIDIA GB200 NVL72 liquid cooling loop runs at 130 kW per rack, humans shouldn't be manually flipping through 1,000 pages of P&ID hydraulics, NIST-traceable calibration tolerances, and retainage refusal templates at 2:00 AM on the data hall floor.\n\n"
+            "Humans get fatigued. Humans compromise under contractor schedule pressure. Humans miss a 60-second polling dwell in a telemetry file.\n\n"
+            "AI agents don't.\n\n"
+            "So instead of asking you to memorize 68 field protocols, I pre-loaded the entire rigorous corpus directly into an official OpenAI plugin:\n\n"
+            "Meet @Data Center Auditor on ChatGPT.\n\n"
+            "It doesn’t hallucinate vendor fluff. It enforces mathematical first-principles:\n"
+            "• Paste any Commissioning Script or MOP: It audits your Level 1–5 hold points and redlines unmitigated Category A defects.\n"
+            "• Input telemetry intervals: It flags painted dwells, unverified sensor clocks, and manifold flow imbalances.\n"
+            "• Handover defense: It drafts signed Retainage Refusal notices citing ASME, ASHRAE, and ANSI standards.\n\n"
+            "Experience it directly inside ChatGPT:\n"
+            "🚀 Install Plugin: https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544\n"
+            "📋 Live Audit Proof (120kW NVL72 Case Study): https://chatgpt.com/share/6ad964d0-2010-83ee-a64c-f5a80c9c6c3b\n"
+            "🌐 Ground-Truth Protocol Hub: https://datacenterfieldguides.com/\n\n"
+            "Let your engineers design the future. Let the AI Auditor hold the refusal line.\n\n"
+            "#DataCenter #LiquidCooling #AIInfrastructure #NVIDIANVL72 #Commissioning #ChatGPT #AIAgents #Engineering"
+        ),
+    },
+    {
         "id": "01-facility-location-tdd",
         "slug": "data-center-facility-location-due-diligence",
         "title": "Facility Location Due Diligence Checklist: Grid, Land & Environmental Veto Gates",
