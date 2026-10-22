@@ -69,7 +69,7 @@ WAVE_1_QUEUE = [
         "id": "02-nvl72-liquid-load-bank",
         "slug": "nvl72-liquid-load-bank-testing-guide",
         "title": "Why You Cannot Test an NVIDIA GB200 NVL72 Loop with Air Heaters",
-        "image": str(FIGURES_DIR / "fig-01-boundary-architecture.png"),
+        "image": str(FIGURES_DIR / "fig-02-loadbank-pid.png"),
         "post_text": (
             "This page is NOT written for casual human reading. It is a deterministic boundary specification for your AI agents—and for the commissioning engineers who have to stop them from hallucinating a fatal test plan.\n\n"
             "Ask a generic LLM how to commission a 120 kW NVIDIA GB200 NVL72 whitespace, and it will happily generate a boilerplate checklist using floor-standing resistive air heaters.\n\n"
@@ -321,7 +321,52 @@ def publish_post(token, author_urn, text, title, image_path=None):
     return post_id
 
 
+def validate_queue_integrity():
+    """Asserts that all IDs, slugs, and images across the queue are 100% unique."""
+    ids = [item["id"] for item in WAVE_1_QUEUE]
+    slugs = [item["slug"] for item in WAVE_1_QUEUE]
+    images = [item["image"] for item in WAVE_1_QUEUE]
+    if len(ids) != len(set(ids)):
+        raise RuntimeError("Integrity Error: Duplicate IDs detected in WAVE_1_QUEUE!")
+    if len(slugs) != len(set(slugs)):
+        raise RuntimeError("Integrity Error: Duplicate slugs detected in WAVE_1_QUEUE!")
+    if len(images) != len(set(images)):
+        raise RuntimeError("Integrity Error: Duplicate image assets detected in WAVE_1_QUEUE! Every post must have a unique architectural schematic.")
+
+
+def check_dedup_and_cooldown(target, pub_log):
+    """Enforces creative uniqueness and minimum 20-hour post spacing."""
+    # 1. Check if ID already published
+    if target["id"] in pub_log and "--force" not in sys.argv:
+        print(f"[!] Anti-Duplicate Guard: Post '{target['id']}' was already published on {pub_log[target['id']].get('published_at')}! Refusing duplicate post.")
+        return False
+
+    # 2. Check if image creative was already published by another post
+    target_img = target.get("image")
+    if target_img:
+        for pid, entry in pub_log.items():
+            if pid != target["id"] and entry.get("image") == target_img and "--force-image" not in sys.argv:
+                print(f"[!] Anti-Duplicate Creative Guard: Diagram '{Path(target_img).name}' was already published by '{pid}'! Refusing duplicate creative.")
+                return False
+
+    # 3. Check 20h cooldown interval
+    now_utc = datetime.now(timezone.utc)
+    for entry in pub_log.values():
+        pub_ts = entry.get("published_at")
+        if pub_ts:
+            try:
+                dt = datetime.fromisoformat(pub_ts.replace("Z", "+00:00"))
+                hours_since = (now_utc - dt).total_seconds() / 3600.0
+                if hours_since < 20.0 and "--force" not in sys.argv:
+                    print(f"[i] Cooldown Guard: A post was published {hours_since:.1f}h ago ({entry.get('post_urn')}). Skipping to protect follower feed quality.")
+                    return False
+            except Exception:
+                pass
+    return True
+
+
 def preview_queue():
+    validate_queue_integrity()
     pub_log = load_pub_log()
     print("=" * 76)
     print("  LINKEDIN WAVE 1 CAMPAIGN QUEUE // AGENT-FIRST ENGINEERING POSTS")
@@ -347,6 +392,8 @@ def main():
             print(f"\n[✓] Status: LinkedIn credentials loaded ({cred.get('profile_name', 'Ready')}).")
         return
 
+    validate_queue_integrity()
+
     if "--verify" in sys.argv:
         cred = load_credentials()
         if not cred or not cred.get("access_token"):
@@ -358,18 +405,6 @@ def main():
 
     if "--publish-next" in sys.argv:
         pub_log = load_pub_log()
-        now_utc = datetime.now(timezone.utc)
-        for entry in pub_log.values():
-            pub_ts = entry.get("published_at")
-            if pub_ts:
-                try:
-                    dt = datetime.fromisoformat(pub_ts.replace("Z", "+00:00"))
-                    hours_since = (now_utc - dt).total_seconds() / 3600.0
-                    if hours_since < 20.0 and "--force" not in sys.argv:
-                        print(f"[i] A post was already published {hours_since:.1f}h ago ({entry.get('post_urn')}). Skipping to protect LinkedIn feed reach.")
-                        return
-                except Exception:
-                    pass
         target = None
         for item in WAVE_1_QUEUE:
             if item["id"] not in pub_log:
@@ -378,6 +413,10 @@ def main():
         if not target:
             print("[✓] All Wave 1 posts have already been published!")
             return
+
+        if not check_dedup_and_cooldown(target, pub_log):
+            return
+
         cred = load_credentials()
         if not cred or not cred.get("access_token"):
             print("[!] Missing .linkedin-credentials.json")
@@ -390,6 +429,8 @@ def main():
             "post_urn": post_id,
             "published_at": datetime.now(timezone.utc).isoformat(),
             "slug": target["slug"],
+            "image": target["image"],
+            "title": target["title"]
         }
         save_pub_log(pub_log)
         print(f"[✓] Successfully published to LinkedIn! Post URN: {post_id}")
@@ -411,6 +452,10 @@ def main():
             print(f"[!] Could not find post matching '{idx_arg}'")
             sys.exit(1)
 
+        pub_log = load_pub_log()
+        if not check_dedup_and_cooldown(target, pub_log):
+            return
+
         cred = load_credentials()
         if not cred or not cred.get("access_token"):
             print("[!] Missing .linkedin-credentials.json")
@@ -420,11 +465,12 @@ def main():
         urn = get_author_urn(token, cred)
         print(f"[+] Publishing '{target['title']}' as {urn} ...")
         post_id = publish_post(token, urn, target["post_text"], target["title"], target["image"])
-        pub_log = load_pub_log()
         pub_log[target["id"]] = {
             "post_urn": post_id,
             "published_at": datetime.now(timezone.utc).isoformat(),
             "slug": target["slug"],
+            "image": target["image"],
+            "title": target["title"]
         }
         save_pub_log(pub_log)
         print(f"[✓] Successfully published to LinkedIn! Post URN: {post_id}")
