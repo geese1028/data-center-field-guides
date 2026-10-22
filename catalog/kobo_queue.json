@@ -39,8 +39,11 @@
     "subtitle": "A Field Guide to Level 0–6 Commissioning Scripts, Primary Heat Rejection, and Handover Gates",
     "epub": "/Users/geese/Downloads/book/books/03-run-one-test/epub/finish-a-liquid-cooling-verification.epub",
     "cover": "/Users/geese/Downloads/book/books/03-run-one-test/figures/cover.jpg",
-    "status": "queued",
-    "cadence": "1 book / day"
+    "status": "published",
+    "published_at": "2026-10-23",
+    "product_id": "d552cd4b-8e68-418b-afa7-39ffd701d5d8",
+    "kobo_url": "",
+    "partner_url": "https://writinglife.kobo.com/v2/ebooks/ebook/d552cd4b-8e68-418b-afa7-39ffd701d5d8"
   },
   {
     "id": "vol04-en",

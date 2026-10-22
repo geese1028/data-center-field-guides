@@ -8,6 +8,7 @@ LinkedIn posts (anti-fluff "Engineered for your AI Agents & Field Auditors" hook
 
 import json
 import sys
+import time
 import urllib.request
 import urllib.parse
 import urllib.error
@@ -280,8 +281,18 @@ def upload_image(token, author_urn, image_path):
         },
         method="PUT",
     )
-    with urllib.request.urlopen(put_req) as resp:
-        resp.read()
+    
+    max_retries = 3
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(put_req, timeout=30) as resp:
+                resp.read()
+            break
+        except Exception as e:
+            if attempt == max_retries:
+                raise
+            print(f"[!] Upload attempt {attempt} failed ({e}), retrying in 2s...")
+            time.sleep(2.0)
 
     return asset_urn
 
