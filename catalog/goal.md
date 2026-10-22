@@ -123,6 +123,8 @@ Website and architectural milestone frozen at release `v2.0.0`:
 
 When Gemini 4 / Argon quota resets, execute the final verification, review, diagram generation, and publication packaging for the two flagship magnum opus projects:
 
+> **BLOCKER (Owner Order: 2026-10-22) — read first:** Independent audit `docs/AUDIT_book10_book11_2026-10-22.md` must be resolved before any EPUB / diagram / upload work. Key items: (1) remove all Alibaba internal material (`NA61-2` alarm table, `AIS` acceptance standard) and identifiable IBM / bank cases; (2) fix listed physics errors (B10 ch2 bypass story violates energy conservation, fabricated IEEE 1100 10 MHz ≤1 Ω clause, B11 Vng / hold-up / dew point claims); (3) owner decides Chinese line vs English rewrite; (4) Book 11 split into two volumes with 4 missing Vol-2 chapters; (5) Book 10 proposed to become an MCP rule pack, not a book. Verification must be done against source paths, not self-reviewed by the drafting model (CONTRACT §2.6).
+
 ### 1. 《物理智能体现场圣经》（The Physical AI Field Manual, Book 10）
 - **Location**: `books/10-physical-ai-manual/`
 - **Status**: **Complete 7-Chapter First Draft Written & Assembled (`manuscript.md`, 72 KB)**.
