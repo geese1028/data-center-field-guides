@@ -89,7 +89,7 @@
 
 ## 10. 生效
 
-委托人于 2026-10-11 确认第一版，2026-10-22 确认增加第 11 条约束并即刻生效。
+委托人于 2026-10-11 确认第一版，2026-10-22 确认增加第 11 条与第 12 条约束并即刻生效。
 
 ## 11. 搜索引擎优化（SEO）与页面修改约束
 
@@ -105,3 +105,20 @@
    - 存量高排名页面（如已进入 Google Top 10 的前哨页面）保持正文冻结，仅允许做自然的锚文本内部链接（Internal Linking），将老页面的权威权重（Topical Authority）向下传递给新文章与新书购买页。
 4. **评估基于完整周期数据**：
    - 禁止依据单日 GSC 排名或曝光波动做反应式修补。下一次针对存量页面的微调评估，必须基于至少 14 天的完整数据周期（CTR 表现、跳出率指标、展现量趋势与收录状态）。
+
+## 12. 图书上架可达性验证与每日购买链路巡检约束
+
+为保证外部读者与客户在任何时间、任何渠道点击购买链接时均享有 100% 顺畅的交易体验，坚决杜绝 404、作者后台强制登录或搜索 0 结果等破损跳转损害品牌声誉，执行人必须严格遵守以下三项硬性纪律：
+
+1. **上架/更新事前必检原则（Pre-Flight Verification Before Illumination）**：
+   - 任何渠道（Amazon KDP、Rakuten Kobo、Apple Books、Leanpub、Google Play 等）完成新书上架、更新或链接同步后，**严禁未经真实 HTTP 请求验证直接点亮前端购买按钮**。
+   - 所有录入 `catalog/publisher_links.json` 的链接，必须通过 `verify_purchase_links.py` 自动化检测：
+     - 必须返回真实的 HTTP 200 状态码（或经确认的 CDN 正常页面）；
+     - 严禁包含作者管理后台域名（如 `writinglife.kobo.com`、`kdp.amazon.com`、`itunesconnect.apple.com` 等）；
+     - 严禁出现“Soft 404”（如商店搜索 0 结果、“Item Not Available” 或“Dogs of Amazon” 404 页面）；
+   - 凡未通过公网可达性验证的链接，一律保留在安全隔离的 **"Coming Soon"（暂未开放）灰色禁用状态**，绝不向客户暴露断头链接。
+2. **每日日报必检购买链路（Daily Storefront Health Audit in Report）**：
+   - 每日运维汇报与系统日报中，必须执行 `python3 scripts/verify_purchase_links.py` 针对全网 9 卷图书的所有在售渠道、Amazon 作者主页、官方 ChatGPT 插件及 GitHub 仓库开展完整巡检。
+   - 日报中必须包含完整的 **购买链接健康度巡检表格（Storefront Health Matrix）**，列明各渠道的 HTTP 响应状态码与校验结论。
+3. **故障自动隔离熔断机制（Automatic Quarantine & Rebuild）**：
+   - 若日常巡检中发现任何已点亮链接失效（如平台误下架、审核中被锁或链接变更），必须立即触发自动熔断机制，将其重置为等待状态并重新编译静态页面，保护转化漏斗不受破坏。

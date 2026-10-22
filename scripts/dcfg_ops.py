@@ -78,20 +78,29 @@ def show_status():
     print(f"    • Google GSC API     : {'CONNECTED (Service Account OK)' if gsc_cred.exists() else 'MISSING'}")
     print(f"    • Live Site          : https://datacenterfieldguides.com")
 
-    # 5. Crontab verification
+    # 5. Purchase Links & Storefront Health Check
+    print(f"\n[5] STOREFRONT & PURCHASE LINK HEALTH AUDIT:")
+    try:
+        from verify_purchase_links import audit_all_links
+        audit_all_links(quarantine=False)
+    except Exception as e:
+        print(f"    • Storefront check error: {e}")
+
+    # 6. Crontab verification
     res = subprocess.run(["crontab", "-l"], capture_output=True, text=True)
     cron_lines = [l for l in res.stdout.splitlines() if l.strip() and not l.startswith("#")]
-    print(f"\n[5] ACTIVE SYSTEM BACKGROUND CRONS:")
+    print(f"\n[6] ACTIVE SYSTEM BACKGROUND CRONS:")
     for l in cron_lines:
         print(f"    • {l}")
 
-    # 6. Thanksgiving / Black Friday Parking Lot
-    print(f"\n[6] THANKSGIVING / BLACK FRIDAY 2026 PARKING LOT (PARKED):")
+    # 7. Thanksgiving / Black Friday Parking Lot
+    print(f"\n[7] THANKSGIVING / BLACK FRIDAY 2026 PARKING LOT (PARKED):")
     print(f"    • Leanpub Membership       : WAITING for Black Friday Sale (Bulk upload Books 1-3 + translations)")
     print(f"    • Draft2Digital Activation : WAITING for Black Friday Promo ($20 fee discount/waiver)")
 
     print("\n" + "=" * 76)
     print("  QUICK COMMANDS:")
+    print("    python3 scripts/dcfg_ops.py check-links      -> Verify all 9 volume store links")
     print("    python3 scripts/dcfg_ops.py launchpad        -> Open KDP Launchpad in browser")
     print("    python3 scripts/dcfg_ops.py sync-publishers  -> Sync multi-publisher links & illuminate site")
     print("    python3 scripts/dcfg_ops.py telemetry        -> Run live Bing & GSC telemetry check")
@@ -118,9 +127,15 @@ def build_site():
     print("[+] Rebuilding static site & indexing artifacts...")
     subprocess.run([sys.executable, str(SCRIPTS / "build_site.py")])
 
+def check_links():
+    print("[+] Auditing all storefront & purchase links...")
+    subprocess.run([sys.executable, str(SCRIPTS / "verify_purchase_links.py")])
+
 def main():
     if len(sys.argv) <= 1 or sys.argv[1] in ["status", "--status"]:
         show_status()
+    elif sys.argv[1] in ["check-links", "links", "--check-links"]:
+        check_links()
     elif sys.argv[1] in ["launchpad", "launchpads", "--launchpad"]:
         open_launchpads()
     elif sys.argv[1] in ["sync-publishers", "publishers", "--publishers"]:

@@ -29,6 +29,13 @@ PUBLISHER_LINKS_FILE = CATALOG_DIR / "publisher_links.json"
 KOBO_QUEUE_FILE = CATALOG_DIR / "kobo_queue.json"
 BUILD_SITE_SCRIPT = ROOT / "scripts" / "build_site.py"
 
+# Import mandatory pre-flight storefront verification engine
+try:
+    from verify_purchase_links import check_url
+except ImportError:
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from verify_purchase_links import check_url
+
 def load_publisher_data():
     if not PUBLISHER_LINKS_FILE.exists():
         return {"publishers": {}, "books": {}}
@@ -68,21 +75,35 @@ def sync_from_kobo_queue():
                 kobo_url = f"https://www.kobo.com/search?query={isbn}"
             
             if kobo_url:
+                print(f"[*] Pre-flight verification for Kobo (Vol {vol}): {kobo_url}...")
+                v_res = check_url(kobo_url)
+                if v_res["status"] != "PASS":
+                    print(f"    ↳ [✗ REFUSED] Skipped syncing unverified Kobo link ({v_res['status']}): {v_res['msg']}")
+                    continue
                 book_entry = books.setdefault(vol, {})
                 old_url = book_entry.get("kobo", "")
                 if old_url != kobo_url:
                     book_entry["kobo"] = kobo_url
                     changed = True
-                    print(f"[+] Synced Kobo link for Volume {vol}: {kobo_url}")
+                    print(f"[✓ PASS] Verified & synced Kobo link for Volume {vol}: {kobo_url}")
 
     if changed:
         save_publisher_data(data)
     else:
-        print("[-] No new Kobo store URLs found in queue.")
+        print("[-] No new verified Kobo store URLs found in queue.")
     return changed
 
-def set_publisher_link(publisher: str, vol: int, url: str):
-    """Sets or updates a specific store link for a volume."""
+def set_publisher_link(publisher: str, vol: int, url: str, skip_verify=False):
+    """Sets or updates a specific store link for a volume with mandatory pre-flight verification."""
+    if url and not skip_verify:
+        print(f"[*] Pre-flight verification for {publisher.upper()} (Vol {vol}): {url}...")
+        res = check_url(url)
+        if res["status"] != "PASS":
+            print(f"[✗ REFUSED] Pre-flight verification failed ({res['status']}): {res['msg']}")
+            print(f"    Link will NOT be saved to publisher_links.json. Kept as 'Coming Soon'.")
+            return False
+        print(f"[✓ PASS] Storefront link verified ({res['code']}): {res['msg']}")
+
     data = load_publisher_data()
     books = data.setdefault("books", {})
     vol_str = str(vol)
@@ -90,6 +111,7 @@ def set_publisher_link(publisher: str, vol: int, url: str):
     book_entry[publisher] = url
     save_publisher_data(data)
     print(f"[✓] Updated {publisher.upper()} link for Volume {vol}: {url}")
+    return True
 
 def show_status():
     data = load_publisher_data()
