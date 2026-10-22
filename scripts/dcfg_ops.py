@@ -98,8 +98,17 @@ def show_status():
     print(f"    • Leanpub Membership       : WAITING for Black Friday Sale (Bulk upload Books 1-3 + translations)")
     print(f"    • Draft2Digital Activation : WAITING for Black Friday Promo ($20 fee discount/waiver)")
 
+    # 8. LinkedIn Premium Trial Expiry Monitor
+    print(f"\n[8] LINKEDIN PREMIUM TRIAL EXPIRY MONITOR:")
+    try:
+        from check_premium_trial import check_trial_status
+        check_trial_status(interactive=False)
+    except Exception as e:
+        print(f"    • Premium check error: {e}")
+
     print("\n" + "=" * 76)
     print("  QUICK COMMANDS:")
+    print("    python3 scripts/dcfg_ops.py check-trial      -> Check LinkedIn Premium trial countdown & alert")
     print("    python3 scripts/dcfg_ops.py deploy-cf        -> Build & Deploy directly to Cloudflare Pages")
     print("    python3 scripts/dcfg_ops.py check-links      -> Verify all 9 volume store links")
     print("    python3 scripts/dcfg_ops.py launchpad        -> Open KDP Launchpad in browser")
@@ -140,6 +149,8 @@ def deploy_cf():
 def main():
     if len(sys.argv) <= 1 or sys.argv[1] in ["status", "--status"]:
         show_status()
+    elif sys.argv[1] in ["check-trial", "trial", "--check-trial"]:
+        subprocess.run([sys.executable, str(SCRIPTS / "check_premium_trial.py"), "--alert"])
     elif sys.argv[1] in ["deploy-cf", "deploy", "--deploy"]:
         deploy_cf()
     elif sys.argv[1] in ["check-links", "links", "--check-links"]:
