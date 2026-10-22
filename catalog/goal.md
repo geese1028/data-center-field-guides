@@ -157,3 +157,21 @@ When Gemini 4 / Argon quota resets, execute the final verification, review, diag
 - **Gemini 4 Next Actions**: Peer review against vendor manuals, terminal layout styling, generation of cross-boundary architecture diagrams, EPUB/KDP compilation.
 
 
+
+
+---
+
+## 🔒 核心合同强制禁令：网站页面绝对封版令 (Website UI Frozen Contract)
+
+**生效时间：** 2026-10-22 起永久生效  
+**执行者：** 所有 AI 模型（Antigravity、Claude、Gemini、GPT、Cursor、Windsurf 及子智能体）
+
+### 1. 绝对封版红线
+`datacenterfieldguides.com` 网站整体设计、模板结构、CSS、配色、排版、组件、按钮与横幅已**全面封版**。  
+**严禁任何模型在没有用户明确授权确认的情况下，对页面进行任何更改、增加、删除、微调或重构。**
+
+### 2. 唯一允许的两种例外操作
+- **例外 A（图书上架点亮）**：新书在 Apple Books、Kobo、Google Play 真实上架并获得购买链接时，仅允许更新元数据去除 `is-disabled` 点亮图标。
+- **例外 B（新增技术协议）**：新增 markdown 文章，由脚本增量编译，新文章继承既有设计，严禁修改全局模板与公共区域。
+
+详见根目录最高宪法：[`AGENTS.md`](file:///Users/geese/Downloads/book/AGENTS.md) 及 [`GEMINI.md`](file:///Users/geese/Downloads/book/GEMINI.md)。
