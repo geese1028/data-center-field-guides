@@ -94,9 +94,7 @@
       },
       "sameAs": [
         "https://www.amazon.com/dp/B0HMWDV6LT",
-        "https://www.kobo.com/search?query=1990000032332",
-        "https://leanpub.com/liquid-load-bank-nvl72",
-        "https://books.apple.com/us/book/id6825184697"
+        "https://leanpub.com/liquid-load-bank-nvl72"
       ],
       "identifier": {
         "@type": "PropertyValue",
@@ -218,6 +216,27 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-ai-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-ai-btn:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }
 
     .container {
       max-width: 72rem;
@@ -810,6 +829,9 @@
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -883,7 +905,7 @@
   <path d="M3.5 18.5c4.8 2.6 11 2.2 15.5-.8.5-.3.2-.9-.3-.8-4.2 1.2-9.7.7-14.5-1.5-.7-.3-1.1.8-.7 1.1z" fill="#FF9900"/>
   <path d="M19.7 16.2c-.4.4-1.2.7-2 .7-.2 0-.3.2-.2.4.4.7 1.3 1.5 2.1 1.7.3.1.5-.1.5-.3.1-.7.2-1.8-.4-2.5z" fill="#FF9900"/>
   <path d="M12.6 7.2c-2.4 0-4.3 1.1-4.7 3.3l1.8.3c.3-1.2 1.3-1.8 2.8-1.8 1.5 0 2.3.7 2.3 2.1v.5c-3.5.2-5.7 1.3-5.7 3.7 0 2.1 1.6 3.2 3.6 3.2 1.8 0 2.9-.9 3.5-2.1v1.8h2.1v-7c0-2.4-1.8-3.7-4.4-3.7zm1.3 6.9c-.3.8-1.2 1.6-2.4 1.6-1.1 0-1.8-.6-1.8-1.6 0-1.2 1-1.7 2.6-1.8.6 0 1.2.1 1.6.3v1.5z" fill="#ffffff"/>
-</svg><span>Amazon</span></a><a href="https://www.kobo.com/search?query=1990000032332" target="_blank" rel="noopener" class="platform-btn is-active kobo" title="Order on Rakuten Kobo" onclick="trackBuyClick('kobo', 'Volume 01: Liquid Load Bank (NVL72)')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rakuten Kobo">
+</svg><span>Amazon</span></a><span class="platform-btn is-disabled kobo" title="Coming Soon on Kobo"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rakuten Kobo">
   <rect width="24" height="24" rx="5" fill="#BF0000"/>
   <g transform="translate(2, 8) scale(0.079) translate(0, -50)" fill="#ffffff">
     <path d="M0.124146 50.9481H16.0741V108.318L38.1741 81.9681H57.2941L32.0241 111.818L59.5441 150.948H40.4841L16.3741 116.118H16.0741V150.948H0.124146V50.9481Z"/>
@@ -891,7 +913,7 @@
     <path d="M143.074 90.1881H143.374C145.504 86.6881 150.554 80.3581 161.034 80.3581C177.414 80.3581 184.594 94.4281 184.594 116.408C184.594 135.698 178.014 152.458 155.734 152.458C137.774 152.458 127.184 142.198 127.184 121.628V50.9481H143.134V90.1981H143.074V90.1881ZM155.734 141.168C165.964 141.168 167.664 127.718 167.664 116.418C167.664 103.948 166.384 90.6181 155.734 90.6181C146.114 90.6181 143.074 104.808 143.074 116.418C143.074 133.678 145.694 141.168 155.734 141.168Z"/>
     <path d="M192.624 116.418C192.624 93.8182 203.094 80.3682 222.764 80.3682C242.434 80.3682 252.904 93.8782 252.904 116.418C252.904 138.958 242.434 152.468 222.764 152.468C203.094 152.468 192.624 139.018 192.624 116.418ZM222.824 141.168C234.334 141.168 236.034 129.318 236.034 116.418C236.034 103.518 234.274 91.6682 222.824 91.6682C211.374 91.6682 209.614 103.518 209.614 116.418C209.554 129.318 211.324 141.168 222.824 141.168Z"/>
   </g>
-</svg><span>Kobo</span></a><a href="https://leanpub.com/liquid-load-bank-nvl72" target="_blank" rel="noopener" class="platform-btn is-active leanpub" title="Read on Leanpub (PDF / EPUB)" onclick="trackBuyClick('leanpub', 'Volume 01: Liquid Load Bank (NVL72)')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
+</svg><span>Kobo</span></span><a href="https://leanpub.com/liquid-load-bank-nvl72" target="_blank" rel="noopener" class="platform-btn is-active leanpub" title="Read on Leanpub (PDF / EPUB)" onclick="trackBuyClick('leanpub', 'Volume 01: Liquid Load Bank (NVL72)')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Leanpub">
   <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z" fill="#0C85EA"/>
   <path d="M7 7h10M7 11h10M7 15h6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
 </svg><span>Leanpub</span></a><span class="platform-btn is-disabled google" title="Coming Soon on Google Books"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="Google Books">
@@ -899,10 +921,10 @@
   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-</svg><span>Google Books</span></span><a href="https://books.apple.com/us/book/id6825184697" target="_blank" rel="noopener" class="platform-btn is-active apple" title="Order on Apple Books" onclick="trackBuyClick('apple', 'Volume 01: Liquid Load Bank (NVL72)')"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Apple Books">
+</svg><span>Google Books</span></span><span class="platform-btn is-disabled apple" title="Coming Soon on Apple Books"><svg class="store-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Apple Books">
   <rect width="24" height="24" rx="5" fill="#FF5A00"/>
   <path d="M12 7.2c-1.8-1.2-4-1.6-6.2-1.6v10.5c2.2 0 4.4.4 6.2 1.6 1.8-1.2 4-1.6 6.2-1.6V5.6c-2.2 0-4.4.4-6.2 1.6zm-.8 9.3c-1.6-1-3.4-1.4-5.2-1.4V7.5c1.8 0 3.6.4 5.2 1.4v7.6zm7.8-1.4c-1.8 0-3.6.4-5.2 1.4V8.9c1.6-1 3.4-1.4 5.2-1.4v7.6z" fill="#ffffff"/>
-</svg><span>Apple Books</span></a>
+</svg><span>Apple Books</span></span>
           </div>
           <div class="platform-format-notes">Instant Digital Delivery &bull; 7 High-Res Engineering Diagrams &amp; Checklists</div>
         </div>

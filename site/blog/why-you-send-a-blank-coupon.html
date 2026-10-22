@@ -152,7 +152,23 @@
       },
       {
         "@type": "Thing",
-        "name": "Data Center Infrastructure & Commissioning"
+        "name": "Data Center Infrastructure & Commissioning",
+        "sameAs": "https://www.wikidata.org/wiki/Q1056580"
+      },
+      {
+        "@type": "Thing",
+        "name": "Due diligence",
+        "sameAs": "https://www.wikidata.org/wiki/Q1134057"
+      },
+      {
+        "@type": "Thing",
+        "name": "Corrosion",
+        "sameAs": "https://www.wikidata.org/wiki/Q137056"
+      },
+      {
+        "@type": "Thing",
+        "name": "Silver",
+        "sameAs": "https://www.wikidata.org/wiki/Q1090"
       }
     ]
   },
@@ -262,6 +278,113 @@
       --green-subtle: rgba(16, 185, 129, 0.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    .turnkey-artifact-card {
+      margin: 1.75rem 0 2rem;
+      padding: 1.25rem 1.5rem;
+      background: #0c101a;
+      border: 1px solid #1e283d;
+      border-left: 4px solid var(--amber);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .artifact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+    .artifact-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+    .artifact-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .launch-plugin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .launch-plugin-btn:hover {
+      background: rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }
+    .copy-prompt-btn {
+      background: #172033;
+      border: 1px solid #283954;
+      color: #93c5fd;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .copy-prompt-btn:hover {
+      background: #1e293b;
+      border-color: #3b82f6;
+      color: #ffffff;
+    }
+    .artifact-body p {
+      margin-bottom: 0.95rem;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .artifact-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .turnkey-btn-amazon {
+      background: var(--amber);
+      color: #090d16;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .turnkey-btn-amazon:hover {
+      background: var(--amber-hover);
+    }
+    .turnkey-btn-secondary {
+      color: #94a3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .turnkey-btn-secondary:hover {
+      color: #f8fafc;
+    }
     .math-block {
       margin: 1.35rem 0;
       padding: 1rem 1.25rem;
@@ -352,6 +475,27 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-ai-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-ai-btn:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }
 
     main.content-container {
       max-width: 54rem;
@@ -1030,6 +1174,9 @@
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -1089,6 +1236,29 @@
 
       <h1>Why a corrosion test needs a blank coupon</h1>
 <blockquote class="direct-answer"><p><strong>Direct Answer Block</strong>: Why every batch of exposed data center corrosion coupons must travel with an unopened, lot-matched Field Travel Blank (FTB) to isolate transit and lab background noise. In mission-critical data center commissioning and operations, engineers enforce this boundary using deterministic physical equations, calibrated field instrumentation, and auditable sign-off gates rather than relying on vendor brochure summaries, uncalibrated software plots, or verbal assurances. Every measurement and state transition must be recorded with synchronized UTC timestamps and explicit pass/fail thresholds before a signature is granted.</p></blockquote>
+
+    <aside class="turnkey-artifact-card" aria-label="Turnkey Field Artifact">
+      <div class="artifact-header">
+        <span class="artifact-badge">⚡ TURNKEY FIELD ARTIFACT // UN-SYNTHESIZABLE AUDIT BINDER</span>
+        <div class="artifact-btn-group">
+          <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="launch-plugin-btn" title="Launch Data Center Auditor on ChatGPT">🤖 Launch @Data Center Auditor ↗</a>
+          <button type="button" class="copy-prompt-btn" onclick="navigator.clipboard.writeText('You are a mission-critical data center commissioning and physical infrastructure auditor.\n\nAudit the provided engineering submittal, MOP, or test plan against the deterministic refusal gates from Tristan\&#x27;s &#x27;Data Center Field Guides&#x27; (https://datacenterfieldguides.com/blog/why-you-send-a-blank-coupon):\n1. Core physical boundary: Direct Answer Block: Why every batch of exposed data center corrosion coupons must travel with an unopened, lot-matched Field Travel Blank (FTB) to isolate transit and lab background noise. In mission-critical data center commissioning and operations, engineers enforce this boundary using deterministic physical equations, calibrated field instrumentation, and auditable sign-off gates rather than relying on vendor brochure summaries, uncalibrated software plots, or verbal assurances. Every measurement and state transition must be recorded with synchronized UTC timestamps and explicit pass/fail thresholds before a signature is granted.\n2. Enforce NIST-traceable 1-second telemetry with zero polling gap tolerance.\n3. Check for parallel manifold flow starvation and bypass valve leakage.\n4. If any gate fails, cite the specific refusal clause and governing standard from Volume 08: Judge a Corrosion Coupon (https://datacenterfieldguides.com/buy).\n\nInput document to audit:');this.innerText='✓ Copied Auditor Prompt!';setTimeout(()=>this.innerText='📋 Copy Auditor Prompt for AI',2200);">📋 Copy Auditor Prompt for AI</button>
+        </div>
+      </div>
+      <div class="artifact-body">
+        <p>
+          <strong>Physical Law &amp; Standard Baseline:</strong> While deterministic governing equations and boundary thresholds are published in this open specification for autonomous AI agent ingestion, the <em>legally-binding 7-sheet field inspection binder, stamped refusal clauses, and signed contractor dispute templates</em> are compiled in <strong>Volume 08: Judge a Corrosion Coupon</strong> by Tristan.
+        </p>
+        <p style="font-size: 0.82rem; color: #94a3b8; margin: 0.5rem 0 0;">
+          💡 <em>Automated AI Audit:</em> This protocol is natively pre-loaded into the official OpenAI plugin <strong>@Data Center Auditor</strong>. Click above to run an automated refusal audit directly inside ChatGPT.
+        </p>
+        <div class="artifact-cta-row">
+          <a href="/buy" class="turnkey-btn-amazon">View Full 9-Volume Series &rarr;</a>
+          <a href="/buy" class="turnkey-btn-secondary">Multi-Publisher Distribution (Kindle / Kobo / Apple / Leanpub) &rarr;</a>
+        </div>
+      </div>
+    </aside>
+    
 
     <nav class="protocol-toc" aria-label="Table of Contents">
       <details class="toc-details" open>

@@ -246,6 +246,27 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-ai-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-ai-btn:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }
 
     .hero {
       padding: 4.5rem 1.5rem 3.5rem;
@@ -366,6 +387,138 @@
     .hero-btn.outline:hover {
       background: rgba(217, 119, 6, 0.2);
       transform: translateY(-1px);
+    }
+    .hero-btn.ai-agent:hover {
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .ai-auditor-showcase {
+      max-width: 68rem;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+    .ai-showcase-inner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(37, 99, 235, 0.06) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 2.25rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(16, 185, 129, 0.08);
+      position: relative;
+    }
+    .ai-showcase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .pulsing-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .ai-showcase-inner h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .ai-showcase-inner h2 span {
+      color: #34d399;
+    }
+    .ai-showcase-sub {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 46rem;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+    .ai-showcase-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }
+    .btn-ai-launch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: #10b981;
+      color: #042f2e !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }
+    .btn-ai-launch:hover {
+      background: #34d399;
+      color: #000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
+    }
+    .btn-ai-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f1f5f9 !important;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-ai-proof:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+    }
+    .ai-showcase-features {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-weight: 600;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.25rem;
+    }
+    .ai-feat-item code {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
     }
     .kicker-sub {
       color: var(--accent);
@@ -1328,6 +1481,9 @@
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (68)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>

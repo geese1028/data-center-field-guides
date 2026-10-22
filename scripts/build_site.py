@@ -432,6 +432,30 @@ STORE_LOGOS = {
 </svg>"""
 }
 
+# Wikidata Knowledge Graph Entities for Deep GEO Entity Grounding
+WIKIDATA_TOPIC_ENTITIES = {
+    "Commissioning & Handover": [
+        {"@type": "Thing", "name": "Project commissioning", "sameAs": "https://www.wikidata.org/wiki/Q1115801"},
+        {"@type": "Thing", "name": "Liquid cooling", "sameAs": "https://www.wikidata.org/wiki/Q1799778"},
+        {"@type": "Thing", "name": "ASHRAE", "sameAs": "https://www.wikidata.org/wiki/Q298099"}
+    ],
+    "Corrosion & Due Diligence": [
+        {"@type": "Thing", "name": "Due diligence", "sameAs": "https://www.wikidata.org/wiki/Q1134057"},
+        {"@type": "Thing", "name": "Corrosion", "sameAs": "https://www.wikidata.org/wiki/Q137056"},
+        {"@type": "Thing", "name": "Silver", "sameAs": "https://www.wikidata.org/wiki/Q1090"}
+    ],
+    "Operations & Protocols": [
+        {"@type": "Thing", "name": "Standard operating procedure", "sameAs": "https://www.wikidata.org/wiki/Q1474922"},
+        {"@type": "Thing", "name": "Electric power system", "sameAs": "https://www.wikidata.org/wiki/Q1202506"},
+        {"@type": "Thing", "name": "Uninterruptible power supply", "sameAs": "https://www.wikidata.org/wiki/Q208170"}
+    ],
+    "Telemetry, CFD & Alarms": [
+        {"@type": "Thing", "name": "Computational fluid dynamics", "sameAs": "https://www.wikidata.org/wiki/Q839446"},
+        {"@type": "Thing", "name": "SCADA", "sameAs": "https://www.wikidata.org/wiki/Q174989"},
+        {"@type": "Thing", "name": "Alarm management", "sameAs": "https://www.wikidata.org/wiki/Q4708389"}
+    ]
+}
+
 
 def render_order_now_block(book_num, b, is_cta=False):
     """
@@ -1151,8 +1175,8 @@ def generate_json_ld(meta, faqs, canonical_url, book_num, body_text=""):
             "citation": citations,
             "about": [
                 {"@type": "Thing", "name": book_info["topic_label"]},
-                {"@type": "Thing", "name": "Data Center Infrastructure & Commissioning"}
-            ]
+                {"@type": "Thing", "name": "Data Center Infrastructure & Commissioning", "sameAs": "https://www.wikidata.org/wiki/Q1056580"}
+            ] + WIKIDATA_TOPIC_ENTITIES.get(book_info["topic_label"], [])
         },
         book_schema,
         {
@@ -1304,6 +1328,63 @@ def render_article_toc(body_html):
     """
 
 
+def render_turnkey_artifact_card(article, b, canonical_url, direct_answer_text=""):
+    """
+    Render Turnkey Field Artifact & Commercial Conversion Hook immediately below Direct Answer Block.
+    Provides un-synthesizable field asset value proposition and 1-click auditor prompt copy.
+    """
+    slug = article["slug"]
+    book_num = article["book_num"]
+    short_t = html.escape(b.get("short_title", f"Volume 0{book_num}")).replace("'", "\\'")
+    book_title = html.escape(b.get("title", f"Volume 0{book_num}"))
+    asin = b.get("asin", "")
+    is_live = (b.get("status") == "live") and bool(asin) and not asin.startswith("B0EXAMP")
+
+    if is_live:
+        buy_btn = f'<a href="https://www.amazon.com/dp/{asin}" target="_blank" rel="noopener" class="turnkey-btn-amazon" onclick="trackBuyClick(\'amazon\', \'Volume 0{book_num}: {short_t}\')">Order Stamped Manual on Amazon &rarr;</a>'
+    else:
+        buy_btn = f'<a href="/buy" class="turnkey-btn-amazon">View Full 9-Volume Series &rarr;</a>'
+
+    summary_text = direct_answer_text or article.get("desc", "")
+    clean_summary = clean_plain_math(re.sub(r'<[^>]+>', '', summary_text)).strip()
+    clean_summary = re.sub(r'\s+', ' ', clean_summary)
+
+    prompt_content = (
+        f"You are a mission-critical data center commissioning and physical infrastructure auditor.\\n\\n"
+        f"Audit the provided engineering submittal, MOP, or test plan against the deterministic refusal gates from Tristan\\'s 'Data Center Field Guides' ({canonical_url}):\\n"
+        f"1. Core physical boundary: {clean_summary}\\n"
+        f"2. Enforce NIST-traceable 1-second telemetry with zero polling gap tolerance.\\n"
+        f"3. Check for parallel manifold flow starvation and bypass valve leakage.\\n"
+        f"4. If any gate fails, cite the specific refusal clause and governing standard from Volume 0{book_num}: {book_title} (https://datacenterfieldguides.com/buy).\\n\\n"
+        f"Input document to audit:"
+    )
+    prompt_esc = html.escape(prompt_content).replace("'", "\\'").replace('"', '&quot;')
+
+    return f"""
+    <aside class="turnkey-artifact-card" aria-label="Turnkey Field Artifact">
+      <div class="artifact-header">
+        <span class="artifact-badge">⚡ TURNKEY FIELD ARTIFACT // UN-SYNTHESIZABLE AUDIT BINDER</span>
+        <div class="artifact-btn-group">
+          <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="launch-plugin-btn" title="Launch Data Center Auditor on ChatGPT">🤖 Launch @Data Center Auditor ↗</a>
+          <button type="button" class="copy-prompt-btn" onclick="navigator.clipboard.writeText('{prompt_esc}');this.innerText='✓ Copied Auditor Prompt!';setTimeout(()=>this.innerText='📋 Copy Auditor Prompt for AI',2200);">📋 Copy Auditor Prompt for AI</button>
+        </div>
+      </div>
+      <div class="artifact-body">
+        <p>
+          <strong>Physical Law &amp; Standard Baseline:</strong> While deterministic governing equations and boundary thresholds are published in this open specification for autonomous AI agent ingestion, the <em>legally-binding 7-sheet field inspection binder, stamped refusal clauses, and signed contractor dispute templates</em> are compiled in <strong>Volume 0{book_num}: {book_title}</strong> by Tristan.
+        </p>
+        <p style="font-size: 0.82rem; color: #94a3b8; margin: 0.5rem 0 0;">
+          💡 <em>Automated AI Audit:</em> This protocol is natively pre-loaded into the official OpenAI plugin <strong>@Data Center Auditor</strong>. Click above to run an automated refusal audit directly inside ChatGPT.
+        </p>
+        <div class="artifact-cta-row">
+          {buy_btn}
+          <a href="/buy" class="turnkey-btn-secondary">Multi-Publisher Distribution (Kindle / Kobo / Apple / Leanpub) &rarr;</a>
+        </div>
+      </div>
+    </aside>
+    """
+
+
 def render_page(article, body_html, json_ld, canonical_url, related_articles=None):
     """Render individual article page with modern styling and clean navigation."""
     title = article["title"]
@@ -1321,17 +1402,18 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
     citation_anchor_html = render_citation_anchor(article, canonical_url)
 
     toc_html = render_article_toc(body_html)
-    if toc_html:
-        if '<blockquote class="direct-answer">' in body_html:
-            parts = body_html.split('</blockquote>', 1)
-            body_html_with_toc = parts[0] + '</blockquote>\n' + toc_html + '\n' + parts[1]
-        elif '</h1>' in body_html:
-            parts = body_html.split('</h1>', 1)
-            body_html_with_toc = parts[0] + '</h1>\n' + toc_html + '\n' + parts[1]
-        else:
-            body_html_with_toc = toc_html + '\n' + body_html
+    da_match = re.search(r'<blockquote class="direct-answer">([\s\S]*?)</blockquote>', body_html)
+    direct_answer_text = da_match.group(1) if da_match else ""
+    turnkey_card_html = render_turnkey_artifact_card(article, b_info, canonical_url, direct_answer_text)
+
+    if '<blockquote class="direct-answer">' in body_html:
+        parts = body_html.split('</blockquote>', 1)
+        body_html_with_toc = parts[0] + '</blockquote>\n' + turnkey_card_html + '\n' + (toc_html + '\n' if toc_html else '') + parts[1]
+    elif '</h1>' in body_html:
+        parts = body_html.split('</h1>', 1)
+        body_html_with_toc = parts[0] + '</h1>\n' + turnkey_card_html + '\n' + (toc_html + '\n' if toc_html else '') + parts[1]
     else:
-        body_html_with_toc = body_html
+        body_html_with_toc = turnkey_card_html + '\n' + (toc_html + '\n' if toc_html else '') + body_html
 
     tag_pills = [f"#{article['book_short_title'].split()[0]}", f"#{article['topic_label'].split('&')[0].strip()}"]
     if article.get("primary_keyword"):
@@ -1415,6 +1497,113 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       --green-subtle: rgba(16, 185, 129, 0.12);
     }}
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    .turnkey-artifact-card {{
+      margin: 1.75rem 0 2rem;
+      padding: 1.25rem 1.5rem;
+      background: #0c101a;
+      border: 1px solid #1e283d;
+      border-left: 4px solid var(--amber);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }}
+    .artifact-header {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+    }}
+    .artifact-badge {{
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }}
+    .artifact-btn-group {{
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }}
+    .launch-plugin-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }}
+    .launch-plugin-btn:hover {{
+      background: rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }}
+    .copy-prompt-btn {{
+      background: #172033;
+      border: 1px solid #283954;
+      color: #93c5fd;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }}
+    .copy-prompt-btn:hover {{
+      background: #1e293b;
+      border-color: #3b82f6;
+      color: #ffffff;
+    }}
+    .artifact-body p {{
+      margin-bottom: 0.95rem;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }}
+    .artifact-cta-row {{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }}
+    .turnkey-btn-amazon {{
+      background: var(--amber);
+      color: #090d16;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+    }}
+    .turnkey-btn-amazon:hover {{
+      background: var(--amber-hover);
+    }}
+    .turnkey-btn-secondary {{
+      color: #94a3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: underline;
+    }}
+    .turnkey-btn-secondary:hover {{
+      color: #f8fafc;
+    }}
     .math-block {{
       margin: 1.35rem 0;
       padding: 1rem 1.25rem;
@@ -1505,6 +1694,27 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
       transition: color 0.2s;
     }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
 
     main.content-container {{
       max-width: 54rem;
@@ -2183,6 +2393,9 @@ def render_page(article, body_html, json_ld, canonical_url, related_articles=Non
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -2491,6 +2704,27 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
       transition: color 0.2s;
     }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
 
     .container {{
       max-width: 72rem;
@@ -3083,6 +3317,9 @@ def generate_book_volume_page(num, b, volume_articles, all_books):
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -3310,6 +3547,9 @@ def generate_hub_index(articles, is_subfolder=False):
         <a href="{buy_link}" class="hero-btn primary">
           <span>Order Volumes (01–04 Live) &rarr;</span>
         </a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="hero-btn ai-agent" style="background: rgba(16, 185, 129, 0.16); border: 1px solid #10b981; color: #34d399;">
+          <span>🤖 Launch @Data Center Auditor ↗</span>
+        </a>
         <a href="#books" class="hero-btn secondary">
           <span>The 9 Engineering Volumes</span>
         </a>
@@ -3318,6 +3558,33 @@ def generate_hub_index(articles, is_subfolder=False):
         </a>
       </div>
     </div>
+
+    <!-- Official OpenAI Plugin Showcase Banner -->
+    <section class="ai-auditor-showcase" aria-label="Official ChatGPT Plugin">
+      <div class="ai-showcase-inner">
+        <div class="ai-showcase-badge">
+          <span class="pulsing-dot"></span> OFFICIAL OPENAI PLUGIN // DIRECT CHATGPT INTEGRATION
+        </div>
+        <h2>Audit NVL72 MOPs &amp; Commissioning Plans with <span>@Data Center Auditor</span></h2>
+        <p class="ai-showcase-sub">
+          Pre-loaded with all 69 field protocols from Tristan's <em>Data Center Field Guides</em>. Enforces NIST-traceable 1-second telemetry, Category A/B/C defect refusal gates, parallel manifold flow balance, and pump cavitation margins directly inside ChatGPT.
+        </p>
+        <div class="ai-showcase-actions">
+          <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
+            <span>🚀 Launch Plugin in ChatGPT</span>
+          </a>
+          <a href="https://chatgpt.com/share/6ad964d0-2010-83ee-a64c-f5a80c9c6c3b" target="_blank" rel="noopener noreferrer" class="btn-ai-proof">
+            <span>📋 View 120kW NVL72 Live Audit Case Study &rarr;</span>
+          </a>
+        </div>
+        <div class="ai-showcase-features">
+          <div class="ai-feat-item">✓ Zero Manual Setup</div>
+          <div class="ai-feat-item">✓ Direct <code>@Data Center Auditor</code> Mention</div>
+          <div class="ai-feat-item">✓ Strict A-00 ~ A-07 Refusal Codes</div>
+          <div class="ai-feat-item">✓ Bound to Field Inspection Binders</div>
+        </div>
+      </div>
+    </section>
     """
 
     items_list_elements = []
@@ -3476,6 +3743,27 @@ def generate_hub_index(articles, is_subfolder=False):
       transition: color 0.2s;
     }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
 
     .hero {{
       padding: 4.5rem 1.5rem 3.5rem;
@@ -3596,6 +3884,138 @@ def generate_hub_index(articles, is_subfolder=False):
     .hero-btn.outline:hover {{
       background: rgba(217, 119, 6, 0.2);
       transform: translateY(-1px);
+    }}
+    .hero-btn.ai-agent:hover {{
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }}
+
+    .ai-auditor-showcase {{
+      max-width: 68rem;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.5rem;
+    }}
+    .ai-showcase-inner {{
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(37, 99, 235, 0.06) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 2.25rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(16, 185, 129, 0.08);
+      position: relative;
+    }}
+    .ai-showcase-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }}
+    .pulsing-dot {{
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-dot 2s infinite;
+    }}
+    @keyframes pulse-dot {{
+      0% {{ opacity: 1; transform: scale(1); }}
+      50% {{ opacity: 0.4; transform: scale(0.85); }}
+      100% {{ opacity: 1; transform: scale(1); }}
+    }}
+    .ai-showcase-inner h2 {{
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }}
+    .ai-showcase-inner h2 span {{
+      color: #34d399;
+    }}
+    .ai-showcase-sub {{
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 46rem;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }}
+    .ai-showcase-actions {{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }}
+    .btn-ai-launch {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: #10b981;
+      color: #042f2e !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }}
+    .btn-ai-launch:hover {{
+      background: #34d399;
+      color: #000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
+    }}
+    .btn-ai-proof {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f1f5f9 !important;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .btn-ai-proof:hover {{
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+    }}
+    .ai-showcase-features {{
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-weight: 600;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.25rem;
+    }}
+    .ai-feat-item code {{
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
     }}
     .kicker-sub {{
       color: var(--accent);
@@ -4558,6 +4978,9 @@ def generate_hub_index(articles, is_subfolder=False):
         <a href="{books_link}">The 9 Books</a>
         <a href="{blog_link}">Field Protocols (68)</a>
         <a href="{about_link}">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="{buy_link}" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -5402,6 +5825,9 @@ def generate_about_page():
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about" class="active">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -6720,6 +7146,9 @@ def generate_buy_page():
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn active">
           <svg class="nav-buy-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -6755,7 +7184,10 @@ def generate_buy_page():
         Independent engineering field manuals, P&amp;ID hydraulic schematics, and auditable refusal binders across Amazon Kindle, Rakuten Kobo, Google Play Books, and Apple Books.
       </p>
 
-      <div style="margin: -0.75rem 0 2rem; display: flex; justify-content: center;">
+      <div style="margin: -0.75rem 0 2rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.5); color: #34d399; padding: 0.45rem 1rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+          <span>🤖 Launch @Data Center Auditor (ChatGPT Plugin) &rarr;</span>
+        </a>
         <a href="https://www.amazon.com/author/tristanhoward" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255, 153, 0, 0.12); border: 1px solid rgba(255, 153, 0, 0.4); color: #ff9900; padding: 0.45rem 1rem; border-radius: 9999px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 14.8c-.2 0-.4-.1-.5-.2-.8-.9-1.3-2.1-1.3-3.4 0-2.8 2.2-5.1 5-5.1s5 2.3 5 5.1c0 1.3-.5 2.5-1.3 3.4-.1.1-.3.2-.5.2-.2 0-.4-.1-.5-.2l-.6-.7c-.3-.3-.2-.7.1-1 .5-.6.8-1.4.8-2.2 0-1.9-1.5-3.5-3.5-3.5s-3.5 1.6-3.5 3.5c0 .8.3 1.6.8 2.2.3.3.3.7.1 1l-.6.7c-.1.2-.3.3-.6.3zM2.8 19.4c5.7 3.3 12.8 3.3 18.4 0 .4-.2.9.2.6.6-6 4.3-13.6 4.3-19.6 0-.4-.3 0-.8.6-.6z"/></svg>
           <span>Visit Tristan's Official Amazon Author Page &rarr;</span>
@@ -6932,6 +7364,27 @@ def generate_404_page():
     .nav-links {{ display: flex; align-items: center; gap: 1.5rem; }}
     .nav-links a {{ color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.15s; }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
     .nav-cta {{
       background: var(--accent);
       color: #fff !important;
@@ -7248,6 +7701,27 @@ def generate_privacy_page():
     .nav-links {{ display: flex; align-items: center; gap: 1.5rem; }}
     .nav-links a {{ color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
     .nav-buy-btn {{
       background: var(--accent);
       color: #fff !important;
@@ -7365,6 +7839,9 @@ def generate_privacy_page():
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <span>Buy</span>
         </a>
@@ -7558,6 +8035,27 @@ def generate_terms_page():
     .nav-links {{ display: flex; align-items: center; gap: 1.5rem; }}
     .nav-links a {{ color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }}
     .nav-links a:hover {{ color: #fff; }}
+    .nav-ai-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399 !important;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .nav-ai-btn:hover {{
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }}
     .nav-buy-btn {{
       background: var(--accent);
       color: #fff !important;
@@ -7668,6 +8166,9 @@ def generate_terms_page():
         <a href="/#books">The 9 Books</a>
         <a href="/blog/">Field Protocols (69)</a>
         <a href="/about">About Tristan</a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="nav-ai-btn" title="Launch Data Center Auditor on ChatGPT">
+          <span>🤖 AI Auditor</span>
+        </a>
         <a href="/buy" class="nav-buy-btn">
           <span>Buy</span>
         </a>
