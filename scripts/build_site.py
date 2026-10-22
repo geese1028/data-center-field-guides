@@ -3791,11 +3791,11 @@ def generate_hub_index(articles, is_subfolder=False):
             <h3>Claude Desktop &amp; Cursor (MCP)</h3>
             <p>Connect Claude Desktop, Cursor, or Zed via the official Model Context Protocol (MCP) server. Run automated MOP/SOP audits, NVL72 hydraulic verifications, and ANSI/ISA-71.04 corrosion checks natively.</p>
             <div class="mcp-install-box">
-              <code>npx -y @dcfg/datacenter-auditor</code>
+              <code>Remote: https://datacenterfieldguides.com/mcp</code>
             </div>
             <div class="ai-card-actions">
-              <a href="/SKILL.md" class="btn-card-action claude-btn">View MCP Tools &rarr;</a>
-              <span class="ai-status-pill online">● Active in Claude</span>
+              <a href="/mcp" class="btn-card-action claude-btn">Inspect Live MCP ↗</a>
+              <span class="ai-status-pill online">● 5 Tools Live</span>
             </div>
           </div>
 
