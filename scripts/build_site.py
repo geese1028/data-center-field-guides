@@ -3758,6 +3758,9 @@ def generate_hub_index(articles, is_subfolder=False):
         <a href="{buy_link}" class="hero-btn primary">
           <span>Order Volumes (01–04 Live) &rarr;</span>
         </a>
+        <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="hero-btn ai-agent" style="background: rgba(16, 185, 129, 0.16); border: 1px solid #10b981; color: #34d399;">
+          <span>🤖 Launch @Data Center Auditor ↗</span>
+        </a>
         <a href="#books" class="hero-btn secondary">
           <span>The 9 Engineering Volumes</span>
         </a>
@@ -3766,6 +3769,33 @@ def generate_hub_index(articles, is_subfolder=False):
         </a>
       </div>
     </div>
+
+    <!-- Official OpenAI Plugin Showcase Banner -->
+    <section class="ai-auditor-showcase" aria-label="Official ChatGPT Plugin">
+      <div class="ai-showcase-inner">
+        <div class="ai-showcase-badge">
+          <span class="pulsing-dot"></span> OFFICIAL OPENAI PLUGIN // DIRECT CHATGPT INTEGRATION
+        </div>
+        <h2>Audit NVL72 MOPs &amp; Commissioning Plans with <span>@Data Center Auditor</span></h2>
+        <p class="ai-showcase-sub">
+          Pre-loaded with all 69 field protocols from Tristan's <em>Data Center Field Guides</em>. Enforces NIST-traceable 1-second telemetry, Category A/B/C defect refusal gates, parallel manifold flow balance, and pump cavitation margins directly inside ChatGPT.
+        </p>
+        <div class="ai-showcase-actions">
+          <a href="https://chatgpt.com/plugins/plugin_6d8fda52030c819185e4c72fa1336544" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
+            <span>🚀 Launch Plugin in ChatGPT</span>
+          </a>
+          <a href="https://chatgpt.com/share/6ad964d0-2010-83ee-a64c-f5a80c9c6c3b" target="_blank" rel="noopener noreferrer" class="btn-ai-proof">
+            <span>📋 View 120kW NVL72 Live Audit Case Study &rarr;</span>
+          </a>
+        </div>
+        <div class="ai-showcase-features">
+          <div class="ai-feat-item">✓ Zero Manual Setup</div>
+          <div class="ai-feat-item">✓ Direct <code>@Data Center Auditor</code> Mention</div>
+          <div class="ai-feat-item">✓ Strict A-00 ~ A-07 Refusal Codes</div>
+          <div class="ai-feat-item">✓ Bound to Field Inspection Binders</div>
+        </div>
+      </div>
+    </section>
     """
 
     items_list_elements = []
@@ -4065,6 +4095,138 @@ def generate_hub_index(articles, is_subfolder=False):
     .hero-btn.outline:hover {{
       background: rgba(217, 119, 6, 0.2);
       transform: translateY(-1px);
+    }}
+    .hero-btn.ai-agent:hover {{
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }}
+
+    .ai-auditor-showcase {{
+      max-width: 68rem;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.5rem;
+    }}
+    .ai-showcase-inner {{
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(37, 99, 235, 0.06) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 2.25rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(16, 185, 129, 0.08);
+      position: relative;
+    }}
+    .ai-showcase-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }}
+    .pulsing-dot {{
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-dot 2s infinite;
+    }}
+    @keyframes pulse-dot {{
+      0% {{ opacity: 1; transform: scale(1); }}
+      50% {{ opacity: 0.4; transform: scale(0.85); }}
+      100% {{ opacity: 1; transform: scale(1); }}
+    }}
+    .ai-showcase-inner h2 {{
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }}
+    .ai-showcase-inner h2 span {{
+      color: #34d399;
+    }}
+    .ai-showcase-sub {{
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 46rem;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }}
+    .ai-showcase-actions {{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }}
+    .btn-ai-launch {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: #10b981;
+      color: #042f2e !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }}
+    .btn-ai-launch:hover {{
+      background: #34d399;
+      color: #000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
+    }}
+    .btn-ai-proof {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f1f5f9 !important;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .btn-ai-proof:hover {{
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+    }}
+    .ai-showcase-features {{
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-weight: 600;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.25rem;
+    }}
+    .ai-feat-item code {{
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
     }}
 
     .kicker-sub {{
@@ -5212,7 +5374,6 @@ def generate_hub_index(articles, is_subfolder=False):
         </div>
       </div>
       {render_series_tracker_bar()}
-      {render_storefront_health_strip()}
       <div class="books-grid">
         {''.join(book_cards)}
       </div>
