@@ -583,6 +583,148 @@
       color: #64748b;
     }
 
+    /* Storefront Health & Distribution Status Panel */
+    .storefront-health-panel {
+      background: #0d131f;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+    .health-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 1rem;
+    }
+    .health-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .health-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+    }
+    .health-kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #94a3b8;
+      letter-spacing: 0.08em;
+    }
+    .health-badge-pass {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      letter-spacing: 0.05em;
+    }
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .health-card {
+      background: #121a2d;
+      border: 1px solid #1e2a42;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .health-card.is-active-channel {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .health-card.is-pending-channel {
+      border-color: rgba(245, 158, 11, 0.3);
+      opacity: 0.85;
+    }
+    .health-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .channel-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .channel-pill {
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .channel-pill.live {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .channel-pill.review {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .health-card-desc {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+    .health-card-meta {
+      font-family: ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.4rem;
+    }
+    .card-metric {
+      color: #34d399;
+      font-weight: 700;
+    }
+    .card-metric-pending {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+    .health-footer {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+    .health-shield-icon {
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
     /* Section Headers */
     .section-header-block {
       margin-bottom: 2rem;
@@ -940,18 +1082,18 @@
           <span class="tracker-heading">Data Center Engineering Field Guides (9 Volumes)</span>
         </div>
         <div class="tracker-stat">
-          <span class="stat-highlight">4 of 9</span> Volumes Released on Amazon Kindle &amp; Rakuten Kobo
+          <span class="stat-highlight">4 of 9</span> Volumes Live on Amazon Kindle &bull; <span class="stat-highlight">3 of 9</span> on Leanpub
         </div>
       </div>
       <div class="tracker-progress-track">
         <div class="tracker-progress-fill" style="width: 44.4%;"></div>
       </div>
       <div class="tracker-steps">
-        <span class="tracker-step is-complete">Vol 01: Liquid Load Banks ✓ (Amazon &amp; Kobo)</span>
-        <span class="tracker-step is-complete">Vol 02: Telemetry &amp; Flash Reports ✓ (Amazon)</span>
-        <span class="tracker-step is-complete">Vol 03: Cx Verification ✓ (Amazon)</span>
+        <span class="tracker-step is-complete">Vol 01: Liquid Load Banks ✓ (Amazon &amp; Leanpub)</span>
+        <span class="tracker-step is-complete">Vol 02: Telemetry &amp; Flash Reports ✓ (Amazon &amp; Leanpub)</span>
+        <span class="tracker-step is-complete">Vol 03: Cx Verification ✓ (Amazon &amp; Leanpub)</span>
         <span class="tracker-step is-complete">Vol 04: CFD Aerodynamics ✓ (Amazon)</span>
-        <span class="tracker-step is-pending">Vols 05–09: Ops, Alarms, TDD (In Publishing)</span>
+        <span class="tracker-step is-pending">Vols 05–09: Ops, Alarms, TDD (In Editorial)</span>
       </div>
     </div>
     
