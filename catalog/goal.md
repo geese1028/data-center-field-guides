@@ -172,6 +172,13 @@ When Gemini 4 / Argon quota resets, execute the final verification, review, diag
 
 ### 2. 唯一允许的两种例外操作
 - **例外 A（图书上架点亮）**：新书在 Apple Books、Kobo、Google Play 真实上架并获得购买链接时，仅允许更新元数据去除 `is-disabled` 点亮图标。
-- **例外 B（新增技术协议）**：新增 markdown 文章，由脚本增量编译，新文章继承既有设计，严禁修改全局模板与公共区域。
+- **例外 B（新增技术协议）**：新增 markdown文章，由脚本增量编译，新文章继承既有设计，严禁修改全局模板与公共区域。
+
+### 3. 敏感数据与商业资产绝对红线令 (Article 05)
+- **商业成品二进制零入库**：严格禁止在 Git 中追踪任何 `*.epub`、`*.mobi`、`*.azw3`、`*.pdf` 等商业成品。
+- **双轨版权隔离**：代码/脚本/模板遵循 MIT；图书全文、手稿及插图保留全部版权 (All Rights Reserved)。
+- **企业客户脱敏**：严禁出现大厂内部代号（腾讯 `HLDY-*`、阿里 `ALZJ-*`/`NA61-*`）、真实客户机密项目标识（`百度M1`、`NRT10`、`S430`）及未脱敏门限。
+- **个人隐私保护**：严禁泄露同事/客户真实姓名（`吴振杰`、`利东`）及作者中文拼音（`wangyuheng`）。
+- **零凭据泄露**：严禁硬编码任何 API Key、Token 或私钥，本地凭证严格处于 `.gitignore` 保护区。
 
 详见根目录最高宪法：[`AGENTS.md`](file:///Users/geese/Downloads/book/AGENTS.md) 及 [`GEMINI.md`](file:///Users/geese/Downloads/book/GEMINI.md)。

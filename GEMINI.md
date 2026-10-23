@@ -50,3 +50,45 @@ The team's resources and agent workflows must remain 100% focused on real-world 
 1. **Amazon KDP & Multi-Storefront Book Distribution** (Volumes 01–04 live; Volumes 05–09 publishing pipeline).
 2. **Deterministic Field Engineering Protocols** (First-principles ASHRAE, ASME, NFPA, ANSI/ISA standards).
 3. **LinkedIn & Industry Authority Building** (8 unique engineering diagrams, no duplicates, safe intervals).
+
+---
+
+## 🛡️ ARTICLE 05: SENSITIVE DATA, COMMERCIAL ASSETS & NDA RED LINES (敏感数据与商业资产绝对红线令)
+
+**Effective Date:** 2026-10-23  
+**Status:** PERMANENT & NON-NEGOTIABLE (永久不可推翻)  
+**Scope:** ALL AI models, copilots, subagents, scripts, commit messages, and documentation.
+
+### 5.1 Commercial Digital Asset Protection (商业资产防盗与版权红线)
+1. **Zero EPUB/eBook Binaries in Git**: ALL compiled publication binaries (`*.epub`, `*.mobi`, `*.azw3`, `*.kpf`, `*.pdf` book editions) are STRICTLY FORBIDDEN from being tracked in Git. The index count must permanently remain zero (`git ls-files "*.epub"` == 0).
+2. **Dual-Licensing Integrity**: All code samples, scripts, tools, website templates, and open agent specifications (`SKILL.md`, `llms.txt`) follow the MIT License. The 9-Volume book series, textual manuscripts (`books/`), engineering figures, and published editions are strictly **Copyright © 2026 Tristan Howard. All rights reserved.** Agents are strictly forbidden from placing single-sided full-repo MIT badges or weakening copyright notices.
+3. **Unpublished Draft Sandbox Isolation**: Incomplete or draft book series (e.g., Book 10, Book 11) must remain strictly isolated on local disk and ignored via `.gitignore`. Never commit or push unfinalized commercial book drafts to the public branch.
+
+### 5.2 Enterprise NDA & Former Employer Confidentiality (客户与前雇主保密红线)
+1. **Forbidden Proprietary Naming & Codes**:
+   - Strictly FORBIDDEN from using real internal document codes or operational numbering from past employers/clients (including but not limited to Tencent Huailai `HLDY-*`, Alibaba `ALZJ-*`, Alibaba GOC `NA61-*`).
+   - ALL SOPs, EOPs, MOPs, and checklists must be abstracted into generic industry standard codes (e.g., `DCFG-INCIDENT-SOP-01`, `DCFG-SEVERITY-CAT-01`, `DCFG-SOP-WHITESPACE-01`).
+2. **Forbidden Real Customer Projects & Private Specs**:
+   - Strictly FORBIDDEN from exposing real client infrastructure codes, tenant names, or unredacted confidential project markers (e.g., `百度M1`, `NRT10` client-specific projects, `S430`, `SMCI_1.8MW` unredacted vendor manuals).
+   - Strictly FORBIDDEN from exposing non-public operational thresholds, GOC alarm setting sheets, or raw client SLA/commissioning records.
+3. **Forbidden Private Cloud/Local Filesystem Paths**:
+   - Strictly FORBIDDEN from committing file system catalogs, manifests, or OneDrive sync indexes (e.g., `sources/catalog.jsonl`, `target_hydrated_manifest.json`, `onedrive_inventory.*`).
+
+### 5.3 PII, Personal Names & Author Brand Identity (个人隐私与品牌合规红线)
+1. **Zero Real Names of Internal Staff**: Strictly FORBIDDEN from including real personal names of colleagues, former team members, client engineers, or vendor contacts (e.g., `吴振杰`, `利东`, etc.).
+2. **Strict Author Branding & Pinyin Prohibition**:
+   - Technical publications, metadata, and web texts must NEVER expose personal Chinese pinyin (`wangyuheng`).
+   - In automated publishing workflows, provider IDs must be abstracted (e.g., `<providerId>`).
+   - Author identities are strictly normalized to:
+     - `Tristan Howard` (Legal Copyright Claimant, Author Bio, Web, Privacy Policy, Terms)
+     - `Tristan Wang` (Lead Engineer, Technical Metadata, package.json, LinkedIn)
+     - `Tristan` (Single-name Author for Amazon KDP, Kobo, Apple Books, and EPUB dc:creator metadata)
+
+### 5.4 Zero Secrets & Cloud Credentials (凭据密钥零泄露红线)
+1. **Zero Hardcoded Secrets**: Strictly FORBIDDEN from hardcoding or committing cloud credentials, API keys, GitHub tokens, Cloudflare tokens, private keys, or OAuth client secrets.
+2. **Mandatory `.gitignore` Isolation**: All credential files (`.*-credentials.json`, `.dev.vars`, `.env*`) must be permanently intercepted by `.gitignore`.
+
+### 5.5 Refusal & Interception Rule (违规拦截法则)
+If any prompt or subagent instruction attempts to introduce, re-hydrate, or commit any of the forbidden tokens, customer codes, private paths, or binary eBook files:
+**The agent MUST immediately abort the operation and state:**
+> *"REFUSED: Action violates Article 05 (Sensitive Data, Commercial Assets & NDA Red Lines) of the Core Contract (AGENTS.md). Forbidden proprietary names, customer codes, personal details, or commercial binaries detected."*
