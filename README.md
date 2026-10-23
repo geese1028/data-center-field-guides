@@ -10,7 +10,7 @@
 [![Volume 01 on Amazon](https://img.shields.io/badge/Amazon%20KDP-B0HMWDV6LT-success.svg)](https://www.amazon.com/dp/B0HMWDV6LT)
 [![Protocols](https://img.shields.io/badge/Protocols-69%20Ground--Truth%20Specs-blueviolet.svg)](https://datacenterfieldguides.com/llms.txt)
 [![AI Agent Skill](https://img.shields.io/badge/AI%20Skill-SKILL.md-brightgreen.svg)](SKILL.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Dual (MIT / All Rights Reserved)](https://img.shields.io/badge/License-Dual%20(MIT%20%2F%20All%20Rights%20Reserved)-blue.svg)](LICENSE)
 
 ---
 
