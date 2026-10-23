@@ -1,7 +1,0 @@
-Note: Resource is being processed in the background.
-Use 'ov task status <task_id>' to check progress, or 'ov task list' to see all tasks.
-status       success
-task_id      1b978ec1-4e65-42cf-8e06-f9c55d0dc33d
-source_path  summaries
-root_uri     viking://resources/book-summaries/summaries
-

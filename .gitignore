@@ -1,10 +1,19 @@
-sources/text/
-sources/content/
-sources/catalog.jsonl
-sources/catalog.staging.jsonl
-sources/catalog.staging.summary.json
-sources/hydrate.log
-sources/hydrate_ok.txt
+# Compiled eBooks & Commercial Publication Binaries (Protected Assets)
+*.epub
+*.mobi
+*.azw3
+*.kpf
+books/*/epub/
+
+# Sensitive catalogs, manifests, and local ingestion sources
+sources/
+catalog/target_hydrated_manifest.json
+scripts/hydrate_target_materials.py
+DCFG_Google_Play_Books_Appeal_Evidence.txt
+.premium-trial.log
+*.bundle
+
+# Working extracts & local dossiers
 dossiers/
 docs/adversarial_verification_report.md
 docs/AUDIT_*.md

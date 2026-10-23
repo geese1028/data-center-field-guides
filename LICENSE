@@ -1,3 +1,10 @@
+# Data Center Field Guides — Dual Licensing Notice
+
+## 1. Open Source Software & Technical Specifications (MIT License)
+
+The companion tools, automation scripts (`scripts/`), MCP server (`mcp-server/`), website templates (`site/`), and open agent specifications (`SKILL.md`, `llms.txt`) are licensed under the MIT License:
+
+```text
 MIT License
 
 Copyright (c) 2026 Tristan Howard / Data Center Field Guides (https://datacenterfieldguides.com)
@@ -19,3 +26,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
+
+---
+
+## 2. Published Books, Manuscripts, and Diagrams (All Rights Reserved)
+
+The underlying 9-Volume book series, textual manuscripts (`books/`), engineering figures, cover artwork, and published editions are:
+
+**Copyright © 2026 Tristan Howard. All rights reserved.**
+
+No part of the books, manuscripts, technical dossiers, or compiled publications may be reproduced, distributed, mirrored, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the author, except for brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law. Commercial editions are distributed exclusively through authorized retail channels (Amazon Kindle, Rakuten Kobo, Apple Books, Google Play Books, Leanpub).
