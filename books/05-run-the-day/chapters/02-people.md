@@ -18,7 +18,7 @@ In high-density AI data centers housing megawatt-scale liquid cooling and multi-
 - **Electrical Operations**: Any switching, racking, or live testing on medium-voltage (10kV/35kV) or low-voltage (400V/480V) switchgear must be performed exclusively by certified high-voltage/low-voltage electricians holding valid governmental licenses.
 - **Cooling & Chemical Operations**: Operating centrifugal chillers, industrial cooling towers, and primary/secondary pumping stations requires licensed refrigeration technicians certified in pressurized refrigerant handling and industrial water treatment.
 
-Per OpenViking operational guidelines (`ALZJ-YW-2.6XZ10`), liquid cooling operations involving secondary distribution units (CDUs), primary facility water systems (FWS), and rack-level manifolds require verified technical training on chemical biocides, glycol concentration measurement, and leak containment protocols.
+Per OpenViking operational guidelines (`DCFG-SOP-LIQUID-01`), liquid cooling operations involving secondary distribution units (CDUs), primary facility water systems (FWS), and rack-level manifolds require verified technical training on chemical biocides, glycol concentration measurement, and leak containment protocols.
 
 If a technician on shift lacks the statutory license for high-voltage switching, their name may not appear on an electrical switching ticket. If an unlicensed contractor is found with an open panel door, work stops immediately.
 

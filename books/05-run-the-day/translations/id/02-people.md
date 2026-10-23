@@ -20,7 +20,7 @@ Di pusat data AI berdensitas tinggi yang menampung pendinginan cair skala megawa
 - **Operasi Kelistrikan**: Setiap peralihan (switching), penarikan/pemasangan pemutus (racking), atau pengujian bertegangan pada switchgear tegangan menengah (10kV/35kV) atau tegangan rendah (400V/480V) harus dilakukan secara eksklusif oleh teknisi listrik bersertifikat yang memegang lisensi pemerintah yang sah.
 - **Operasi Pendinginan & Kimia**: Mengoperasikan chiller sentrifugal, menara pendingin industri, dan stasiun pompa primer/sekunder memerlukan teknisi refrigerasi berlisensi yang tersertifikasi dalam penanganan refrigeran bertekanan dan pengolahan air industri.
 
-Berdasarkan panduan operasional OpenViking (`ALZJ-YW-2.6XZ10`), operasi pendinginan cair yang melibatkan unit distribusi sekunder (CDU), sistem air fasilitas primer (FWS), dan manifold tingkat rak memerlukan pelatihan teknis terverifikasi mengenai biosida kimia, pengukuran konsentrasi glikol, dan protokol penanganan kebocoran.
+Berdasarkan panduan operasional OpenViking (`DCFG-SOP-LIQUID-01`), operasi pendinginan cair yang melibatkan unit distribusi sekunder (CDU), sistem air fasilitas primer (FWS), dan manifold tingkat rak memerlukan pelatihan teknis terverifikasi mengenai biosida kimia, pengukuran konsentrasi glikol, dan protokol penanganan kebocoran.
 
 Jika seorang teknisi pada sif tidak memiliki lisensi resmi untuk manuver tegangan tinggi, nama mereka tidak boleh tercantum pada tiket manuver listrik. Jika kontraktor tanpa lisensi ditemukan membuka pintu panel listrik, pekerjaan harus segera dihentikan seketika.
 

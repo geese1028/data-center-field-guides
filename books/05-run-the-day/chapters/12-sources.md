@@ -26,8 +26,8 @@ When drafting Methods of Procedure (MOP), Emergency Operating Procedures (EOP), 
  - **ISO 55001:2014**: *Asset management — Management systems — Requirements*. Systematic lifecycle governance of critical physical infrastructure assets.
 
 5. **Operational Guidelines (OpenViking Repository)**:
- - **ALZJ-YW-2.6XZ02**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory inspection rounds, PDU thermal scans, containment differential pressure verification, and quick-disconnect leak audits.
- - **ALZJ-YW-2.6XZ10**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis makeup water chemistry.
+ - **DCFG-SOP-WHITESPACE-01**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory inspection rounds, PDU thermal scans, containment differential pressure verification, and quick-disconnect leak audits.
+ - **DCFG-SOP-LIQUID-01**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis makeup water chemistry.
 
 ## The Copyright Line
 

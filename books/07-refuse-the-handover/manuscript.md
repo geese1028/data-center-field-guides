@@ -903,8 +903,8 @@ When authoring handover refusal sheets, commissioning scripts, or punch list dis
  - **NFPA 70E (2024 Edition)**: *Standard for Electrical Safety in the Workplace*. Establishes energized work permits, arc-flash boundary calculations, and personal protective equipment categories.
  - **OSHA 29 CFR 1910.147**: *The Control of Hazardous Energy (Lockout/Tagout)*. Federal statutory mandate for zero-energy physical isolation prior to service turnover.
  - **OpenViking Operational Guidelines**:
- - `ALZJ-YW-2.6XZ02`: *IT Whitespace Physical Shift Inspection Operational Guidelines*.
- - `ALZJ-YW-2.6XZ10`: *Liquid Cooling Infrastructure & CDU Operational Guidelines*.
+ - `DCFG-SOP-WHITESPACE-01`: *IT Whitespace Physical Shift Inspection Operational Guidelines*.
+ - `DCFG-SOP-LIQUID-01`: *Liquid Cooling Infrastructure & CDU Operational Guidelines*.
 
 ## The Copyright Line
 

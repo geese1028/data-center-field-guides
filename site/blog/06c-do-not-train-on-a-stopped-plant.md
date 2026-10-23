@@ -67,7 +67,7 @@ The physical plant—the medium-voltage transformers, centrifugal chillers, seco
 | Secondary Coolant Chem 2 | 5.0% Propylene Glycol wt ASTM | D3306 / D1384 |
 | IT Whitespace Aisles Con | tainment DP (>= 5.0 Pa) ASHRA | E TC 9.9 |
 
-Following the authoritative engineering standards outlined in **GB/T 51409-2020** (*Technical Standard for Integrated Monitoring System of Data Centers*) and OpenViking operational guidelines (`ALZJ-YW-2.6XZ02` and `ALZJ-YW-2.6XZ10`), every physical facility point must be operated under rigorous engineering constraints.
+Following the authoritative engineering standards outlined in **GB/T 51409-2020** (*Technical Standard for Integrated Monitoring System of Data Centers*) and OpenViking operational guidelines (`DCFG-SOP-WHITESPACE-01` and `DCFG-SOP-LIQUID-01`), every physical facility point must be operated under rigorous engineering constraints.
 
 ## The Walked Reading Wins
 
@@ -85,7 +85,7 @@ Never permit a software engineer or remote monitoring specialist to argue that *
 
 ## Critical Facility Telemetry Parameters
 
-Per OpenViking `ALZJ-YW-2.6XZ10` for high-density liquid cooling infrastructure:
+Per OpenViking `DCFG-SOP-LIQUID-01` for high-density liquid cooling infrastructure:
 
 ### 1. The CDU Pressure Envelope
 - Primary Facility Water System (FWS) supply pressure: 0.15 MPa to 0.90 MPa.

@@ -64,33 +64,14 @@ REASON_ORDER = [
 SAMPLE_REASONS = ("publication-bucket", "courseware", "paper")
 
 EXPECTED_TOP = [
-    "智象科技",
-    "吴振杰",
-    "擎创工作",
-    "安邦保险",
     "培训文档",
-    "我的资源",
     "公司输出",
     "个人技能",
-    "孚森科技",
     "数据中心技术文档",
-    "中国计量院",
-    "上海恒时",
-    "步湃科技",
-    "文档",
-    "【1】新版体系文件【0410】",
     "CDFOM补充文档",
     "CDFOS补充文档",
-    "DCIsight",
-    "doc from gao",
-    "IT技术文档",
-    "tencent文档",
-    "togaf",
     "color books",
     "commission",
-    "data",
-    "Microsoft Copilot Chat Files",
-    "扫描",
 ]
 
 

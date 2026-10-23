@@ -34,7 +34,7 @@ Setiap meter persegi pusat data produksi harus diaudit melalui empat saluran sen
 
 ## Enam Stasiun Inspeksi Kritis
 
-Mengikuti standar operasional yang diuraikan dalam OpenViking (`ALZJ-YW-2.6XZ02` untuk IT Whitespace dan `ALZJ-YW-2.6XZ10` untuk Infrastruktur Pendinginan Cair), putaran inspeksi sif melintasi enam stasiun wajib:
+Mengikuti standar operasional yang diuraikan dalam OpenViking (`DCFG-SOP-WHITESPACE-01` untuk IT Whitespace dan `DCFG-SOP-LIQUID-01` untuk Infrastruktur Pendinginan Cair), putaran inspeksi sif melintasi enam stasiun wajib:
 
 **METRIK INSPEKSI STASIUN KRITIS**
 
@@ -73,14 +73,14 @@ Mengikuti standar operasional yang diuraikan dalam OpenViking (`ALZJ-YW-2.6XZ02`
 - Audit tekanan diferensial pompa air dingin (ΔP) dan verifikasi bahwa penggerak kecepatan variabel (VFD) sekunder memodulasi dengan benar tanpa fluktuasi berlebih (hunting).
 
 ### Stasiun 5: Unit Distribusi Pendingin Sekunder (CDU)
-Berdasarkan OpenViking `ALZJ-YW-2.6XZ10`, CDU adalah jantung mekanis kluster AI berdensitas tinggi:
+Berdasarkan OpenViking `DCFG-SOP-LIQUID-01`, CDU adalah jantung mekanis kluster AI berdensitas tinggi:
 - **Rentang Tekanan**: Verifikasi tekanan pasokan sistem air fasilitas primer (FWS) dan tekanan pasokan sistem pendingin teknologi sekunder (TCS) tetap berada di antara 0.15 MPa dan 0.90 MPa. Verifikasi bahwa tekanan diferensial pompa adalah < 1.0 bar.
 - **Kinerja Termal**: Verifikasi bahwa suhu pendekatan penukar panas pelat (ΔT_approach = T_TCS, supply - T_FWS, supply) tidak melebihi 8.0 K. Pendekatan > 8.0 K menunjukkan pengotoran biologis atau penyumbatan partikel pada permukaan pelat.
 - **Kimia Cairan**: Gunakan refraktometer optik terkalibrasi untuk menguji cairan pendingin sekunder. Konsentrasi propilen glikol harus berukuran tepat **25.0% berat** (± 1.0%), memberikan perlindungan beku hingga -11.5°C dan perlindungan pecah hingga -22.0°C. Konduktivitas cairan pendingin harus < 10 μ S/ cm, dengan pH dipertahankan antara 7.5 dan 9.0.
 - **Integritas Fisik**: Periksa baki penampung internal CDU dan rangka dasar dari kelembapan. Verifikasi bahwa sensor pendeteksi kebocoran kabel kontinu benar-benar kering dan diposisikan dengan benar. Periksa tekanan pra-pengisian nitrogen pada tangki ekspansi termal (P_0 = P_fill - 0.2 bar).
 
 ### Stasiun 6: Whitespace AI & Rak NVL72
-Berdasarkan OpenViking `ALZJ-YW-2.6XZ02`:
+Berdasarkan OpenViking `DCFG-SOP-WHITESPACE-01`:
 - **Distribusi Daya**: Periksa remote power panel (RPP) dan unit distribusi daya (PDU). Pindai pemutus sirkuit dan terminal dengan kamera inframerah untuk mendeteksi terminasi yang kendor.
 - **Pembendungan Aliran Udara**: Audit pembendungan lorong dingin (CAC) atau lorong panas (HAC). Verifikasi bahwa tekanan diferensial melintasi lantai panggung atau penghalang penahan tetap ≥ 5.0 Pa. Verifikasi bahwa semua unit rak yang kosong dipasangi blanking panel; satu panel 1U yang hilang memungkinkan 25 L/s udara dingin memotong jalur, menciptakan titik panas lokal.
 - **Manifold Pendingin Cair & Kopling**: Audit manifold distribusi vertikal tingkat rak. Periksa semua kopling pemutus cepat (Danfoss FD83 atau Universal Quick Disconnects) yang melayani baki komputasi dan baki sakelar NVLink. Tanda rembesan cairan, pengkristalan, atau pembentukan tetesan merupakan kondisi Stop Work langsung yang memerlukan isolasi baki. Pastikan baki tetesan di bawah manifold rak bersih dan kering.

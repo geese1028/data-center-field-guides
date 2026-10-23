@@ -981,7 +981,7 @@ The physical plant—the medium-voltage transformers, centrifugal chillers, seco
 
 ![CDU Shift Inspection Checklist](../figures/fig-05-liquid-cdu-shift-inspection-checklist.png)
 
-Following the authoritative engineering standards outlined in **GB/T 51409-2020** (*Technical Standard for Integrated Monitoring System of Data Centers*) and OpenViking operational guidelines (`ALZJ-YW-2.6XZ02` and `ALZJ-YW-2.6XZ10`), every physical facility point must be operated under rigorous engineering constraints.
+Following the authoritative engineering standards outlined in **GB/T 51409-2020** (*Technical Standard for Integrated Monitoring System of Data Centers*) and OpenViking operational guidelines (`DCFG-SOP-WHITESPACE-01` and `DCFG-SOP-LIQUID-01`), every physical facility point must be operated under rigorous engineering constraints.
 
 ## The Walked Reading Wins
 
@@ -999,7 +999,7 @@ Never permit a software engineer or remote monitoring specialist to argue that *
 
 ## Critical Facility Telemetry Parameters
 
-Per OpenViking `ALZJ-YW-2.6XZ10` for high-density liquid cooling infrastructure:
+Per OpenViking `DCFG-SOP-LIQUID-01` for high-density liquid cooling infrastructure:
 
 ### 1. The CDU Pressure Envelope
 - Primary Facility Water System (FWS) supply pressure: $0.15\,\text{MPa}$ to $0.90\,\text{MPa}$.
@@ -1448,10 +1448,10 @@ When authoring Methods of Procedure (MOP), SCADA point configuration specificati
    - **ASTM D3306-21**: *Standard Specification for Glycol Base Engine Coolant for Heavy Duty Applications*. Governs chemical purity, freeze protection, specific gravity, and corrosion inhibitor chemistry for propylene glycol heat transfer loops.
 
 4. **Incident Governance & Operational Guidelines (OpenViking Repository)**:
-   - **HLDY-GLZD-SJGL**: *Tencent Huailai Dongyuan Data Center Incident Management System (腾讯怀来东园数据中心事件管理制度)*. Establishes incident severity tiers (P1/P2/P3), escalation clocks, and the 15-minute SLA notification protocol.
-   - **HLDY-GZBD-SJGL-01**: *Tencent Incident Classification Directory (腾讯数据中心事件等级目录)*. Categorizes equipment failures by contractual customer impact.
-   - **ALZJ-YW-2.6XZ02**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory shift rounds, containment differential pressure verification, and PDU thermal imaging.
-   - **ALZJ-YW-2.6XZ10**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis water chemistry.
+   - **DCFG-INCIDENT-SOP-01**: *Hyperscale Data Center Incident Management System*. Establishes incident severity tiers (P1/P2/P3), escalation clocks, and the 15-minute SLA notification protocol.
+   - **DCFG-SEVERITY-CAT-01**: *Data Center Incident Severity & Impact Classification Directory*. Categorizes equipment failures by contractual customer impact.
+   - **DCFG-SOP-WHITESPACE-01**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory shift rounds, containment differential pressure verification, and PDU thermal imaging.
+   - **DCFG-SOP-LIQUID-01**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis water chemistry.
 
 ## The Copyright Line
 

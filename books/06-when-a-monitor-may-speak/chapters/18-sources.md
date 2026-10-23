@@ -24,10 +24,10 @@ When authoring Methods of Procedure (MOP), SCADA point configuration specificati
  - **ASTM D3306-21**: *Standard Specification for Glycol Base Engine Coolant for Heavy Duty Applications*. Governs chemical purity, freeze protection, specific gravity, and corrosion inhibitor chemistry for propylene glycol heat transfer loops.
 
 4. **Incident Governance & Operational Guidelines (OpenViking Repository)**:
- - **HLDY-GLZD-SJGL**: *Tencent Huailai Dongyuan Data Center Incident Management System (腾讯怀来东园数据中心事件管理制度)*. Establishes incident severity tiers (P1/P2/P3), escalation clocks, and the 15-minute SLA notification protocol.
- - **HLDY-GZBD-SJGL-01**: *Tencent Incident Classification Directory (腾讯数据中心事件等级目录)*. Categorizes equipment failures by contractual customer impact.
- - **ALZJ-YW-2.6XZ02**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory shift rounds, containment differential pressure verification, and PDU thermal imaging.
- - **ALZJ-YW-2.6XZ10**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis water chemistry.
+ - **DCFG-INCIDENT-SOP-01**: *Hyperscale Data Center Incident Management System*. Establishes incident severity tiers (P1/P2/P3), escalation clocks, and the 15-minute SLA notification protocol.
+ - **DCFG-SEVERITY-CAT-01**: *Data Center Incident Severity & Impact Classification Directory*. Categorizes equipment failures by contractual customer impact.
+ - **DCFG-SOP-WHITESPACE-01**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory shift rounds, containment differential pressure verification, and PDU thermal imaging.
+ - **DCFG-SOP-LIQUID-01**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis water chemistry.
 
 ## The Copyright Line
 

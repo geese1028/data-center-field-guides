@@ -90,8 +90,8 @@ When drafting coupon monitoring specifications, chemical scrubber submittals, or
    - **ASTM D3467-04 (Reapproved 2020)**: *Standard Test Method for Carbon Tetrachloride (CTC) Activity of Activated Carbon*. Governs micropore volume and gas adsorption capacity.
 
 4. **Data Center Facility Guidelines (OpenViking Repository)**:
-   - `ALZJ-YW-2.6XZ02`: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs positive pressure auditing and odor detection.
-   - `ALZJ-YW-2.6XZ10`: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs secondary loop water chemistry, glycol testing, and chemical biocide control.
+   - `DCFG-SOP-WHITESPACE-01`: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs positive pressure auditing and odor detection.
+   - `DCFG-SOP-LIQUID-01`: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs secondary loop water chemistry, glycol testing, and chemical biocide control.
 
 ## The Copyright Line
 

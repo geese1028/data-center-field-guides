@@ -28,8 +28,8 @@ Saat menyusun Prosedur Pelaksanaan (MOP), Prosedur Operasi Darurat (EOP), atau l
  - **ISO 55001:2014**: *Asset management — Management systems — Requirements*. Tata kelola siklus hidup sistematis aset infrastruktur fisik kritis.
 
 5. **Pedoman Operasional (Repositori OpenViking)**:
- - **ALZJ-YW-2.6XZ02**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Mengatur putaran inspeksi multi-sensorik, pemindaian termal PDU, verifikasi tekanan diferensial pembendungan, dan audit kebocoran quick-disconnect.
- - **ALZJ-YW-2.6XZ10**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Mengatur tekanan hidrolik loop primer/sekunder (0.15–0.90 MPa), batas tekanan diferensial pompa (< 1.0 bar), kriteria pendekatan penukar panas pelat (< 8.0 K), pengujian refraktometer propilen glikol (25.0% berat), dan kimia air makeup osmosis balik (RO).
+ - **DCFG-SOP-WHITESPACE-01**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Mengatur putaran inspeksi multi-sensorik, pemindaian termal PDU, verifikasi tekanan diferensial pembendungan, dan audit kebocoran quick-disconnect.
+ - **DCFG-SOP-LIQUID-01**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Mengatur tekanan hidrolik loop primer/sekunder (0.15–0.90 MPa), batas tekanan diferensial pompa (< 1.0 bar), kriteria pendekatan penukar panas pelat (< 8.0 K), pengujian refraktometer propilen glikol (25.0% berat), dan kimia air makeup osmosis balik (RO).
 
 ## Baris Hak Cipta
 

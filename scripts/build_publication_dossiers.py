@@ -117,9 +117,8 @@ def build_ieee_electrical_dossier():
 > 3. IEEE STD 446 (Orange Book): *Emergency and Standby Power Systems*
 > 4. NETA ATS: *Standard for Acceptance Testing Specifications for Electrical Power Equipment*
 > **实战映射源**：
-> - `吴振杰/东园1.1期验收资料/.../电气/34、假负载用户手册/AC10.5KV-2000KW使用说明书.doc`
-> - `【1】新版体系文件【0410】/AIS-阿里巴巴租用IDC机房验收标准V2.1（终版）.pdf`
-> - `中国计量院/售前资料/售前资料/其他能力/智算中心算力测评-NIM V1.0.pptx`
+> - 10.5kV 2000kW 假负载测试规程及用户手册
+> - 智算中心算力测评技术方案与现场实测报告
 
 ---
 

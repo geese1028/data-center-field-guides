@@ -31,12 +31,9 @@ TARGET_FILES = [
     "公司输出/气流组织治理.docx",
 
     # Volume II: 现场调试与验收拒签
-    "【1】新版体系文件【0410】/AIS-阿里巴巴租用IDC机房验收标准V2.1（终版）.pdf",
-    "数据中心技术文档/CDFOM/最佳实践/百度M1机房验证项目报告 Book11.pdf",
     "commission/074 Fundamental Commissioning Steps.pdf",
     "commission/049e Water Cooled CHILLER Pre-Functional Checklist.xlsx",
     "commission/049c Cooling Tower Pre-Functional Checklist.xlsx",
-    "吴振杰/东园1.1期验收资料/02设备资料/05各设备产品说明书、维护手册（电气、暖通、弱电、消防）/电气/34、假负载用户手册/AC10.5KV-2000KW使用说明书.doc",
 
     # Volume III: 电气动力与国家级计量
     "中国计量院/售前资料/售前资料/其他能力/数据中心测试介绍.pptx",
@@ -49,14 +46,8 @@ TARGET_FILES = [
     "commission/049j Flushing and Chemical Cleaning Checklist.xlsx",
 
     # Volume V: 超大规模云基地运维与 GOC
-    "【1】新版体系文件【0410】/NA61-2 GOC报警阈值标准V1.1-发布版【0221 利东】.xlsx",
-    "【1】新版体系文件【0410】/AIS-IDC EMS3.1 监控接入指导手册V1.6.docx",
-    "【1】新版体系文件【0410】/AIS-文档规范-IDC运营事件管理规范V1.4-20191020.pdf",
-    "【1】新版体系文件【0410】/阿里巴巴庙滩二期体系目录.xlsx",
-    "【1】新版体系文件【0410】/鹏城实验室项目汇报.pptx",
-    "【1】新版体系文件【0410】/ALZJ-04-技术管理/ALZJ-JS-4.3 运维操作手册(SOP)/ALZJ-JS-4.3运维操作手册暖通分册/暖通部分---马利冷塔开机&关机&参数设定操作流程.docx",
-    "【1】新版体系文件【0410】/ALZJ-04-技术管理/ALZJ-JS-4.3 运维操作手册(SOP)/ALZJ-JS-4.3运维操作手册暖通分册/暖通部分---反渗透系统参数设置及系统开启操作流程.docx",
-    "【1】新版体系文件【0410】/ALZJ-04-技术管理/ALZJ-JS-4.3 运维操作手册(SOP)/ALZJ-JS-4.3运维操作手册暖通分册/暖通部分---定压补水系统开机&关机&参数设定操作流程.docx",
+    "CDFOM补充文档/扩展讲义及扩展话题/话题1末端气流组织治理/末端气流组织对比.pptx",
+    "公司输出/气流组织治理.docx",
 ]
 
 

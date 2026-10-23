@@ -176,7 +176,7 @@ In high-density AI data centers housing megawatt-scale liquid cooling and multi-
 - **Electrical Operations**: Any switching, racking, or live testing on medium-voltage (10kV/35kV) or low-voltage (400V/480V) switchgear must be performed exclusively by certified high-voltage/low-voltage electricians holding valid governmental licenses.
 - **Cooling & Chemical Operations**: Operating centrifugal chillers, industrial cooling towers, and primary/secondary pumping stations requires licensed refrigeration technicians certified in pressurized refrigerant handling and industrial water treatment.
 
-Per OpenViking operational guidelines (`ALZJ-YW-2.6XZ10`), liquid cooling operations involving secondary distribution units (CDUs), primary facility water systems (FWS), and rack-level manifolds require verified technical training on chemical biocides, glycol concentration measurement, and leak containment protocols.
+Per OpenViking operational guidelines (`DCFG-SOP-LIQUID-01`), liquid cooling operations involving secondary distribution units (CDUs), primary facility water systems (FWS), and rack-level manifolds require verified technical training on chemical biocides, glycol concentration measurement, and leak containment protocols.
 
 If a technician on shift lacks the statutory license for high-voltage switching, their name may not appear on an electrical switching ticket. If an unlicensed contractor is found with an open panel door, work stops immediately.
 
@@ -632,7 +632,7 @@ Every square meter of a production data center must be audited across four senso
 
 ## The Six Critical Inspection Stations
 
-Following the operational standards outlined in OpenViking (`ALZJ-YW-2.6XZ02` for IT Whitespace and `ALZJ-YW-2.6XZ10` for Liquid Cooling Infrastructure), the shift inspection round traverses six mandatory stations:
+Following the operational standards outlined in OpenViking (`DCFG-SOP-WHITESPACE-01` for IT Whitespace and `DCFG-SOP-LIQUID-01` for Liquid Cooling Infrastructure), the shift inspection round traverses six mandatory stations:
 
 **CRITICAL STATION INSPECTION METRICS**
 
@@ -671,14 +671,14 @@ Following the operational standards outlined in OpenViking (`ALZJ-YW-2.6XZ02` fo
 - Audit chilled water pump differential pressures (ΔP) and verify that secondary variable speed drives are modulating correctly without hunting.
 
 ### Station 5: Secondary Cooling Distribution Units (CDU)
-Per OpenViking `ALZJ-YW-2.6XZ10`, the CDU is the mechanical heart of high-density AI clusters:
+Per OpenViking `DCFG-SOP-LIQUID-01`, the CDU is the mechanical heart of high-density AI clusters:
 - **Pressure Envelope**: Verify primary facility water system (FWS) supply pressure and secondary technology cooling system (TCS) supply pressure remain strictly between 0.15 MPa and 0.90 MPa. Verify that pump differential pressure is < 1.0 bar.
 - **Thermal Performance**: Verify that plate heat exchanger approach temperature (ΔT_approach = T_TCS, supply - T_FWS, supply) does not exceed 8.0 K. An approach > 8.0 K indicates biological fouling or particulate clogging on the plate surfaces.
 - **Fluid Chemistry**: Use a calibrated optical refractometer to test secondary coolant. Propylene glycol concentration must measure precisely **25.0% by weight** (± 1.0%), providing freeze protection down to -11.5°C and burst protection down to -22.0°C. Coolant conductivity must measure < 10 μ S/ cm, with pH maintained between 7.5 and 9.0.
 - **Physical Integrity**: Inspect the internal CDU catch pan and base frame for moisture. Verify that the continuous rope leak detection sensor is completely dry and properly positioned. Check the nitrogen pre-charge pressure on the thermal expansion tank (P_0 = P_fill - 0.2 bar).
 
 ### Station 6: AI Whitespace & NVL72 Racks
-Per OpenViking `ALZJ-YW-2.6XZ02`:
+Per OpenViking `DCFG-SOP-WHITESPACE-01`:
 - **Electrical Distribution**: Inspect remote power panels (RPPs) and power distribution units (PDUs). Sweep circuit breakers and terminal lugs with an infrared camera to detect loose terminations.
 - **Airflow Containment**: Audit cold aisle containment (CAC) or hot aisle containment (HAC). Verify that differential pressure across the raised floor or containment barrier remains ≥ 5.0 Pa. Verify that all unpopulated rack units contain blanking panels; a single missing 1U panel permits 25 L/s of air bypass, creating localized hot spots.
 - **Liquid Cooling Manifolds & Couplings**: Audit rack-level vertical distribution manifolds. Inspect all quick-disconnect couplings (Danfoss FD83 or Universal Quick Disconnects) serving compute trays and NVLink switch trays. Any sign of fluid weeping, crusting, or drop formation is an immediate Stop Work condition requiring tray isolation. Check that drip trays under the rack manifolds are clean and dry.
@@ -1302,8 +1302,8 @@ When drafting Methods of Procedure (MOP), Emergency Operating Procedures (EOP), 
  - **ISO 55001:2014**: *Asset management — Management systems — Requirements*. Systematic lifecycle governance of critical physical infrastructure assets.
 
 5. **Operational Guidelines (OpenViking Repository)**:
- - **ALZJ-YW-2.6XZ02**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory inspection rounds, PDU thermal scans, containment differential pressure verification, and quick-disconnect leak audits.
- - **ALZJ-YW-2.6XZ10**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis makeup water chemistry.
+ - **DCFG-SOP-WHITESPACE-01**: *IT Whitespace Physical Shift Inspection Operational Guidelines*. Governs multi-sensory inspection rounds, PDU thermal scans, containment differential pressure verification, and quick-disconnect leak audits.
+ - **DCFG-SOP-LIQUID-01**: *Liquid Cooling Infrastructure & CDU Operational Guidelines*. Governs primary/secondary loop hydraulic pressures (0.15–0.90 MPa), pump differential pressure limits (< 1.0 bar), plate heat exchanger approach criteria (< 8.0 K), propylene glycol refractometer testing (25.0% wt), and reverse osmosis makeup water chemistry.
 
 ## The Copyright Line
 
