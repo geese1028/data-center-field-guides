@@ -18,10 +18,10 @@ def build_liquid_cooling_and_cfd_dossier():
 > 1. ASHRAE TC 9.9: *Liquid Cooling Guidelines for Datacom Equipment Centers*
 > 2. Jim A. Wingate: *Hydraulics, Pipe Flow, Industrial*
 > 3. SPX-APV: *Heat Transfer Handbook* (Plate Heat Exchangers & CDU Core)
-> **实战映射源**：
-> - `DCIsight/日本AI数据中心/技术方案/假负载测试sow.docx`
-> - `10.SMCI_1.8MW CDU_Manual_rev1_PBD 20250619.pdf`
-> - `数据中心CFD仿真输入清单.xlsx`
+> **实战工程映射**：
+> - `DCFG-SOW-LiquidCooling-LoadBank-Commissioning.docx`
+> - `Hyperscale-CDU-1.8MW-Operation-Manual-Rev1.pdf`
+> - `DataCenter-CFD-Boundary-Condition-Schedule.xlsx`
 
 ---
 
@@ -67,10 +67,10 @@ def build_corrosion_and_bsria_dossier():
 > 2. ANSI/ISA-71.04-2013: *Environmental Conditions for Process Measurement and Control Systems: Airborne Contaminants*
 > 3. BSRIA BG 29/2012: *Pre-Commission Cleaning of Pipework Systems (2nd Edition)*
 > 4. APV: *Corrosion Handbook*
-> **实战映射源**：
-> - `中国计量院/售前资料/售前资料/其他能力/腐蚀测试.pptx`
-> - `CDFOM补充文档/扩展讲义及扩展话题/话题1末端气流组织治理/数据中心末端气流组织及气体腐蚀治理.pptx`
-> - `commission/049j Flushing and Chemical Cleaning Checklist.xlsx`
+> **实战工程映射**：
+> - `DCFG-Protocol-Corrosion-Coupon-Testing-Guide.pptx`
+> - `DataCenter-Airflow-Gaseous-Corrosion-Remediation.pptx`
+> - `Field-Commissioning-Flushing-Chemical-Cleaning-Checklist.xlsx`
 
 ---
 

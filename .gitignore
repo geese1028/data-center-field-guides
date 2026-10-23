@@ -21,6 +21,7 @@ docs/review_*.md
 books/10-physical-ai-manual/
 books/11-it-idc-handshake/
 .onedrive_token_cache.json
+onedrive_inventory.*
 __pycache__/
 .DS_Store
 *.pyc
