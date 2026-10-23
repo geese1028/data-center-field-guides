@@ -81,10 +81,10 @@ All volume metadata, engineering synopses, BISAC category codes, and file assets
      - Returns: `{ "data": { "key": "<coverKey>" } }`
   3. **EPUB Validation Task**:
      - `POST /epub-upload/api/v1/validate/epub`
-     - Body: `{ "epubKey": "<epubKey>", "providerId": "wangyuheng" }`
+     - Body: `{ "epubKey": "<epubKey>", "providerId": "<providerId>" }`
      - Poll `GET /epub-upload/api/v1/validate/status/<taskId>` until `status: "finished"`, `stage: "complete"`.
   4. **Generate Vendor ID**:
-     - `GET /epub-upload/api/v1/metadata/providers/wangyuheng/generate_vendor_id`
+     - `GET /epub-upload/api/v1/metadata/providers/<providerId>/generate_vendor_id`
   5. **Final Publish Submission**:
      - `POST /epub-upload/api/v1/publish/`
      - Body: Complete `Ps` JSON payload (Vendor ID, Title, Subtitle, Author `Tristan`, Series `Data Center Field Guides` + Vol `1`, BISAC `COM067000`, Language `eng`, assets: full + artwork).
